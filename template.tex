@@ -1,0 +1,212 @@
+%%
+% Document setup
+
+% Document class and options
+\documentclass[a4paper, twoside]{tufte-book}
+  \hypersetup{colorlinks}
+  \onehalfspacing
+
+% Book metadata
+\title%
+  $if(short-title)$[$short-title$]$endif$%
+  {$title$}
+\author%
+  $if(short-author)$[$short-author$]$endif$%
+  {$author$}
+
+% Other packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{cleveref}
+\usepackage{lipsum}
+\usepackage{graphicx}
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}}
+
+%%
+% Input settings
+
+% allow unicode symbols to be read from the source
+\usepackage[utf8]{inputenc}
+
+% set up unicode characters to be recognised by LaTeX
+% this defines each character using \DeclareUnicodeCharacter
+\input{binhex}
+\makeatletter
+  \def\uc@dclc#1#2#3{%
+    \ifnum\pdfstrcmp{#2}{mathletters}=\z@
+      \begingroup\edef\x{\endgroup
+        \noexpand\DeclareUnicodeCharacter{\hex{#1}}}\x{#3}%
+    \fi
+  }
+  \input{uni-3.def}
+  \def\uc@dclc#1#2#3{%
+    \ifnum\pdfstrcmp{#2}{default}=\z@
+      \begingroup\edef\x{\endgroup
+        \noexpand\DeclareUnicodeCharacter{\hex{#1}}}\x{#3}%
+    \fi
+  }
+  \input{uni-34.def}
+\makeatother
+% now this document can be compiled with plain pdflatex, pretty cool huh!
+% (xelatex also works very nicely)
+
+% a few characters aren't covered by the above trick
+\DeclareUnicodeCharacter{00D7}{\times}
+\DeclareUnicodeCharacter{025B}{\varepsilon}
+
+%%
+% Page formatting
+
+% Title page layout
+\renewcommand{\maketitlepage}{%
+  \cleardoublepage
+  {%
+  \raggedright
+  \begin{fullwidth}%
+  \fontsize{18}{20}\selectfont\par\textcolor{darkgray}{\thanklessauthor}%
+  \vspace{11.5pc}%
+  \fontsize{32}{34}\selectfont\par\textcolor{darkgray}{\thanklesstitle}%
+  \vfill%
+  \fontsize{14}{16}\selectfont\par\emph{This dissertation is submitted for the degree of $degree$.}%
+  \vspace{2pc}%
+  \fontsize{14}{16}\selectfont\par{\smallcaps{$college$} \(\cdot\) \smallcaps{University of Cambridge} \(\cdot\) \smallcaps{$date$}}%
+  \end{fullwidth}%
+  }%
+  \thispagestyle{empty}%
+  \clearpage
+}
+
+% Contents page layout
+\titlecontents{chapter}%
+  [0em] % distance from left margin
+  {\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape} % above (global formatting of entry)
+  {\hspace*{2em}\contentslabel{2em}} % before w/label (label = ``2'')
+  {\hspace*{2em}} % before w/o label
+  {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+  [\end{fullwidth}] % after
+\titlecontents{section}%
+  [0em] % distance from left margin
+  {\vspace{0\baselineskip}\begin{fullwidth}\Large\rmfamily\itshape} % above (global formatting of entry)
+  {\hspace*{4em}\contentslabel{2em}} % before w/label (label = ``2.6'')
+  {\hspace*{4em}} % before w/o label
+  {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+  [\end{fullwidth}] % after
+
+% Chapter heading formatting
+\titleformat{\chapter}%
+  {\huge\rmfamily\itshape}% format applied to label+text
+  {\thechapter}% label
+  {12pt}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+
+% Number sections
+\setcounter{secnumdepth}{2}
+
+%%
+% Additional commands
+
+% Prints an epigraph and speaker
+\newcommand{\openepigraph}[2]{%
+  \large
+  {\parindent0pt \emph{#1}}\\% epigraph
+  \vspace{1pc}
+  {\parindent0pt {#2}}% author
+}
+
+% Inserts a blank page
+\newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage}
+
+
+\begin{document}
+
+% Front matter
+\frontmatter
+
+% r.1 title page
+\maketitlepage
+
+% dedication page if present
+$if(dedication)$
+  \cleardoublepage
+  \thispagestyle{empty}
+  ~\vfill
+  \begin{doublespace}
+  {\parindent0pt \fontsize{18}{22}\selectfont\itshape
+  \raggedright
+  $dedication$}
+  \end{doublespace}
+  \vfill
+  \vfill
+$endif$
+
+% copyright
+\newpage
+\begin{fullwidth}
+~\vfill
+\thispagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+Copyright \copyright\ \the\year\ $short-author$
+
+$if(colophon)$
+  \par $colophon$
+$endif$
+
+\par\textit{First submitted $date$}
+\end{fullwidth}
+
+%%
+% tables of contents and figures
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+%%
+% preface if present
+$if(preface)$
+  \begin{fullwidth}
+  \chapter*{Preface}\label{preface}
+  $preface$
+  \end{fullwidth}
+$endif$
+
+%%
+% page of quotes if present
+$if(quotes)$
+\newpage\thispagestyle{empty}
+\begin{fullwidth}
+\null\vfill
+$for(quotes)$
+\openepigraph{$quotes.quote$}{$quotes.author$}
+$sep$\vfill
+$endfor$
+\vfill
+\end{fullwidth}
+$endif$
+
+%%
+% Start the main matter (normal chapters)
+\mainmatter
+
+$body$
+
+\backmatter
+
+%%
+% acknowledgements if present
+$if(acknowledgements)$
+  \chapter{Acknowledgements}\label{acknowledgements}
+  $acknowledgements$
+$endif$
+
+\bibliographystyle{mnras}
+\bibliography{$bibfile$}
+
+\end{document}

@@ -3,8 +3,6 @@
 
 % Document class and options
 \documentclass[a4paper, twoside]{tufte-book}
-  \hypersetup{colorlinks}
-  \onehalfspacing
 
 % Book metadata
 \title%
@@ -15,15 +13,38 @@
   {$author$}
 
 % Other packages
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{microtype}
-\usepackage{booktabs}
-\usepackage{cleveref}
+\usepackage{amsmath} % additional math options
+\usepackage{amssymb} % additional math symbols
+\usepackage{microtype} % type tweaks
+\usepackage[lining,tabular]{fbb} % Bembo font for the body
+\usepackage[scaled=.95,type1]{cabin} % Gill Sans for sans serif
+\usepackage[libertine,bigdelims]{newtxmath} % libertine font for maths
+\usepackage[varqu,varl]{zi4} % inconsolata font for monospace
+% \usepackage[cal=boondoxo,bb=boondox,frak=boondox]{mathalfa} % maths alphabets
+\usepackage{booktabs} % better tables
+\usepackage{cleveref} % better references
+\usepackage{xspace} % better spaces
 \usepackage{lipsum}
-\usepackage{graphicx}
-  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
-  \graphicspath{{graphics/}}
+\usepackage{graphicx} % for those sweet sweet figures
+\usepackage[svgnames]{xcolor} % better colors
+
+%%
+% Appearance options
+
+% Text
+\useosf % full-height numbers in math, oldstyle elsewhere
+\useproportional % proportionally spaced numbers
+\hypersetup{colorlinks,allcolors=DarkRed}
+\onehalfspacing % line spacing requirement
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+
+% Load images from
+$if(imagefolders)$
+  \graphicspath{
+  $for(imagefolders)$
+    {$imagefolders$}
+  $endfor$}
+$endif$
 
 %%
 % Input settings
@@ -59,6 +80,10 @@
 
 %%
 % Page formatting
+
+% Extra space for binding
+\setlength{\oddsidemargin}{0cm} % odd pages are okay already
+\setlength{\evensidemargin}{-0.5cm} % even pages need more inner space
 
 % Title page layout
 \renewcommand{\maketitlepage}{%
@@ -133,7 +158,7 @@
 $if(dedication)$
   \cleardoublepage
   \thispagestyle{empty}
-  ~\vfill
+  \null\vfill
   \begin{doublespace}
   {\parindent0pt \fontsize{18}{22}\selectfont\itshape
   \raggedright
@@ -146,17 +171,17 @@ $endif$
 % copyright
 \newpage
 \begin{fullwidth}
-~\vfill
-\thispagestyle{empty}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{\baselineskip}
-Copyright \copyright\ \the\year\ $short-author$
+  \null\vfill
+  \thispagestyle{empty}
+  \setlength{\parindent}{0pt}
+  \setlength{\parskip}{\baselineskip}
+  Copyright \textcopyright\ \the\year\ $short-author$
 
-$if(colophon)$
-  \par $colophon$
-$endif$
+  $if(colophon)$
+    \par $colophon$
+  $endif$
 
-\par\textit{First submitted $date$}
+  \par\textit{First submitted $date$}
 \end{fullwidth}
 
 %%
@@ -206,7 +231,9 @@ $if(acknowledgements)$
   $acknowledgements$
 $endif$
 
-\bibliographystyle{mnras}
-\bibliography{$bibfile$}
+\begin{fullwidth}
+  \bibliographystyle{abbrvnat}
+  \bibliography{$bibfile$}
+\end{fullwidth}
 
 \end{document}

@@ -7,31 +7,7 @@ degree: Doctor of Philosophy
 college: Trinity College
 date: December 2016
 
-quotes:
-  - quote: Hello babies. Welcome to Earth. It's hot in the summer and cold in the winter. It's round and wet and crowded. On the outside, babies, you've got a hundred years here. There's only one rule that I know of, babies—God damn it, you've got to be kind.
-    author: Kurt Vonnegut
-  - quote: |
-           | Within your lifetime will, perhaps,
-           | As souvenirs from distant suns
-           | Be carried back to earth some maps\marginnote{In 1977, it was proved that four colours are enough to colour a map such that adjacent colours are always different. This poem was written while that four-colour theorem was still a conjecture.}
-           | Of planets and you'll find that one's
-           | So hard to color that you've got
-           | To use five crayons. Maybe, not.
-    author: Marlow Sholander, "Maybe"
-  - quote: |
-           | Can't keep my eyes from the circling skies
-           | Tongue-tied and twisted, just an earth-bound misfit
-    author: Pink Floyd, "Learning to Fly"
+imagefolders:
+  - "./chapters/00-preface/images/"
 
-dedication: For those who heard my dreams and said, "Go for it."
-
-preface: |
-         | I hereby declare that this dissertation entitled "Internal and atmospheric structures of heated watery super-Earths" is the result of my own work and includes nothing which is the outcome of work done in collaboration except as declared in this Preface and specified in the text. It is not substantially the same as any that I have submitted or is being concurrently submitted for a degree or diploma or other qualification at the University of Cambridge or any other University or similar institution. I further state that no substantial part of my dissertation has already been submitted or is being concurrently submitted for any such degree, diploma or other qualification at the University of Cambridge or any other University of similar institution.
-         | This dissertation does not exceed the prescribed word limit for the Degree Committee of Physics and Chemistry of 60,000 words.
-
-colophon: In publishing, a colophon is a brief statement containing information about the publication of a book such as the place of publication, the publisher, and the date of publication. A colophon may also be emblematic or pictorial in nature. Colophons were formerly printed at the ends of books, but in modern works they are usually located at the verso of the title-leaf.
-
-acknowledgements: My eternal thanks go to my amazing friends and family.
-
-bibfile: library
 ---

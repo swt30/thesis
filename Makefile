@@ -1,10 +1,12 @@
 # Inputs
 title=thesis
 chapterfolder=chapters/
-bibfile=library.bib
+bibfile=library
+bibfilebib=$(bibfile).bib
 
 # Chapters
-files = 01-introduction.md
+files = 00-preface/00-preface.md
+files += 01-introduction.md
 files += 02-eos.md
 files += 03-models.md
 files += 04-heating.md
@@ -25,14 +27,14 @@ textemplate=template.tex
 clutter=*.run.xml *.aux *.bcf *.fdb_latexmk *.fls *.log *.out *.bbl *.blg *Notes.bib .figsentinel
 
 # pandoc options
-commonopts=--filter=pandoc-crossref -M cref=true --from=markdown -s -S
-texopts=$(commonopts) --natbib --chapters --filter=pandoc-svg.py --template $(textemplate)
+commonopts=--filter=pandoc-crossref -M cref=true -M bibfile=$(bibfile) --from=markdown -s -S
+texopts=$(commonopts) --natbib --chapters --template $(textemplate)
 
 # make all the things!
 all: $(outputexts)
 
 # documents
-tex: $(title).tex $(bibfile) | bibtex
+tex: $(title).tex $(bibfilebib) | bibtex
 $(title).tex: preamble.yaml $(chapters) $(textemplate)
 	pandoc preamble.yaml $(chapters) $(texopts) -o $(title).tex
 
@@ -42,8 +44,8 @@ $(title).pdf: $(title).tex
 
 # bibliography
 bibtex:
-	rm -f $(bibfile)
-	cp ~/Documents/PhD/Literature/bibtex/publications-heating.bib $(bibfile)
+	rm -f $(bibfilebib)
+	cp ~/Documents/PhD/Literature/bibtex/publications-heating.bib $(bibfilebib)
 
 # cleaning
 clean:

@@ -27,6 +27,7 @@
 \usepackage{lipsum}
 \usepackage{graphicx} % for those sweet sweet figures
 \usepackage[svgnames]{xcolor} % better colors
+\usepackage{pdfpages} % for including the deposit form
 
 %%
 % Appearance options
@@ -34,9 +35,13 @@
 % Text
 \useosf % full-height numbers in math, oldstyle elsewhere
 \useproportional % proportionally spaced numbers
-\hypersetup{colorlinks,allcolors=DarkRed}
 \onehalfspacing % line spacing requirement
 \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+$if(deposit)$
+\hypersetup{colorlinks,allcolors=darkgray}
+$else$
+\hypersetup{colorlinks,allcolors=DarkRed}
+$endif$
 
 % Load images from
 $if(imagefolders)$
@@ -91,13 +96,27 @@ $endif$
   {%
   \raggedright
   \begin{fullwidth}%
-  \fontsize{18}{20}\selectfont\par\textcolor{darkgray}{\thanklessauthor}%
-  \vspace{11.5pc}%
-  \fontsize{32}{34}\selectfont\par\textcolor{darkgray}{\thanklesstitle}%
-  \vfill%
-  \fontsize{14}{16}\selectfont\par\emph{This dissertation is submitted for the degree of $degree$.}%
-  \vspace{2pc}%
-  \fontsize{14}{16}\selectfont\par{\smallcaps{$college$} \(\cdot\) \smallcaps{University of Cambridge} \(\cdot\) \smallcaps{$date$}}%
+    \fontsize{18}{20}\selectfont\par\textcolor{darkgray}{\thanklessauthor}%
+    \vspace{11.5pc}%
+    \fontsize{32}{34}\selectfont\par\textcolor{darkgray}{\thanklesstitle}%
+    \vfill%
+    \fontsize{14}{16}\selectfont\par\emph{This dissertation is submitted for the degree of $degree$.}%
+    \vspace{2pc}%
+    \fontsize{14}{16}\selectfont\par{\smallcaps{$college$} \(\cdot\) \smallcaps{University of Cambridge} \(\cdot\) \smallcaps{$date$}}%
+  \end{fullwidth}%
+  }%
+  \thispagestyle{empty}%
+  \clearpage
+}
+\newcommand{\makehalftitlepage}{%
+  \cleardoublepage
+  {%
+  \raggedright
+    \begin{fullwidth}%
+    \null\vspace{12.5pc}%
+    \fontsize{32}{34}\selectfont\par\textcolor{darkgray}{\thanklesstitle}%
+    \vfill%
+    \vfill%
   \end{fullwidth}%
   }%
   \thispagestyle{empty}%
@@ -151,21 +170,18 @@ $endif$
 % Front matter
 \frontmatter
 
-% r.1 title page
+$if(deposit)$
+% thesis deposit form (only present in hardbound deposit copy)
+\cleardoublepage
+\includepdf[pages={1}]{misc/copying-and-deposit-form.pdf}
+$endif$
+
+% title page
 \maketitlepage
 
-% dedication page if present
-$if(dedication)$
-  \cleardoublepage
-  \thispagestyle{empty}
-  \null\vfill
-  \begin{doublespace}
-  {\parindent0pt \fontsize{18}{22}\selectfont\itshape
-  \raggedright
-  $dedication$}
-  \end{doublespace}
-  \vfill
-  \vfill
+$if(softbinding)$
+% half title (only present in soft binding)
+\makehalftitlepage
 $endif$
 
 % copyright
@@ -183,6 +199,20 @@ $endif$
 
   \par\textit{First submitted $date$}
 \end{fullwidth}
+
+% r.5 dedication page (if present)
+$if(dedication)$
+  \cleardoublepage
+  \thispagestyle{empty}
+  \null\vfill
+  \begin{doublespace}
+  {\parindent0pt \fontsize{18}{22}\selectfont\itshape
+  \raggedright
+  $dedication$}
+  \end{doublespace}
+  \vfill
+  \vfill
+$endif$
 
 %%
 % tables of contents and figures

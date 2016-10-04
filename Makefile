@@ -27,7 +27,7 @@ outputs = $(outputpdfs) $(outputtexs)
 textemplate = template.tex
 
 # for cleaning purposes
-clutter=*.run.xml *.aux *.bcf *.fdb_latexmk *.fls *.log *.out *.bbl *.blg *Notes.bib .figsentinel
+clutter=*.run.xml *.aux *.bcf *.fdb_latexmk *.fls *.log *.out *.bbl *.blg *Notes.bib .figsentinel $(bibfilebib)
 
 # pandoc options
 texopts = --filter=pandoc-crossref -M cref=true -M bibfile=$(bibfile) --from=markdown -s -S --natbib --chapters --template $(textemplate)
@@ -56,7 +56,7 @@ $(title)-deposit.pdf: $(title)-deposit.tex
 # bibliography
 bibtex:
 	rm -f $(bibfilebib)
-	cp ~/Documents/PhD/Literature/bibtex/publications-heating.bib $(bibfilebib)
+	cp ~/Documents/PhD/Literature/bibtex/publications-thesis.bib $(bibfilebib)
 
 # cleaning
 clean:

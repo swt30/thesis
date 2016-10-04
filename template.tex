@@ -43,13 +43,20 @@ $else$
 \hypersetup{colorlinks,allcolors=DarkRed}
 $endif$
 
-% Load images from
+% Load images from specified graphics paths
 $if(imagefolders)$
   \graphicspath{
   $for(imagefolders)$
     {$imagefolders$}
   $endfor$}
 $endif$
+
+% Set the display of cross-references in the text
+\crefname{figure}{figure}{figures}
+\crefname{table}{table}{tables}
+\crefname{equation}{equation}{equations}
+\crefname{section}{section}{sections}
+\creflabelformat{equation}{#2#1#3}
 
 %%
 % Input settings

@@ -9,5 +9,6 @@ date: December 2016
 
 imagefolders:
   - "./chapters/00-preface/images/"
+  - "./misc/"
 
 ---

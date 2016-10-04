@@ -22,11 +22,37 @@ It does useful stuff because we use it to calculate things.
 
 ## Section
 
-\lipsum[2-3]
+@Fig:sample shows us something.
+
+\begin{figure}
+    \includegraphics{sample}
+    \caption[Regular sample figure]{Here is a sample figure. Something really exciting is happening here!}
+    \label{fig:sample}
+\end{figure}
+
+\lipsum[2]
+
+But also interesting is @fig:sample-margin.
+
+\begin{marginfigure}
+    \includegraphics{sample-margin}
+    \caption[Sample figure in margin]{Here's a sample figure. Something swirly is happening here.}
+    \label{fig:sample-margin}
+\end{marginfigure}
+
+\lipsum[3]
+
+Have you considered @fig:sample-wide?
+
+\begin{figure*}
+    \includegraphics{sample-wide}
+    \caption[Full-width figure]{Here's a wide figure. Something wavy is happening here.}
+    \label{fig:sample-wide}
+\end{figure*}
 
 ### Subsection
 
-Here is one big-ass equation.
+@Eq:two-stream-temperature-profile is one big-ass equation.
 
 \begin{fullwidth}
 \begin{equation}

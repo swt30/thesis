@@ -30,7 +30,7 @@ textemplate = template.tex
 clutter=*.run.xml *.aux *.bcf *.fdb_latexmk *.fls *.log *.out *.bbl *.blg *Notes.bib .figsentinel $(bibfilebib)
 
 # pandoc options
-texopts = --filter=pandoc-crossref -M cref=true -M bibfile=$(bibfile) --from=markdown -s -S --natbib --chapters --template $(textemplate)
+texopts = --filter=pandoc-fignos --filter=pandoc-crossref -M cref=true -M bibfile=$(bibfile) --from=markdown -s -S --natbib --chapters --template $(textemplate)
 softbinding = -M softbinding=true
 deposit = -M deposit=true
 

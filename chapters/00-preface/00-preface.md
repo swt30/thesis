@@ -12,8 +12,8 @@ unused-quotes:
     author: Pink Floyd, "Learning to Fly"
 
 quotes:
-  - quote: Hello babies. Welcome to Earth. It's hot in the summer and cold in the winter. It's round and wet and crowded. On the outside, babies, you've got a hundred years here. There's only one rule that I know of, babies—God damn it, you've got to be kind.
-    author: Kurt Vonnegut
+  - quote: Hello, babies. Welcome to Earth. It’s hot in the summer and cold in the winter. It’s round and wet and crowded. At the outside, babies, you’ve got about a hundred years here. There’s only one rule that I know of, babies—God damn it, you’ve got to be kind.
+    author: Kurt Vonnegut, "God Bless You, Mr. Rosewater"
   - quote: |
            | Within your lifetime will, perhaps,
            | As souvenirs from distant suns
@@ -23,7 +23,7 @@ quotes:
            | To use five crayons. Maybe, not.
     author: Marlow Sholander, "Maybe"
   - quote: Sometimes I think the surest sign that intelligent life exists elsewhere in the universe is that none of it has tried to contact us.
-    author: Bill Watterson
+    author: Bill Watterson, "Calvin and Hobbes"
 
 dedication: |
             | For those who heard my dreams
@@ -35,7 +35,7 @@ preface: |
          | Parts of this dissertation have been previously published or submitted for publication. Chapters 2 and 3 are based on our paper, "In hot water: effects of temperature-dependent interiors on the radii of water-rich super-Earths" [@Thomas2016]. Chapter 4 is based on another paper, "Internal heating of watery super-Earths", submitted for publication.
          | \newthought{I hereby declare} that this dissertation entitled "Internal and atmospheric structures of heated watery super-Earths" is the result of my own work and includes nothing which is the outcome of work done in collaboration except as declared in this Preface and specified in the text. It is not substantially the same as any that I have submitted or is being concurrently submitted for a degree or diploma or other qualification at the University of Cambridge or any other University or similar institution.
          | I further state that no substantial part of my dissertation has already been submitted or is being concurrently submitted for any such degree, diploma or other qualification at the University of Cambridge or any other University of similar institution.
-         | This dissertation does not exceed the prescribed word limit for the Degree Committee of Physics and Chemistry of 60,000 words.
+         | This dissertation does not exceed the word limit of 60,000 words prescribed by the Degree Committee for the Faculty of Physics and Chemistry.
 
 colophon: |
           | [\raisebox{-.2\height}{\includegraphics[height=0.4cm]{creativecommons.pdf}}](http://creativecommons.org/licenses/by/4.0/) This work is licensed under a [Creative Commons Attribution 4.0 International License.](http://creativecommons.org/licenses/by/4.0/)

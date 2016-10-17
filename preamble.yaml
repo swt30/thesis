@@ -5,10 +5,16 @@ author: Scott William Thomas
 short-author: S. W. Thomas
 degree: Doctor of Philosophy
 college: Trinity College
-date: December 2016
+submission-date: December 2016
 
 imagefolders:
   - "./chapters/00-preface/images/"
+  - "./chapters/01-introduction/images/"
+  - "./chapters/02-eos/images/"
+  - "./chapters/03-models/images/"
+  - "./chapters/04-heating/images/"
+  - "./chapters/05-migration/images/"
+  - "./chapters/06-conclusion/images/"
   - "./misc/"
 
 titleimage: title-phases

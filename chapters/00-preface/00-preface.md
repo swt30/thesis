@@ -39,7 +39,7 @@ preface: |
 
 colophon: |
           | [\raisebox{-.2\height}{\includegraphics[height=0.4cm]{creativecommons.pdf}}](http://creativecommons.org/licenses/by/4.0/) This work is licensed under a [Creative Commons Attribution 4.0 International License.](http://creativecommons.org/licenses/by/4.0/)
-          | This dissertation is typeset with the `tufte-book` \LaTeX\xspace class. It uses Markdown source, the [`Pandoc`](http://www.pandoc.org) document converter, and a custom template. The source code, including Jupyter notebooks containing the source for all figures, is available at \url{www.github.com/swt30/thesis}.
+          | This dissertation is typeset with the [`tufte-book`](http://tufte-latex.github.io/tufte-latex/) \LaTeX\xspace class. It uses Markdown source, the [`Pandoc`](http://www.pandoc.org) document converter, and a custom template. The source code, including Jupyter notebooks containing the source for all figures, is available at \url{www.github.com/swt30/thesis}.
 
 acknowledgements: I acknowledge NO-ONE! HA! Didn't see THAT coming, did you?
 ---

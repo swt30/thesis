@@ -11,4 +11,7 @@ imagefolders:
   - "./chapters/00-preface/images/"
   - "./misc/"
 
+titleimage: title-phases
+titleimage-description: "Water can exist in many different phases. As well as the familiar vapour, liquid and solid, there also exist exotic ice, fluid or plasma forms which water may adopt when heated or compressed. These models of planets with thick water layers show how the layer structure varies depending on the planet's size, mass and heating."
+
 ---

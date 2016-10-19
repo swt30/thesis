@@ -26,6 +26,7 @@
 \usepackage{xspace} % better spaces
 \usepackage{lipsum}
 \usepackage{graphicx} % for those sweet sweet figures
+\usepackage[caption=false]{subfig} % for subfigures
 \usepackage[svgnames]{xcolor} % better colors
 \usepackage{pdfpages} % for including the deposit form
 
@@ -38,9 +39,9 @@
 \onehalfspacing % line spacing requirement
 \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
 $if(deposit)$
-\hypersetup{colorlinks,allcolors=darkgray}
+\hypersetup{colorlinks,allcolors=Black}
 $else$
-\hypersetup{colorlinks,allcolors=DarkRed}
+\hypersetup{colorlinks,allcolors=Maroon}
 $endif$
 
 % Load images from specified graphics paths
@@ -227,7 +228,7 @@ $endif$
   \par\textit{First submitted $submission-date$}
 \end{fullwidth}
 
-% r.5 dedication page (if present)
+% dedication page (if present)
 $if(dedication)$
   \cleardoublepage
   \thispagestyle{empty}
@@ -241,22 +242,30 @@ $if(dedication)$
   \vfill
 $endif$
 
+% the abstract / summary
+\cleardoublepage
+\thispagestyle{empty}
+\chapter*{Abstract}\label{preface}
+$abstract$
+
 %%
 % tables of contents and figures
 \setcounter{tocdepth}{1}
+\begin{fullwidth}
 \tableofcontents
 
 \listoffigures
 
 \listoftables
+\end{fullwidth}
 
 %%
 % preface if present
 $if(preface)$
-  \begin{fullwidth}
+  % \begin{fullwidth}
   \chapter*{Preface}\label{preface}
   $preface$
-  \end{fullwidth}
+  % \end{fullwidth}
 $endif$
 
 %%

@@ -7,6 +7,9 @@
 *.out
 *.toc
 
+## Automatically generated figures
+**/autofigs/**
+
 ## Intermediate documents:
 *.dvi
 *-converted-to.*

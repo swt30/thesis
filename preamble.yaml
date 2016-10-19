@@ -9,15 +9,22 @@ submission-date: December 2016
 
 imagefolders:
   - "./chapters/00-preface/images/"
+  - "./chapters/00-preface/autofigs/"
   - "./chapters/01-introduction/images/"
+  - "./chapters/01-introduction/autofigs/"
   - "./chapters/02-eos/images/"
+  - "./chapters/02-eos/autofigs/"
   - "./chapters/03-models/images/"
+  - "./chapters/03-models/autofigs/"
   - "./chapters/04-heating/images/"
+  - "./chapters/04-heating/autofigs/"
   - "./chapters/05-migration/images/"
+  - "./chapters/05-migration/autofigs/"
   - "./chapters/06-conclusion/images/"
+  - "./chapters/06-conclusion/autofigs/"
   - "./misc/"
 
 titleimage: title-phases
-titleimage-description: "Water can exist in many different phases. As well as the familiar vapour, liquid and solid, there also exist exotic ice, fluid or plasma forms which water may adopt when heated or compressed. These models of planets with thick water layers show how the layer structure varies depending on the planet's size, mass and heating."
+titleimage-description: "Water can exist in any of several different phases. As well as its familiar vapour, liquid and solid forms, it can become a supercritical fluid, exotic ice or plasma when heated or compressed. These colourful circles represent a variety of potential structures for planets that are covered in thick layers of water. Essentially, they are models of giant snowballs."
 
 ---

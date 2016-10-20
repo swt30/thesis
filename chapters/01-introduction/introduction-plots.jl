@@ -22,49 +22,39 @@ ylabels = Dict(
 
 # choose colors for the plots
 colors = [:firebrick, :slateblue, :seagreen]
+basefont = ThesisUtils.main_font
+f(n) = font(basefont, colors[n], :left)
+yticks = reshape([100:100:1500, nothing, nothing], (1,3))
+xticks = [1995, 2016]
 
 # make three margin-sized plots
-for (dd, color, yl) in zip(groupby(d, :PLANETDISCMETH), colors, ylabels)
-  method = dd[1, :PLANETDISCMETH]
-  xs = span(dd[:DATE])
-  ys = counts(dd[:DATE])
-  name = "exoplanet-discoveries-$(lowercase(method))"
-  autofig(name, Margin, vscale=1) do
+autofig("exoplanet-discoveries", Normal, vscale=3.4) do
+  plots = map(groupby(d, :PLANETDISCMETH), colors) do d, c
+    method = d[1, :PLANETDISCMETH]
+    xs = span(d[:DATE])
+    ys = counts(d[:DATE])
     bar(xs, ys,
-      xticks=[1995, 2000, 2010, 2016],
-      fillcolor=color,
-      xlabel="Year of discovery",
-      xlims=(1994.5, 2016.5),
-      ylabel=ylabels[method],
-      linewidth=0,
-      legend=false,
-      border=false,
-      foreground_color_axis=false)
+        fillcolor=c,
+        ylabel=ylabels[method])
   end
+  annotate!(plots[1], 1998, 130, text("Transit timing", f(1)))
+  annotate!(plots[1], 1998, 160, text("Direct detection", f(1)))
+  annotate!(plots[1], 1998, 190, text("Microlensing", f(1)))
+  annotate!(plots[2], 1998, 190, text("Radial velocity", f(2)))
+  annotate!(plots[3], 1998, 190, text("Transit", f(3)))
+  p = plot(plots...,
+       xlims=(1991.5, 2019),
+       xticks=xticks,
+       linewidth=0,
+       xlabel=["" "Year of discovery" ""],
+       ylabel=["Number of planets discovered" "" ""],
+       yticks=yticks,
+       legend=false,
+       border=false,
+       link = :y,
+       foreground_color_axis=false,
+       layout = @layout [a b c])
 end
-
-# autofig("exoplanet-discoveries-transit", Normal, vscale=1) do
-#   end
-#   xticks!(plots[3], 1995:5:2015)
-
-  # xlabels = hcat("", "", "Year of discovery")
-  # ylabels = hcat("", "Number of planets", "")
-  # ylims = hcat((0, 10), (0, 70), (0, 1200))
-  #
-  # plot(plots...,
-  #   link=:x,
-  #   # layout=3,
-  #   xlabel=xlabels,
-  #   ylabel=ylabels,
-  #   legend=false,
-  #   linewidth=0,
-  #   xlims=(1994.5, 2016.5),
-  #   ylims=ylims,
-  #   border=false,
-  #   foreground_color_axis=false)
-#
-#     return plots[2]
-# end
 
 autofig("margin", Margin) do
   placeholder()

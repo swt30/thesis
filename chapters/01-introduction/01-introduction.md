@@ -65,7 +65,7 @@ And finally, what do we need to do to find an Earth-like planet, how will we kno
 
 ### Detection methods
 
-\newthought{A number of different} techniques are used to detect exoplanets (@fig:exoplanet-discovery-methods).
+\newthought{A number of different} techniques are used to detect exoplanets (@fig:exoplanet-discoveries).
 After claims in the early 90s of planet detections around pulsars,^[@Wolszczan1992] the first extrasolar planet around a Sun-like star was found using the radial velocity method described below.^[@Mayor1995]
 However, in the past few years, the transit method has produced the largest number of new exoplanets.
 Here we summarise different methods of exoplanet detection and the observable information that can be gained from each. This will be important shortly when we consider what directions the field is moving based on these available data.
@@ -90,9 +90,8 @@ In the case of certain large, bright planets, the emission lines from the planet
 Although this method is distance-independent and easily detects large planets close to their host stars, it is not as suited for large surveys since a spectroscopic observation is required.
 A number of sources of contamination---stellar and magnetic activity, stellar rotation, telluric lines, moonlight, faint companions---must also be accounted for.^[@Seager2010b; @Haswell2010]
 
-As can be seen in Figure \ref{fig:exoplanet-discoveries-rc}, the Doppler method was responsible for the majority of exoplanet detections until 2010.
+As can be seen in @fig:exoplanet-discoveries, the Doppler method was responsible for the majority of exoplanet detections until 2010.
 However, the advent of large photometric surveys like Kepler favoured a different method for finding exoplanets, known as the transit method.
-
 
 \begin{marginfigure}
   \includegraphics{schematic-transit}
@@ -101,6 +100,7 @@ However, the advent of large photometric surveys like Kepler favoured a differen
   \label{fig:schematic-transit}
 \end{marginfigure}
 <!-- TODO: replace with hand-drawn image -->
+
 
 \newthought{The transit method}---where the planet moves between us and its host star (@fig:schematic-transit)---is an intuitive way of spotting planets.
 We will not elaborate on the mechanics of a transiting system except to point out that the probability of observing a transit and the expected decrease in the observed flux are both very small.
@@ -128,7 +128,7 @@ For example, the validation technique used by the Kepler team is called \smallca
 Finally, radial velocity measurements can probe the transiting object's mass, and can confirm that it is comparable with that of a planet.
 
 
-\newthought{A number of other methods} for detecting planets are also listed in Figure \ref{fig:exoplanet-detection-methods}.
+\newthought{A number of other methods} for detecting planets are also listed in @fig:exoplanet-discoveries.
 The first of these uses timing information, a method which resulted in some of the earliest exoplanet findings.^[@Wolszczan1992]
 This was possible because the exoplanets in question orbit the millisecond pulsar PSR1257+12.
 The precise period of pulsars means that the gravitational effect of a planet is measurable, even for planets down to $0.1 M_⊕$.
@@ -162,7 +162,7 @@ Others have suggested the use of external occulters or also known as "star shade
 
 \newthought{All these methods} provide us with different information, and none of them is perfect.
 In many cases, the information gained from one of these methods is only enough to identify the presence of the planet.
-In \S\ref{the-transit-method}, we saw that this is often not enough---Kepler requires a statistical validation method due to the possibility of contamination from events that look similar to a transit.
+But we saw above that this is often not enough---Kepler requires a statistical validation method due to the possibility of contamination from events that look similar to a transit.
 As well as demonstrating the relative difficulty of identifying clear transit events in data that can often be quite noisy, it also highlights the difference between *validating* and *observationally confirming* the presence of exoplanets.
 The second is more direct, but requires a radial velocity or transit timing variation measurement.
 As @Fressin2011 note, "many of Kepler’s smaller candidates will receive a similar [validation] treatment since dynamical confirmation may be difficult or impractical with the sensitivity of current instrumentation."
@@ -244,7 +244,7 @@ Such 1D modelling has been carried out for a number of bodies, including rocky/i
 Planets with a gas envelope can also be modelled, although additional equations come into play in the atmosphere.^[@Vazan2013; @Fortney2010; @Baraffe2008]
 This method aims to build a self-consistent model based on some known constraints: for example, given a mass and radius, the mass fractions of a two-layer model may be specified exactly if the compositions of each layer and their equations of state are assumed.^[@Nettelmann2011]
 Other authors have used this approach to scan the parameter space of possible compositions, often using a *ternary diagram* to show the ranges of materials permitted for a given planet,^[@Valencia2007a] or producing grids of models.^[@Zeng2013]
-We will discuss this approach more in \S\ref{building-planetary-interiors}.
+We will discuss this approach more in @sec:temperature-dependent-models-of-watery-planets.
 
 \begin{marginfigure}
   \includegraphics{sample-ternary-diagram}
@@ -314,11 +314,64 @@ From this we should take away one key point: the observations are getting better
 
 ### The equation of state is a key component of these models
 
+<!-- TODO: dangling participle -->
+\newthought{Correctly determining} the interior structure and evolution of planets relies on a strong knowledge of the equations of state of the relevant materials.
+This is not an easy task, since the temperature and pressure ranges relevant to planetary interiors are often inaccessible to experiments, even recent diamond-anvil and shock wave experiments.
+Obtaining data for combinations of state variables off the Hugoniot (shock curve) can be difficult.^[@Nettelmann2008]
+As @Baraffe2014 note, we must "rely on simulations to infer the iron melting curve for Earth, super-Earth and giant planet conditions".
+However, these simulations are computationally expensive and so this is an area that is still developing.
+For this reason, many authors choose to use simplified forms of the equations of state in calculating their models.
+
+The most common simplifications of equations of state are semi-analytic forms such as that presented by @Vinet1987 (the "Vinet EOS"), @Birch1947 (the "Birch-Murnaghan EOS" or "BME"), and @Poirier1998 (the "logarithmic EOS").
+These are generally parametrised by values such as the bulk modulus of the material and its derivative.
+The parameters are then fitted to experimental measurements of the pressure and volume, and so are described as "universal" equations of state.^[@Vinet1987]
+These simple prescriptions cannot capture all the behaviour of every material, although they are generally good approximations for most.
+
+In addition to being approximations to experimental data, most of the prescriptions used are temperature-independent for two reasons.
+Firstly, the temperature dependence can be difficult to measure experimentally, especially at thousands of degrees.
+Secondly, including temperature dependence in the EOS generally does not result in differences greater than a few percent in the bulk composition (mass/radius) of the planet.^[@Seager2007]
+Therefore, an important question to ask ourselves is whether investigating the equations of state more closely is even worth it.
+
+I believe we can make improvements in the following key areas:
+<!-- TODO: fill out -->
+
 ### Its thermal properties may lead to interesting structure
 
 ## This dissertation
 
-### Structure of the dissertation
+\newthought{In this chapter} I have given an overview of recent work in exoplanet detection and characterisation.
+I have shown that, although the field is driven by observations, we need good models to interpret these observations.
+These considerations therefore naturally motivate the development of interior structure models.
+Finally, I have identified planets with thick water layers as being interesting targets for questions about heating and thermal effects.
 
+The aim of this dissertation is therefore to improve our understanding of waterworlds.
+In particular, I wish to answer the following questions:
 
-## Definitions used in this dissertation
+- Does a more complete treatment for water's equation of state lead to differences in the interpretation of models of when compared to the zero-temperature case?
+- Can we predict the thermal structure of watery super-Earths?
+- How strongly are observable properties correlated
+
+<!-- TODO: elaborate on what this thesis does *not* do -->
+
+The remainder of this dissertation presents four items of work towards this aim.
+
+In "An improved water equation of state" (@sec:an-improved-water-equation-of-state)
+I present a newly synthesized equation of state for water that includes a full treatment of temperature dependence.
+I explain where I drew the data from, how I constructed it, and the features that make it suitable for planetary modelling.
+
+In "Temperature-dependent models of watery planets" (@sec:temperature-dependent-models-of-watery-planets) I explain the theory of planetary interior models.
+I describe my code, OGRE, which solves the equations of planetary structure in a self-consistent fashion and treats the temperature structure of the planet appropriately.
+After incorporating my water equation of state into these models, I produce multi-layered planet structures for super-Earths with large water layers.
+I also validate these models against some previous results.
+This chapter concludes by exploring how strongly the radius of a watery super-Earth is linked to its water fraction, surface temperature, and other model parameters.
+
+In "Heating and the atmosphere" (@sec:heating-and-the-atmosphere) I present an approach for understanding how different heating modes may alter a planet's size.
+I extend the models from the previous chapter to include a diffuse atmospheric layer, using two different approaches for comparison.
+By linking the external boundary conditions to the planet's internal and external heating, I show that the amount of energy required to significantly inflate these watery planets is very modest.
+
+Finally, in "Phase structure and migration" (@sec:phase-structure-and-migration), I turn to the question of how a planet's internal structure is altered by this heating.
+Using the information on the phases of water contained in my equation of state, I produce structural diagrams for watery planets.
+I show how different heating scenarios may alter this structure, and construct some toy migration scenarios to investigate how it may change over time.
+This chapter finishes by considering some potential astrobiological implications of different phase structures for these ocean planets.
+
+<!-- ## Definitions used in this dissertation -->

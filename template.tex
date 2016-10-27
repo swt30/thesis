@@ -29,6 +29,7 @@
 \usepackage[caption=false]{subfig} % for subfigures
 \usepackage[svgnames]{xcolor} % better colors
 \usepackage{pdfpages} % for including the deposit form
+\usepackage{newunicodechar} % to declare unicode characters
 
 %%
 % Appearance options
@@ -37,7 +38,7 @@
 \useosf % full-height numbers in math, oldstyle elsewhere
 \useproportional % proportionally spaced numbers
 \onehalfspacing % line spacing requirement
-\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio} % stretch figures to fill width
 $if(deposit)$
 \hypersetup{colorlinks,allcolors=Black}
 $else$
@@ -92,8 +93,8 @@ $endif$
 % (xelatex also works very nicely)
 
 % a few characters aren't covered by the above trick
-\DeclareUnicodeCharacter{00D7}{\times}
-\DeclareUnicodeCharacter{025B}{\varepsilon}
+\newunicodechar{×}{\times}
+\newunicodechar{ɛ}{\varepsilon}
 
 %%
 % Page formatting

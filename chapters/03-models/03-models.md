@@ -1,4 +1,4 @@
-# Temperature-dependent models of watery planets
+# Watery planets
 
 ## Theory
 

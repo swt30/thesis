@@ -5,12 +5,13 @@ cd(dirname(@__FILE__))
 using Plots
 using ThesisUtils
 using DataFrames
+using LaTeXStrings
 using StatPlots
 
 ## Exoplanet discovery methods
 
 # get the data
-d = readtable("figdata/exoplanet-discoveries.csv")
+d = readtable("figdata/exoplanet-discoveries.csv", allowcomments=true)
 transits = d[:PLANETDISCMETH] .== "Transit"
 rv = d[:PLANETDISCMETH] .== "RV"
 other = !(transits | rv)
@@ -22,20 +23,24 @@ ylabels = Dict(
 
 # choose colors for the plots
 colors = [:firebrick, :slateblue, :seagreen]
+color_dict = Dict(
+  "Other" => colors[1],
+  "RV" => colors[2],
+  "Transit" => colors[3] )
 basefont = ThesisUtils.main_font
 f(n) = font(basefont, colors[n], :left)
 yticks = reshape([100:100:1500, nothing, nothing], (1,3))
 xticks = [1995, 2016]
 
-# make three margin-sized plots
+# make one big bar chart
 autofig("exoplanet-discoveries", Normal, vscale=3.4) do
   plots = map(groupby(d, :PLANETDISCMETH), colors) do d, c
-    method = d[1, :PLANETDISCMETH]
+    methods = d[1, :PLANETDISCMETH]
     xs = span(d[:DATE])
     ys = counts(d[:DATE])
     bar(xs, ys,
         fillcolor=c,
-        ylabel=ylabels[method])
+        ylabel=ylabels[methods])
   end
   annotate!(plots[1], 1998, 130, text("Transit timing", f(1)))
   annotate!(plots[1], 1998, 160, text("Direct detection", f(1)))
@@ -52,8 +57,28 @@ autofig("exoplanet-discoveries", Normal, vscale=3.4) do
        legend=false,
        border=false,
        link = :y,
+       alpha=0.8,
        foreground_color_axis=false,
        layout = @layout [a b c])
+end
+
+# make radius-separation chart
+autofig("radius-separation", Margin, vscale=1.2) do
+  x = :SEP
+  y = :MASS
+  mycols = d[[:PLANETDISCMETH, x, y]]
+  clean = mycols[complete_cases(mycols), :]
+  p = plot(xaxis=("Separation / au", (0.01, 10), :log), xticks=[0.01, 0.1, 1, 10], yaxis=(L"Planet radius / R$_⊕$", (0.01, 10000), :log), legend=:bottomright)
+  for subgroup in groupby(clean, :PLANETDISCMETH)
+    method = string(subgroup[1, :PLANETDISCMETH])
+    scatter!(subgroup[x], subgroup[y],
+      markerstrokewidth=0,
+      label=method,
+      alpha=0.8,
+      c=color_dict[method],
+      border=false)
+  end
+  p
 end
 
 autofig("margin", Margin) do

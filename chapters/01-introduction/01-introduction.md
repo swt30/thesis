@@ -1,7 +1,7 @@
 # Introduction
 
 
-\newthought{Not many discoveries} have ever captured the imagination of scientists and non-scientists alike as much as exoplanets.
+Not many discoveries have ever captured the imagination of scientists and non-scientists alike as much as exoplanets.
 Until 1995, we had only the ground under our feet and a select few lights in our sky to guide our understanding of planetary systems.
 Now we are faced with almost an over-abundance of planets, with papers and press releases trumpeting more every week.
 
@@ -28,7 +28,7 @@ In this chapter we take scope of recent work in a field that has yet to see its 
 
 ## Background
 
-\newthought{Why do exoplanets} appeal to so many people?
+Why do exoplanets appeal to so many people?
 Once we made the connection between our Sun and the other stars we see, finding planets around them was never going to be a surprise.
 Yet since the discovery of the first exoplanets using pulsar timing^[@Wolszczan1992] and radial velocity^[@Mayor1995], the field has become very popular indeed.
 
@@ -41,8 +41,6 @@ To do this, a wide range of skills are needed.
 Perhaps this is why the field is so popular: it demands clever observations with new technology, improved data reduction techniques, and a solid theoretical background.
 So in order to know what problems are worth pursuing, it will help us to briefly review what is currently achievable in exoplanet science.
 
-### The field is driven by observations
-
 \begin{figure}
   \includegraphics{exoplanet-discoveries}
   \caption[Most exoplanet discoveries are due to transits]
@@ -50,7 +48,16 @@ So in order to know what problems are worth pursuing, it will help us to briefly
   \label{fig:exoplanet-discoveries}
 \end{figure}
 
-\newthought{Exoplanetary science,} like most fields of astronomy, is driven by observations.
+\begin{marginfigure}
+  \includegraphics{radius-separation}
+  \caption[Different detection techniques find planets with different properties]
+  {Different detection techniques find planets with different properties. Radial velocity planets are often larger and further from the star than transiting planets. This is because different methods are biased in different ways: short-period planets are favoured by the transit method while massive planets are favoured by the radial velocity method. --- \emph{Data from \href{www.exoplanets.org}{http://www.exoplanets.org}}}
+  \label{fig:radius-separation}
+\end{marginfigure}
+
+### The field is driven by observations
+
+Exoplanetary science, like most fields of astronomy, is driven by observations.
 This should come as no surprise, and so it is a point we will not dwell on for too long.
 And although much of the formalism for understanding exoplanets initially carried over from our understanding of binary stars, it was the detection of the first extrasolar planets that drove the theoretical work behind improvements in the detection techniques.
 This includes better transit modelling, dynamical studies of systems, and instrumental design which is allowing improvements like high-contrast direct imaging.
@@ -65,19 +72,18 @@ And finally, what do we need to do to find an Earth-like planet, how will we kno
 
 ### Detection methods
 
-\newthought{A number of different} techniques are used to detect exoplanets (@fig:exoplanet-discoveries).
+A number of different techniques are used to detect exoplanets ([@fig:exoplanet-discoveries; @fig:radius-separation]).
 After claims in the early 90s of planet detections around pulsars,^[@Wolszczan1992] the first extrasolar planet around a Sun-like star was found using the radial velocity method described below.^[@Mayor1995]
 However, in the past few years, the transit method has produced the largest number of new exoplanets.
 Here we summarise different methods of exoplanet detection and the observable information that can be gained from each. This will be important shortly when we consider what directions the field is moving based on these available data.
 
 \newthought{The radial velocity} (RV) or Doppler method entails using spectral Doppler shifts to measure the recoil motion of a star as a planet orbits it.
 The formalism for finding planets using radial velocity has carried over from the older field of binary star research, and the information that can be gained about a star-planet system is very similar.
+Using Doppler measurements of the recoil motion of the star, the *mass function*,
 \marginnote{
   The mass function is defined as
   $$ {\left(M_p \sin i \right)^3 \over \left(M_p + M_*\right)^2}. $$
-  Here, $M_p$ is the planet mass, $M_*$ is the stellar mass, and $i$ is the orbital inclination.
-  }
-Using Doppler measurements of the recoil motion of the star, the *mass function*,
+  Here, $M_p$ is the planet mass, $M_*$ is the stellar mass, and $i$ is the orbital inclination. }
 which relates the planet's mass to the star's mass, can be calculated.^[@Wright2012]
 
 The RV method has the advantage that it works with a wide range of inclinations, not just those near $i=90°$.
@@ -100,7 +106,6 @@ However, the advent of large photometric surveys like Kepler favoured a differen
   \label{fig:schematic-transit}
 \end{marginfigure}
 <!-- TODO: replace with hand-drawn image -->
-
 
 \newthought{The transit method}---where the planet moves between us and its host star (@fig:schematic-transit)---is an intuitive way of spotting planets.
 We will not elaborate on the mechanics of a transiting system except to point out that the probability of observing a transit and the expected decrease in the observed flux are both very small.
@@ -127,7 +132,6 @@ Follow-up observations using other methods are key to rejecting false positives 
 For example, the validation technique used by the Kepler team is called \smallcaps{BLENDER}^[@Fressin2011] and makes use of such observations; these could include high-resolution spectroscopy, infrared photometry, or speckle/adaptive optics imaging to constrain or rule out the possibility of a multiple stellar system.
 Finally, radial velocity measurements can probe the transiting object's mass, and can confirm that it is comparable with that of a planet.
 
-
 \newthought{A number of other methods} for detecting planets are also listed in @fig:exoplanet-discoveries.
 The first of these uses timing information, a method which resulted in some of the earliest exoplanet findings.^[@Wolszczan1992]
 This was possible because the exoplanets in question orbit the millisecond pulsar PSR1257+12.
@@ -136,10 +140,10 @@ The precise period of pulsars means that the gravitational effect of a planet is
 Timing methods give information on masses but little else.
 
 \begin{figure}
-    \includegraphics{microlensing-event}
-    \caption[Sample images of a non-planetary microlensing event followed up by Hubble]
-    {In a microlensing event, a background source star (top left panel) brightens for a short time as its light is focused on us (bottom left panel). Here, Hubble's Wide Field and Planetary Camera has been used to follow up the observation to resolve the source star. Planets may be detected around the lensing star if the additional effect of their gravitational field changes the shape of the light curve. The effect can be relatively large if the light path happens to cross a \emph{caustic}, a discontinuity or rapid change in the lensing pattern. --- \emph{NASA HST/WFPC2}}
-    \label{fig:microlensing-event}
+  \includegraphics{microlensing-event}
+  \caption[Sample images of a non-planetary microlensing event followed up by Hubble]
+  {In a microlensing event, a background source star (top left panel) brightens for a short time as its light is focused on us (bottom left panel). Here, Hubble's Wide Field and Planetary Camera has been used to follow up the observation to resolve the source star. Planets may be detected around the lensing star if the additional effect of their gravitational field changes the shape of the light curve. The effect can be relatively large if the light path happens to cross a \emph{caustic}, a discontinuity or rapid change in the lensing pattern. --- \emph{NASA HST/WFPC2}}
+  \label{fig:microlensing-event}
 \end{figure}
 
 Planets may be found during microlensing events (@fig:microlensing-event).
@@ -160,7 +164,7 @@ Others have suggested the use of external occulters or also known as "star shade
 
 ### Complementary information is required for characterisation
 
-\newthought{All these methods} provide us with different information, and none of them is perfect.
+All these methods provide us with different information, and none of them is perfect.
 In many cases, the information gained from one of these methods is only enough to identify the presence of the planet.
 But we saw above that this is often not enough---Kepler requires a statistical validation method due to the possibility of contamination from events that look similar to a transit.
 As well as demonstrating the relative difficulty of identifying clear transit events in data that can often be quite noisy, it also highlights the difference between *validating* and *observationally confirming* the presence of exoplanets.
@@ -182,7 +186,7 @@ The key development in this area has been the use of transmission and reflection
 
 ### Observations motivate models
 
-\newthought{Much recent effort} has been expended on finding ways to retrieve more information about specific exoplanets.
+Much recent effort has been expended on finding ways to retrieve more information about specific exoplanets.
 As our observational capabilities increase, the possibilities to directly image or spectrally probe these planets mean that we have seen huge interest in modelling their atmospheres in an attempt to determine likely compositions.^[@Madhusudhan2014]
 The need to distinguish the star's light from the planet's light also results in a need to understand the stellar spectrum better.
 \begin{marginfigure}
@@ -201,7 +205,7 @@ So, with atmospheric modelling and observation a well established and thriving f
 
 ## Internal structure models
 
-\newthought{As we have seen}, a relatively large number of methods are available to detect exoplanets, many of which are well-suited to large surveys.
+As we have seen, a relatively large number of methods are available to detect exoplanets, many of which are well-suited to large surveys.
 We have discussed the ways in which planets are found, and briefly reviewed the efforts to follow them up and understand their atmospheres.
 We now turn to their interiors.
 
@@ -215,7 +219,7 @@ In this section we will briefly discuss attempts to do this.
 \begin{figure}
   \includegraphics{mass-radius-puffy-jupiters}
   \caption[Mass-radius diagram of transiting planets and Solar System gas giants]
-  {In a mass-radius diagram (here including only transiting planets), many Jupiter-mass planets lie above the predicted mass-radius relationship for hydrogen and hydrogen-helium spheres (cyan lines): the so-called \emph{puffy Jupiters}. The blue, red, and magenta lines show the relationships for spheres of water, MgSiO$_3$ perovskite, and iron, plus mixtures of these materials. When planets closer to Earth mass are overplotted with these mass-radius relationships, we can rule out certain classes of compositions---for example, if a planet has a larger radius than would be permitted for a sphere of rock or ices, it is likely to have a gaseous atmosphere. Through this simple method, we can already see that the exoplanetary inventory includes planets unlike anything in our solar system: hot Jupiters, puffy gas giants, mini Neptunes and super Earths. --- from \protect \citet{Rogers2012}}
+  {In a mass--radius diagram (here including only transiting planets), many Jupiter-mass planets lie above the predicted relationship for hydrogen and hydrogen-helium spheres (\textcolor{cyan}{cyan} lines): the so-called \emph{puffy Jupiters}. The \textcolor{blue}{blue}, \textcolor{red}{red} and \textcolor{magenta}{magenta} lines show the relationships for spheres of water, MgSiO$_3$ perovskite, and iron, plus mixtures of these materials. By comparing a planet's mass and radius to these, we can rule out certain classes of compositions---for example, if a planet has a larger radius than would be permitted for a sphere of rock or ices, it is likely to have a gaseous atmosphere. Through this simple method, we can already see that the exoplanetary inventory includes planets unlike anything in our solar system: hot Jupiters, puffy gas giants, mini Neptunes and super Earths. --- \emph{From \protect \citet{Rogers2012}}}
   \label{fig:mass-radius}
 \end{figure}
 <!-- TODO: redraw this figure -->
@@ -244,12 +248,12 @@ Such 1D modelling has been carried out for a number of bodies, including rocky/i
 Planets with a gas envelope can also be modelled, although additional equations come into play in the atmosphere.^[@Vazan2013; @Fortney2010; @Baraffe2008]
 This method aims to build a self-consistent model based on some known constraints: for example, given a mass and radius, the mass fractions of a two-layer model may be specified exactly if the compositions of each layer and their equations of state are assumed.^[@Nettelmann2011]
 Other authors have used this approach to scan the parameter space of possible compositions, often using a *ternary diagram* to show the ranges of materials permitted for a given planet,^[@Valencia2007a] or producing grids of models.^[@Zeng2013]
-We will discuss this approach more in @sec:temperature-dependent-models-of-watery-planets.
+We will discuss this approach more in @sec:watery-planets.
 
 \begin{marginfigure}
   \includegraphics{sample-ternary-diagram}
   \caption[A ternary diagram showing possible compositions for the super-Earth 55 Cancri e]
-  {This ternary diagram shows the range of possible compositions allowed by the mass and radius of the super-Earth 55 Cancri e. For this model composed of Fe, C, and MgSiO$_3$, the \textcolor{red}{red} and \textcolor{blue}{blue} regions show the constraints from the \textcolor{red}{visible} and \textcolor{blue}{gray} radii respectively. The blue region is a subset of the red. Ternary diagrams like this are useful when three numbers, like these mass fractions, sum to one. --- from \protect \citet{Madhusudhan2012a}}
+  {This ternary diagram shows the range of possible compositions allowed by the mass and radius of the super-Earth 55 Cancri e. For this model composed of Fe, C, and MgSiO$_3$, the \textcolor{red}{red} and \textcolor{blue}{blue} regions show the constraints from the \textcolor{red}{visible} and \textcolor{blue}{gray} radii respectively. The blue region is a subset of the red. Ternary diagrams like this are useful when three numbers, like these mass fractions, sum to one. --- \emph{From \protect \citet{Madhusudhan2012a}}}
   \label{fig:ternary-diagram}
 \end{marginfigure}
 
@@ -267,7 +271,11 @@ An immediate first check on the validity of exoplanetary models does come from a
 
 ### We can model rocky planet interiors precisely
 
+<!-- TODO: commentary on accuracy of the EOS -->
+
 ### Accuracy is difficult because of structural degeneracies
+
+<!-- TODO: commentary on degeneracies -->
 
 ### These models are still useful
 
@@ -287,7 +295,7 @@ Though this approach is undoubtedly complicated, it is a promising one for asses
   \label{fig:ternary-diagram-bayesian}
 \end{marginfigure}
 
-\newthought{To what degree} can interior structure models be linked with observations?
+To what degree can interior structure models be linked with observations?
 We have already seen in @fig:ternary-diagram that there is necessarily some degeneracy in the interior structure of any given planet.
 Unless the planet is taken to consist of only two layers of known material with mass fractions that are allowed to vary freely, a given mass and radius cannot be used to predict the internal structure of a planet.
 More encouraging results may come from a Bayesian approach such as that taken by @Rogers2010, who quantify the constraints that transit and radial velocity observations can place on a planet's interior structure.
@@ -301,7 +309,7 @@ For example, planet occurrence is known to correlate with stellar metallicity.^[
 Next-generation surveys promise improved measurements of mass and radius.
 Many of the approximations made in interior models were based on the fact that the uncertainties in mass and radius were large enough that the temperature variation could be discarded.
 However, current observations can already constrain these values to a few percent for the best-studied targets, and new surveys like TESS, CHEOPS, and PLATO will provide high-quality for many more.
-TESS is expected to detect "hundreds of super-Earths $(1.25–2\,$R$_⊕)$" and provide asteroseismological measurements for thousands of stars.^[@Ricker2014]
+TESS is expected to detect "hundreds of super-Earths (1.25–-2$\,$R$_⊕$)" and provide asteroseismological measurements for thousands of stars.^[@Ricker2014]
 
 Finally, with new observations comes the potential to use data in new ways.
 For example, transit observations could be used to constrain the mass of a planet.^[@DeWit2013]
@@ -312,10 +320,12 @@ From this we should take away one key point: the observations are getting better
 
 ## Heated watery planets
 
+<!-- TODO: lead-in paragraph -->
+
 ### The equation of state is a key component of these models
 
 <!-- TODO: dangling participle -->
-\newthought{Correctly determining} the interior structure and evolution of planets relies on a strong knowledge of the equations of state of the relevant materials.
+Correctly determining the interior structure and evolution of planets relies on a strong knowledge of the equations of state of the relevant materials.
 This is not an easy task, since the temperature and pressure ranges relevant to planetary interiors are often inaccessible to experiments, even recent diamond-anvil and shock wave experiments.
 Obtaining data for combinations of state variables off the Hugoniot (shock curve) can be difficult.^[@Nettelmann2008]
 As @Baraffe2014 note, we must "rely on simulations to infer the iron melting curve for Earth, super-Earth and giant planet conditions".
@@ -332,14 +342,21 @@ Firstly, the temperature dependence can be difficult to measure experimentally, 
 Secondly, including temperature dependence in the EOS generally does not result in differences greater than a few percent in the bulk composition (mass/radius) of the planet.^[@Seager2007]
 Therefore, an important question to ask ourselves is whether investigating the equations of state more closely is even worth it.
 
+In beginning this...
 I believe we can make improvements in the following key areas:
 <!-- TODO: fill out -->
 
-### Its thermal properties may lead to interesting structure
+### Water's thermal properties may lead to interesting structure
+
+Water is particularly interesting as a target for work on the equation of state.
+
+From its thermal properties...
+<!-- TODO: fill out -->
+
 
 ## This dissertation
 
-\newthought{In this chapter} I have given an overview of recent work in exoplanet detection and characterisation.
+In this chapter I have given an overview of recent work in exoplanet detection and characterisation.
 I have shown that, although the field is driven by observations, we need good models to interpret these observations.
 These considerations therefore naturally motivate the development of interior structure models.
 Finally, I have identified planets with thick water layers as being interesting targets for questions about heating and thermal effects.
@@ -348,18 +365,19 @@ The aim of this dissertation is therefore to improve our understanding of waterw
 In particular, I wish to answer the following questions:
 
 - Does a more complete treatment for water's equation of state lead to differences in the interpretation of models of when compared to the zero-temperature case?
+- How strongly are observable properties of the planet affected by its environment?
 - Can we predict the thermal structure of watery super-Earths?
-- How strongly are observable properties correlated
 
-<!-- TODO: elaborate on what this thesis does *not* do -->
+<!-- TODO: elaborate on what this thesis does *not* do? -->
 
 The remainder of this dissertation presents four items of work towards this aim.
 
 In "An improved water equation of state" (@sec:an-improved-water-equation-of-state)
 I present a newly synthesized equation of state for water that includes a full treatment of temperature dependence.
 I explain where I drew the data from, how I constructed it, and the features that make it suitable for planetary modelling.
+By comparing this to the equations of state used in other studies, I show that I have produced a more comprehensive and up-to-date coverage of the behaviour of water in the temperature and pressure ranges relevant to planetary interiors.
 
-In "Temperature-dependent models of watery planets" (@sec:temperature-dependent-models-of-watery-planets) I explain the theory of planetary interior models.
+In "Watery planets" (@sec:watery-planets) I explain the theory of planetary interior models.
 I describe my code, OGRE, which solves the equations of planetary structure in a self-consistent fashion and treats the temperature structure of the planet appropriately.
 After incorporating my water equation of state into these models, I produce multi-layered planet structures for super-Earths with large water layers.
 I also validate these models against some previous results.
@@ -374,4 +392,4 @@ Using the information on the phases of water contained in my equation of state, 
 I show how different heating scenarios may alter this structure, and construct some toy migration scenarios to investigate how it may change over time.
 This chapter finishes by considering some potential astrobiological implications of different phase structures for these ocean planets.
 
-<!-- ## Definitions used in this dissertation -->
+<!-- TODO: ## Definitions used in this dissertation? -->

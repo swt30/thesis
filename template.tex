@@ -39,10 +39,19 @@
 \useproportional % proportionally spaced numbers
 \onehalfspacing % line spacing requirement
 \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio} % stretch figures to fill width
+\definecolor{mydarkblue}{rgb}{0.0, 0.0, 0.3}
+\definecolor{mydarkred}{rgb}{0.3, 0.0, 0.0}
+\definecolor{mydarkgreen}{rgb}{0.0, 0.3, 0.0}
 $if(deposit)$
-\hypersetup{colorlinks,allcolors=Black}
+\hypersetup{
+  colorlinks,
+  breaklinks,
+  allcolors=Black}
 $else$
-\hypersetup{colorlinks,allcolors=Maroon}
+\hypersetup{
+  colorlinks,
+  breaklinks,
+  allcolors=mydarkgreen}
 $endif$
 
 % Load images from specified graphics paths

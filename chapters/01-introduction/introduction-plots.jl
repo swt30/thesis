@@ -48,7 +48,8 @@ autofig("exoplanet-discoveries", Normal, vscale=3.4) do
   annotate!(plots[2], 1998, 190, text("Radial velocity", f(2)))
   annotate!(plots[3], 1998, 190, text("Transit", f(3)))
   p = plot(plots...,
-       xlims=(1991.5, 2019),
+       xlims=(1993.5, 2017.5),
+       xrotation=90,
        xticks=xticks,
        linewidth=0,
        xlabel=["" "Year of discovery" ""],
@@ -68,7 +69,7 @@ autofig("radius-separation", Margin, vscale=1.2) do
   y = :MASS
   mycols = d[[:PLANETDISCMETH, x, y]]
   clean = mycols[complete_cases(mycols), :]
-  p = plot(xaxis=("Separation / au", (0.01, 10), :log), xticks=[0.01, 0.1, 1, 10], yaxis=(L"Planet radius / R$_⊕$", (0.01, 10000), :log), legend=:bottomright)
+  p = plot(xaxis=("Planet–star separation / au", (0.01, 10), :log), xticks=[0.01, 0.1, 1, 10], yaxis=(L"Planet radius / R$_⊕$", (0.01, 10000), :log), legend=:bottomright)
   for subgroup in groupby(clean, :PLANETDISCMETH)
     method = string(subgroup[1, :PLANETDISCMETH])
     scatter!(subgroup[x], subgroup[y],

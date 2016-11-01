@@ -41,12 +41,12 @@ To do this, a wide range of skills are needed.
 Perhaps this is why the field is so popular: it demands clever observations with new technology, improved data reduction techniques, and a solid theoretical background.
 So in order to know what problems are worth pursuing, it will help us to briefly review what is currently achievable in exoplanet science.
 
-\begin{figure}
-  \includegraphics{exoplanet-discoveries}
-  \caption[Most exoplanet discoveries are due to transits]
-  {Several methods for finding exoplanets exist. Comparatively few exoplanets are found using microlensing, direct imaging or transit timing. The radial velocity method produced many early discoveries of hot Jupiters. But thousands of planets have been found by the transit method, largely thanks to the Kepler mission's data releases in 2014 and 2016. --- \emph{Data from \href{www.exoplanets.org}{http://www.exoplanets.org}}}
-  \label{fig:exoplanet-discoveries}
-\end{figure}
+![Several methods for finding exoplanets exist.
+  Comparatively few exoplanets are found using microlensing, direct imaging or transit timing.
+  The radial velocity method produced many early discoveries of hot Jupiters.
+  But thousands of planets have been found by the transit method, largely thanks to the Kepler mission's data releases in 2014 and 2016.
+  --- *Data from [www.exoplanets.org](http://www.exoplanets.org)*
+](exoplanet-discoveries){#fig:exoplanet-discoveries}
 
 \begin{marginfigure}
   \includegraphics{radius-separation}
@@ -141,12 +141,13 @@ The precise period of pulsars means that the gravitational effect of a planet is
 "Timing" can also be used in another sense: if a transiting exoplanet is known, variations in its time of transit can indicate an unseen planet elsewhere in the system.
 Timing methods give information on masses but little else.
 
-\begin{figure}
-  \includegraphics{microlensing-event}
-  \caption[Sample images of a non-planetary microlensing event followed up by Hubble]
-  {In a microlensing event, a background source star (top left panel) brightens for a short time as its light is focused on us (bottom left panel). Here, Hubble's Wide Field and Planetary Camera has been used to follow up the observation to resolve the source star. Planets may be detected around the lensing star if the additional effect of their gravitational field changes the shape of the light curve. The effect can be relatively large if the light path happens to cross a \emph{caustic}, a discontinuity or rapid change in the lensing pattern. --- \emph{NASA HST/WFPC2}}
-  \label{fig:microlensing-event}
-\end{figure}
+![Microlensing can be used to find planets.
+  In a microlensing event, a background source star (top left panel) brightens for a short time as its light is focused on us (bottom left panel).
+  Here, Hubble's Wide Field and Planetary Camera has been used to follow up the observation to resolve the source star.
+  Planets may be detected around the lensing star if the additional effect of their gravitational field changes the shape of the light curve.
+  The effect can be relatively large if the light path happens to cross a *caustic*, a discontinuity or rapid change in the lensing pattern.
+  --- *NASA HST/WFPC2*
+](microlensing-event){#fig:microlensing-event}
 
 Planets may be found during microlensing events (@fig:microlensing-event).
 If a planet lies in the right region during the lensing event, the planet's gravity will further perturb the incoming light and cause a detectable deviation from the single-lens case.
@@ -179,12 +180,13 @@ A primary driver of this work is the quest to find a habitable planet, but the d
 Do we accept any Earth-like planet in the habitable zone of any star---that is, the region where we might expect liquid water to exist on the surface? Do we restrict ourselves to Earth-like planets around Sun-like stars? What observational signatures might we expect from a habitable planet? Here, we begin to see a strong overlap with other areas of science such as atmospheric physics, planetary science, geology, and even biology.
 In order to understand more about the planets themselves, we turn to other methods to allow us to retrieve more information.
 The key development in this area has been the use of transmission and reflection spectroscopy, which attempt to separate the star's light and the contribution from the planet.^[@Charbonneau2002; @Charbonneau2005; @Deming2005]
-\begin{figure}
-  \includegraphics{wasp-12b}
-  \caption[Observations and model spectra for dayside thermal emission of WASP-12b]
-  {These models of the day side emission from the exoplanet WASP-12b show several prominent absorption features compared to black body curves (dotted \textcolor{darkgray}{grey} lines). Later in their paper, \protect \citet{Madhusudhan2011a} claim evidence for a high C/O atmospheric ratio and absence of a strong thermal inversion. Although this analysis uses only seven photometric bands from Spitzer and ground-based observations (indicated by solid black lines), the availability of higher-quality spectra is increasing our ability to constrain the atmospheric properties of exoplanets in this way. --- \emph{From \protect \citet{Madhusudhan2011a}}}
-  \label{fig:wasp-12b}
-\end{figure}
+
+![Observations and model spectra for dayside thermal emission of WASP-12bT.
+  These models of the day side emission from the exoplanet WASP-12b show several prominent absorption features compared to black body curves (dotted \textcolor{darkgray}{grey} lines).
+  Later in their paper, @Madhusudhan2011a claim evidence for a high C/O atmospheric ratio and absence of a strong thermal inversion.
+  Although this analysis uses only seven photometric bands from Spitzer and ground-based observations (indicated by solid black lines), the availability of higher-quality spectra is increasing our ability to constrain the atmospheric properties of exoplanets in this way.
+  --- *From @Madhusudhan2011a*
+](wasp-12b){#fig:wasp-12b}
 
 ### Observations motivate models
 
@@ -216,12 +218,13 @@ This diversity of planets leads us to consider the question: can we come up with
 And what other observables might we be able to tap into to provide further constraints?
 In this section we will briefly discuss attempts to do this.
 
-\begin{figure}
-  \includegraphics{mass-radius-puffy-jupiters}
-  \caption[Mass-radius diagram of transiting planets and Solar System gas giants]
-  {In a mass--radius diagram (here including only transiting planets), many Jupiter-mass planets lie above the predicted relationship for hydrogen and hydrogen-helium spheres (\textcolor{cyan}{cyan} lines): the so-called \emph{puffy Jupiters}. The \textcolor{blue}{blue}, \textcolor{red}{red} and \textcolor{magenta}{magenta} lines show the relationships for spheres of water, MgSiO$_3$ perovskite, and iron, plus mixtures of these materials. By comparing a planet's mass and radius to these, we can rule out certain classes of compositions---for example, if a planet has a larger radius than would be permitted for a sphere of rock or ices, it is likely to have a gaseous atmosphere. Through this simple method, we can already see that the exoplanetary inventory includes planets unlike anything in our solar system: hot Jupiters, puffy gas giants, mini Neptunes and super Earths. --- \emph{From \protect \citet{Rogers2012}}}
-  \label{fig:mass-radius}
-\end{figure}
+![Mass-radius diagram of transiting planets and Solar System gas giants.
+  In a mass--radius diagram (here including only transiting planets), many Jupiter-mass planets lie above the predicted relationship for hydrogen and hydrogen-helium spheres (\textcolor{cyan}{cyan} lines): the so-called *puffy Jupiters*.
+  The \textcolor{blue}{blue}, \textcolor{red}{red} and \textcolor{magenta}{magenta} lines show the relationships for spheres of water, MgSiO$_3$ perovskite, and iron, plus mixtures of these materials.
+  By comparing a planet's mass and radius to these, we can rule out certain classes of compositions---for example, if a planet has a larger radius than would be permitted for a sphere of rock or ices, it is likely to have a gaseous atmosphere.
+  Through this simple method, we can already see that the exoplanetary inventory includes planets unlike anything in our solar system: hot Jupiters, puffy gas giants, mini Neptunes and super Earths.
+  --- *From @Rogers2012
+](mass-radius-puffy-jupiters){#fig:mass-radius}
 <!-- TODO: redraw this figure -->
 
 ### Interior structures are the new frontier
@@ -278,12 +281,11 @@ Here, there are very strong links with the geological sciences.
 It is not necessarily possible to directly apply methods from the earth sciences, however, since many of them depend implicitly on a more detailed knowledge of the Earth than we can achieve for exoplanets---for example, seismological data and gravitational moment measurements.
 An immediate first check on the validity of exoplanetary models does come from applying them to the Earth, however, and the results from this are generally promising, as shown in @fig:density-profile-PREM-comparison.
 
-\begin{figure}
-  \includegraphics{density-profile-PREM-comparison}
-  \caption[Comparison of a self-consistent density profile to an Earth model obtained through seismological data]
-  {Modelling the density profile of the Earth as if we were modelling an exoplanet produces results that compare well with the Preliminary Reference Earth Model (PREM), which is determined by inverting measurements of seismic wave propagation to solve for the internal structure. --- \emph{From \protect \citet{Baraffe2014}}}
-  \label{fig:density-profile-PREM-comparison}
-\end{figure}
+![Comparison of a self-consistent density profile to an Earth model obtained through seismological data.
+  Modelling the density profile of the Earth as if we were modelling an exoplanet produces results that compare well with the Preliminary Reference Earth Model (PREM), which is determined by inverting measurements of seismic wave propagation to solve for the internal structure.
+  --- *From @Baraffe2014*
+](density-profile-PREM-comparison){#fig:density-profile-PREM-comparison}
+
 
 ### These models are useful in several ways
 
@@ -421,11 +423,12 @@ It can also exist as a low-density supercritical fluid or superheated vapour.
 This all means that the behaviour of water layers is thermally interesting.
 The behaviour of water is also strongly linked to questions of habitability because Earth-sized solid planets with oceans provide the best approximation to the one planet known to harbour life.
 
-\begin{figure}
-  \includegraphics{normal}
-  \caption[Phase diagram of water]{Phase diagram of water. Water has a rich and interesting phase structure. Here we show some of the key phases which are relevant when modelling a watery planet: liquid, vapour, and solid ice Ih, but also more exotic phases such as the high-pressure ices. Lines mark the boundaries of each phase. --- \emph{Data from \citet{Choukroun2007} and \citet{Wagner2002}}}
-  \label{fig:water-phases}
-\end{figure}
+![Phase diagram of water.
+  Water has a rich and interesting phase structure.
+  Here we show some of the key phases which are relevant when modelling a watery planet: liquid, vapour, and solid ice Ih, but also more exotic phases such as the high-pressure ices.
+  Lines mark the boundaries of each phase.
+  --- *Data from @Choukroun2007 and @Wagner2002*
+  ](normal){#fig:water-phases}
 
 Others have previously investigated the structures of planets containing a significant water component.
 For example, @Ehrenreich2006 studied the internal structure of the exoplanet OGLE 2005-BLG-390Lb, modelling the phase changes throughout.

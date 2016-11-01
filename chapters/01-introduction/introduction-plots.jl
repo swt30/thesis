@@ -84,12 +84,21 @@ end
 
 autofig("margin", Margin) do
   placeholder()
+  title!("Placeholder figure")
   xlabel!("This is the x-axis")
   xlabel!("This is the y-axis")
 end
 
 autofig("normal", Normal) do
   placeholder()
+  title!("Placeholder figure")
+  xlabel!("This is the x-axis")
+  ylabel!("This is the y-axis")
+end
+
+autofig("full", Full) do
+  placeholder()
+  title!("Placeholder figure")
   xlabel!("This is the x-axis")
   ylabel!("This is the y-axis")
 end

@@ -30,6 +30,7 @@
 \usepackage[svgnames]{xcolor} % better colors
 \usepackage{pdfpages} % for including the deposit form
 \usepackage{newunicodechar} % to declare unicode characters
+\usepackage{mparhack} % make sure margin notes end up in the right place
 
 %%
 % Appearance options
@@ -264,14 +265,10 @@ $endif$
 \vfill
 
 %%
-% tables of contents and figures
+% table of contents
 \setcounter{tocdepth}{1}
 \begin{fullwidth}
-\tableofcontents
-
-\listoffigures
-
-\listoftables
+  \tableofcontents
 \end{fullwidth}
 
 %%

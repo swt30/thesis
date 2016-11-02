@@ -29,7 +29,6 @@
 \usepackage[caption=false]{subfig} % for subfigures
 \usepackage[svgnames]{xcolor} % better colors
 \usepackage{pdfpages} % for including the deposit form
-\usepackage{newunicodechar} % to declare unicode characters
 \usepackage{mparhack} % make sure margin notes end up in the right place
 
 %%
@@ -103,8 +102,8 @@ $endif$
 % (xelatex also works very nicely)
 
 % a few characters aren't covered by the above trick
-\newunicodechar{×}{\times}
-\newunicodechar{ɛ}{\varepsilon}
+\DeclareUnicodeCharacter{00D7}{\times}
+\DeclareUnicodeCharacter{025B}{\varepsilon}
 
 %%
 % Page formatting

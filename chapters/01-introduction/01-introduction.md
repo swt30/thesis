@@ -41,7 +41,8 @@ To do this, a wide range of skills are needed.
 Perhaps this is why the field is so popular: it demands clever observations with new technology, improved data reduction techniques, and a solid theoretical background.
 So in order to know what problems are worth pursuing, it will help us to briefly review what is currently achievable in exoplanet science.
 
-![Several methods for finding exoplanets exist.
+![
+  Several methods for finding exoplanets exist.
   Comparatively few exoplanets are found using microlensing, direct imaging or transit timing.
   The radial velocity method produced many early discoveries of hot Jupiters.
   But thousands of planets have been found by the transit method, largely thanks to the Kepler mission's data releases in 2014 and 2016.
@@ -107,7 +108,8 @@ However, the advent of large photometric surveys like Kepler favoured a differen
   {In this schematic of a primary transit, we see a dip in the light curve of the star as the planet passes in front of it. Secondary transits, where the light from the planet is occulted by the star, are smaller.}
   \label{fig:schematic-transit}
 \end{marginfigure}
-<!-- TODO: replace with hand-drawn image -->
+
+> TODO: replace [@fig:schematic-transit] with a hand-drawn image
 
 \newthought{The transit method}---where the planet moves between us and its host star (@fig:schematic-transit)---is an intuitive way of spotting planets.
 We will not elaborate on the mechanics of a transiting system except to point out that the probability of observing a transit and the expected decrease in the observed flux are both very small.
@@ -141,7 +143,8 @@ The precise period of pulsars means that the gravitational effect of a planet is
 "Timing" can also be used in another sense: if a transiting exoplanet is known, variations in its time of transit can indicate an unseen planet elsewhere in the system.
 Timing methods give information on masses but little else.
 
-![Microlensing can be used to find planets.
+![
+  Microlensing can be used to find planets.
   In a microlensing event, a background source star (top left panel) brightens for a short time as its light is focused on us (bottom left panel).
   Here, Hubble's Wide Field and Planetary Camera has been used to follow up the observation to resolve the source star.
   Planets may be detected around the lensing star if the additional effect of their gravitational field changes the shape of the light curve.
@@ -181,7 +184,8 @@ Do we accept any Earth-like planet in the habitable zone of any star---that is, 
 In order to understand more about the planets themselves, we turn to other methods to allow us to retrieve more information.
 The key development in this area has been the use of transmission and reflection spectroscopy, which attempt to separate the star's light and the contribution from the planet.^[@Charbonneau2002; @Charbonneau2005; @Deming2005]
 
-![Observations and model spectra for dayside thermal emission of WASP-12bT.
+![
+  Observations and model spectra for dayside thermal emission of WASP-12bT.
   These models of the day side emission from the exoplanet WASP-12b show several prominent absorption features compared to black body curves (dotted \textcolor{darkgray}{grey} lines).
   Later in their paper, @Madhusudhan2011a claim evidence for a high C/O atmospheric ratio and absence of a strong thermal inversion.
   Although this analysis uses only seven photometric bands from Spitzer and ground-based observations (indicated by solid black lines), the availability of higher-quality spectra is increasing our ability to constrain the atmospheric properties of exoplanets in this way.
@@ -213,19 +217,21 @@ We now turn to their interiors.
 
 Exoplanetary interior modelling is necessarily based on our knowledge of one set of planets: our Solar System.
 However, a highlight over the past two decades has been that the planets we have discovered are unexpectedly diverse.
-This can be seen in a simple *mass--radius diagram*, where the mass and radius of discovered planets are plotted against each other (@fig:mass-radius).
+This can be seen in a simple *mass--radius diagram*, where the mass and radius of discovered planets are plotted against each other ([@fig:mass-radius]).
 This diversity of planets leads us to consider the question: can we come up with self-consistent models that account for it?
 And what other observables might we be able to tap into to provide further constraints?
 In this section we will briefly discuss attempts to do this.
 
-![Mass-radius diagram of transiting planets and Solar System gas giants.
-  In a mass--radius diagram (here including only transiting planets), many Jupiter-mass planets lie above the predicted relationship for hydrogen and hydrogen-helium spheres (\textcolor{cyan}{cyan} lines): the so-called *puffy Jupiters*.
+![
+  Mass-radius diagram of transiting planets and Solar System gas giants.
+  In a mass--radius diagram (here including only transiting planets), many Jupiter-mass planets lie above the predicted relationship for hydrogen and hydrogen/helium spheres (\textcolor{cyan}{cyan} lines): the so-called *puffy Jupiters*.
   The \textcolor{blue}{blue}, \textcolor{red}{red} and \textcolor{magenta}{magenta} lines show the relationships for spheres of water, MgSiO$_3$ perovskite, and iron, plus mixtures of these materials.
   By comparing a planet's mass and radius to these, we can rule out certain classes of compositions---for example, if a planet has a larger radius than would be permitted for a sphere of rock or ices, it is likely to have a gaseous atmosphere.
   Through this simple method, we can already see that the exoplanetary inventory includes planets unlike anything in our solar system: hot Jupiters, puffy gas giants, mini Neptunes and super Earths.
-  --- *From @Rogers2012
+  --- *From @Rogers2012*
 ](mass-radius-puffy-jupiters){#fig:mass-radius}
-<!-- TODO: redraw this figure -->
+
+> TODO: redraw [@fig:mass-radius] to match visual style
 
 ### Interior structures are the new frontier
 
@@ -247,27 +253,13 @@ The ever-increasing number of known exoplanets, many of which have both mass and
 
 Others had previously considered the internal structures of planets in our solar system,^[For example, see @Hubbard1980.], but the study often taken as the base for planetary interior modelling is by @Zapolsky1969 who constructed mass--radius relations for large homogeneous isothermal spheres.
 Since then, a number of internal structure models have been developed specifically for exoplanets, with work beginning about a decade ago.^[e.g. @Valencia2006; @Fortney2007; @Sotin2007; @Seager2007].
-In a nutshell, the basic assumption is that the internal structure may be modelled in 1D by using similar equations to those of stellar structure.
-<!-- TODO: decide on information order for EOS -->
-<!-- The two most important equations are those of mass continuity and pressure-gravity balance:
-\begin{equation}
-    \label{eq:mass-continuity}
-    \frac{dm(r)}{dr} = 4 \pi r^2 \rho(r)
-\end{equation}
-\begin{equation} \label{eq:pressure-gravity-balance}
-    \frac{dP(r)}{dr} = \frac{-Gm(r)\rho(r)}{r^2}.
-\end{equation}
-
-These two equations are complemented by the \emph{equation of state} (EOS), which links the pressure, density, and temperature of the material:
-\begin{equation} \label{eq:eos}
-    \rho = f(P, T)
-\end{equation} -->
+In a nutshell, the basic assumption is that the internal structure may be modelled in 1D by using similar equations to those of stellar structure.^[See @sec:watery-planet-interiors for more on these models.]
 
 Such 1D modelling has been carried out for a number of bodies, including rocky/icy planets.^[@Valencia2006; @Valencia2007a; @Seager2007; @Nettelmann2011]
 Planets with a gas envelope can also be modelled, although additional equations come into play in the atmosphere.^[@Vazan2013; @Fortney2010; @Baraffe2008]
 This method aims to build a self-consistent model based on some known constraints: for example, given a mass and radius, the mass fractions of a two-layer model may be specified exactly if the compositions of each layer and their equations of state are assumed.^[@Nettelmann2011]
 Other authors have used this approach to scan the parameter space of possible compositions, often using a *ternary diagram* to show the ranges of materials permitted for a given planet,^[@Valencia2007a] or producing grids of models.^[@Zeng2013]
-We will discuss this approach more in @sec:watery-planets.
+We will discuss this approach more in @sec:watery-planet-interiors.
 
 \begin{marginfigure}
   \includegraphics{sample-ternary-diagram}
@@ -281,11 +273,11 @@ Here, there are very strong links with the geological sciences.
 It is not necessarily possible to directly apply methods from the earth sciences, however, since many of them depend implicitly on a more detailed knowledge of the Earth than we can achieve for exoplanets---for example, seismological data and gravitational moment measurements.
 An immediate first check on the validity of exoplanetary models does come from applying them to the Earth, however, and the results from this are generally promising, as shown in @fig:density-profile-PREM-comparison.
 
-![Comparison of a self-consistent density profile to an Earth model obtained through seismological data.
+![
+  Comparison of a self-consistent density profile to an Earth model obtained through seismological data.
   Modelling the density profile of the Earth as if we were modelling an exoplanet produces results that compare well with the Preliminary Reference Earth Model (PREM), which is determined by inverting measurements of seismic wave propagation to solve for the internal structure.
   --- *From @Baraffe2014*
 ](density-profile-PREM-comparison){#fig:density-profile-PREM-comparison}
-
 
 ### These models are useful in several ways
 
@@ -387,7 +379,6 @@ Given the high-precision radii measurements, it is now important to quantify the
 
 ### The equation of state is a key component of these models
 
-<!-- TODO: dangling participle -->
 Correctly determining the interior structure and evolution of planets relies on a strong knowledge of the equations of state of the relevant materials.
 This is not an easy task, since the temperature and pressure ranges relevant to planetary interiors are often inaccessible to experiments, even recent diamond-anvil and shock wave experiments.
 Obtaining data for combinations of state variables off the Hugoniot (shock curve) can be difficult.^[@Nettelmann2008]
@@ -405,9 +396,9 @@ Firstly, the temperature dependence can be difficult to measure experimentally, 
 Secondly, including temperature dependence in the EOS generally does not result in differences greater than a few percent in the bulk composition (mass/radius) of the planet.^[@Seager2007]
 Therefore, an important question to ask ourselves is whether investigating the equations of state more closely is even worth it.
 
-In beginning this...
 I believe we can make improvements in the following key areas:
-<!-- TODO: fill out -->
+
+> TODO: fill out why the water EOS needs improvement and why we chose to work on it
 
 ### Water's thermal properties may lead to interesting structure
 
@@ -423,12 +414,15 @@ It can also exist as a low-density supercritical fluid or superheated vapour.
 This all means that the behaviour of water layers is thermally interesting.
 The behaviour of water is also strongly linked to questions of habitability because Earth-sized solid planets with oceans provide the best approximation to the one planet known to harbour life.
 
-![Phase diagram of water.
+![
+Phase diagram of water.
   Water has a rich and interesting phase structure.
   Here we show some of the key phases which are relevant when modelling a watery planet: liquid, vapour, and solid ice Ih, but also more exotic phases such as the high-pressure ices.
   Lines mark the boundaries of each phase.
   --- *Data from @Choukroun2007 and @Wagner2002*
-  ](normal){#fig:water-phases}
+](water_phases_fig){#fig:water-phases}
+
+> TODO: redraw [@fig:water-phases] to match visual style
 
 Others have previously investigated the structures of planets containing a significant water component.
 For example, @Ehrenreich2006 studied the internal structure of the exoplanet OGLE 2005-BLG-390Lb, modelling the phase changes throughout.
@@ -437,8 +431,9 @@ They comment that "[phase] transformations may have a significant effect on the 
 Our present study addresses the question of exactly how much temperature variations affect the structure and radius of water-rich planets and whether such effects are observable.
 
 In summary, water is an interesting test case for assessing how the thermal behaviour of the equation of state may affect the observable properties of a planet.
-And although it is certainly not the only component of interest, the potential for planets with large water layers means that it is worthwhile
-This dissertation therefore foc
+And although it is certainly not the only component of interest, the potential for planets with large water layers means that it is worthwhile investigating.
+
+> TODO: more detailed argument as to why watery planets are worth focusing on?
 
 ## This dissertation
 
@@ -451,14 +446,12 @@ The aim of this dissertation is therefore to improve our understanding of waterw
 In particular, I wish to answer the following questions:
 
 - Does a more complete treatment for water's equation of state lead to differences in the interpretation of models of when compared to the zero-temperature case?
-
 - How strongly are observable properties of the planet affected by its environment? Does this change what we might assume about the habitability of such a planet?
-
 - Can we predict the thermal structure of watery super-Earths?
 
 \noindent The remainder of this dissertation presents four items of work towards these aims.
 
-<!-- TODO: elaborate on what this thesis does *not* do? -->
+<!-- > TODO: elaborate on what this thesis does *not* do? -->
 
 I begin\marginnote{
   \Cref{sec:an-improved-water-equation-of-state}
@@ -468,7 +461,7 @@ I explain where I drew the data from, how I constructed it, and the features tha
 By comparing this to the equations of state used in other studies, I show that I have produced a more comprehensive and up-to-date coverage of the behaviour of water in the temperature and pressure ranges relevant to planetary interiors.
 
 Next\marginnote{
-  \Cref{sec:watery-planets}
+  \Cref{sec:watery-planet-interiors}
   \par\noindent "Watery planets"
 } I explain the theory of planetary interior models.
 I describe my code, OGRE, which solves the equations of planetary structure in a self-consistent fashion and treats the temperature structure of the planet appropriately.
@@ -483,12 +476,15 @@ I then\marginnote{
 I extend the models from the previous chapter to include a diffuse atmospheric layer, using two different approaches for comparison.
 By linking the external boundary conditions to the planet's internal and external heating, I show that the amount of energy required to significantly inflate these watery planets is very modest.
 
-Finally,\marginnote{
+To wrap up \marginnote{
   \Cref{sec:phase-structure-and-migration}
   \par\noindent "Phase structure and migration"
-} I turn to the question of how a planet's internal structure is altered by this heating.
+} my theoretical development of planetary structure, I turn to the question of how a planet's internal structure is altered by this heating.
 Using the information on the phases of water contained in my equation of state, I produce structural diagrams for watery planets.
 I show how different heating scenarios may alter this structure, and construct some toy migration scenarios to investigate how it may change over time.
 This chapter finishes by considering some potential astrobiological implications of different phase structures for these ocean planets.
 
-<!-- TODO: ## Definitions used in this dissertation? -->
+Finally, I have recently\marginnote{
+  \Cref{sec:a-water-rich-super-earth}
+  \par \noindent "A water-rich super-Earth"
+} had the opportunity to apply these models to a super-Earth with a suspected water detection. I present what results we have on this topic.

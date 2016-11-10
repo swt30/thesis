@@ -4,18 +4,17 @@ chapterfolder = chapters/
 bibfile = library
 bibfilebib = $(bibfile).bib
 
-# Chapters
+# List of chapters
 files = 00-preface/00-preface.md
 files += 01-introduction/01-introduction.md
 files += 02-eos/02-eos.md
 files += 03-models/03-models.md
 files += 04-heating/04-heating.md
 files += 05-migration/05-migration.md
-files += 06-conclusion/06-conclusion.md
+files += 06-application/06-application.md
+files += 07-conclusion/07-conclusion.md
 chapters = $(addprefix $(chapterfolder), $(files))
 allfiles = preamble.yaml $(chapters)
-
-# Figures
 
 # Outputs
 outputexts = tex pdf

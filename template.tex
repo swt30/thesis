@@ -15,6 +15,7 @@
 % Other packages
 \usepackage{amsmath} % additional math options
 \usepackage{amssymb} % additional math symbols
+\usepackage{gensymb} % mostly this is just to get the degree symbol
 \usepackage{microtype} % type tweaks
 \usepackage[lining,tabular]{fbb} % Bembo font for the body
 \usepackage[scaled=.95,type1]{cabin} % Gill Sans for sans serif
@@ -24,7 +25,6 @@
 \usepackage{booktabs} % better tables
 \usepackage{cleveref} % better references
 \usepackage{xspace} % better spaces
-\usepackage{lipsum}
 \usepackage{graphicx} % for those sweet sweet figures
 \usepackage[caption=false]{subfig} % for subfigures
 \usepackage[svgnames]{xcolor} % better colors
@@ -73,6 +73,10 @@ $endif$
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
+% We use the quote environment from pandoc to label TODOs
+\let\oldquote\quote
+\def\quote{\oldquote\color{red}}
+
 %%
 % Input settings
 
@@ -104,6 +108,7 @@ $endif$
 % a few characters aren't covered by the above trick
 \DeclareUnicodeCharacter{00D7}{\times}
 \DeclareUnicodeCharacter{025B}{\varepsilon}
+\DeclareUnicodeCharacter{00B0}{\degree}
 
 %%
 % Page formatting

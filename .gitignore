@@ -13,6 +13,7 @@
 ## Intermediate documents:
 *.dvi
 *-converted-to.*
+thesis.tex
 # these rules might exclude image files for figures etc.
 # *.ps
 # *.eps
@@ -135,5 +136,3 @@ sympy-plots-for-*.tex/
 Session.vim
 .netrwhist
 *~
-
-

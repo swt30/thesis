@@ -223,15 +223,14 @@ And what other observables might we be able to tap into to provide further const
 In this section we will briefly discuss attempts to do this.
 
 ![
-  Mass-radius diagram of transiting planets and Solar System gas giants.
-  In a mass--radius diagram (here including only transiting planets), many Jupiter-mass planets lie above the predicted relationship for hydrogen and hydrogen/helium spheres (\textcolor{cyan}{cyan} lines): the so-called *puffy Jupiters*.
-  The \textcolor{blue}{blue}, \textcolor{red}{red} and \textcolor{magenta}{magenta} lines show the relationships for spheres of water, MgSiO$_3$ perovskite, and iron, plus mixtures of these materials.
-  By comparing a planet's mass and radius to these, we can rule out certain classes of compositions---for example, if a planet has a larger radius than would be permitted for a sphere of rock or ices, it is likely to have a gaseous atmosphere.
-  Through this simple method, we can already see that the exoplanetary inventory includes planets unlike anything in our solar system: hot Jupiters, puffy gas giants, mini Neptunes and super Earths.
-  --- *From @Rogers2012*
-](mass-radius-puffy-jupiters){#fig:mass-radius}
-
-> TODO: redraw [@fig:mass-radius] to match visual style
+  Mass--radius diagram of exoplanets and Solar system planets.
+  Many Jupiter-mass planets lie above the predicted relationship for hydrogen spheres (\textcolor{Coral}{coral} lines).
+  They are the so-called *puffy Jupiters*.
+  The \textcolor{SlateBlue}{blue}, \textcolor{SeaGreen}{green} and \textcolor{FireBrick}{red} lines show the relationships for spheres of water, MgSiO$_3$ perovskite, and iron.
+  By comparing a planet's mass and radius to these, we can rule out certain classes of compositions---for example, if a planet has a larger radius than would be permitted for a sphere of rock or ice, it is likely to have a gaseous atmosphere.
+  From this we see already that the exoplanetary inventory includes planets unlike anything in our solar system: hot Jupiters, puffy gas giants, mini Neptunes and super Earths.
+  --- *Mass--radius curves adapted from @Rogers2012*
+](mass-radius-rogers-seager){#fig:mass-radius}
 
 ### Interior structures are the new frontier
 
@@ -271,12 +270,12 @@ We will discuss this approach more in @sec:watery-planet-interiors.
 In addition to 1D models, numerical simulations of processes like convection may also be useful for understanding the interiors of planets.
 Here, there are very strong links with the geological sciences.
 It is not necessarily possible to directly apply methods from the earth sciences, however, since many of them depend implicitly on a more detailed knowledge of the Earth than we can achieve for exoplanets---for example, seismological data and gravitational moment measurements.
-An immediate first check on the validity of exoplanetary models does come from applying them to the Earth, however, and the results from this are generally promising, as shown in @fig:density-profile-PREM-comparison.
+An immediate first check on the validity of exoplanetary models does come from applying them to the Earth, however, and the results from this are generally promising, as shown in [@fig:density-profile-PREM-comparison].
 
 ![
   Comparison of a self-consistent density profile to an Earth model obtained through seismological data.
   Modelling the density profile of the Earth as if we were modelling an exoplanet produces results that compare well with the Preliminary Reference Earth Model (PREM), which is determined by inverting measurements of seismic wave propagation to solve for the internal structure.
-  --- *From @Baraffe2014*
+  --- *Adapted from @Baraffe2014*
 ](density-profile-PREM-comparison){#fig:density-profile-PREM-comparison}
 
 ### These models are useful in several ways
@@ -449,7 +448,7 @@ In particular, I wish to answer the following questions:
 - How strongly are observable properties of the planet affected by its environment? Does this change what we might assume about the habitability of such a planet?
 - Can we predict the thermal structure of watery super-Earths?
 
-\noindent The remainder of this dissertation presents four items of work towards these aims.
+\noindent The remainder of this dissertation presents five items of work towards these aims.
 
 <!-- > TODO: elaborate on what this thesis does *not* do? -->
 
@@ -462,7 +461,7 @@ By comparing this to the equations of state used in other studies, I show that I
 
 Next\marginnote{
   \Cref{sec:watery-planet-interiors}
-  \par\noindent "Watery planets"
+  \par\noindent "Watery planet interiors"
 } I explain the theory of planetary interior models.
 I describe my code, OGRE, which solves the equations of planetary structure in a self-consistent fashion and treats the temperature structure of the planet appropriately.
 After incorporating my water equation of state into these models, I produce multi-layered planet structures for super-Earths with large water layers.

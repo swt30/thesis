@@ -10,6 +10,9 @@
 ## Automatically generated figures
 **/autofigs/**
 
+## Notebook checkpoints
+**/.ipynb_checkpoints/**
+
 ## Intermediate documents:
 *.dvi
 *-converted-to.*

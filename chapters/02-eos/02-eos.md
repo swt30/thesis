@@ -58,7 +58,7 @@ Real materials also have phase transitions between different states of matter, a
 
 Because no true universal equation of state exists, it is inappropriate to use just one equation of state in a planetary model.
 And despite progress in both experimental measurements and *ab initio* theoretical calculations, there is still no all-encompassing equation of state database for all of the minerals of interest in planetary interiors.
-Perhaps the closest to our intended goal is \smallcaps{SESAME}, the Los Alamos National Laboratory equation of state database.
+Perhaps the closest to our intended goal is \smallcaps{SESAME},^[@Lyon1992] the Los Alamos National Laboratory equation of state database.
 But US regulations preclude the distribution of \smallcaps{SESAME} to foreign nationals and so we were unable to access it.^[A frustrating display of political barriers to research.]
 Instead we must maintain several different equations of state for each different material, choosing appropriately from among them depending on the chemical composition, pressure and temperature.
 
@@ -77,7 +77,7 @@ For example, @Seager2007 took this approach with water, combining three temperat
 
 This pressure piecewise approach neglects temperature dependence in the equation of state but provides a robust approximation that is easy to evaluate.
 In some cases, stitching the data in this fashion has revealed that a simpler functional form works just as well.
-For example, this is the case in the "polytropic equation of state" used by @Seager2007.
+For example, this is the case for the *polytropic equation of state*.^["[T]he common building blocks of solid planets all have equations of state that are well approximated by a modified polytrope of the form $ρ = ρ_0 + cP^n$" [@Seager2007]]
 Such simple functional forms for the equation of state have been used successfully to model planets as cold spheres since the work of @Zapolsky1969.
 In other cases, a more detailed functional form is needed to capture the behaviour of the material fully; this is especially true if it undergoes phase transitions.
 For example, the IAPWS formulation^[@Wagner2002] uses a complicated series of equations fitted to various sources of experimental data for the behaviour of water in the vapour and liquid phases.
@@ -118,13 +118,13 @@ Such dynamic experiments may not be appropriate for understanding the behaviour 
 In practice, we therefore choose experimental data for our equation of state where appropriate, and use different sources of data to fill in other regions.
 
 Where do these other sources of data come from?
-I surveyed previous works that deal with internal structure,\marginnote{
+I surveyed\marginnote{
   \citet{Howe2014} completed a similar exercise, providing an overview of previous equations of state chosen to model planetary interiors. But they dealt mostly with equations of state for other materials like iron and silicates.
-} focusing exclusively on the water equations of state across all its phases (@tbl:eos-sources). In order of complexity (and therefore their potential ability to capture the behaviour of the mineral), these equations of state are:
+} previous works that deal with internal structure, focusing exclusively on the water equations of state across all its phases (@tbl:eos-sources). In order of complexity (and therefore their potential ability to capture the behaviour of the mineral), these equations of state are:
 
 - Simple semi-empirical analytic^[By this I mean that the equation of state is of a fixed functional form, but the function is parameterised by one or more parameters that are tuned based on measurements of the material.] prescriptions like the Birch-Murnaghan equation of state (BME), Vinet equation of state, or power laws;
 
-- Theoretical high-pressure equations of state like the Thomas-Fermi-Dirac formulation (TFD), which produce results applicable in the high pressure regime but are not;^[The ideal gas equation of state is similar in that it can be derived based directly on statistical mechanics, rather than being measured for each gas.]
+- Theoretical high-pressure equations of state like the Thomas-Fermi-Dirac formulation (TFD), which produce results applicable in the high pressure regime;^[The ideal gas equation of state is similar in that it can be derived based directly on statistical mechanics, rather than being measured for each gas.]
 
 - Quantum molecular dynamics simulations from first principles;
 
@@ -225,6 +225,12 @@ We therefore require an improved equation of state if we wish to model the therm
 
 ### Motivation for an improved water EOS
 
+\begin{marginfigure}
+  \includegraphics{simple-eos-comparison}
+  \caption{Simple zero-temperature equations of state used in \citet{Seager2007}.}
+  \label{fig:simple-eos-comparison}
+\end{marginfigure}
+
 Why do we care about thermal effects in the equation of state?
 Although the expression for the equation of state^[@eq:equation-of-state] nominally includes temperature dependence, only a few studies have attempted to calculate self-consistent planetary models that include a temperature component.
 Many simply use zero-temperature equations of state instead.
@@ -307,14 +313,16 @@ I converted all units to SI units and produced a series of tables, standardising
   The equation of state covers a wide range of temperature--pressure space.
   Here I show some of the key data sources used and their regions of validity: the IAPWS formulation [@Wagner2002]; theoretical calculations [@French2009]; the piecewise equation of state described by @Seager2007; the Mie-Grüneisen-Debye (MGD) thermal correction approach for ice VII [@Sotin2007]; and measurements for a small region of ice VII [@Sugimura2010].
   I also show the relevant phase boundaries.
-](eos_phases_big_fig){#fig:eos-phase-space}
-
-> TODO: [@fig:eos-phase-space] needs to be updated and probably split into two separate figures (the second being [@fig:eos-density])
+](eos-phases){#fig:eos-phase-space}
 
 ![Density of my water equation of state.
   Here I show the density variation across the entire pressure--temperature range.
   The density of water is more strongly affected by pressure across the range I consider, but temperature also affects its density too, especially across the liquid--vapour phase boundary and in the supercritical region.
-](normal){#fig:eos-density}
+](eos-density){#fig:eos-density}
+
+> TODO: [@fig:eos-density] needs its colorbar fixed
+
+> TODO: [@fig:eos-phase-space;@fig:eos-density] need the phase boundaries added
 
 My equation of state is for pure water only.
 Others have investigated how impurities may affect the equation of state and the planet's properties.

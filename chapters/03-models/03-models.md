@@ -206,9 +206,8 @@ Before proceeding further, I first verified these models by making mass--radius 
 ##### The isothermal case
 
 I checked that my models work in the isothermal case by replicating the mass--radius relations of @Seager2007.
-They exactly reproduce the mass--radius relations when I constructed homogeneous isothermal $300\,$K planets using the equations of state specified in their paper, as shown in [@fig:seager-mr-comparison].
-I set the surface pressure of my models to zero, following the boundary condition they used.
-The surface pressure hardly affects the results because the equations of state are for the solid phase only.
+They exactly reproduce the mass--radius relations when I constructed homogeneous isothermal $300\,$K planets using the equations of state specified in their paper, as shown in [@fig:seager-mr-comparisons].
+I set the surface pressure of my models to zero, following the boundary condition they used.^[The surface pressure hardly affects the results because the equations of state are for the solid phase only.]
 This identical mass--radius relation verified that my integrator works correctly, and I therefore began to investigate where the differences lie upon including temperature effects.
 
 ![
@@ -218,9 +217,7 @@ This identical mass--radius relation verified that my integrator works correctly
   If I adopt identical equations of state to those used by @Seager2007, I obtain the same result.
   This serves as a verification that my code correctly solves the structural equations.
   These models used zero surface pressure and have no temperature dependence: the equations of state are isothermal and are taken at 300$\,$K.
-](seager_comparisons_fig){#fig:seager-mr-comparison}
-
-> TODO: [@fig:seager-mr-comparison] should be redrawn to match visual style
+](seager-mr-comparisons){#fig:seager-mr-comparisons}
 
 ##### The adiabatic case
 I verified my adiabatic multi-layer models by comparing them with those of @Valencia2007a, who constructed similar models using the ice VII equation of state for water (Fig. @fig:valencia-mr-comparison).
@@ -236,15 +233,15 @@ However, I predict inflated radii at lower surface pressures and therefore concl
   Small differences are likely due to my different equation of state choice for ice VII.
   However, at lower surface pressures, water can have an extended lower density shell that results in a larger planet than otherwise expected.
   The surface temperature in these models is 550$\,$K, matching the characteristic temperature used by @Valencia2007a in their models.
-](valencia_comparisons_fig){#fig:valencia-mr-comparison}
-
-> TODO: [@fig:valencia-mr-comparison] to be redrawn with updated model and to match visual style (conclusions don't change)
+](valencia-mr-comparison){#fig:valencia-mr-comparison}
 
 There are minor differences between my mass--radius relations and the mass--radius relations presented by @Valencia2007a.
 I slightly underpredict the radii of lower-mass planets in models with surface pressures of $10^{10}\,$Pa.
 These differences are likely due to my choice of equation of state: I use only simple isothermal prescriptions for iron and magnesium silicate and include more phases of water than just ice VII.
 I also did not include any treatment of conductive boundary layers in my models.
 In general, however, my results agree well with theirs.
+
+> TODO: figures should have annotations rotated to lie along the series if possible
 
 I also compared my results with the evolutionary models of @Lopez2012.
 Although I was able to reproduce their mass--radius relation for Earth-like planets, I was less successful when adding extended water layers (Fig. @fig:lopez-mr-comparison).
@@ -259,9 +256,7 @@ This may be a result of different equation of state choices or different tempera
   The surface temperature in these models is 700$\,$K but the shaded band shows models with surface temperatures from 500 to 900$\,$K, a significant spread, which is caused by temperature-dependent density changes of water at lower pressures.
   I chose a surface pressure of $10^7\,$Pa to approximately match the radii of @Lopez2012.
   Their method does not begin from an explicit surface pressure, as ours does.
-](lopez_comparisons_fig){#fig:lopez-mr-comparison}
-
-> TODO: [@fig:lopez-mr-comparison] to be re-drawn with updated model and to match visual style (conclusions don't change)
+](lopez-mr-comparisons){#fig:lopez-mr-comparison}
 
 @Fig:lopez-mr-comparison also provides a first indication of how changes in surface temperature can affect the mass--radius relation.
 I highlight the magnitude of these differences and note that they are still significant at pressures of $10^7\,$Pa (100$\,$bar) and up, well into the pressure region where many atmospheric models terminate.
@@ -353,7 +348,7 @@ See @sec:heating-and-the-atmosphere for more detail on the behaviour of these va
   Here I show mass--radius relations for spheres with an Earth-like core under a 30 per cent water layer, changing only the surface pressure each time.
   The temperature dependence remains even beyond the critical pressure of water ($2.206×10^7\,$Pa), at which point the surface water exists as a supercritical fluid.
   Only at very high pressures ($10^9$ or $10^{10}\,$Pa; $10\,000$ or $100\,000$ bar) does this temperature dependence vanish.
-](pressures_big_fig){#fig:surface-pressure-variation}
+](surface-pressure-panels){#fig:surface-pressure-variation}
 
 > TODO: graph and text needs update here (conclusions do not change)
 
@@ -387,7 +382,7 @@ This suggests that the bulk of the radius change comes from a water layer on the
   Because the iron and silicate layers are isothermal, this variation is due solely to temperature effects in the water layer.
   I fixed the silicate:iron mass ratio at 2:1 and set the surface pressure to $10^7\,$Pa (100$\,$bar).
   The temperature contours are in steps of 100$\,$K.
-](compositions_big_fig){#fig:composition-variation}
+](water-fraction-panels_big_fig){#fig:composition-variation}
 
 <!-- The volatility of water (?) -->
 

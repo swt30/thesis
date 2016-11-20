@@ -23,9 +23,9 @@ dedication: |
             and said, "Go for it."
 
 preface: |
-         This dissertation is the result of work at the Institute of Astronomy under the supervision of Nikku Madhusudhan. He provided guidance, ideas, and some editing of the text. Ian Parry and Christopher Tout also provided advice and editing. I wrote all the code and performed all the analysis on which this dissertation is based. All external sources of data are referenced in the text. All figures are my own except where indicated.
+         This dissertation is the result of work under the supervision of Nikku Madhusudhan. He provided guidance, ideas, and some editing of the text. Ian Parry and Christopher Tout also provided advice and editing. Except where explicitly stated, I wrote all the code and performed all the analysis on which this dissertation is based. All external sources of data are referenced in the text and all figures are my own except where indicated.
 
-         Parts of this dissertation have been previously published or will be submitted for publication. \Cref{sec:an-improved-water-equation-of-state; sec:watery-planet-interiors} are based on our paper, "In hot water: effects of temperature-dependent interiors on the radii of water-rich super-Earths".^[@Thomas2016] \Cref{sec:heating-and-the-atmosphere} and parts of \cref{sec:phase-structure-and-migration} are based on "Internal heating of watery super-Earths", to be submitted. \Cref{sec:a-water-rich-super-earth} is based on "Madhu's waterworld paper title";^[@Madhusudhan2016] I contributed the interior structure models for that paper.
+         Parts of this dissertation have been previously published or will be submitted for publication. \Cref{sec:an-improved-water-equation-of-state; sec:watery-planet-interiors} are based on our paper, "In hot water: effects of temperature-dependent interiors on the radii of water-rich super-Earths".^[@Thomas2016] \Cref{sec:heating-and-the-atmosphere} and parts of \cref{sec:phase-structure-and-migration} are based on "Internal heating of watery super-Earths", to be submitted. \Cref{sec:a-water-rich-super-earth} is based on "Madhu and Oli's waterworld paper title";^[@Madhusudhan2016] I contributed the interior structure models for that paper.
 
          \newthought{I hereby declare} that this dissertation entitled "Internal and atmospheric structures of heated watery super-Earths" is the result of my own work and includes nothing which is the outcome of work done in collaboration except as declared in this Preface and specified in the text. It is not substantially the same as any that I have submitted or is being concurrently submitted for a degree or diploma or other qualification at the University of Cambridge or any other University or similar institution.
 
@@ -39,19 +39,17 @@ colophon: |
           This dissertation is typeset with the [`tufte-book`](http://tufte-latex.github.io/tufte-latex/) \LaTeX\xspace class. It uses Markdown source, the [`Pandoc`](http://www.pandoc.org) document converter, and a custom template. The source code, including Jupyter notebooks containing the source for all figures, is available at [www.github.com/swt30/thesis](www.github.com/swt30/thesis).
 
 acknowledgements: |
-                  - The Rutherford Foundation Trust and Universities New Zealand, for paying my way. It's an honour to have had your support.
+                  I owe thanks to several people or institutions for the support that allowed me to complete this dissertation.
 
-                  - Trinity College, for financial support and accommodation.
+                  For financial backing, I thank the Rutherford Foundation Trust, the Royal Society of New Zealand, and Universities New Zealand. It was an honour to have your support in advancing my education.
 
-                  - Nikku Madhusudhan, for guidance, enthusiasm and creative freedom.
+                  For financial support, accommodation, and that sense of "wow, Cambridge", I thank Trinity College. It has been a great place to live and its courtyards never fail to impress me when I walk through them.
 
-                  - Christina, for fun and friendship.
+                  For guidance, enthusiasm and creative freedom, I thank my supervisor Nikku Madhusudhan. This project would not exist without him.
 
-                  - Other fellow students from the IoA, now firm friends. There are too many of you to list but you have brightened my life in diverse and unexpected ways.
+                  For brightening my life in diverse and unexpected ways, I thank the fellow students from the IoA who have now become firm friends. A special thanks goes to Christina for fun and friendship. There are too many others to list and I would doubtless leave out someone important so let me just say that you guys are the best. And my thanks are further extended to your lovely assorted partners, friends, housemates and families that I have had the pleasure of spending time with.
 
-                  - The squirrels outside my window, for always making me smile.
+                  For always making me smile, I thank the squirrels outside my window. Your tails are so twitchy and your little paws are so adorable.
 
-                  - My family, for always believing in education and for letting me find my future.
-
-                  - Rachel, for being there from afar.
+                  For always believing in education and for letting me find my future, I thank my family. And finally, for being there from afar, I thank Rachel.
 ---

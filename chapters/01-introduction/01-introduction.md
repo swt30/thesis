@@ -260,12 +260,11 @@ This method aims to build a self-consistent model based on some known constraint
 Other authors have used this approach to scan the parameter space of possible compositions, often using a *ternary diagram* to show the ranges of materials permitted for a given planet,^[@Valencia2007a] or producing grids of models.^[@Zeng2013]
 We will discuss this approach more in @sec:watery-planet-interiors.
 
-\begin{marginfigure}
+\begin{figure}
   \includegraphics{sample-ternary-diagram}
-  \caption[A ternary diagram showing possible compositions for the super-Earth 55 Cancri e]
-  {This ternary diagram shows the range of possible compositions allowed by the mass and radius of the super-Earth 55 Cancri e. For this model composed of Fe, C, and MgSiO$_3$, the \textcolor{red}{red} and \textcolor{blue}{blue} regions show the constraints from the \textcolor{red}{visible} and \textcolor{blue}{gray} radii respectively. The blue region is a subset of the red. Ternary diagrams like this are useful when three numbers, like these mass fractions, sum to one. --- \emph{From \protect \citet{Madhusudhan2012a}}}
+  \caption{This ternary diagram shows the range of possible compositions allowed by the mass and radius of the super-Earth 55 Cancri e. For this model composed of Fe, C, and MgSiO$_3$, the \textcolor{red}{red} and \textcolor{blue}{blue} regions show the constraints from the \textcolor{red}{visible} and \textcolor{blue}{gray} radii respectively. The blue region is a subset of the red. Ternary diagrams like this are useful when three numbers, like these mass fractions, sum to one. --- \emph{From \protect \citet{Madhusudhan2012a}}}
   \label{fig:ternary-diagram}
-\end{marginfigure}
+\end{figure}
 
 In addition to 1D models, numerical simulations of processes like convection may also be useful for understanding the interiors of planets.
 Here, there are very strong links with the geological sciences.
@@ -333,12 +332,13 @@ Therefore mass--radius relations or models of individual planets traditionally h
 
 ### Observational constraints are increasingly strong
 
-\begin{marginfigure}
+\begin{figure}
   \includegraphics{ternary-diagram-bayesian}
-  \caption[Posterior likelihood distribution of the interior composition of GJ 581d]
-  {Bayesian techniques can be used to quantify the constraints placed on the interior composition of a planet, and they also account for uncertainties in the mass and radius and the inherent degeneracy in structure. Here, the posterior likelihood distribution for the interior composition of GJ 581d shows that a range of structures are permitted. --- \emph{From \protect \citet{Rogers2010}}}
+  \caption{Bayesian techniques can be used to quantify the constraints placed on the interior composition of a planet, and they also account for uncertainties in the mass and radius and the inherent degeneracy in structure. Here, the posterior likelihood distribution for the interior composition of GJ 581d shows that a range of structures are permitted. --- \emph{From \protect \citet{Rogers2010}}}
   \label{fig:ternary-diagram-bayesian}
-\end{marginfigure}
+\end{figure}
+
+> TODO: @fig:ternary-diagram-bayesian and @fig:ternary-diagram could be combined
 
 To what degree can interior structure models be linked with observations?
 We have already seen in @fig:ternary-diagram that there is necessarily some degeneracy in the interior structure of any given planet.

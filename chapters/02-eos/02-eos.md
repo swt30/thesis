@@ -473,11 +473,8 @@ A representation of the final water EOS is shown in @fig:final-eos-heatmap.
 
 ### The phase structure of water
 
-Key phases in planetary models...
-
-> TODO: fill out description of water phases, include phase diagram
-
-I examine the phase structure of watery planets further in @sec:phase-structure-and-migration.
+The key phases of water relevant to the interiors of watery planets include liquid, supercritical and superionic fluid, ice VII, ice X, and plasma.
+I defer further discussion of phase transitions in the equation of state until @sec:phase-structure-and-migration, in which I examine the phase structure of watery planets.
 
 ### Thermal effects
 

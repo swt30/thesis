@@ -241,8 +241,6 @@ These differences are likely due to my choice of equation of state: I use only s
 I also did not include any treatment of conductive boundary layers in my models.
 In general, however, my results agree well with theirs.
 
-> TODO: figures should have annotations rotated to lie along the series if possible
-
 I also compared my results with the evolutionary models of @Lopez2012.
 Although I was able to reproduce their mass--radius relation for Earth-like planets, I was less successful when adding extended water layers (Fig. @fig:lopez-mr-comparison).
 I can match the radius of an arbitrary planet by choosing an appropriate surface pressure, but I underpredict the radii of small planets and overpredict the radii of large planets compared with their results.

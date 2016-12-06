@@ -39,17 +39,17 @@ colophon: |
           This dissertation is typeset with the [`tufte-book`](http://tufte-latex.github.io/tufte-latex/) \LaTeX\xspace class. It uses Markdown source, the [`Pandoc`](http://www.pandoc.org) document converter, and a custom template. The source code, including Jupyter notebooks containing the source for all figures, is available at [www.github.com/swt30/thesis](www.github.com/swt30/thesis).
 
 acknowledgements: |
-                  I owe thanks to several people or institutions for the support that allowed me to complete this dissertation.
+                  I owe thanks to several people and institutions for the support that allowed me to complete this dissertation.
 
-                  For financial backing, I thank the Rutherford Foundation Trust, the Royal Society of New Zealand, and Universities New Zealand. It was an honour to have your support in advancing my education.
+                  For financial backing, I thank the Rutherford Foundation Trust, the Royal Society of New Zealand, and Universities New Zealand. It has been a pleasure to have had your support.
 
                   For financial support, accommodation, and that sense of "wow, Cambridge", I thank Trinity College. It has been a great place to live and its courtyards never fail to impress me when I walk through them.
 
-                  For guidance, enthusiasm and creative freedom, I thank my supervisor Nikku Madhusudhan. This project would not exist without him.
+                  For advice, enthusiasm and creative freedom, I thank my supervisor Nikku Madhusudhan. This dissertation would not cover such an interesting range of topics without his guidance.
 
                   For brightening my life in diverse and unexpected ways, I thank the fellow students from the IoA who have now become firm friends. A special thanks goes to Christina for fun and friendship. There are too many others to list and I would doubtless leave out someone important so let me just say that you guys are the best. And my thanks are further extended to your lovely assorted partners, friends, housemates and families that I have had the pleasure of spending time with.
 
                   For always making me smile, I thank the squirrels outside my window. Your tails are so twitchy and your little paws are so adorable.
 
-                  For always believing in education and for letting me find my future, I thank my family. And finally, for being there from afar, I thank Rachel.
+                  Finally, for always believing in education, for letting me find my future, and for being there from afar, I thank Rachel, her family, and mine.
 ---

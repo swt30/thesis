@@ -102,8 +102,14 @@ With more structural equations, the iterative procedure must span more dimension
 It is therefore only useful for simple models, and more sophisticated approaches may be needed.
 
 The relaxation method is one such approach.
+I mentioned above the idea of shooting to a fitting point.
+We could also imagine increasing the number of fitting points, using two or three or more points at which the solution must match, and supplying a predicted value at each of these.
+If we have a pre-existing structure model to base the values at these fitting points off, then our initial guesses will be relatively good and we can attempt to iterate toward a solution that satisfies the matching condition at each of these points.
+Taking this idea to its extreme, we might then use every point in the discretised mesh as a fitting point.
+This transforms the problem: instead of solving a coupled system of ordinary differential equations, we must now solve a much larger system of non-differential equations.
+We can use standard linear algebra techniques to do this, and we can also use a shooting method to provide the initial guess for the structure.
+The relaxation method comes into its own when we want to perform evolutionary calculations because we can use the previous structural model as the initial guess.
 
-> TODO: include a description of how the relaxation method works
 
 \newthought{I investigated several} boundary value problem (BVP) and more general ordinary differential equation (ODE) solvers to handle the problem defined by [@eq:mass-continuity; @eq:pressure-gravity].
 There are several reasons to desire a generic method of solving these equations.
@@ -157,21 +163,23 @@ I therefore chose to iterate the initial radius $R$ until I obtain a value which
 In each successive trial, my code iteratively adjusts the radius boundary condition $R(M)$, using a bisection root-finding method to ensure that the radius approaches zero as the mass approaches zero.
 In this way it converges on the correct value for the total radius, giving a self-consistent solution.
 I further required that $r$ remains positive: this avoids any numerical difficulty arising from the behaviour of the equations at $r=0$.
+@Fig:solver-flowchart summarises this process.
 
-> TODO: include a sketch or flow chart as a simpler explanation for how this convergence process works
+![
+  A flowchart summarising how my structural solver \smallcaps{OGRE} works.
+](solver-flowchart_big_fig){#fig:solver-flowchart}
 
 I was unable to use a faster method, such as the secant method, to solve for the correct radius.
 This is because the equations break down at the very centre and are not valid for $r<0$ or $m<0$, so I am unable to integrate past the central point and use this information to derive a gradient to correct the next iteration.
 Instead, I use the numerical failure of the equations (and consequent spiking of the central pressure) as a signal that I have chosen an initial radius that is too small---we have hit the centre before we have accounted for all the mass in the model.
 I then stop the integration, bisect the search region, and try again.
 In contrast, if the initial radius is too large, we will run out of mass before we reach $r=0$, at which point I also terminate and refine the initial guess.
-I consider the model to have converged successfully if the final value of $r$ is less than $100\,$m.
+I consider the model to have converged successfully if the final value of $r$ is less than $1000\,$m.
 
 It is trivial to use this method to solve for another parameter instead of the radius.
 Because my intention was to investigate the change in observable parameters, I choose for the remainder of this dissertation to leave the radius as the free parameter.
 But it is also possible to leave another parameter free, such as the core mass, layer thickness or even the composition.
-
-> TODO: add some citations where other studies have done this and mention how this approach is used to perform Bayesian analyses of these parameters? Or could leave this until chapter 6
+For an example of this, see [@sec:a-water-rich-super-earth], in which my models are used to analyse the potential composition of a water-rich super-Earth.
 
 ### Mass--radius relations for differentiated planets
 
@@ -217,8 +225,6 @@ This identical mass--radius relation verified that my integrator works correctly
   This serves as a verification that my code correctly solves the structural equations.
   These models used zero surface pressure and have no temperature dependence: the equations of state are isothermal and are taken at 300$\,$K.
 ](seager-mr-comparisons){#fig:seager-mr-comparisons}
-
-> TODO: [@fig:seager-mr-comparisons;@fig:valencia-mr-comparison;@fig:lopez-mr-comparison] need borders
 
 ##### The adiabatic case
 I verified my adiabatic multi-layer models by comparing them with those of @Valencia2007a, who constructed similar models using the ice VII equation of state for water ([@fig:valencia-mr-comparison]).

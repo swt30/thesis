@@ -130,9 +130,7 @@ I surveyed\marginnote{
 
 - Complicated empirical analytic prescriptions, such as the work of the International Association for the Properties of Water and Steam (IAPWS) or the US national laboratory databases such as ANEOS and SESAME, plus tables of values taken from these; and
 
-- Fully experimental data sets generated from shock wave compression or diamond anvil experiments.
-
-> TODO: elaborate on what these shock wave / diamond anvil experiments bring us
+- Fully experimental data sets generated from shock wave compression or diamond anvil experiments.^[Diamond anvils are used to compress samples of material, measuring among other properties their density, up to pressures in the GPa range and higher. By adding resistive coils to the anvil or heating the sample with lasers, temperatures up to several thousand K can also be probed [@Mao2007]. Dynamic compression experiments, including shock compression, are also used to measure the equation of state at high temperatures and pressures [@Asimow2015].]
 
 --------------------------------------------------------------------------------
 Work(s)                         Water equation of state used
@@ -190,6 +188,8 @@ Work(s)                         Water equation of state used
 @Zeng2013                       @Frank2004; @French2009; TFD
 --------------------------------------------------------------------------------
 Table: Previous studies on planetary interior structures use a variety of equations of state for water. {#tbl:eos-sources}
+
+\newpage
 
 ### The role of the water equation of state in planetary models
 
@@ -264,8 +264,6 @@ However, their work focused on the lower temperatures needed to model impact cra
 I have explicitly included much higher temperatures so as to capture the behaviour of large super-Earth planets: we expect the cores of these to reach thousands of Kelvin.
 The sources I used are detailed in @tbl:my-eos.
 
-> TODO: make the EOS publicly available as indicated in @sec:how-i-collected-and-synthesized-the-data
-
 ----------------------------------------------------------------------------------
 Equation of state        Type          Region of validity
 ------------------------ ------------- -------------------------------------------
@@ -319,10 +317,6 @@ I converted all units to SI units and produced a series of tables, standardising
   Here I show the density variation across the entire pressure--temperature range.
   The density of water is more strongly affected by pressure across the range I consider, but temperature also affects its density too, especially across the liquid--vapour phase boundary and in the supercritical region.
 ](eos-density){#fig:eos-density}
-
-> TODO: [@fig:eos-density] needs its colorbar fixed and units (kg$⋅$m$^{-3}$) added
-
-> TODO: [@fig:eos-phase-space;@fig:eos-density] need the phase boundaries added
 
 My equation of state is for pure water only.
 Others have investigated how impurities may affect the equation of state and the planet's properties.
@@ -412,11 +406,10 @@ This can result in numerical trouble when performing the inversion near the curv
 > TODO: [@fig:early-numerical-difficulties] could probably be re-drawn or maybe just removed (it's not relevant to the end product)
 
 I handled numerical problems like this near phase boundaries by using a bounded root-finding algorithm when solving the inverse equations.
-By pinning one end of the bounds to the phase curve and fixing the temperature, I solve a one-to-one inversion problem on either the "upper" or "lower" side of the phase curve, preventing the solver from stepping across the curve and therefore yielding the correct solution.
-I did not expect this vapour-liquid transition region to be of much importance in my interior structure models, which will be mostly high-pressure ices.
+By pinning one end of the bounds to the phase curve and fixing the temperature, I solve a one-to-one inversion problem on either the higher-density or lower-density side of the phase curve.
+This prevents the solver from stepping across the curve and obtaining the wrong solution.
+I did not expect this vapour-liquid transition region to be of much importance in my interior structure models, at least for the case when the surface is solid and the interior consists mostly of high-pressure ice.
 However, accurately handling the behaviour here was important when I later extended the models to include an atmospheric layer.
-
-> TODO: "and therefore yielding the correct solution" above is unclear; rephrase
 
 I specified an order of priority for which EOS to prefer in the case of conflict between sources.
 I rely firstly on tabular sources, then functional sources, in the order specified in @tbl:my-eos.
@@ -547,15 +540,11 @@ This interpolation method constructs an interpolating function by taking a weigh
 The weighting depends on the relative $(P,T)$ value of the point being evaluated.
 In this way we can calculate the density at points within the domain of the table but off the rectangular grid.
 
-> TODO: include an image to clarify how this works.
-
 [^2d-interp]: For multidimensional linear interpolation I used [Dierckx.jl](https://github.com/kbarbary/Dierckx.jl).
 
 Not all data can be represented on a structured grid in this way.
 This is the case where the equation of state data are provided as sets of $(P, T, ρ)$ values.
 In this case, we require a different interpolation scheme.
-
-> TODO: include a sketch to clarify non-gridded interpolation
 
 I tested many different interpolation routines written in Python but found them to be very slow and more complicated than necessary.
 Most of these interpolators use some form of spline-fitting, or perhaps a functional approximation by way of radial basis functions.
@@ -578,9 +567,13 @@ It then caches the Delaunay mesh created so that it does not have to be re-creat
 
   - Finally, it calculates the interpolated value: $ρ(P, T) = \sum_{i=1}^3 ρ_i λ_i$.
 
-> TODO: include a sketch to clarify barycentric interpolation
+![
+  This schematic shows my linear interpolation scheme for unstructured data.
+  First the unstructured $(P,T)$ points are used to define a Delaunay tessellation where the points lie on the vertices of the tessellating triangles.
+  Then the density at any given point can be found by taking a weighted sum of the density values at the enclosing vertices.
+](delaunay){#fig:delaunay-barycentric}
 
-This custom routine takes advantage of a method called "floating point filtering", which is also used in some cosmological simulations.^[e.g. the Illustris simulation]
+This custom routine takes advantage of a method called "floating point filtering", which is also used in some cosmological simulations.^[For example, the Illustris simulation uses this method.]
 
 The other benefit of this approach is that it naturally defines the domain of the table of interest: only points which are contained in one of the Delaunay triangles lie within the domain of the table.
 I used this Delaunay mesh to determine if a given $(P,T)$ pair lay within the domain of a particular equation of state, allowing me to fall back to another equation of state if necessary.

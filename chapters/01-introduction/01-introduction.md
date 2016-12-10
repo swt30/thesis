@@ -106,8 +106,6 @@ However, the advent of large photometric surveys like Kepler favoured a differen
   Secondary transits, where reflected light from the planet is instead blocked by the star, are smaller.
 ](schematic-transit){#fig:schematic-transit}
 
-> TODO: replace [@fig:schematic-transit] with a hand-drawn image
-
 \newthought{The transit method}---where the planet moves between us and its host star (@fig:schematic-transit)---is an intuitive way of spotting planets.
 I will not elaborate on the mechanics of a transiting system except to point out that the probability of observing a transit and the expected decrease in the observed flux are both very small.
 The transit probability for a circular orbit is approximately ${R_*/a}$, where $R_*$ is the stellar radius and $a$ is the radius of the orbit.
@@ -229,8 +227,6 @@ In this section I will briefly discuss attempts to do this.
   --- *Mass--radius curves adapted from @Rogers2012, data from [exoplanets.org](http://www.exoplanets.org)*
 ](mass-radius-rogers-seager){#fig:mass-radius}
 
-> TODO: rotate labels and add border to [@fig:mass-radius]
-
 ### Interior structures are the new frontier
 
 As atmospheric characterisation techniques improve, the question of what lies beneath the atmosphere has naturally arisen.
@@ -248,6 +244,8 @@ Models from first principles (numerical or analytical models based on the physic
 Planetary interior models are a worthwhile starting point to make sense of the limited observational data we have.
 These models are inspired by earlier successes with stellar structure models, which are key to interpreting observations of stars.
 The ever-increasing number of known exoplanets, many of which have both mass and radius measurements, are a diverse and interesting set of objects to which to apply these models.
+
+> TODO: Cite recent review papers by @Guillot2015 and @Baraffe2014
 
 Others had previously considered the internal structures of planets in our solar system,^[For example, see @Hubbard1980.], but the study often taken as the base for planetary interior modelling is by @Zapolsky1969 who constructed mass--radius relations for large homogeneous isothermal spheres.
 Since then, a number of internal structure models have been developed specifically for exoplanets, with work beginning about a decade ago.^[e.g. @Valencia2006; @Fortney2007; @Sotin2007; @Seager2007]
@@ -276,8 +274,6 @@ An immediate first check on the validity of exoplanetary models does come from a
   Modelling the density profile of the Earth as if we were modelling an exoplanet produces results that compare well with the Preliminary Reference Earth Model (PREM), which is determined by inverting measurements of seismic wave propagation to solve for the internal structure.
   --- *Adapted from @Baraffe2014*
 ](density-profile-PREM-comparison){#fig:density-profile-PREM-comparison}
-
-> TODO: add border to [@fig:density-profile-PREM-comparison]
 
 ### These models are useful in several ways
 
@@ -397,7 +393,7 @@ First, the temperature dependence can be difficult to measure experimentally, es
 Second, including temperature dependence in the EOS generally does not result in differences greater than a few percent in the bulk composition (mass/radius) of the planet.^[@Seager2007]
 Therefore, an important question to ask ourselves is what we can gain from investigating the equation of state.
 
-  ### Water's thermal properties may lead to interesting structure
+### Water's thermal properties may lead to interesting structure
 
 The degree to which thermal structure may affect the properties of a water-rich planet has not yet been well studied.
 Super-Earth planets with significant water layers, sometimes called waterworlds, provide an interesting testbed for our investigation.
@@ -417,9 +413,7 @@ The behaviour of water is also strongly linked to questions of habitability beca
   Here I show some of the key phases which are relevant when modelling a watery planet: liquid, vapour, and solid ice Ih, but also more exotic phases such as the high-pressure ices.
   Lines mark the boundaries of each phase.
   --- *Data from @Choukroun2007 and @Wagner2002*
-](water_phases_fig){#fig:water-phases}
-
-> TODO: redraw [@fig:water-phases] to match visual style
+](water-phase-diagram){#fig:water-phases}
 
 Others have previously investigated the structures of planets containing a significant water component.
 For example, @Ehrenreich2006 studied the internal structure of the exoplanet OGLE 2005-BLG-390Lb, modelling the phase changes throughout.

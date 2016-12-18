@@ -23,7 +23,7 @@ dedication: |
             and said, "Go for it."
 
 preface: |
-         This dissertation is the result of work at the Institute of Astronomy under the supervision of Nikku Madhusudhan. He provided guidance, ideas, and some editing of the text. Ian Parry and Christopher Tout also provided advice and editing. Except where explicitly stated, I wrote all the code and performed all the analysis on which this dissertation is based. All external sources of data are referenced in the text and all figures are my own except where indicated.
+         This dissertation is the result of work at the Institute of Astronomy under the supervision of Nikku Madhusudhan. He provided guidance, ideas, and some editing of the text. Except where explicitly stated, I wrote all the code and performed all the analysis. Some of the text is also based on work for which Ian Parry and Christopher Tout provided advice and editing. All external sources of data are referenced in the text and all figures are my own except where indicated.
 
          Parts of this dissertation have been previously published or will be submitted for publication. \Cref{sec:an-improved-water-equation-of-state,sec:watery-planet-interiors} are based on our paper, "In hot water: effects of temperature-dependent interiors on the radii of water-rich super-Earths".^[@Thomas2016] \Cref{sec:heating-and-the-atmosphere} and parts of \cref{sec:phase-structure-and-migration} are based on "Internal heating of watery super-Earths", to be submitted. \Cref{sec:a-water-rich-super-earth} is based on "Madhu and Oli's waterworld paper title";^[@Madhusudhan2016] I contributed the interior structure models for that paper.
 

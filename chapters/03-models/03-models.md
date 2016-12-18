@@ -26,14 +26,14 @@ In constructing planetary models, I have assumed the following.
 First, the planet is spherically symmetric.
 This reduces the structural equations to one dimension.
 It is possible to construct higher-dimensional models of planets.
-In fact is particularly useful when investigating atmospheric behaviour: full three-dimensional global circulation models can reveal interesting details about the behaviour of the atmospheres of large planets, such as the existence of zonal winds or hot spots, that one-dimensional models will miss.
+In fact this is particularly useful when investigating atmospheric behaviour: full three-dimensional global circulation models can reveal interesting details about the behaviour of the atmospheres of large planets, such as the existence of zonal winds or hot spots, that one-dimensional models will miss.^[e.g. @Kataria2016]
 But such models are beyond the scope of this work.
 
 Second, the planet is in a state of hydrostatic equilibrium.
 That is, pressure and gravity are balanced throughout, allowing us to use the equation of hydrostatic equilibrium as a structural equation.
 
 Third, the planet is in thermal equilibrium or quasi-equilibrium.
-Both external and internal heating are assumed to be constant.
+By this I mean simply that the equations are time-independent: there is no time evolution of the structure, and both external and internal heating are assumed to be constant.
 Although the planet may still be generating some internal energy due to gravitational contraction, the cooling time is assumed to be very long.
 Similarly, any radiogenic heating is assumed to be produced by elements with a very long half-life.
 
@@ -171,7 +171,7 @@ I further required that $r$ remains positive: this avoids any numerical difficul
 
 I was unable to use a faster method, such as the secant method, to solve for the correct radius.
 This is because the equations break down at the very centre and are not valid for $r<0$ or $m<0$, so I am unable to integrate past the central point and use this information to derive a gradient to correct the next iteration.
-Instead, I use the numerical failure of the equations (and consequent spiking of the central pressure) as a signal that I have chosen an initial radius that is too small---we have hit the centre before we have accounted for all the mass in the model.
+Instead, I terminate the integration if $r < 0$ before $m = 0$, using this as a signal that I have chosen an initial radius that is too small---that is, we have hit the centre before we have accounted for all the mass in the model.
 I then stop the integration, bisect the search region, and try again.
 In contrast, if the initial radius is too large, we will run out of mass before we reach $r=0$, at which point I also terminate and refine the initial guess.
 I consider the model to have converged successfully if the final value of $r$ is less than $1000\,$m.
@@ -187,9 +187,9 @@ I used my models to produce mass--radius relations for homogeneous spheres of wa
 I did this first for the homogeneous isothermal case [in the vein of @Zapolsky1969] and then extended my models to include an adiabatic temperature gradient.
 My differentiated multi-layer models include a water layer on top of a silicate mantle and an iron core.
 To do this, they treat the equation of state, @eq:eos, as piecewise in the mass co-ordinate.
-For example, consider a model which has a 5 per cent (by mass) water layer on top of a silicate mantle.
+For example, consider a model which has a 5% (by mass) water layer on top of a silicate mantle.
 For this model, my code begins evaluating @eq:eos using the water equation of state.
-It then switches to the silicate equation of state once $m$, the mass interior to the spherical shell in [@eq:mass-continuity;  @eq:pressure-gravity; @eq:adiabatic-temperature-gradient], drops below 95 per cent of the planetary mass.
+It then switches to the silicate equation of state once $m$, the mass interior to the spherical shell in [@eq:mass-continuity;  @eq:pressure-gravity; @eq:adiabatic-temperature-gradient], drops below 95% of the planetary mass.
 It is possible to choose the integration grid such that this occurs exactly at the end of an integration step.
 However, in practice a sufficiently fine grid is also acceptable.
 
@@ -234,7 +234,7 @@ However, I predict inflated radii at lower surface pressures and therefore concl
 ![
   Validation of adiabatic models.
   My mass--radius relations reproduce those for dry planets well, and predict inflated radii for planets with water layers.
-  Here I show mass--radius relations for two classes of models: dry planets (33 per cent Fe and 67 per cent MgSiO$_3$ by mass), and wet planets (17 per cent Fe, 33 per cent MgSiO$_3$, and 50 per cent water).
+  Here I show mass--radius relations for two classes of models: dry planets (33% Fe and 67% MgSiO$_3$ by mass), and wet planets (17% Fe, 33% MgSiO$_3$, and 50% water).
   I compared the mass--radius relations with the work of @Valencia2007a who constructed models with ice VII layers.
   At a surface pressure of $10^{10}\,$Pa the water layer in the wet planets is mostly ice VII and so my results are similar in this case.
   Small differences are likely due to my different equation of state choice for ice VII.
@@ -255,7 +255,7 @@ This may be a result of different equation of state choices or different tempera
 
 ![
   Comparison with evolutionary models.
-  Here I plot dry (Earth-like) and wet (50 per cent water on an Earth-ratio core/mantle) mass--radius relations.
+  Here I plot dry (Earth-like) and wet (50% water on an Earth-ratio core/mantle) mass--radius relations.
   Shown for comparison are models by @Lopez2012, who build on work by @Fortney2007 and @Nettelmann2011 by using a thermal evolution approach to track the entropy within each planet as it cools.
   Surface temperature significantly alters the mass--radius relation in my models.
   The surface temperature in these models is 700$\,$K but the shaded band shows models with surface temperatures from 500 to 900$\,$K, a significant spread, which is caused by temperature-dependent density changes of water at lower pressures.
@@ -285,7 +285,7 @@ In particular, I investigated the dependence on the following parameters:
 
 I found that thermal expansion can lead to significant changes in the radii of water-rich super-Earths.
 I constructed super-Earths in two different ways.
-First I modelled them as isothermal spheres containing an Earth-like core (33 per cent Fe and 67 per cent MgSiO$_3$) underneath a water layer of 30 per cent of the planet's mass.
+First I modelled them as isothermal spheres containing an Earth-like core (33% Fe and 67% MgSiO$_3$) underneath a water layer of 30% of the planet's mass.
 Then I instead allowed the temperature to increase adiabatically into the water layer.
 
 @Fig:isotherms-vs-adiabats shows that the assumption that thermal expansion effects are negligible, which was made in some previous studies, is not the case.
@@ -297,7 +297,7 @@ Second, the surface temperature also affects the radius of a planet within both 
   Dependence of watery super-Earth radii on surface temperature and internal temperature profile.
   An increased surface temperature results in an increased planetary radius.
   This effect is especially pronounced in the full adiabatic temperature treatment.
-  Here I show super-Earths with an Earth-like core under a 30 per cent water layer by mass.
+  Here I show super-Earths with an Earth-like core under a 30% water layer by mass.
   I treated the temperature in two different ways: an isothermal treatment with a fixed constant temperature and an adiabatic treatment where I fixed the surface temperature but allowed the temperature to increase inwards according to the adiabatic relation (@eq:adiabatic-temperature-gradient).
   The adiabatic models are warmer and therefore significantly larger overall, but even the isothermal planets display some radius change due to temperature.
   The effects of this temperature dependence are comparable to current uncertainties on measured masses and radii for some of the best-characterised exoplanets.
@@ -308,21 +308,21 @@ Second, the surface temperature also affects the radius of a planet within both 
 The adiabatic models have a larger radius for a given mass when compared with the isothermal case.
 This is to be expected: the average temperature is higher along an adiabat than an isotherm fixed at the surface temperature, and the density of water generally decreases with temperature.
 The increase in radius is significant at higher surface temperatures, as shown in [@fig:isotherms-vs-adiabats].
-For example, a 4$\,$M$_⊕$ 30 per cent water planet with a 600$\,$K surface has a radius of 1.8$\,$R$_⊕$ if its water layer is isothermal, but 2$\,$R$_⊕$ if it is adiabatic.
-Across the super-Earth mass range I considered, the adiabatic radii increased by up to 0.3$\,$R$_⊕$ when compared with the isothermal case.
+For example, a $4\,$M$_⊕$ 30% water planet with a $600\,$K surface has a radius of $1.68\,$R$_⊕$ if its water layer is isothermal, but $1.79\,$R$_⊕$ if it is adiabatic.
+Across the super-Earth mass range I considered, the adiabatic radii increased by up to $0.11\,$R$_⊕$ when compared with the isothermal case.
 The difference becomes particularly pronounced at higher surface temperatures, at which point the water layer may consist of supercritical fluid rather than liquid, solid, or vapour ([@fig:water-phases]).
-
-> TODO: update numbers
 
 A significant dependence on surface temperature also exists when using the adiabatic models.
 That is, changing the surface temperature affects the radius of a model water super-Earth even when its temperature profile is already being treated as adiabatic.
-In the case of a $10\,$M$_⊕$ planet, increasing the surface temperature from $300$ to $1000\,$K gave a radius increase of $0.6\,$R$_⊕$.
-For an Earth-mass planet the increase was approximately $0.3\,$R$_⊕$ for the same temperature range.
+In the case of a $10\,$M$_⊕$ planet, increasing the surface temperature from $300$ to $1000\,$K gave a radius increase of $0.15\,$R$_⊕$.
+For an Earth-mass planet the increase was approximately $0.2\,$R$_⊕$ for the same temperature range.
 
 I have highlighted above the change in the adiabatic models, which I claim are a more realistic representation of the actual temperature structure within the planet.
 But even the isothermal models show a significant increase in radius with the planet's temperature.
-For a $10\,$M$_⊕$ planet, the change in radius is $0.3\,$R$_⊕$ from $300$ to $1000\,$K.
+For a $10\,$M$_⊕$ planet, the change in radius is $0.04\,$R$_⊕$ from $300$ to $1000\,$K.
+For a $1\,$M$_⊕$ planet it is $0.1\,$R$_⊕$, nearly $10$% of the planet's radius.
 This is due to the thermal expansion of the planet as a whole, rather than of one small part of the water layer near the surface.
+
 I do not necessarily expect an adiabatic temperature gradient throughout the whole planet because the entire interior may not all be convective.
 For example, @Valencia2007a included conductive boundary layers in their models.
 In that case, the true temperature-dependent behaviour of the mass--radius diagram might lie between the adiabatic and isothermal cases.
@@ -338,8 +338,8 @@ I discuss the effect of pressure on these models further in the next section.
 ### Effect of surface pressure
 
 The surface pressure can strongly affect the temperature-dependent thickness of the water layer ([@fig:surface-pressure-variation]).
-For example, at high temperatures ($1000\,$K), increasing the surface pressure of a $10$ per cent water and $4\,$M$_⊕$ planet from $10\,$bar to $1000\,$bar compresses the water layer significantly, decreasing the planet's radius by a factor of two.
-And at low pressures we see a bifurcation in the surface pressure contours where a surface temperature increase of $100\,$K or less can inflate the radius of a watery super-Earth by more than $50$ per cent.
+For example, at high temperatures ($1000\,$K), increasing the surface pressure of a $30$% water and $1\,$M$_⊕$ planet from $1\,$bar to $1000\,$bar compresses the water layer significantly, decreasing the planet's radius from $1.8\,$R$_\oplus$ to $1.3\,$R$_\oplus$.
+And at low pressures we see a bifurcation in the temperature--radius contours where a surface temperature increase of $100\,$K or less can inflate the radius of a watery super-Earth by more than $20$%.
 This is the result of a transition across the liquid--vapour phase boundary, which exists at pressures up to the critical pressure of water ($2.206×10^7\,$Pa).
 My interior structure code is most likely not the best choice for modelling such a quasi-atmospheric layer: I did not handle radiative energy transfer at this stage.
 They require a more sophisticated treatment of the temperature profile than the adiabatic assumption in this chapter.
@@ -348,12 +348,10 @@ See @sec:heating-and-the-atmosphere for more detail on the behaviour of these va
 ![
   Dependence of radii on surface pressure.
   The effect of temperature on the radius of watery planets decreases with increasing surface pressure, but remains significant (greater than about $0.1\,$R$_⊕$) for pressures below 1000$\,$bar.
-  Here I show mass--radius relations for spheres with an Earth-like core under a 30 per cent water layer, changing only the surface pressure each time.
+  Here I show mass--radius relations for spheres with an Earth-like core under a 30% water layer, changing only the surface pressure each time.
   The temperature dependence remains even beyond the critical pressure of water ($2.206×10^7\,$Pa), at which point the surface water exists as a supercritical fluid.
   Only at very high pressures ($10^9$ or $10^{10}\,$Pa; $10\,000$ or $100\,000$ bar) does this temperature dependence vanish.
 ](surface-pressure-panels){#fig:surface-pressure-variation}
-
-> TODO: numbers in text need updating (conclusions don't change)
 
 Despite observing highly inflated radii when the temperature is increased across the liquid--vapour phase boundary, we still see temperature-dependent variation in the planet's radius past the critical pressure of water.
 This is because the density of water is still strongly temperature-dependent in the super-critical regime.
@@ -368,11 +366,9 @@ I find that changing the water content affects the temperature-dependent behavio
 I constructed planets with water, silicate, and iron layers, fixing the silicate:iron mass ratio to the Earth value of 2:1 and allowing the water shell to vary in mass.
 These models correspond to an Earth-like nucleus with an extended water layer at the surface.
 
-The effects of surface temperature on radius vary in magnitude across all my models with water layers, but still exist even when I set the water layer mass to just 1 per cent of the mass of the entire planet.
-For a $10$\,$M$_⊕$ super-Earth with a surface pressure of $10^7\,$Pa ($100\,$bar), the radial change when the surface temperature increases from $300$ to $1000\,$K is $0.5\,$R$_⊕$ (for a $50$ per cent water planet) and $0.4\,$R$_⊕$ (for a $1$ per cent water planet).
+The effects of surface temperature on radius vary in magnitude across all my models with water layers, but still exist even when I set the water layer mass to just 1% of the mass of the entire planet.
+For a $1$\,$M$_⊕$ super-Earth with a surface pressure of $10^7\,$Pa ($100\,$bar), the radial change when the surface temperature increases from $300$ to $1000\,$K is $0.8\,$R$_⊕$ (for a $50$% water planet) and $0.1\,$R$_⊕$ (for a $1$% water planet).
 This similarity holds across the entire range of planetary masses I considered.
-
-> TODO: numbers in text need update
 
 ![
   Dependence of radii on water mass fraction.
@@ -380,10 +376,10 @@ This similarity holds across the entire range of planetary masses I considered.
   Here I show mass--radius relations for multi-layer planets: an iron core with silicate and (in all but the first panel) water layers.
   I show the Earth-like iron-silicate core in each panel for comparison.
   All the watery planets are larger than the dry case owing to the lower density of water.
-  Surface temperature variation affects the radius of a watery planet by a similar amount in each case, and it can increase the radius by up to 25 per cent.
+  Surface temperature variation affects the radius of a watery planet by a different amount in each case, and it can more than double the radius for low-mass planets.
   Because the iron and silicate layers are isothermal, this variation is due solely to temperature effects in the water layer.
-  I fixed the silicate:iron mass ratio at 2:1 and set the surface pressure to $10^7\,$Pa (100$\,$bar).
-  The temperature contours are in steps of 100$\,$K.
+  I fixed the silicate:iron mass ratio at 2:1 and set the surface pressure to $10^7\,$Pa ($100\,$bar).
+  The temperature contours are in steps of $100\,$K from $300$--$1000\,$K.
 ](water-fraction-panels){#fig:composition-variation}
 
 ## Discussion
@@ -396,28 +392,25 @@ My conclusions are as follows.
 First, when one models a solid planet, adding a water layer comes with a substantial thermal dependence.
 By this I mean that the temperature of the planet may substantially alter the radius of the planet as the water layer expands and contracts.
 Previous studies have shown that including a temperature gradient in Earth-like planets produces a minimal change in its radius.^[@Howe2014; @Grasset2009; @Seager2007]
-I showed that this assumption no longer holds once large water layers are considered, even setting aside the unrealistic case of a $100$ per cent water planet.
-For example, consider the case of a $4\,$M$_⊕$ planet with an Earth-like core underneath a water layer of $5$ per cent of the planet's total mass.
+I showed that this assumption no longer holds once large water layers are considered, even setting aside the unrealistic case of a $100$% water planet.
+For example, consider the case of a $2\,$M$_⊕$ planet with an Earth-like core underneath a water layer of $5$% of the planet's total mass.
 If the surface pressure is $10^7\,$Pa ($100\,$bar), the difference in the planet's radius when the surface is heated from $300\,$K to $1000\,$K is approximately $0.3\,$R$_⊕$ ([@fig:composition-variation]).
 This effect is on top of any thermal expansion of iron and silicate: my models treated the rocky layers as isothermal.
 It is also in addition to any uncertainty in the equation of state itself.
 Such changes in radii are significant considering that current observations can already measure super-Earth radii to precisions better than $0.1\,$R$_⊕$ (e.g. [@fig:isotherms-vs-adiabats]).
 
-> TODO: update numbers
-
 The strength of the planet radius-temperature relation also depends on the surface pressure.
 This is a result of the decreasing thermal expansion of water with pressure: the coefficient of thermal expansion is much smaller in high-pressure ice than in the liquid, vapour, or supercritical fluid phases.
-At pressures of more than about $10^{10}\,$Pa ($100\,000\,$bar) the radial temperature dependence becomes irrelevant: the uncertainty in current planetary radius measurements is larger than any conceivable radial change owing to temperature effects, so more precise structural models may not be useful.
+At pressures of more than about $10^{10}\,$Pa ($100\,000\,$bar) any temperature change becomes irrelevant: the uncertainty in current planetary radius measurements is larger than any conceivable radial change owing to temperature effects, so more precise structural models may not be useful.
 However, there is still a significant radial dependence on temperature at lower surface pressures.
 At $10^8\,$Pa ($1000\,$bar), a watery super-Earth with a surface temperature of $1000\,$K can be up to $0.1\,$R$_⊕$ larger than one with a surface temperature of $300\,$K.
 It is therefore important to include temperature effects in the interior models if an accurate radius is required as part of the model.
 
-> TODO: update numbers
-
 This pressure dependence manifests itself most strongly below the critical point of water.
 At pressures below this critical pressure, a phase transition still exists between liquid and vapour.
-There is therefore a bifurcation in the mass--radius diagram: a small increase in surface temperature can causes a large change in radius (up to a factor of two) as the surface water vaporises.
-I caution that it is likely not appropriate to attempt to treat such vapour layers using our approach, which is intended for interior structures.
+There is therefore a bifurcation in the mass--radius diagram: a small increase in surface temperature causes a larger change in radius as the surface water vaporises.
+This is visible as a gap in the contours in [@fig:surface-pressure-variation;@fig:composition-variation].
+I caution that it is likely not appropriate to attempt to treat such vapour layers using the approach in this chapter, which is intended for interior structures.^[The next chapter will treat the atmosphere of the planet.]
 However, a lesser version of this effect is still visible at higher pressures.
 
 I therefore conclude that, in some cases, planetary heating may alter the interpretation of a planet's radius if a water layer is part of the model.
@@ -426,7 +419,7 @@ More importantly, the result is still significant even if the surface of the wat
 All that is required for the water layer's density to change significantly from the isothermal case is for a temperature increase of a few hundred Kelvin.
 Moreover, even isothermal watery planets have some degree of radial temperature dependence: up to $0.3\,$R$_⊕$ across the mass range of super-Earths and in the temperature range of $300$ to $1000\,$K.
 
-The temperature dependence is also important to take into account in approaches such as that of @Kipping2013, where a watery interior model is used to place a lower bound on the atmospheric height of an observed planet.
+The temperature dependence is also important to take into account in approaches such as that of @Kipping2013 or @Madhusudhan2015, where a watery interior model is used to place a lower bound on the atmospheric height of an observed planet.
 I have shown that the radius of an adiabatic watery planet may be significantly higher than the zero-temperature or isothermal case.
 Incorporating a surface temperature estimate into this approach should therefore give better constraints.
 
@@ -437,9 +430,9 @@ The physical scenario most relevant for these models is therefore that of a wate
 Others have already included volatile layers on top of interior structure models.^[@Rogers2010a]
 Adding more complete temperature dependence to the interior portion of these planetary models is a worthwhile future direction if we wish to treat them as water-rich.
 
-I included no atmospheric layers in these models.
+I have included no atmospheric layers in these models.
 Other studies have provided more complete treatments of atmospheric layers.
 For example, @Rogers2010a included a gas layer on top of an isothermal interior structure model in order to interpret the structure of the planet GJ 1214b.
 And @Valencia2013 used internal structure models coupled with an atmospheric layer, exploring the dependence of radii on various model parameters including equilibrium temperature and water content.
-Given that we set the surface pressure to between $10^5$ and $10^{10}\,$Pa ($1$ and $100\,000\,$bar), our models must therefore represent the layers interior to an atmosphere of some sort.
-In the next chapter, we consider how an atmosphere changes these models and ask: how can we link this to the heating of the planet?
+Given that we set the surface pressure to between $10^5$ and $10^{10}\,$Pa ($1$ and $100\,000\,$bar), these models must therefore represent the layers interior to an atmosphere of some sort.
+In the next chapter, I consider how an atmosphere changes these models and ask: how can we link this to the heating of the planet?

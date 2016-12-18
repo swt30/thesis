@@ -446,7 +446,7 @@ I have shown that, although the field is driven by observations, we need good mo
 These considerations therefore naturally motivate the development of interior structure models.
 Finally, I have identified planets with thick water layers as being interesting targets for questions about heating and thermal effects.
 
-I have therefore investigated a range of topics relating to the internal structure of water-rich super-Earths. My work addresses the following key questions:
+I have investigated a range of topics relating to the internal structure of water-rich super-Earths. My work addresses the following key questions:
 
 - Under what conditions, and how strongly, does temperature affect the observable properties of a water-rich super-Earth?
 - How does this change when a vapour atmosphere is included on the models?

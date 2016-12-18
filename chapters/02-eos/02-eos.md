@@ -37,9 +37,9 @@ To calculate the temperature gradient\marginnote{
   The specific isobaric heat capacity can also be represented in a similar form to \cref{eq:equation-of-state}. It is required to calculate the temperature gradient in the planet.
 } also requires the specific isobaric heat capacity $c_p$, and so associated with this equation of state I include the heat capacity as a function of pressure and temperature.
 
-Many potential equations of state exist, spanning all phases from gas to plasma.
+Many potential expressions for the equation of state exist, spanning all phases from gas to plasma.
 Depending on its source and the material it represents, the equation of state may be expressed in a simple functional form or it may be more complicated than this.
-So-called universal equations of state take advantage of the fact that different materials behave in a common way.
+So-called universal equations of state take advantage of the fact that different materials behave in a common way under certain conditions.
 The best-known one is probably the ideal gas law,\marginnote{
   The ideal gas law,
   \begin{equation}
@@ -225,14 +225,12 @@ We therefore require an improved equation of state if we wish to model the therm
 
 ### Motivation for an improved water EOS
 
-\begin{marginfigure}
-  \includegraphics{simple-eos-comparison}
-  \caption{Simple zero-temperature equations of state used in \citet{Seager2007}.}
-  \label{fig:simple-eos-comparison}
-\end{marginfigure}
+![
+  Simple zero-temperature equations of state used in @Seager2007.
+](simple-eos-comparison){#fig:simple-eos-comparison}
 
 Why do we care about thermal effects in the equation of state?
-Although the expression for the equation of state^[@Eq:equation-of-state] nominally includes temperature dependence, only a few studies have attempted to calculate self-consistent planetary models that include a temperature component.
+Although the expression for the equation of state^[@Eq:equation-of-state] nominally includes temperature dependence, only a few studies have attempted to calculate self-consistent planetary models for super-Earths that include a temperature component.^[For example, @Valencia2013]
 Many simply use zero-temperature equations of state instead.
 And in cases where the temperature has been included, it has often been treated in a simplified manner.
 For example, @Zeng2014 use a scaled Neptune adiabat for their internal temperature profile and also use a simplified equation of state that does not include all the thermal behaviour.
@@ -241,7 +239,7 @@ The lack of a complete treatment of temperature has been justified by the fact t
 @Seager2007 find that "water ice VII density changes by less than a few percent" up to $800\,$K.
 However, they do not include the high-pressure ionic and plasma fluid phases in this, and say that "[m]ore work needs to be done to quantify the thermal pressure effects above $250\,$GPa and in the ionic phase".
 
-With the knowledge that precisions on the order of a few percent will regularly be attainable by future observational campaigns, I argue that the role of thermal effects in these types of planetary models needs to be further investigated.
+With the knowledge that precisions on the order of a few percent in mass and radius are attainable by current and upcoming observational campaigns, I argue that the role of thermal effects in these types of planetary models needs to be further investigated.
 This need is especially apparent when we consider the phase structure of water and its volatile nature.
 Not only can water vaporise easily, changing density suddenly across the liquid--vapour boundary, but it also has a rich phase structure at higher pressures and temperatures too.
 The volatile nature of water also means that it is also difficult to separate it into "atmosphere" and "envelope" layers and draw an artificial boundary in terms of pressure.
@@ -403,7 +401,7 @@ This can result in numerical trouble when performing the inversion near the curv
   \label{fig:early-numerical-difficulties}
 \end{figure}
 
-> TODO: [@fig:early-numerical-difficulties] could probably be re-drawn or maybe just removed (it's not relevant to the end product)
+> TODO: [@fig:early-numerical-difficulties] could probably be removed (it's not relevant to the end product)
 
 I handled numerical problems like this near phase boundaries by using a bounded root-finding algorithm when solving the inverse equations.
 By pinning one end of the bounds to the phase curve and fixing the temperature, I solve a one-to-one inversion problem on either the higher-density or lower-density side of the phase curve.
@@ -435,36 +433,28 @@ I also verified that the IAPWS tabulated values matched up with the functional v
   In this case, a numerically inverted Vinet equation of state is compared against values from @Vinet1987, showing good agreement.
 ](testing-functional-forms){#fig:testing-functional-forms}
 
-> TODO: [@fig:testing-functional-forms] should be re-drawn to match the visual style; clarify in the legend which paper I'm referring to
-
 ![
   I verified that the tabular IAPWS data (left) joined smoothly to the numerically inverted form (right) of the IAPWS equations.
 ](iapws-matching){#fig:iapws-matching}
 
-> TODO: [@fig:iapws-matching] should be re-drawn to match the visual style
-
 I confirmed that my chosen EOS approaches the TFD (the high-pressure limit EOS) as pressure increases.
-@Fig:converging-on-tfd shows this.
+@Fig:eos-contours shows this.
 I made no attempt to match or smooth the boundaries between each region, trusting the published equations of state as being accurate within their range of validity.
 This leads to some false density discontinuities which are visible in the final output.
 I have chosen to leave these as they are, because there is no justification for artificially smoothing out the density profile.
 
 ![
-  When we plot the pressure-density relation for a number of different temperatures, we see that they converge on the high-pressure limit (TFD).
-](converging-on-tfd){#fig:converging-on-tfd}
-
-> TODO: [@fig:converging-on-tfd] should be re-drawn to match the visual style
+  Comparison of my equation of state with the high-pressure limit.
+  The TFD (Thomas--Fermi--Dirac) equation of state is increasingly accurate in the high-pressure limit, where temperature effects on the water density disappear.
+  I also show temperature contours of my water equation of state.
+  The TFD, which has no temperature correction, is a poor approximation of the behaviour of water at low pressures, especially across the liquid--vapour phase boundary (vertical lines).
+  But all other choices of equation of state approach the TFD at high pressures, and so it is appropriate in the TPa region and beyond.
+](eos-contours){#fig:eos-contours}
 
 I can generate a final table of the EOS at any resolution, because it uses functional forms or interpolation to give the output density for a given pressure and temperature.
 In generating a final grid of densities, I used logarithmic spacing on both axes to reflect the fact that the density surface has its interesting features at lower temperatures and pressures.
 
-A representation of the final water EOS is shown in [@fig:final-eos-heatmap].
-
-![
-  My final pressure--temperature--density relation can be produced at any required resolution for use in interior structure codes.
-](final-eos-heatmap){#fig:final-eos-heatmap}
-
-> TODO: [@fig:final-eos-heatmap] should be re-drawn to match the visual style
+A representation of the final water EOS is shown in [@fig:eos-density].
 
 ### The phase structure of water
 
@@ -480,16 +470,6 @@ There are significant temperature effects at lower pressures, and it is these ef
 Second, I aimed for a full treatment of density changes over phase boundaries.
 Accordingly, I used the phase boundaries specified by @Dunaeva2010 to divide the temperature--pressure phase space into regions corresponding to different phases of water.
 I then chose an appropriate equation of state to represent each phase.
-
-![
-  Comparison of my equation of state with the high-pressure limit.
-  The TFD (Thomas--Fermi--Dirac) equation of state is increasingly accurate in the high-pressure limit, where temperature effects on the water density disappear.
-  I also show temperature contours of my water equation of state.
-  The TFD, which has no temperature correction, is a poor approximation of the behaviour of water at low pressures, especially across the liquid--vapour phase boundary (vertical lines).
-  But all other choices of equation of state approach the TFD at high pressures, and so it is appropriate in the TPa region and beyond.
-](eos-contours){#fig:eos-contours}
-
-> TODO: [@fig:eos-contours] should be re-drawn to match the visual style; is this figure needed as well as [@fig:converging-on-tfd]?
 
 ### Thermal expansion and heat capacity of water
 
@@ -507,9 +487,13 @@ Following my goal of handling temperature effects appropriately, I explicitly so
 I used the IAPWS tables for heat capacity in the liquid--vapour range, then took the nearest available data point from these tables for all other pressure--temperature points.
 This is because I could not find readily available heat capacity data across the full range of phases in our equation of state.
 This approach therefore does not reflect any changes in heat capacity between the high-pressure ice phases.
-But the most significant effect is the change in heat capacity across the liquid--vapour phase boundary, which is captured appropriately.
+But the most significant effect is the change in heat capacity across the liquid--vapour phase boundary, which is captured appropriately ([@fig:iapws-heat-capacity]).
 
-> TODO: maybe include figure showing heat capacity approaching constant value near the edge of the domain? this will show that it is okay to extrapolate as a constant at higher pressures
+![
+  The heat capacity across the region of my EOS covered by the IAPWS data set.
+  The heat capacity approaches a constant value near the edge of the domain, indicating that pegging values outside the domain to the nearest known value is likely be a decent approximation.
+  Only in the volatile region around the phase boundaries and critical point of water does the heat capacity vary significantly.
+](iapws-heat-capacity){#fig:iapws-heat-capacity}
 
 I drew the thermal expansion coefficient $α$ directly from the equation of state by evaluating @eq:thermal-expansion.
 Because the equation of state provides the density $ρ$ as a function of $P$ and $T$, we can evaluate the thermal expansion at any $(P,T)$ co-ordinate by taking a directional derivative in the $T$ direction.
@@ -596,21 +580,28 @@ This suggests that the density behaviour within a single phase region was more i
 
 The equation of state that I used necessarily has some uncertainty in it, especially in regions near the critical point of water^[@Wagner2002] and at high temperatures and pressures where there are sometimes conflicting experimental and theoretical data.^[@Baraffe2008]
 The error in the equation of state varies depending on the original data source.
-For the region encompassed by the IAPWS data,^[@Wagner2002] the density uncertainty is approximately 0.01 per cent (liquid and solid), 0.03 to 0.1 per cent (vapour), and up to 0.5 per cent in the region around and beyond the critical point.
+For the region encompassed by the IAPWS data,^[@Wagner2002] the density uncertainty is approximately 0.01% (liquid and solid), 0.03 to 0.1% (vapour), and up to 0.5% in the region around and beyond the critical point.
 @Wagner2002 give a more detailed breakdown of these errors in their section 6.3.2, in particular figure 6.1.
-I estimate that the error beyond these regions is closer to 1 per cent if we extrapolate beyond the table and assume that the uncertainty continues to increase at higher temperatures and pressures.
-For the supercritical fluid, plasma and superionic phases in the data of @French2009, they state that "the QMD EOS is accurate up to 1 per cent for the conditions relevant for the giant planet’s interiors of our solar system."
-For the ice VII phase, the measurements of @Sugimura2010 have errors of between 0.003 per cent and 0.5 per cent.
+I estimate that the error beyond these regions is closer to 1% if we extrapolate beyond the table and assume that the uncertainty continues to increase at higher temperatures and pressures.
+For the supercritical fluid, plasma and superionic phases in the data of @French2009, they state that "the QMD EOS is accurate up to 1% for the conditions relevant for the giant planet’s interiors of our solar system."
+For the ice VII phase, the measurements of @Sugimura2010 have errors of between 0.003% and 0.5%.
 Finally, it is not possible to give a meaningful uncertainty estimate at higher pressures where no measurements exist, but I do not treat the temperature dependence there anyway.
-
-> TODO: choose one of either "per cent" and % throughout the rest of the dissertation ("per cent" is MNRAS style)
 
 ### How my EOS improves on previous work
 
-> TODO: fill in short summary of where my EOS is better
+The final software package, WaterData.jl, has the following advantages.
+
+- It spans a wide range of pressure--temperature space relevant for the structures of planetary interiors. Most other equations of state are intended for use only in an appropriate limit, or contain no temperature dependence, or are only applicable for colder planets. I specifically sought out high-temperature
+- It is based on the latest available experimental data, and it uses temperature-dependent formulations for the pressure--temperature--density relation where possible.
+- It comprises both functional and tabular data sources and unifies them under a single interface.
+- Its structure is modular: it is easy to swap out part of the representation of the EOS or to add a new region of phase space not yet covered. For example, if new high-pressure experiments produce results for the heat capacity and density of water in the ice X phase, they can easily be added to the EOS.
+- It provides tools to export the data in a raw format or to interpolate and grid the data.
+- It contains routines for numerical inversion with sensible defaults, which facilitate the addition of functional equations of state.
+- It provides heat capacity information in the vapour/gas phase covered by the IAPWS formulation, which is the region of phase space with the greatest heat capacity variation, and extrapolates sensibly outside this region.
 
 ## Making the data freely available
 
-I have made the equation of state freely available online at [github.com/swt30/WaterData.jl](http://www.github.com/swt30/WaterData.jl)
+I have made the equation of state freely available online at [github.com/swt30/WaterData.jl](http://www.github.com/swt30/WaterData.jl).
+This chapter was also published as part of our first paper "In hot water: effects of temperature-dependent interiors on the radii of water-rich super-Earths".^[@Thomas2016]
 
 > TODO: actually deliver on this promise now that Oli is finishing with the code!

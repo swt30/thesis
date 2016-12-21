@@ -10,6 +10,9 @@
 ## Automatically generated figures
 **/autofigs/**
 
+## Figure originals
+**/images/originals/*
+
 ## Notebook checkpoints
 **/.ipynb_checkpoints/**
 

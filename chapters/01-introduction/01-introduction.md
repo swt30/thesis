@@ -176,7 +176,7 @@ In many cases, the information gained from one of these methods is only enough t
 But we saw above that this is often not enough---Kepler requires a statistical validation method due to the possibility of contamination from events that look similar to a transit.
 As well as demonstrating the relative difficulty of identifying clear transit events in data that can often be quite noisy, it also highlights the difference between *validating* and *observationally confirming* the presence of exoplanets.
 The second is more direct, but requires a radial velocity or transit timing variation measurement.
-As @Fressin2011 note, "many of Kepler’s smaller candidates will receive a similar [validation] treatment since dynamical confirmation may be difficult or impractical with the sensitivity of current instrumentation."
+As @Fressin2011 note, "many of Kepler’s smaller candidates will receive a similar validation treatment since dynamical confirmation may be difficult or impractical with the sensitivity of current instrumentation."
 It therefore became apparent as large scale surveys were being constructed that clever strategies for validation were needed.^[For example, see @Tingley2005.]
 
 Identifying the presence of a planet is one thing, but characterising it is quite another, and this is where the field has been moving.
@@ -187,12 +187,10 @@ In order to understand more about the planets themselves, we turn to other metho
 The key development in this area has been the use of transmission and emission spectroscopy, which attempt to separate the star's light and the contribution from the planet.^[@Charbonneau2002; @Charbonneau2005; @Deming2005]
 
 ![
-  Observations and model spectra for dayside thermal emission of WASP-12bT.
-  These models of the day side emission from the exoplanet WASP-12b show several prominent absorption features compared to black body curves (dotted \textcolor{darkgray}{grey} lines).
-  Later in their paper, @Madhusudhan2011a claim evidence for a high C/O atmospheric ratio and absence of a strong thermal inversion.
-  Although this analysis used only seven photometric bands from Spitzer and ground-based observations (indicated by solid black lines), the availability of higher-quality spectra is increasing our ability to constrain the atmospheric properties of exoplanets in this way.
-  --- *From @Madhusudhan2011a*
-](wasp-12b){#fig:wasp-12b}
+  Model transmission spectra (\textcolor{red}{red lines}) and observations (\textcolor{blue}{blue points}) for two hot Jupiters.
+  We are increasingly able to measure high-resolution spectra like these for exoplanets, and this allows us to use models of their atmospheres to constrain their atmospheric chemical compositions.
+  --- *From @Madhusudhan2014d; data from @Deming2013a and @McCullough2014*
+](spectra_two){#fig:hot-jupiter-spectrum}
 
 ### Observations motivate models
 

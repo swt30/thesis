@@ -206,9 +206,51 @@ This effectively split the adiabatic temperature profile into several different 
 By handling each phase separately, I avoided the numerical difficulty of taking a derivative (equation @eq:thermal-expansion) across a density discontinuity.
 I explain this procedure more in @sec:phase-structure-and-migration where I consider the phase structure of the final models.
 
+### Effect of the mass grid size
+
+The integration is performed on a logarithmically-spaced mass grid.
+I also tested a uniform linear mass grid with several hundred points in the mass co-ordinate.
+However, when I later added an atmospheric layer in @sec:heating-and-the-atmosphere, it became apparent that this uniform grid was failing to capture the extent of the atmosphere correctly.
+In the very outer layers of the atmosphere where the density is very low, a fixed step in mass corresponds to a very large step in radius.
+If the surface pressure is low, this can cause the radii of a water-rich planet to be overpredicted due to the integrator failing to adequately resolve the atmospheric structure.
+
+How large should the smallest mass step be?
+A $1\,$R$_\oplus$ and $1\,$M$_\oplus$ planet at $T=500\,$K has a scale height of $H = {RT \over g_\oplus} \approx 20\,$km.
+To resolve the atmosphere accurately we would like at least on the order of ten mass steps per scale height.
+From @eq:mass-continuity-repeat, setting $dr = 2\,$km, $\rho = 1\,$kg$\cdot$m$^{-3}$ as a representative density for a gaseous atmosphere and $r = R_\oplus$, we find ${dm \over M_\oplus} \approx 10^{-7}\,$M$_\oplus$.
+A mass step of $10^{-10}\,$M$_\mathrm{P}$ should therefore be more than adequate to resolve the atmospheric structure.
+As the density increases inward, the mass step can be made smaller.
+
+This problem could be resolved in several ways.
+We could increase the resolution of the uniform grid to ensure that the atmosphere is resolved appropriately.
+But the density can very across several orders of magnitude and this would result in an unnecessarily fine grid in other parts of the model.
+The most robust way is to use an adaptive step size solver to tune the mass step $Δm$ at each step of the integration such that it produces a desired radius step $Δr$.
+But adaptive step size methods often require us to take several trial steps to find an appropriate step size, which can be problematic as we approach the $m=0$ limit of the structural equations.
+
+Given that the atmosphere is expected to be close to exponential in pressure and optical depth within the outer layers,^[See @sec:boundary-conditions.] I instead chose to use a logarithmically spaced mass grid.
+At the outer boundary of the model, the mass step is approximately $Δm = 10^{-10}\,$M$_\mathrm{P}$, which is sufficient to avoid any numerical error in the outer atmosphere.
+From there I allow $\Delta m$ to increase by a constant factor at each step into the planet.
+I set this factor such that the mass grid has a total of $N$ points; for the models in this dissertation, I use $N = 500$.
+
+![
+  The mass grid affects the final mass--radius diagrams.
+  Here I show models of planets with a watery envelope, $30$% of the planet's mass, over an Earth-like nucleus.
+  I set the outer boundary pressure to $100\,$bar.
+  I use two different treatments for the mass grid.
+  The first, shown solid, is logarithmically spaced so that low-density regions near the surface have a higher grid resolution.
+  The second is a uniform grid, replicating the mass grid choice from my first paper [@Thomas2016].
+  It does not appropriately resolve the low-density region near the surface.
+  I find that the difference between the two treatments can be significant for larger planets.
+](grid-error){#fig:grid-error}
+
+My first paper, on which this chapter was originally based, used a uniform mass grid.
+With $N=500$, the mass step was only $2 \times 10^{-3}$, which resulted in overpredicted radii for higher-mass planets ([@fig:grid-error]).
+The error is minor ($< 0.1\,R_⊕$) for smaller planets ($M_p < M_\oplus$) but can be large ($0.3\,R_⊕$) for planets nearer $10\,M_⊕$.
+I have since corrected this problem and all the results presented in this dissertation use the updated logarithmic mass grid.
+
 ### Model verification
 
-Before proceeding further, I first verified these models by making mass--radius diagrams as described in the previous section and comparing them with previous work.
+Before proceeding further, I first verified these models by making mass--radius diagrams as described in the previous section and comparing them with previous works.
 
 ##### The isothermal case
 

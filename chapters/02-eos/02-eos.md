@@ -591,7 +591,7 @@ Finally, it is not possible to give a meaningful uncertainty estimate at higher 
 
 The final software package, WaterData.jl, has the following advantages.
 
-- It spans a wide range of pressure--temperature space relevant for the structures of planetary interiors. Most other equations of state are intended for use only in an appropriate limit, or contain no temperature dependence, or are only applicable for colder planets. I specifically sought out high-temperature
+- It spans a wide range of pressure--temperature space relevant for the structures of planetary interiors. Most other equations of state are intended for use only in an appropriate limit, or contain no temperature dependence, or are only applicable for colder planets. 
 - It is based on the latest available experimental data, and it uses temperature-dependent formulations for the pressure--temperature--density relation where possible.
 - It comprises both functional and tabular data sources and unifies them under a single interface.
 - Its structure is modular: it is easy to swap out part of the representation of the EOS or to add a new region of phase space not yet covered. For example, if new high-pressure experiments produce results for the heat capacity and density of water in the ice X phase, they can easily be added to the EOS.

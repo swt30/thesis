@@ -501,7 +501,7 @@ I make two observations based on this figure.
   Unlike the case of a bare planet, we do not see a sharp transition in radius associated with the liquid--vapour transition.
 ](internal-heat){#fig:internal-heat}
 
-The first thing I observe from [@fig:internal-heat] is that even an Earth-like level of internal heating ($\varepsilon = 1\,$pW$\cdot$kg$^{-1}$; that is, $10^{-12}W$\cdot$kg$^{-1}$) is enough to grow the planet significantly.
+The first thing I observe from [@fig:internal-heat] is that even an Earth-like level of internal heating ($\varepsilon = 1\,$pW$\cdot$kg$^{-1}$; that is, $10^{-12}$W$\cdot$kg$^{-1}$) is enough to grow the planet significantly.
 Compared to the zero-heating case, a $2\,$M$_\oplus$ planet with $\varepsilon = 1\,$pW$\cdot$kg$^{-1}$ is $0.2$--$0.3\,$R$_\oplus$ larger.
 This is because the energy generated internally is trapped in the lower levels of the atmosphere, leading to a large temperature change and therefore inflating the planet's radius.
 

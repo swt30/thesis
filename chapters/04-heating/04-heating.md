@@ -430,11 +430,11 @@ I also show a comparison intended to assess the relative effects of internal and
 
 In this chapter I will show five key findings:
 
-- The opacity $\kappa_\mathrm{th}$ is an important parameter affecting the mass--radius relation, while the opacity ratio $\gamma$ is less important.
-- An Earth-like degree of internal heating is enough to significantly inflate a watery super-Earth when compared to a planet with no internal heating.
-- The water fraction of these planets is a strong predictor of their total radius.
-- These watery super-Earths can be inflated by both internal or external sources of energy. But, all other things being equal, changing the external heating appears to affect their radius more than changing the internal heating.
-- An isothermal fixed-height atmosphere is a good approximation to an isothermal two-stream atmosphere for planets more massive than $2\,$M$_\oplus$. But if the atmosphere has non-zero opacity, the isothermal fixed-height atmosphere is a poor approximation.
+1. The presence of at atmosphere makes an observable contribution to the mass--radius relation due to the opacity$\kappa_\mathrm{th}$.
+2. An Earth-like degree of internal heating is enough to significantly inflate a watery super-Earth when compared to a planet with no internal heating.
+3. These watery super-Earths can be inflated by both internal or external sources of energy. But, all other things being equal, changing the external heating appears to affect their radius more than changing the internal heating.
+4. An isothermal fixed-height atmosphere is a good approximation to an isothermal two-stream atmosphere for planets more massive than $2\,$M$_\oplus$. But the fixed-height atmosphere is not a good approximation when there is a strong temperature gradient, such as that due to a strong opacity.
+5. The water fraction of these planets also makes a significant contribution to their total radius.
 
 
 ### Parameter explorations
@@ -475,9 +475,9 @@ Compared to H/He atmospheres, H$_2$O absorbs more strongly in the infrared^[The 
 This means that energy is readily absorbed in the water layers and converted into a temperature difference.
 
 Setting $κ_\mathrm{th} = 0$ has the effect of making the atmosphere isothermal.
-[@Fig:opacity] shows that gives a planet that is smaller than when the atmosphere has non-zero opacity.
+[@Fig:opacity] shows that the radius of a planet is smaller for $\kappa_\mathrm{th} = 0$ than when the atmosphere has non-zero opacity.
 
-\newthought{In contrast}, the visual--thermal opacity ratio $γ$ appears to have only a small effect on the final radius ([@fig:opacity-ratio]).
+\newthought{In contrast}, the visual--thermal opacity ratio $γ$ appears to have a relatively weaker small effect on the final radius ([@fig:opacity-ratio]).
 My models use a fixed $\gamma$ of $0.01$, which is typical for hot ($1000$--$2000\,$K) regions deeper within the atmosphere ($1$--$100\,$bar).
 I also assessed the mass--radius relation for the values [$0.1$, $1$, $10$] which covers the range of $\gamma$ used by @Rogers2010 in their models of hydrogen envelopes.
 The mass--radius relation does not change significantly over this range.
@@ -501,7 +501,7 @@ I make two observations based on this figure.
   Unlike the case of a bare planet, we do not see a sharp transition in radius associated with the liquid--vapour transition.
 ](internal-heat){#fig:internal-heat}
 
-The first thing I observe from [@fig:internal-heat] is that even an Earth-like level of internal heating ($\varepsilon = 1\,$pW$\cdot$kg$^{-1}$) is enough to grow the planet significantly.
+The first thing I observe from [@fig:internal-heat] is that even an Earth-like level of internal heating ($\varepsilon = 1\,$pW$\cdot$kg$^{-1}$; that is, $10^{-12}W$\cdot$kg$^{-1}$) is enough to grow the planet significantly.
 Compared to the zero-heating case, a $2\,$M$_\oplus$ planet with $\varepsilon = 1\,$pW$\cdot$kg$^{-1}$ is $0.2$--$0.3\,$R$_\oplus$ larger.
 This is because the energy generated internally is trapped in the lower levels of the atmosphere, leading to a large temperature change and therefore inflating the planet's radius.
 
@@ -637,11 +637,10 @@ For example, if we assumed $\kappa_\mathrm{th} = 100\,$m$^2\cdot$kg$^{-1}$ as in
 And for internally-heated planets, we can obtain significantly differently temperatures at the radiative--convective boundary.
 Because these temperatures set the upper boundary condition for the interior part of my model, the interior may also be at a different temperature if we assume a fixed opacity.
 
-### Comparison to scale-height atmosphere
+### Comparison to a fixed-height atmosphere
 
 Finally, I compared the results from the two-stream atmosphere to an isothermal fixed-height atmosphere.
-The fixed-height atmosphere (@sec:isothermal-fixed-height-atmosphere) comes from assuming that the atmosphere is exponential in pressure with optical depth.
-It also assumes that the atmosphere is isothermal.
+The fixed-height atmosphere (@sec:isothermal-fixed-height-atmosphere) comes from assuming that the atmosphere is isothermal and hence exponential in pressure with depth.
 My two-stream atmosphere becomes exponential for constant $g$ and constant $T$ at $τ ≪ 1$.^[@Guillot2010]
 Therefore, if we force the two-stream atmosphere to be isothermal by setting $κ_\mathrm{th} = 0$ (and therefore $dT/dm = 0$, by @eq:temperature-gradient-generic), we should approach the limit of the fixed-height atmosphere.
 

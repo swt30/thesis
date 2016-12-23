@@ -22,8 +22,7 @@ imagefolders:
   - "./chapters/05-migration/autofigs/"
   - "./chapters/06-application/images/"
   - "./chapters/06-application/autofigs/"
-  - "./chapters/06-conclusion/images/"
-  - "./chapters/06-conclusion/autofigs/"
+  - "./chapters/07-conclusion/images/"
   - "./misc/"
 
 titleimage: title-phases

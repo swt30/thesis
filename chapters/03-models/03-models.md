@@ -143,7 +143,7 @@ Compared to @Seager2007, who integrate from the centre of the planet outwards, m
 This has the advantage of allowing us to specify the surface temperature and pressure as boundary conditions rather than specifying a central pressure and temperature
 These surface boundary conditions are more closely linked to observable parameters than the boundary conditions at the core.
 
-I used a Lagrangian system, where the mass interior to a given shell is the independent variable; this is already reflected in [@eq:mass-continuity; @eq:pressure-gravity; @eq:adiabatic-temperature-gradient], which are written in the form $dx/dm=...$
+I used a Lagrangian system, where the mass interior to a given shell is the independent variable; this is already reflected in [@eq:mass-continuity; @eq:pressure-gravity; @eq:adiabatic-temperature-gradient], which are written in the form $dx/dm = \dots$.
 It is in contrast to the Eulerian co-ordinate system used by @Seager2007, who take the radius $r$ as the independent variable.
 The Lagrangian formulation is more stable under numerical integration;^[@Rogers2012] I also found it more convenient to be able to specify differentiated planets in terms of mass fractions rather than radial distances.
 

@@ -451,7 +451,7 @@ Here I present the results of changing various parameters. @Tbl:default-values s
 | Visual/thermal opacity ratio | $γ$ | $0.01$ |
 | Atmosphere/envelope transition pressure | $P_\mathrm{env}$ | $100\,$bar |
 
-: Default values used in the parameter exploration. $^\star$By "variable" I mean that the opacity is allowed to increase into the atmosphere according to @eq:opacity and the atmospheric temperature and pressure, rather than kept fixed. {#tbl:default-values}
+Table: Default values used in the parameter exploration. $^\star$By "variable" I mean that the opacity is allowed to increase into the atmosphere according to @eq:opacity and the atmospheric temperature and pressure, rather than kept fixed. {#tbl:default-values}
 
 ##### Opacity and opacity ratio
 

@@ -308,11 +308,10 @@ $body$
 \backmatter
 
 %%
-% acknowledgements if present
-$if(acknowledgements)$
-  \chapter{Acknowledgements}\label{acknowledgements}
-  $acknowledgements$
-$endif$
+% acknowledgements
+\cleardoublepage
+\includepdf[pages={1}]{chapters/00-preface/images/acknowledgements.pdf}
+\addcontentsline{tod}{chapter}{Acknowledgements}
 
 \begin{fullwidth}
   \bibliographystyle{mnras}

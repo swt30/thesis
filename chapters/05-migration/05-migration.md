@@ -218,30 +218,13 @@ These figures show several values and trends at a glance:
   The only exception is in the case of a cold planet past $3\,$au, which has a liquid layer around an ice VII shell.
 ](migration-1Mearth){#fig:migration-1Mearth}
 
-![
-  As in [@fig:migration-1Mearth], but for a $3\,$M$_⊕$ planet.
-  Comparing to [@fig:migration-1Mearth], we see that the $3\,$M$_⊕$ planets can actually be smaller than the $1\,$M$_⊕$ planets, at least where there is moderate internal or external heating.
-  This is the upturn at the low-mass end of the mass--radius relation that I discussed in @sec:heating-and-the-atmosphere.
-](migration-3Mearth){#fig:migration-3Mearth}
-
-![
-  As in [@fig:migration-1Mearth; @fig:migration-3Mearth], but for a $5\,$M$_⊕$ planet.
-](migration-5Mearth){#fig:migration-5Mearth}
-
-![
-  As in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth], but for a $10\,$M$_⊕$ planet.
-  The radius--distance relation is much flatter for these higher-mass planets.
-  Looking at the phase structures, we can see why: they have much thinner atmospheres.
-  As it is the low-density atmosphere that is most responsive to temperature changes, these planets grow less when heated than a lower-mass planet would.
-](migration-10Mearth){#fig:migration-10Mearth}
-
 The key results from these figures are as follows.
 
-- Small ($\lesssim 2\,$M$_\oplus$) watery planets can have extended low-density atmospheres.
+1. Small ($\lesssim 2\,$M$_\oplus$) watery planets can have extended low-density atmospheres.
 
-- For the most part, waterworlds in orbits comparable to Earth contain three key phases of water: gas, superionic fluid, and plasma. There is no liquid, ice VII or ice X except for cold planets in wider orbits ($\gtrsim 3\,$au).
+2. For the most part, waterworlds in orbits comparable to Earth contain three key phases of water: gas, superionic fluid, and plasma. There is no liquid, ice VII or ice X except for cold planets in wider orbits ($\gtrsim 3\,$au).
 
-- There is a discrete transition in planet size for waterworlds with very low internal heating ($10^{-18}\,$W$\cdot$kg$^{-1}$). For a Sun-like star, this transition occurs at around $3\,$au.
+3. There is a discrete transition in planet size for waterworlds with very low internal heating ($10^{-18}\,$W$\cdot$kg$^{-1}$). For a Sun-like star, this transition occurs at around $3\,$au.
 
 ### Small watery planets can have extended low-density atmospheres
 
@@ -259,6 +242,12 @@ This is a consequence of the effect I observed in @sec:heating-and-the-atmospher
 
 By linking the temperature of the planet to its orbital separation, we can also see that large radial changes occur across a reasonable range of orbital distances and are not just confined to planets orbiting very close to their host star.
 The range of orbital separations shown in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth] is similar to the range from Mercury to Saturn in our solar system.
+
+![
+  As in [@fig:migration-1Mearth], but for a $3\,$M$_⊕$ planet.
+  Comparing to [@fig:migration-1Mearth], we see that the $3\,$M$_⊕$ planets can actually be smaller than the $1\,$M$_⊕$ planets, at least where there is moderate internal or external heating.
+  This is the upturn at the low-mass end of the mass--radius relation that I discussed in @sec:heating-and-the-atmosphere.
+](migration-3Mearth){#fig:migration-3Mearth}
 
 ### These planets mostly contain three key phases of water
 
@@ -279,6 +268,10 @@ The kink in the lower curve on [@fig:migration-1Mearth; @fig:migration-3Mearth; 
 The phase structure of the resulting planet is visible as the bottom-right structure in the grid of models.
 This structure contains a water layer over ice VII and ice X.
 But these phases are only present when there is virtually no internal heating: even an Earth-like internal heating amount of $10^{-12}\,$W$⋅$kg$^{-1}$ in the core is enough to shift the path of the adiabat away from these cold ice phases and up to the supercritical fluid regime.
+
+![
+  As in [@fig:migration-1Mearth; @fig:migration-3Mearth], but for a $5\,$M$_⊕$ planet.
+](migration-5Mearth){#fig:migration-5Mearth}
 
 
 ## Discussion
@@ -303,6 +296,13 @@ This is promising support for the stability of such water-rich super-Earths.]
 Further, my atmospheric models assume a one-dimensional atmosphere and so therefore correspond to a well-mixed atmosphere without any latitudinal or longitudinal structure.
 Such an atmosphere could be found around a planet that rotates rapidly compared to the orbital timescale.
 Though my models also assume no rotation, in practice only a very rapidly rotating planet would affect the interior structure significantly.
+
+![
+  As in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth], but for a $10\,$M$_⊕$ planet.
+  The radius--distance relation is much flatter for these higher-mass planets.
+  Looking at the phase structures, we can see why: they have much thinner atmospheres.
+  As it is the low-density atmosphere that is most responsive to temperature changes, these planets grow less when heated than a lower-mass planet would.
+](migration-10Mearth){#fig:migration-10Mearth}
 
 ### Astrobiological implications
 

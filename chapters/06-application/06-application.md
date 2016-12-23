@@ -1,8 +1,8 @@
 # A water-rich super-Earth?
 
-The previous chapters in this dissertation has consisted of a theoretical development of the structures of watery planets.
+The previous chapters in this dissertation have consisted of a theoretical development of the structures of watery planets.
 Though my models are based mostly on the measured physical properties of water, and though our motivation has always been to explain current and future observations, the topics I have explored have been theoretical in nature.
-This was to be the entire content of the dissertation until just a few weeks before its submission.
+Until just a few weeks before its submission, this was to be the entire content of the dissertation.
 However, we recently received news of an exciting new result: a potential water detection in the atmosphere of a rocky super-Earth, Gliese 1132 b.^[@Southworth2016]
 This heated watery super-Earth is nearly a perfect candidate for the application of my models.
 

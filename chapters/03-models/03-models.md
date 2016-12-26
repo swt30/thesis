@@ -5,7 +5,7 @@ Having created an improved equation of state for water, the next step was to bui
 In this chapter I develop the framework to apply my equation of state to interior structure models.
 After outlining the theory of exoplanet interior structural models, I present my code, \smallcaps{OGRE}, which solves the system of structural equations for a one-dimensional planet.
 Then I show the results of building models with this code.
-First I examine the effects of my equation of state on homogeneous isothermal spheres, following the approach of @Zapolsky1969.
+First I examine the effects of my equation of state on homogeneous isothermal spheres.
 Next I add in temperature dependence and model the interiors of inhomogeneous layered planets.
 Finally I discuss how, and under what circumstances, my equation of state produces results that differ from other models.
 
@@ -33,7 +33,7 @@ Second, the planet is in a state of hydrostatic equilibrium.
 That is, pressure and gravity are balanced throughout, allowing us to use the equation of hydrostatic equilibrium as a structural equation.
 
 Third, the planet is in thermal equilibrium or quasi-equilibrium.
-By this I mean simply that the equations are time-independent: there is no time evolution of the structure, and both external and internal heating are assumed to be constant.
+By this I mean simply that the temperature equations are time-independent: there is no time evolution of the structure, and both external and internal heating are assumed to be constant.
 Although the planet may still be generating some internal energy due to gravitational contraction, the cooling time is assumed to be very long.
 Similarly, any radiogenic heating is assumed to be produced by elements with a very long half-life.
 
@@ -44,15 +44,16 @@ With these assumptions, the structure of a planetary interior is governed by a l
 
 ### Structural equations
 
-The mass continuity equation,\marginnote{We first consider the isothermal case where $T$ is constant.}
-  $$ {dr \over dm} = {1 \over 4πr^2ρ}, $$ {#eq:mass-continuity}
-links $r$, the radius of a spherical shell, to the mass $m$ interior to the shell and the density $ρ$ of the shell.
-The equation of hydrostatic equilibrium,
-  $$ {dP \over dm} = -{Gm \over 4πr^4}, $$ {#eq:pressure-gravity}
-where $P$ is the pressure at the shell and $G$ is the gravitational constant, ensures a balance of pressure and gravity.
+We first consider the isothermal case where the temperature $T$ is constant throughout the planet.
+In this case the structural equations are the mass continuity equation,\marginnote{
+  Here $r$ is the radius of a spherical shell, $m$ is the mass interior to that shell and $\rho$ is the density of the shell.
+} $$ {dr \over dm} = {1 \over 4πr^2ρ}, $$ {#eq:mass-continuity}
+and the equation of hydrostatic equilibrium,\marginnote{
+  Here $P$ is the pressure at the shell and G is the gravitational constant.
+} $$ {dP \over dm} = -{Gm \over 4πr^4}. $$ {#eq:pressure-gravity}
 The equation of state,
   $$ ρ = ρ(P, T), $$ {#eq:eos}
-is used to calculate the density of the material in question from its pressure and temperature $T$.
+is also used to calculate the density of the material in question from its pressure and temperature.
 
 Together, these equations define a structural model: a linked set of ordinary differential equations.
 To generate a model of a homogeneous isothermal planet, it is sufficient to solve this system of equations.
@@ -73,13 +74,13 @@ From simple to complex, these include:
 
 I did not explicitly handle energy transport in the manner of the fourth option.
 Instead I chose the third approach and assumed an adiabatic (isentropic) temperature gradient throughout the planet.
-The equation for the adiabatic temperature gradient^[@Milone2014] is
-  $$ { dT \over dr} = -{T α g \over c_p}. $$ {#eq:adiabatic-temperature-gradient-radial}
-where $g = Gm/r^2$ is the gravity at the shell, $c_p$ is the isobaric heat capacity and $α$ is the volumetric thermal expansion coefficient defined in @eq:thermal-expansion.
+The equation for the adiabatic temperature gradient^[@Milone2014] is\marginnote{
+  Here $g = Gm/r^2$ is the gravity at the shell, $c_P$ is the isobaric heat capacity and $α$ is the volumetric thermal expansion coefficient defined in \cref{eq:thermal-expansion}.
+} $$ { dT \over dr} = -{T α g \over c_P}. $$ {#eq:adiabatic-temperature-gradient-radial}
 My sources for these latter two coefficients are detailed in @sec:thermal-expansion-and-heat-capacity-of-water.
 
 @Eq:adiabatic-temperature-gradient-radial combined with @eq:mass-continuity gives the temperature gradient in terms of the mass co-ordinate,
-  $$ {dT \over dm} = -{T α G m \over 4 π r^4 ρ c_p}. $$ {#eq:adiabatic-temperature-gradient}
+  $$ {dT \over dm} = -{T α G m \over 4 π r^4 ρ c_P}. $$ {#eq:adiabatic-temperature-gradient}
 
 ## Models
 
@@ -92,8 +93,8 @@ For example, @Seager2007 approached the isothermal problem ([@eq:mass-continuity
 ### Solving the boundary value problem
 
 Boundary value problems are common in stellar structure codes and can be solved in several ways.
-The approach of @Seager2007 just described is called a shooting method.^[For a general implementation of a shooting method, see chapter 18 of @Press2007.]
-Building on this idea, the "double shooting method" integrates both inwards and outwards from assumed boundary conditions at the core and exterior of the planet.
+The approach of @Seager2007 just described is called a *shooting method*.^[For a general implementation of a shooting method, see chapter 18 of @Press2007.]
+Building on this idea, the method of *double shooting* or *shooting to a fitting point* integrates both inwards and outwards from assumed boundary conditions at the core and exterior of the planet.
 The solutions must match where they meet, and so after each trial solution the boundary conditions are adjusted based on the discrepancy.
 
 This double shooting method is increasingly slow to converge as the number of structural equations increase.
@@ -104,7 +105,7 @@ It is therefore only useful for simple models, and more sophisticated approaches
 The relaxation method is one such approach.
 I mentioned above the idea of shooting to a fitting point.
 We could also imagine increasing the number of fitting points, using two or three or more points at which the solution must match, and supplying a predicted value at each of these.
-If we have a pre-existing structure model to base the values at these fitting points off, then our initial guesses will be relatively good and we can attempt to iterate toward a solution that satisfies the matching condition at each of these points.
+If we have a pre-existing structure model on which to base the values at these fitting points, then our initial guesses will be relatively good and we can attempt to iterate toward a solution that satisfies the matching condition at each of these points.
 Taking this idea to its extreme, we might then use every point in the discretised mesh as a fitting point.
 This transforms the problem: instead of solving a coupled system of ordinary differential equations, we must now solve a much larger system of non-differential equations.
 We can use standard linear algebra techniques to do this, and we can also use a shooting method to provide the initial guess for the structure.
@@ -132,15 +133,15 @@ I therefore chose to write my own solver for this system.
 ### A custom numerical integrator in Julia
 
 My solver is called \smallcaps{OGRE}.^[Onion Geology for Researching Exoplanets. Because planets, like onions, have layers.]
-I prototyped it in Python and later ported it to Julia, a newer scientific programming language that offers much better numerical performance.
+I prototyped it in Python and later ported it to Julia, a new scientific programming language that offers much better numerical performance.
 
 I used the shooting method, described above, to solve for the planet's structure.
 At first I was concerned that this method would prove insufficient for the coupled system of ODEs due to the numerical singularity at the centre of the planet.
-I trialled both single and double-shooting approaches, but the single shooting method proved to work acceptably.
+I trialled both single and double shooting approaches, but the single shooting method proved to work acceptably.
 In fact, the singularity proved to be a useful signal for failed convergence (see @sec:conditions-for-convergence below).
 
 Compared to @Seager2007, who integrate from the centre of the planet outwards, my code integrates from the outside in.^[Several others take this approach too [e.g. @Rogers2010; @Madhusudhan2012a]]
-This has the advantage of allowing us to specify the surface temperature and pressure as boundary conditions rather than specifying a central pressure and temperature
+This has the advantage of allowing us to specify the surface temperature and pressure as boundary conditions rather than specifying a central pressure and temperature.
 These surface boundary conditions are more closely linked to observable parameters than the boundary conditions at the core.
 
 I used a Lagrangian system, where the mass interior to a given shell is the independent variable; this is already reflected in [@eq:mass-continuity; @eq:pressure-gravity; @eq:adiabatic-temperature-gradient], which are written in the form $dx/dm = \dots$.
@@ -175,26 +176,27 @@ Instead, I terminate the integration if $r < 0$ before $m = 0$, using this as a 
 I then stop the integration, bisect the search region, and try again.
 In contrast, if the initial radius is too large, we will run out of mass before we reach $r=0$, at which point I also terminate and refine the initial guess.
 I consider the model to have converged successfully if the final value of $r$ is less than $1000\,$m.
+@Fig:solver-flowchart summarises how the solver works.
 
 It is trivial to use this method to solve for another parameter instead of the radius.
-Because my intention was to investigate the change in observable parameters, I choose for the remainder of this dissertation to leave the radius as the free parameter.
+Because my intention was to investigate the change in observable parameters, I choose to leave the planet's radius as the free parameter.
 But it is also possible to leave another parameter free, such as the core mass, layer thickness or even the composition.
 For an example of this, see [@sec:a-water-rich-super-earth], in which my models are used to analyse the potential composition of a water-rich super-Earth.
 
 ### Mass--radius relations for differentiated planets
 
 I used my models to produce mass--radius relations for homogeneous spheres of water as well as differentiated multi-layer models.
-I did this first for the homogeneous isothermal case [in the vein of @Zapolsky1969] and then extended my models to include an adiabatic temperature gradient.
+I did this first for the homogeneous isothermal case [in the manner of @Zapolsky1969] and then extended my models to include an adiabatic temperature gradient.
 My differentiated multi-layer models include a water layer on top of a silicate mantle and an iron core.
 To do this, they treat the equation of state, @eq:eos, as piecewise in the mass co-ordinate.
-For example, consider a model which has a 5% (by mass) water layer on top of a silicate mantle.
+For example, consider a model which has a $5$% (by mass) water layer on top of a silicate mantle.
 For this model, my code begins evaluating @eq:eos using the water equation of state.
-It then switches to the silicate equation of state once $m$, the mass interior to the spherical shell in [@eq:mass-continuity;  @eq:pressure-gravity; @eq:adiabatic-temperature-gradient], drops below 95% of the planetary mass.
+It then switches to the silicate equation of state once $m$, the mass interior to the spherical shell in [@eq:mass-continuity;  @eq:pressure-gravity; @eq:adiabatic-temperature-gradient], drops below $95$% of the planetary mass.
 It is possible to choose the integration grid such that this occurs exactly at the end of an integration step.
 However, in practice a sufficiently fine grid is also acceptable.
 
 I ignored thermal effects within the iron and silicate layers.
-The effect of thermal expansion in these solids is thought to be low. ^[@Seager2007; @Grasset2009]
+The effect of thermal expansion in these solids is thought to be low.^[@Seager2007; @Grasset2009]
 It would be simple to to include the expansion effects of these materials, but I did not collate the equation of state data to enable me to do so.
 Because I ignored thermal expansion in these layers, I modelled them as isothermal.^[This follows from setting $α = 0$ in @eq:adiabatic-temperature-gradient so that $dT / dm = 0$.]
 
@@ -203,7 +205,7 @@ My equation of state for water therefore included its phase transitions, which a
 When calculating the adiabatic temperature profile, I enforced temperature and pressure continuity at these phase boundaries.
 In practice, I did this by ensuring that the equation for the adiabatic temperature gradient, @eq:adiabatic-temperature-gradient, was finite and continuous.
 This effectively split the adiabatic temperature profile into several different sections, consisting of one separate adiabat for each phase and meeting at the phase boundaries of water.
-By handling each phase separately, I avoided the numerical difficulty of taking a derivative (equation @eq:thermal-expansion) across a density discontinuity.
+By handling each phase separately, I avoided the numerical difficulty of taking a derivative (@eq:thermal-expansion) across a density discontinuity.
 I explain this procedure more in @sec:phase-structure-and-migration where I consider the phase structure of the final models.
 
 ### Effect of the mass grid size
@@ -212,16 +214,16 @@ The integration is performed on a logarithmically-spaced mass grid.
 I also tested a uniform linear mass grid with several hundred points in the mass co-ordinate.
 However, when I later added an atmospheric layer in @sec:heating-and-the-atmosphere, it became apparent that this uniform grid was failing to capture the extent of the atmosphere correctly.
 In the very outer layers of the atmosphere where the density is very low, a fixed step in mass corresponds to a very large step in radius.
-If the surface pressure is low, this can cause the radii of a water-rich planet to be overpredicted due to the integrator failing to adequately resolve the atmospheric structure.
+If the surface pressure is low, this can cause the radius of a water-rich planet to be overpredicted due to the integrator failing to adequately resolve the atmospheric structure.
 
 How large should the smallest mass step be?
 A $1\,$R$_\oplus$ and $1\,$M$_\oplus$ planet at $T=500\,$K has a scale height of $H = {RT \over g_\oplus} \approx 20\,$km.
 To resolve the atmosphere accurately we would like at least on the order of ten mass steps per scale height.
-From @eq:mass-continuity-repeat, setting $dr = 2\,$km, $\rho = 1\,$kg$\cdot$m$^{-3}$ as a representative density for a gaseous atmosphere and $r = R_\oplus$, we find ${dm \over M_\oplus} \approx 10^{-7}\,$M$_\oplus$.
+From @eq:mass-continuity-repeat, setting $dr = 2\,$km, $\rho = 1\,$kg$\cdot$m$^{-3}$ as a representative density for a gaseous atmosphere and $r = R_\oplus$, we find ${dm \over M_\oplus} \approx 10^{-7}$.
 A mass step of $10^{-10}\,$M$_\mathrm{P}$ should therefore be more than adequate to resolve the atmospheric structure.
-As the density increases inward, the mass step can be made smaller.
+As the density increases inward, the mass step can be made larger.
 
-This problem could be resolved in several ways.
+The problems with the low resolution uniform mass grid could be resolved in several ways.
 We could increase the resolution of the uniform grid to ensure that the atmosphere is resolved appropriately.
 But the density can very across several orders of magnitude and this would result in an unnecessarily fine grid in other parts of the model.
 The most robust way is to use an adaptive step size solver to tune the mass step $Δm$ at each step of the integration such that it produces a desired radius step $Δr$.
@@ -229,7 +231,7 @@ But adaptive step size methods often require us to take several trial steps to f
 
 Given that the atmosphere is expected to be close to exponential in pressure and optical depth within the outer layers,^[See @sec:boundary-conditions.] I instead chose to use a logarithmically spaced mass grid.
 At the outer boundary of the model, the mass step is approximately $Δm = 10^{-10}\,$M$_\mathrm{P}$, which is sufficient to avoid any numerical error in the outer atmosphere.
-From there I allow $\Delta m$ to increase by a constant factor at each step into the planet.
+From there I allow $\Delta m$ to increase by a constant multiplicative factor at each step into the planet.
 I set this factor such that the mass grid has a total of $N$ points; for the models in this dissertation, I use $N = 500$.
 
 ![
@@ -237,15 +239,15 @@ I set this factor such that the mass grid has a total of $N$ points; for the mod
   Here I show models of planets with a watery envelope, $30$% of the planet's mass, over an Earth-like nucleus.
   I set the outer boundary pressure to $100\,$bar.
   I use two different treatments for the mass grid.
-  The first, shown solid, is logarithmically spaced so that low-density regions near the surface have a higher grid resolution.
-  The second is a uniform grid, replicating the mass grid choice from my first paper [@Thomas2016].
+  The first (solid lines) is logarithmically spaced so that low-density regions near the surface have a higher grid resolution.
+  The second (dashed lines) is a uniform grid, replicating the mass grid choice from my first paper [@Thomas2016].
   It does not appropriately resolve the low-density region near the surface.
   I find that the difference between the two treatments can be significant for larger planets.
 ](grid-error){#fig:grid-error}
 
 My first paper, on which this chapter was originally based, used a uniform mass grid.
-With $N=500$, the mass step was only $2 \times 10^{-3}$, which resulted in overpredicted radii for higher-mass planets ([@fig:grid-error]).
-The error is minor ($< 0.1\,R_⊕$) for smaller planets ($M_p < M_\oplus$) but can be large ($0.3\,R_⊕$) for planets nearer $10\,M_⊕$.
+With $N=500$, this mass step was only $2 \times 10^{-3}\,$M$_\mathrm{P}$, which resulted in overpredicted radii for higher-mass planets ([@fig:grid-error]).
+The error is minor ($<0.1\,$R$_⊕$) for smaller planets ($M_\mathrm{P}<\,$M$_\oplus$) but can be large ($0.3\,$R$_⊕$) for planets nearer $10\,$M$_⊕$.
 I have since corrected this problem and all the results presented in this dissertation use the updated logarithmic mass grid.
 
 ### Model verification
@@ -265,7 +267,7 @@ This identical mass--radius relation verified that my integrator works correctly
   Here I show mass--radius relations for homogeneous isothermal spheres.
   If I adopt identical equations of state to those used by @Seager2007, I obtain the same result.
   This serves as a verification that my code correctly solves the structural equations.
-  These models used zero surface pressure and have no temperature dependence: the equations of state are isothermal and are taken at 300$\,$K.
+  These models used zero surface pressure and have no temperature dependence: the equations of state are isothermal and are taken at $300\,$K.
 ](seager-mr-comparisons){#fig:seager-mr-comparisons}
 
 ##### The adiabatic case
@@ -276,12 +278,12 @@ However, I predict inflated radii at lower surface pressures and therefore concl
 ![
   Validation of adiabatic models.
   My mass--radius relations reproduce those for dry planets well, and predict inflated radii for planets with water layers.
-  Here I show mass--radius relations for two classes of models: dry planets (33% Fe and 67% MgSiO$_3$ by mass), and wet planets (17% Fe, 33% MgSiO$_3$, and 50% water).
+  Here I show mass--radius relations for two classes of models: dry planets ($33$% Fe and $67$% MgSiO$_3$ by mass), and wet planets ($17$% Fe, $33$% MgSiO$_3$, and $50$% water).
   I compared the mass--radius relations with the work of @Valencia2007a who constructed models with ice VII layers.
   At a surface pressure of $10^{10}\,$Pa the water layer in the wet planets is mostly ice VII and so my results are similar in this case.
   Small differences are likely due to my different equation of state choice for ice VII.
   However, at lower surface pressures, water can have an extended lower density shell that results in a larger planet than otherwise expected.
-  The surface temperature in these models is 550$\,$K, matching the characteristic temperature used by @Valencia2007a in their models.
+  The surface temperature in these models is $550\,$K, matching the characteristic temperature used by @Valencia2007a in their models.
 ](valencia-mr-comparison){#fig:valencia-mr-comparison}
 
 There are minor differences between my mass--radius relations and the mass--radius relations presented by @Valencia2007a.
@@ -297,10 +299,10 @@ This may be a result of different equation of state choices or different tempera
 
 ![
   Comparison with evolutionary models.
-  Here I plot dry (Earth-like) and wet (50% water on an Earth-ratio core/mantle) mass--radius relations.
+  Here I plot dry (Earth-like) and wet ($50$% water on an Earth-ratio core/mantle) mass--radius relations.
   Shown for comparison are models by @Lopez2012, who build on work by @Fortney2007 and @Nettelmann2011 by using a thermal evolution approach to track the entropy within each planet as it cools.
   Surface temperature significantly alters the mass--radius relation in my models.
-  The surface temperature in these models is 700$\,$K but the shaded band shows models with surface temperatures from 500 to 900$\,$K, a significant spread, which is caused by temperature-dependent density changes of water at lower pressures.
+  The surface temperature in these models is $700\,$K but the shaded band shows models with surface temperatures from $500$ to $900\,$K, a significant spread, which is caused by temperature-dependent density changes of water at lower pressures.
   I chose a surface pressure of $10^7\,$Pa to approximately match the radii of @Lopez2012.
   Their method does not begin from an explicit surface pressure, as ours does.
 ](lopez-mr-comparisons){#fig:lopez-mr-comparison}
@@ -327,7 +329,7 @@ In particular, I investigated the dependence on the following parameters:
 
 I found that thermal expansion can lead to significant changes in the radii of water-rich super-Earths.
 I constructed super-Earths in two different ways.
-First I modelled them as isothermal spheres containing an Earth-like core (33% Fe and 67% MgSiO$_3$) underneath a water layer of 30% of the planet's mass.
+First I modelled them as isothermal spheres containing an Earth-like core ($33$% Fe and $67$% MgSiO$_3$) underneath a water layer of $30$% of the planet's mass.
 Then I instead allowed the temperature to increase adiabatically into the water layer.
 
 @Fig:isotherms-vs-adiabats shows that the assumption that thermal expansion effects are negligible, which was made in some previous studies, is not the case.
@@ -339,19 +341,19 @@ Second, the surface temperature also affects the radius of a planet within both 
   Dependence of watery super-Earth radii on surface temperature and internal temperature profile.
   An increased surface temperature results in an increased planetary radius.
   This effect is especially pronounced in the full adiabatic temperature treatment.
-  Here I show super-Earths with an Earth-like core under a 30% water layer by mass.
+  Here I show super-Earths with an Earth-like core under a $30$% water layer by mass.
   I treated the temperature in two different ways: an isothermal treatment with a fixed constant temperature and an adiabatic treatment where I fixed the surface temperature but allowed the temperature to increase inwards according to the adiabatic relation (@eq:adiabatic-temperature-gradient).
   The adiabatic models are warmer and therefore significantly larger overall, but even the isothermal planets display some radius change due to temperature.
   The effects of this temperature dependence are comparable to current uncertainties on measured masses and radii for some of the best-characterised exoplanets.
-  The surface pressure in these models is $10^7\,$Pa (100$\,$bar), and the temperature increases in steps of 100$\,$K.
-  The larger gap between 500 and 600$\,$K in the adiabatic case is due to a density discontinuity between the liquid and vapour phases.
+  The surface pressure in these models is $10^7\,$Pa ($100\,$bar), and the temperature increases in steps of $100\,$K.
+  The larger gap between $500$ and $600\,$K in the adiabatic case is due to a density discontinuity between the liquid and vapour phases.
 ](isotherms-vs-adiabats){#fig:isotherms-vs-adiabats}
 
 The adiabatic models have a larger radius for a given mass when compared with the isothermal case.
 This is to be expected: the average temperature is higher along an adiabat than an isotherm fixed at the surface temperature, and the density of water generally decreases with temperature.
 The increase in radius is significant at higher surface temperatures, as shown in [@fig:isotherms-vs-adiabats].
-For example, a $4\,$M$_⊕$ 30% water planet with a $600\,$K surface has a radius of $1.68\,$R$_⊕$ if its water layer is isothermal, but $1.79\,$R$_⊕$ if it is adiabatic.
-Across the super-Earth mass range I considered, the adiabatic radii increased by up to $0.11\,$R$_⊕$ when compared with the isothermal case.
+For example, a $4\,$M$_⊕$ $30$% water planet with a $600\,$K surface has a radius of $1.68\,$R$_⊕$ if its water layer is isothermal, but $1.79\,$R$_⊕$ if it is adiabatic.
+Across the super-Earth mass range I considered, the adiabatic radii increases by up to $0.11\,$R$_⊕$ when compared with the isothermal case.
 The difference becomes particularly pronounced at higher surface temperatures, at which point the water layer may consist of supercritical fluid rather than liquid, solid, or vapour ([@fig:water-phases]).
 
 A significant dependence on surface temperature also exists when using the adiabatic models.
@@ -363,7 +365,7 @@ I have highlighted above the change in the adiabatic models, which I claim are a
 But even the isothermal models show a significant increase in radius with the planet's temperature.
 For a $10\,$M$_⊕$ planet, the change in radius is $0.04\,$R$_⊕$ from $300$ to $1000\,$K.
 For a $1\,$M$_⊕$ planet it is $0.1\,$R$_⊕$, nearly $10$% of the planet's radius.
-This is due to the thermal expansion of the planet as a whole, rather than of one small part of the water layer near the surface.
+Because these models are isothermal, this is due to the thermal expansion of the planet as a whole rather than of one small part of the water layer near the surface.
 
 I do not necessarily expect an adiabatic temperature gradient throughout the whole planet because the entire interior may not all be convective.
 For example, @Valencia2007a included conductive boundary layers in their models.
@@ -389,8 +391,8 @@ See @sec:heating-and-the-atmosphere for more detail on the behaviour of these va
 
 ![
   Dependence of radii on surface pressure.
-  The effect of temperature on the radius of watery planets decreases with increasing surface pressure, but remains significant (greater than about $0.1\,$R$_⊕$) for pressures below 1000$\,$bar.
-  Here I show mass--radius relations for spheres with an Earth-like core under a 30% water layer, changing only the surface pressure each time.
+  The effect of temperature on the radius of watery planets decreases with increasing surface pressure, but remains significant (greater than about $0.1\,$R$_⊕$) for pressures below $1000\,$bar.
+  Here I show mass--radius relations for spheres with an Earth-like core under a $30$% water layer, changing only the surface pressure each time.
   The temperature dependence remains even beyond the critical pressure of water ($2.206×10^7\,$Pa), at which point the surface water exists as a supercritical fluid.
   Only at very high pressures ($10^9$ or $10^{10}\,$Pa; $10\,000$ or $100\,000$ bar) does this temperature dependence vanish.
 ](surface-pressure-panels){#fig:surface-pressure-variation}
@@ -399,7 +401,7 @@ Despite observing highly inflated radii when the temperature is increased across
 This is because the density of water is still strongly temperature-dependent in the super-critical regime.
 In fact, we might reasonably expect the same inflated radii in any situation where the pressure of the water layer places it in a region of the water phase diagram that has significant temperature dependence.
 If the water layer is heated to thousands of Kelvin, this temperature dependence may only begin to disappear around $10^{10}\,$Pa ($100\,000\,$bar, [@fig:eos-contours]).
-At a pressure of $10^8\,$Pa ($1000\,$bar), a watery super-Earth with a surface temperature of $1000\,$K still has a radius that is up to $0.1\,$R$_⊕$ larger than one with a surface temperature of $300\,$K.
+With a surface pressure of $10^8\,$Pa ($1000\,$bar), a watery super-Earth with a surface temperature of $1000\,$K still has a radius that is up to $0.1\,$R$_⊕$ larger than one with a surface temperature of $300\,$K.
 This is comparable to or greater than the best current uncertainties on measured super-Earth radii ([@fig:isotherms-vs-adiabats]), and indicates that the surface temperature is a key parameter to consider when one attempts to model planets with significant water mass.
 
 ### Effect of water content
@@ -408,8 +410,8 @@ I find that changing the water content affects the temperature-dependent behavio
 I constructed planets with water, silicate, and iron layers, fixing the silicate:iron mass ratio to the Earth value of 2:1 and allowing the water shell to vary in mass.
 These models correspond to an Earth-like nucleus with an extended water layer at the surface.
 
-The effects of surface temperature on radius vary in magnitude across all my models with water layers, but still exist even when I set the water layer mass to just 1% of the mass of the entire planet.
-For a $1$\,$M$_⊕$ super-Earth with a surface pressure of $10^7\,$Pa ($100\,$bar), the radial change when the surface temperature increases from $300$ to $1000\,$K is $0.8\,$R$_⊕$ (for a $50$% water planet) and $0.1\,$R$_⊕$ (for a $1$% water planet).
+The effects of surface temperature on radius vary in magnitude across all my models with water layers, but still exist even when I set the water layer mass to just $1$% of the mass of the entire planet.
+For a $1\,$M$_⊕$ super-Earth with a surface pressure of $10^7\,$Pa ($100\,$bar), the radial change when the surface temperature increases from $300$ to $1000\,$K is $0.8\,$R$_⊕$ (for a $50$% water planet) and $0.1\,$R$_⊕$ (for a $1$% water planet).
 This similarity holds across the entire range of planetary masses I considered.
 
 ![
@@ -441,7 +443,7 @@ This effect is on top of any thermal expansion of iron and silicate: my models t
 It is also in addition to any uncertainty in the equation of state itself.
 Such changes in radii are significant considering that current observations can already measure super-Earth radii to precisions better than $0.1\,$R$_⊕$ (e.g. [@fig:isotherms-vs-adiabats]).
 
-The strength of the planet radius-temperature relation also depends on the surface pressure.
+The strength of the planet radius--temperature relation also depends on the surface pressure.
 This is a result of the decreasing thermal expansion of water with pressure: the coefficient of thermal expansion is much smaller in high-pressure ice than in the liquid, vapour, or supercritical fluid phases.
 At pressures of more than about $10^{10}\,$Pa ($100\,000\,$bar) any temperature change becomes irrelevant: the uncertainty in current planetary radius measurements is larger than any conceivable radial change owing to temperature effects, so more precise structural models may not be useful.
 However, there is still a significant radial dependence on temperature at lower surface pressures.
@@ -466,7 +468,7 @@ I have shown that the radius of an adiabatic watery planet may be significantly 
 Incorporating a surface temperature estimate into this approach should therefore give better constraints.
 
 From an observational perspective, these results are most interesting at intermediate pressures.
-At low pressures ($10^5\,$Pa or $1\,$bar) we cannot claim that we accurately capture the behaviour of what is now essentially an atmosphere, because we include no prescription for radiative energy transport in our models.
+At low pressures ($10^5\,$Pa or $1\,$bar) we cannot yet claim that we accurately capture the behaviour of what is now essentially an atmosphere, because we include no prescription for radiative energy transport in our models.
 At high pressures ($10^{10}\,$Pa or $100\,000\,$bar) any temperature dependence in the water equation of state disappears.
 The physical scenario most relevant for these models is therefore that of a water layer (ocean, ice or supercritical fluid) underneath a thin or moderate atmosphere.
 Others have already included volatile layers on top of interior structure models.^[@Rogers2010a]

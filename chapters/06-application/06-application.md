@@ -1,7 +1,7 @@
 # A water-rich super-Earth?
 
 The previous chapters in this dissertation have consisted of a theoretical development of the structures of watery planets.
-Though my models are based mostly on the measured physical properties of water, and though our motivation has always been to explain current and future observations, the topics I have explored have been theoretical in nature.
+Though my models are based mostly on the measured physical properties of water, and though our motivation has always been to explain current and future observations, the topics I have explored so far have been theoretical in nature.
 Until just a few weeks before its submission, this was to be the entire content of the dissertation.
 However, we recently received news of an exciting new result: a potential water detection in the atmosphere of a rocky super-Earth, Gliese 1132 b.^[@Southworth2016]
 This heated watery super-Earth is nearly a perfect candidate for the application of my models.
@@ -24,9 +24,9 @@ With an equilibrium temperature of up to $580\,$K depending on albedo, it is coo
 
 | Property |        | Value |
 |----------|--------|-------|
-| RA | $\alpha$ | $10^\mathrm{h}\,14^\mathrm{m}\,51.846^\mathrm{s}$ |
-| Dec | $\delta$ | $-47\degree\,09'\,24.47''$ |
-| Distance | $D_*$ | $12.0 \pm 0.2\,$pc |
+| Right ascension | $\alpha$ | $10^\mathrm{h}\,14^\mathrm{m}\,51.846^\mathrm{s}$ |
+| Declination | $\delta$ | $-47\degree\,09'\,24.47''$ |
+| Distance | $D_\star$ | $12.0 \pm 0.2\,$pc |
 | Mass | $M_\mathrm{p}$ | $1.6 \pm 0.5\,$M$_\oplus$ |
 | Radius | $R_\mathrm{p}$ | $1.35 \pm 0.21\,$R$_\oplus$ |
 | Orbital period | $P$ | $1.628930 \pm (3.1 \times 10^{-5})\,$day |
@@ -44,7 +44,7 @@ This planet is therefore an excellent choice to apply my models to: it is a heat
 
 ![
   The observed transmission spectrum of GJ 1132b (\textcolor{red}{red points}) compared to theoretical spectra of H$_2$/H$_2$O atmospheres (coloured lines, with squares showing band-integrated values).
-  The feature at $0.9\,\mu$m in particular is indicative of a water detection.
+  The feature at $0.9\,\mu$m (the $z$-band) in particular is indicative of a water detection.
   The dotted line is the baseline radius of the planet inside opacity windows.
   --- *From Nikku Madhusudhan in @Southworth2016*
 ](gj1132b-spectrum_big_fig){#fig:gj1132b-spectrum}
@@ -67,7 +67,7 @@ In these results, unless stated otherwise, all other parameters were fixed to th
 The mass and radius of GJ 1132b are consistent with a planet that has a watery layer of some kind.
 [@Fig:gj1132b-mr] shows the one-sigma error ellipse for the mass and radius measurement of GJ 1132b.^[@Southworth2016]
 Overlaid are some mass--radius curves for different planet compositions, the largest of which includes a $10$% layer of water by mass on an Earth-like nucleus.
-This water layer uses my atmospheric models in @sec:heating-and-the-atmosphere so that the effect of temperature is included in the water layer.
+These models use my full atmosphere--interior structural code from [@sec:heating-and-the-atmosphere;@sec:watery-planet-interiors] so that the effect of temperature is included in the water layer.
 While a planet with a large iron fraction is ruled out by these mass--radius relations, GJ 1132b could have a sizeable water layer.
 
 ![
@@ -84,7 +84,7 @@ Overlaid on this, we show the predicted radius for planets with varying water ma
 The water fraction could be up to about $10$% of the mass of the planet. But the radial uncertainty of the planet also allows for a hydrosphere with the same mass fraction as Earth, which is about $10^{-3.6}$.
 
 ![
-  Comparing the radius of GJ 1132b with the radius of planets with water layers reveals that it could have as much water as Earth or even several orders of magnitude more.
+  When we compare the radius of GJ 1132b with the radius of watery planets, we see that GJ 1132b could have as much water as Earth or even several orders of magnitude more.
   This figure shows the radius of a \textcolor{Goldenrod}{dry planet} (1:2 iron:silicate by mass) with GJ 1132b's mass, as well as how the planet's radius increases when part of the mass is taken to consist of a \textcolor{DarkSlateBlue}{water envelope}.
   The lower line represents a planet with a Bond albedo of 0.75, while the upper line is the zero-albedo case.
   The Earth's water fraction is also shown for comparison.
@@ -111,7 +111,7 @@ But planets with up to $30$% water are consistent if the planet has a more massi
 We can also explore the phase structure of the planet using the method I described in @sec:phase-structure-and-migration.
 [@Fig:gj1132b-phases] shows how the phase structure and temperature of the planet varies as the water fraction is increased.
 If GJ 1132b's water layer is the same mass fraction as the Earth's, then the water layer is most gaseous.
-But if it is more than the Earth's water fraction then it could transition to supercritical fluid or plasma deeper within the planet.
+But if it has more than the Earth's water fraction then it could transition to supercritical fluid or plasma deeper within the planet.
 The water--silicate interface is also pushed to higher pressures down into the planet as the water mass fraction increases.
 
 ![
@@ -123,7 +123,7 @@ The water--silicate interface is also pushed to higher pressures down into the p
 ](gj1132b-phases){#fig:gj1132b-phases}
 
 Finally, using information on the melting properties of silicate, we are able to take the temperature information at the base of the water layer and determine whether the Earth-like nucleus would be molten.
-[@Fig:gj1132b-melting] shows the temperature differential from the solidus/liquidus^[At temperatures lower than the solidus, a material is completely solid. At temperatures higher than the liquidus it is completely liquid. In between, crystals form in the melt and the material exists as a slurry.] at the top of the silicate layer in the GJ1132b models.
+[@Fig:gj1132b-melting] shows the temperature differential from the solidus/liquidus^[At temperatures lower than the solidus, a material is completely solid. At temperatures higher than the liquidus it is completely liquid. In between, crystals form in the melt and the material exists as a slurry.] at the top of the silicate layer in the GJ 1132b models.
 We vary the water fraction as before to investigate if this changes the melt state of the mantle.
 We see that, at the temperatures at the base of a water layer, any silicate mantle is most likely molten.
 This is also found to be true even under a very modest water layer (up to an order of magnitude less in mass fraction than the Earth).

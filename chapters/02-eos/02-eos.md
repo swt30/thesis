@@ -27,15 +27,15 @@ I explain the process of compiling this equation of state, show how it is an imp
   \end{equation}
   depending on how the data is presented.
 } The equation of state is a relationship between pressure $P$, temperature $T$ and density $ρ$ (@eq:equation-of-state).
-The definition of an equation of state allows that it might also specify relations between other thermodynamic state variables; these include the specific heat capacities $c_p$ and $c_v$ and specific energies like the internal energy $u$ or entropy $s$.
+The definition of an equation of state allows that it might also specify relations between other thermodynamic state variables; these include the specific heat capacities $c_P$ and $c_V$ and specific energies like the internal energy $u$ or entropy $s$.
 But in this context I use it to refer to the relationship between the set of values $(P, T, ρ)$, which are the key values required for a one-dimensional planetary structure model.
 
 To calculate the temperature gradient\marginnote{
   \begin{equation}
-    c_p = h(P, T) \label{eq:heat-capacity}
+    c_P = h(P, T) \label{eq:heat-capacity}
   \end{equation}
   The specific isobaric heat capacity can also be represented in a similar form to \cref{eq:equation-of-state}. It is required to calculate the temperature gradient in the planet.
-} also requires the specific isobaric heat capacity $c_p$, and so associated with this equation of state I include the heat capacity as a function of pressure and temperature.
+} also requires the specific isobaric heat capacity $c_P$, and so associated with this equation of state I include the heat capacity as a function of pressure and temperature.
 
 Many potential expressions for the equation of state exist, spanning all phases from gas to plasma.
 Depending on its source and the material it represents, the equation of state may be expressed in a simple functional form or it may be more complicated than this.
@@ -58,8 +58,8 @@ Real materials also have phase transitions between different states of matter, a
 
 Because no true universal equation of state exists, it is inappropriate to use just one equation of state in a planetary model.
 And despite progress in both experimental measurements and *ab initio* theoretical calculations, there is still no all-encompassing equation of state database for all of the minerals of interest in planetary interiors.
-Perhaps the closest to our intended goal is \smallcaps{SESAME},^[@Lyon1992] the Los Alamos National Laboratory equation of state database.
-But US regulations preclude the distribution of \smallcaps{SESAME} to foreign nationals and so we were unable to access it.^[A frustrating display of political barriers to research.]
+Perhaps the closest to our intended goal is SESAME,^[@Lyon1992] the Los Alamos National Laboratory equation of state database.
+But US regulations preclude the distribution of SESAME to foreign nationals and so we were unable to access it.^[A frustrating display of political barriers to research.]
 Instead we must maintain several different equations of state for each different material, choosing appropriately from among them depending on the chemical composition, pressure and temperature.
 
 Previous studies have approached the problem of there being no centralised database for equations of state by stitching together other equations of state which are valid for different pressure regimes.
@@ -187,7 +187,7 @@ Work(s)                         Water equation of state used
 
 @Zeng2013                       @Frank2004; @French2009; TFD
 --------------------------------------------------------------------------------
-Table: Previous studies on planetary interior structures use a variety of equations of state for water. {#tbl:eos-sources}
+Table: Previous studies on super-Earth interior structures use a variety of equations of state for water. {#tbl:eos-sources}
 
 \newpage
 
@@ -202,19 +202,19 @@ The first is in the equation of mass continuity\marginnote{
   \end{equation}
   and the equation for an adiabatic temperature gradient is
   \begin{equation}
-    {dT \over dm} = -{T\textcolor{red}{α}Gm \over 4πr^4\textcolor{red}{ρc_p}}
+    {dT \over dm} = -{T\textcolor{red}{α}Gm \over 4πr^4\textcolor{red}{ρc_P}}
     \label{eq:adiabatic-temperature-gradient-with-eos-highlighted}
   \end{equation}
   where I have highlighted in \textcolor{red}{red} the terms which require the equation of state to calculate.
   These equations are introduced more fully in \cref{sec:watery-planet-interiors}.  
-}, which depends on the density $ρ$; the second is in the equation for the temperature gradient, which depends on several quantities: thermal expansivity $α$, density $ρ$ and specific isobaric heat capacity $c_p$.
+}, which depends on the density $ρ$; the second is in the equation for the temperature gradient, which depends on several quantities: thermal expansivity $α$, density $ρ$ and specific isobaric heat capacity $c_P$.
 All of these quantities are provided by the equation of state.
 
 To capture the thermal behaviour of a planet appropriately, an equation of state therefore requires the following properties:
 
 - It must cover a wide range of pressures and temperatures relevant to both a planet's atmosphere and its interior.
 
-- It must provide the heat capacity $c_p$, at least at pressures relevant to the envelope region. In the atmosphere the heat capacity is not required.
+- It must provide the heat capacity $c_P$, at least at pressures relevant to the envelope region. In the atmosphere the heat capacity is not required.
 
 - Because the adiabatic temperature gradient lies on an isentrope, the EOS must include enough information to evaluate this isentrope. This could mean providing the entropy directly; however, as we will see, it is sufficient to include the heat capacity.
 
@@ -239,7 +239,7 @@ The lack of a complete treatment of temperature has been justified by the fact t
 @Seager2007 find that "water ice VII density changes by less than a few percent" up to $800\,$K.
 However, they do not include the high-pressure ionic and plasma fluid phases in this, and say that "[m]ore work needs to be done to quantify the thermal pressure effects above $250\,$GPa and in the ionic phase".
 
-With the knowledge that precisions on the order of a few percent in mass and radius are attainable by current and upcoming observational campaigns, I argue that the role of thermal effects in these types of planetary models needs to be further investigated.
+With the knowledge that precisions on the order of a few per cent in mass and radius are attainable by current and upcoming observational campaigns, I argue that the role of thermal effects in these types of planetary models needs to be further investigated.
 This need is especially apparent when we consider the phase structure of water and its volatile nature.
 Not only can water vaporise easily, changing density suddenly across the liquid--vapour boundary, but it also has a rich phase structure at higher pressures and temperatures too.
 The volatile nature of water also means that it is also difficult to separate it into "atmosphere" and "envelope" layers and draw an artificial boundary in terms of pressure.
@@ -254,16 +254,16 @@ It is this task that I turn to in the remainder of this chapter.
 
 I compiled a pressure--density--temperature relation\marginnote{
   The final equation of state database can be found online at \href{http://www.github.com/swt30/WaterData.jl}{github.com/swt30/WaterData.jl}
-} for water across a range of pressures and temperatures, drawing from a number of the sources of data listed in @tbl:eos-sources.
+} for water across a wide range of pressures and temperatures, drawing from a number of the sources of data listed in @tbl:eos-sources.
 I extended the piecewise approach described above to include temperature as a second dimension in parameter space.
-My stitched equation of state is valid over a wide domain: its temperature domain is from $275\,$K to $24000\,$K, and its pressure domain is from $10^5\,$Pa ($1\,$bar) upwards.
+My stitched equation of state is valid over a wide domain: its temperature domain is from $275\,$K to $24\,000\,$K, and its pressure domain is from $10^5\,$Pa ($1\,$bar) upwards.
 My approach was similar to that of @Senft2008, who generated a "5-Phase" equation of state across different liquid, vapour, and ice phases.^[@Valencia2010 also constructed a similar equation of state, though using only data from SESAME and the IAPWS formulation.]
 However, their work focused on the lower temperatures needed to model impact craters.^[S. Stewart, personal communication.]
 I have explicitly included much higher temperatures so as to capture the behaviour of large super-Earth planets: we expect the cores of these to reach thousands of Kelvin.
 The sources I used are detailed in @tbl:my-eos.
 
 ----------------------------------------------------------------------------------
-Equation of state        Type          Region of validity
+Equation of state        Type$^\star$  Region of validity
 ------------------------ ------------- -------------------------------------------
 IAPWS                    Tabular       Vapour and liquid phases;
                                        $0.05$ to $1000\,$MPa
@@ -271,7 +271,7 @@ IAPWS                    Tabular       Vapour and liquid phases;
 
 @French2009              Tabular       Superionic, plasma and high-pressure ice
                                        phases; $79$ to $9.87×10^6\,$MPa and $1000$ to
-                                       $24000\,$K. I did not use table VIII from
+                                       $24\,000\,$K. I did not use table VIII from
                                        this work, as these low-density data
                                        disagree with the IAPWS formulation.
 
@@ -294,7 +294,7 @@ TFD                      Functional    Ice X
 IAPWS extrapolations     Functional    Remaining regions
 ----------------------------------------------------------------------------------
 Table: I used a variety of equations of state in compiling my final EOS.
-"Tabular" indicates that I interpolated between values specified in the paper.
+$^\star$"Tabular" indicates that I interpolated between values specified in the paper.
 "Functional" indicates that I used the functional form given in the paper.
 {#tbl:my-eos}
 
@@ -311,11 +311,6 @@ I converted all units to SI units and produced a series of tables, standardising
   I also show the relevant phase boundaries.
 ](eos-phases){#fig:eos-phase-space}
 
-![Density of my water equation of state.
-  Here I show the density variation across the entire pressure--temperature range.
-  The density of water is more strongly affected by pressure across the range I consider, but temperature also affects its density too, especially across the liquid--vapour phase boundary and in the supercritical region.
-](eos-density){#fig:eos-density}
-
 My equation of state is for pure water only.
 Others have investigated how impurities may affect the equation of state and the planet's properties.
 For example, @Levi2014 included a methane component in their models, resulting in a new phase of water (filled ice) which changes the planet's thermal profile.
@@ -329,7 +324,7 @@ In the following paragraphs, I describe my equation of state choices; these choi
 
 ##### Liquid and vapour: {-}
 The behaviour of water in the liquid and vapour phases is well understood and plenty of data are available.
-I was unable to gain access to the \smallcaps{SESAME} database^[@Lyon1992] because there are restrictions on the distribution of these data to non-US nationals.
+I was unable to gain access to the SESAME database^[@Lyon1992] because there are restrictions on the distribution of these data to non-US nationals.
 Instead, to represent water liquid and vapour, I selected the IAPWS (International Association for the Properties of Water and Steam) formulation,^[@Wagner2002] which provides both tabular and functional data for water in these phases.
 These are well-tested and validated by years of experiments.
 
@@ -342,7 +337,7 @@ I then tested these against the tables to verify that we had replicated them cor
 I explicitly chose a temperature-dependent formulation because I expect ice VII to form a significant fraction of the planet in the cases where the water layer is large.
 This temperature-dependent formulation is in contrast to other studies which have assumed that the ice VII layer is isothermal: for example, @Rogers2010a assumed no expansion in any solid layers, choosing to include temperature effects only in the gaseous and liquid phases.
 
-The best temperature-dependent formulation I found for ice VII was the Mie-Grüneisen-Debye (MGD) thermal correction approach^[@Sotin2007].
+The best temperature-dependent formulation I found for ice VII was the Mie-Grüneisen-Debye (MGD) thermal correction approach.^[@Sotin2007]
 I used a Vinet equation of state with this thermal correction, taking the coefficients of @Fei1993, within the ice VII region delimited by the phase boundaries of @Dunaeva2010.
 However, I preferred the more recent tabulated measurements of @Sugimura2010 wherever these were applicable; these are shown within the ice VII region in [@fig:eos-phase-space].
 
@@ -372,17 +367,17 @@ The functional forms of the EOS often specify a relationship between variables t
 I wrote numerical inversion routines to handle these cases, parallelizing them for greater speed when evaluating large numbers of points in the state space at the same time.
 
 As an example of where this is necessary, let us take the IAPWS data set.^[@Wagner2002]
-The paper in which it is introduced provides a functional description of the behaviour of water and steam that is applicable over a wide range
+The paper in which it is introduced provides a functional description of the behaviour of water and steam that is applicable over a wide range of temperatures and pressures.
 It also provides a narrower set of tabulated values.
 Interpolating between the tabulated values is simple, but I also used the functional form of the EOS outside the range of the table.
 I based this decision on the claim of @Wagner2002 that the IAPWS formulation extrapolates appropriately outside the range of validity of the table.
-In this case I needed to numerically invert the IAPWS EOS outside the tabulated range.
+In this case I needed to numerically invert the IAPWS equation of state outside the tabulated range.
 
 ![
   The phase diagram of water around room temperature.
   My final EOS includes the ice phases Ih, III, V, VI, VII, XI and X (both through the high-pressure TFD limit), liquid, vapour, and two theoretical high-temperature phases (plasma and super-ionic) not shown in this figure.
   --- *Adapted from a figure by cmglee on Wikimedia Commons /  [CC-BY-SA-3.0](http://commons.wikimedia.org/wiki/File:Phase_diagram_of_water.svg)*
-](water-phase-diagram-complete){#fig:water-phase-diagram-complete}
+](water-phase-diagram-lowtemp){#fig:water-phase-diagram-complete}
 
 Numerical inversion can be complicated by phase transitions.
 In the region covered by the IAPWS data, there is a phase transition (and therefore a density discontinuity) between liquid and vapour.
@@ -399,11 +394,17 @@ I specified an order of priority for which EOS to prefer in the case of conflict
 I rely firstly on tabular sources, then functional sources, in the order specified in @tbl:my-eos.
 That is, the first valid EOS on that list determines the density at a particular $(P,T)$ pair.
 
-I defined the limits of each EOS patch through the notion of a *convex set*, which is the largest possible region of the state space fully enclosed by a set of points.
+I defined the limits of each EOS patch through the notion of a *convex set*, which is the largest possible region of the state space fully enclosed by a set of points ([@fig:convex-set]).
 The convex set gives a natural interpretation of the area covered by a table of values.
 In the case of the low-pressure ices, I used phase boundaries provided in @Dunaeva2010 and assigned points within each region an appropriate EOS from @Choukroun2007.
 For the regions based on tabulated values, I applied the EOS only in the region covered by the data points where interpolation can be carried out.
 Outside these bounds, I revert to the next highest priority EOS from @tbl:my-eos.
+
+\begin{marginfigure}
+  \includegraphics{convex-set}
+  \caption{A convex set is the largest possible region of a space that is fully enclosed by a set of points. An intuitive way to visualise it is to imagine stretching a rubber band around the points; the area enclosed by the rubber band is the convex set. Above, the convex set for a regular grid; below, the convex set for an unstructured set of points.}
+  \label{fig:convex-set}
+\end{marginfigure}
 
 ### Validation
 
@@ -425,7 +426,7 @@ I also verified that the IAPWS tabulated values matched up with the functional v
 
 I confirmed that my chosen EOS approaches the TFD (the high-pressure limit EOS) as pressure increases.
 @Fig:eos-contours shows this.
-I made no attempt to match or smooth the boundaries between each region, trusting the published equations of state as being accurate within their range of validity.
+I made no attempt to match or otherwise smooth the boundaries between each region, trusting the published equations of state as being accurate within their range of validity.
 This leads to some false density discontinuities which are visible in the final output.
 I have chosen to leave these as they are, because there is no justification for artificially smoothing out the density profile.
 
@@ -433,7 +434,7 @@ I have chosen to leave these as they are, because there is no justification for 
   Comparison of my equation of state with the high-pressure limit.
   The TFD (Thomas--Fermi--Dirac) equation of state is increasingly accurate in the high-pressure limit, where temperature effects on the water density disappear.
   I also show temperature contours of my water equation of state.
-  The TFD, which has no temperature correction, is a poor approximation of the behaviour of water at low pressures, especially across the liquid--vapour phase boundary (vertical lines).
+  The TFD, which has no temperature correction, is a poor approximation of the behaviour of water at low pressures, especially across the liquid--vapour phase boundary (e.g. the near-vertical line at $500\,$K).
   But all other choices of equation of state approach the TFD at high pressures, and so it is appropriate in the TPa region and beyond.
 ](eos-contours){#fig:eos-contours}
 
@@ -441,6 +442,11 @@ I can generate a final table of the EOS at any resolution, because it uses funct
 In generating a final grid of densities, I used logarithmic spacing on both axes to reflect the fact that the density surface has its interesting features at lower temperatures and pressures.
 
 A representation of the final water EOS is shown in [@fig:eos-density].
+
+![Density of my final water equation of state.
+  Here I show the density variation across the entire pressure--temperature range.
+  The density of water is more strongly affected by pressure across the range I consider, but temperature also affects its density too, especially across the liquid--vapour phase boundary and in the supercritical region.
+](eos-density){#fig:eos-density}
 
 ### The phase structure of water
 
@@ -459,9 +465,9 @@ I then chose an appropriate equation of state to represent each phase.
 
 ### Thermal expansion and heat capacity of water
 
-@Eq:adiabatic-temperature-gradient-with-eos-highlighted requires both a heat capacity $c_p$\marginnote{
-  The specific isobaric heat capacity $c_p$ is the heat capacity of water held at a constant pressure. Under standard conditions ($15\,°$C, $1\,$atm), water has a heat capacity of $4190\,$J$⋅$kg$^{-1}⋅$K$^{-1}$, but this varies significantly with temperature and pressure.
-  } and a thermal expansion coefficient $α$.\marginnote{
+@Eq:adiabatic-temperature-gradient-with-eos-highlighted requires both a heat capacity $c_P$\marginnote{
+  The specific isobaric heat capacity $c_P$ is the heat capacity of water held at a constant pressure.
+} and a thermal expansion coefficient $α$.\marginnote{
   The volumetric thermal expansion coefficient $α$, sometimes denoted $α_V$, is the fractional change in volume as the temperature is increased at constant pressure:
   \begin{equation}
     α_V = {1 \over V}\left({∂V \over ∂T}\right)_p = -{1 \over ρ}\left({∂ρ \over ∂T}\right)_p
@@ -477,12 +483,12 @@ But the most significant effect is the change in heat capacity across the liquid
 
 ![
   The heat capacity across the region of my EOS covered by the IAPWS data set.
-  The heat capacity approaches a constant value near the edge of the domain, indicating that pegging values outside the domain to the nearest known value is likely be a decent approximation.
+  The heat capacity approaches a constant value near the edge of the domain, indicating that pegging values outside the domain to the nearest known value is likely be a suitable approximation.
   Only in the volatile region around the phase boundaries and critical point of water does the heat capacity vary significantly.
 ](iapws-heat-capacity){#fig:iapws-heat-capacity}
 
 I drew the thermal expansion coefficient $α$ directly from the equation of state by evaluating @eq:thermal-expansion.
-Because the equation of state provides the density $ρ$ as a function of $P$ and $T$, we can evaluate the thermal expansion at any $(P,T)$ co-ordinate by taking a directional derivative in the $T$ direction.
+Because the equation of state provides the density $ρ$ as a function of $P$ and $T$, we can evaluate the thermal expansion at any $(P,T)$ co-ordinate by taking a partial derivative of the density with respect to temperature.
 I used automatic differentiation[^autodiff] where possible to evaluate this derivative.
 In some cases this was not possible[^not-always-possible] so I used finite differencing.[^finite-diff]
 As well as pre-computing the equation of state itself, I pre-computed and tabulated the thermal expansion coefficient on the same pressure--temperature grid.
@@ -524,7 +530,7 @@ I therefore moved to a custom interpolator written in Julia.
 Where data were published as unstructured points, I used barycentric interpolation on the mesh of Delaunay triangles defined by these points.
 Barycentric interpolation can be thought of the triangular analogue of linear interpolation on a regular grid, and Delaunay tessellation is a method for generating a triangular tessellation on a plane between pre-specified points.
 
-To calculate the density at a pressure--temperature point, my interpolator performs the following steps:
+To calculate the density at a pressure--temperature point, my interpolator performs the following steps ([@fig:delaunay-barycentric]):
 
 - It takes the points in $(P,T)$ space to define the vertices of a Delaunay tessellation of the plane.^[To construct a Delaunay tessellation I used the Julia package [VoronoiDelaunay.jl](https://github.com/JuliaGeometry/VoronoiDelaunay.jl).]
 It then caches the Delaunay mesh created so that it does not have to be re-created on every interpolation.
@@ -533,7 +539,7 @@ It then caches the Delaunay mesh created so that it does not have to be re-creat
 
 - For each interpolation query, it finds the triangle that encloses the $(P,T)$ point of interest. The interpolated value of the density $ρ$ therefore lies between the values at each vertex of this triangle, which we denote $(ρ_1, ρ_2, ρ_3)$.
 
-- It performs a co-ordinate transforms from the Cartesian $(P,T)$ value to a barycentric coordinate system $(λ_1, λ_2, λ_3)$ (where $λ_1 + λ_2 + λ_3 = 1$). In this system, the corners of the triangles correspond to the basis vectors $(1,0,0)$, $(0,1,0)$ and $(0,0,1)$ and the barycentre of the triangle corresponds to the point $({1 \over 3}, {1 \over 3}, {1 \over 3})$.
+- It performs a co-ordinate transform from the Cartesian $(P,T)$ value to a barycentric coordinate system $(λ_1, λ_2, λ_3)$ (where $λ_1 + λ_2 + λ_3 = 1$). In this system, the corners of the triangles correspond to the basis vectors $(1,0,0)$, $(0,1,0)$ and $(0,0,1)$ and the barycentre of the triangle corresponds to the point $\left({1 \over 3}, {1 \over 3}, {1 \over 3}\right)$.
 
   - Finally, it calculates the interpolated value: $ρ(P, T) = \sum_{i=1}^3 ρ_i λ_i$.
 
@@ -566,11 +572,11 @@ This suggests that the density behaviour within a single phase region was more i
 
 The equation of state that I used necessarily has some uncertainty in it, especially in regions near the critical point of water^[@Wagner2002] and at high temperatures and pressures where there are sometimes conflicting experimental and theoretical data.^[@Baraffe2008]
 The error in the equation of state varies depending on the original data source.
-For the region encompassed by the IAPWS data,^[@Wagner2002] the density uncertainty is approximately 0.01% (liquid and solid), 0.03 to 0.1% (vapour), and up to 0.5% in the region around and beyond the critical point.
-@Wagner2002 give a more detailed breakdown of these errors in their section 6.3.2, in particular figure 6.1.
-I estimate that the error beyond these regions is closer to 1% if we extrapolate beyond the table and assume that the uncertainty continues to increase at higher temperatures and pressures.
-For the supercritical fluid, plasma and superionic phases in the data of @French2009, they state that "the QMD EOS is accurate up to 1% for the conditions relevant for the giant planet’s interiors of our solar system."
-For the ice VII phase, the measurements of @Sugimura2010 have errors of between 0.003% and 0.5%.
+For the region encompassed by the IAPWS data,^[@Wagner2002] the density uncertainty is approximately $0.01$% (liquid and solid), $0.03$ to $0.1$% (vapour), and up to $0.5$% in the region around and beyond the critical point.
+@Wagner2002 give a more detailed breakdown of these errors in their section 6.3.2, in particular figure 6.1 in that work.
+I estimate that the error beyond these regions is closer to $1$% if we extrapolate beyond the table and assume that the uncertainty continues to increase at higher temperatures and pressures.
+For the supercritical fluid, plasma and superionic phases in the data of @French2009, they state that "the QMD EOS is accurate up to $1$% for the conditions relevant for the giant planet’s interiors of our solar system."
+For the ice VII phase, the measurements of @Sugimura2010 have errors of between $0.003$% and $0.5$%.
 Finally, it is not possible to give a meaningful uncertainty estimate at higher pressures where no measurements exist, but I do not treat the temperature dependence there anyway.
 
 ### How my EOS improves on previous work
@@ -583,11 +589,12 @@ The final software package, WaterData.jl, has the following advantages.
 - Its structure is modular: it is easy to swap out part of the representation of the EOS or to add a new region of phase space not yet covered. For example, if new high-pressure experiments produce results for the heat capacity and density of water in the ice X phase, they can easily be added to the EOS.
 - It provides tools to export the data in a raw format or to interpolate and grid the data.
 - It contains routines for numerical inversion with sensible defaults, which facilitate the addition of functional equations of state.
-- It provides heat capacity information in the vapour/gas phase covered by the IAPWS formulation, which is the region of phase space with the greatest heat capacity variation, and extrapolates sensibly outside this region.
+- It provides heat capacity information in the vapour/gas phase covered by the IAPWS formulation, which is the region of phase space with the greatest heat capacity variation, and extrapolates the heat capacity sensibly outside this region.
 
 ## Making the data freely available
 
-I have made the equation of state freely available online at [github.com/swt30/WaterData.jl](http://www.github.com/swt30/WaterData.jl).
+I have made the equation of state freely available online at <http://www.github.com/swt30/WaterData.jl>
+
 This chapter was also published as part of our first paper "In hot water: effects of temperature-dependent interiors on the radii of water-rich super-Earths".^[@Thomas2016]
 
 <!-- > TODO: actually deliver on this promise now that Oli is finishing with the code! -->

@@ -4,7 +4,7 @@ Having constructed models of watery planets and examined how they change size wi
 I have continued my development of watery planet structure by investigating two key questions.
 First, I would like to understand what the interiors of these planets actually look like.^[By this I mean that I would like to understand the *phase structure* of my models; that is, the layered structure of water. For example, the phase structure of the water layer might consist of gas over liquid over high-pressure ice.]
 Second, I would like to understand how this internal structure (and the planet's observable properties) dynamically change as the planet is moved within the star--planet system.
-This is a particularly relevant question in the context of planetary migration, but planets in elliptical orbits also vary in their planet--star separation, albeit on a much shorter timescale.
+This is a particularly relevant question in the context of planetary migration, but planets in elliptical orbits also vary in their star--planet separation, albeit on a much shorter timescale.
 
 \newthought{Why is is desirable} that we know the phase structure of a planet?
 The planet's structure could be important for several reasons.
@@ -54,7 +54,7 @@ But in practice the structure of the equation of state and the path of the adiab
 
 ### My treatment of phase transitions
 
-My solver traces an adiabat through the envelope of the planet, and this adiabat's path depends on the equation of state: it is calculated from the thermal expansion coefficient $\alpha$, which I evaluate directly from the EOS by taking a partial derivative in the temperature direction.^[@Eq:thermal-expansion]
+My solver traces an adiabat through the envelope of the planet, and this adiabat's path depends on the equation of state: it is calculated from the thermal expansion coefficient $\alpha$, which I evaluate directly from the EOS by taking a partial derivative in the temperature direction.^[See @eq:thermal-expansion.]
 This poses a problem: how do we treat the boundaries between phases?
 Do we enforce continuity of temperature and pressure across the phase boundaries, or do we allow for discontinuities?
 When I wrote the solver, I was therefore forced to make a choice about how to handle these phase transitions within the adiabatic interior.
@@ -78,7 +78,7 @@ Because of this discontinuity, we obtain a peak in the value of $α$ across the 
 ](thermal-expansivity-correction){#fig:thermal-expansivity-correction}
 
 This approach is problematic because the discontinuity is not reflected in the heat capacity I used, which is instead interpolated from a separate table.
-When I evaluate the adiabatic temperature gradient ${dT \over dm}$, ^[@Eq:adiabatic-temperature-gradient] I therefore obtain a very large value at the phase boundary.
+When I evaluate the adiabatic temperature gradient ${dT \over dm}$,^[See @eq:adiabatic-temperature-gradient.] I therefore obtain a very large value at the phase boundary.
 This makes the integrator take a step sharply in the $T$ direction.
 This continues at each integration step until the integrator encounters a region where $α$ happens to be small enough that it can step across the boundary.
 As a consequence, the shape of the adiabat at the boundary changes sharply.
@@ -97,12 +97,12 @@ I verified that this was the case by increasing the resolution of the EOS grid a
 This is not the behaviour we want.
 
 \newthought{The second approach} is to calculate $\alpha$ from @eq:adiabatic-temperature-gradient as above but to match the pressure and temperature of the adiabat at the phase boundary.
-Equivalently we can set $\alpha=0$ at the boundary so that ${dT \over dm} = 0$.
+Equivalently, we can set $\alpha=0$ at the boundary so that ${dT \over dm} = 0$.
 This gives an adiabat that crosses the boundary smoothly.
 
 I used this second approach.
 First I pre-calculated the values of $\alpha$ across the pressure--temperature domain of the equation of state.
-I tried a thresholding procedure, in which values $\alpha$ is set to zero if it exceeds some threshold value.
+I tried a thresholding procedure, in which $\alpha$ is set to zero if it exceeds some threshold value.
 But the value of $α$ varies strongly across the parameter space, and some of the phase boundaries have relatively small density changes, so I could not find a suitable threshold value for $α$ that left all the normal values of $\alpha$ within the phases untouched.
 I therefore instead re-generated the table of $α$ phase by phase.
 Within each phase I calculated $α$ as normal, then stitched the phases together by joining them directly in the same fashion as the EOS stitching in @sec:an-improved-water-equation-of-state.
@@ -144,7 +144,7 @@ And for any phase not yet covered by any of these regions, I treat anything with
 The end result is a mapping between $(P,T)$ and phase across the entire range of validity of my EOS.
 I use this mapping to determine the phase at each mass step within the final model.
 By linking it to the corresponding radial distance, I can therefore produce the radial phase structure of the watery layers in any planet model.
-Finally, I include labels for both iron and silicate, though I do not specify the phases of these materials.
+Finally, I include labels for both iron and silicate, though I do not specify the phases of these materials in more detail.
 I label these materials based on the mass co-ordinate $m$ rather than pressure and temperature because the core and mantle are defined in terms of the mass fraction of the entire planet.
 
 ## Structural changes of migrating planets
@@ -164,14 +164,14 @@ Below, I have assumed a Sun-like star, but this method is applicable to any star
 To place the planet in its physical context, I use its irradiation temperature (@eq:irradiation-temperature), which is repeated to the right as @eq:irradiation-temperature-repeat\marginnote{
   The irradiation temperature is
   \begin{equation}
-    T_\mathrm{irr} = T_⊕ \sqrt{R_⊕ \over D}
+    T_\mathrm{irr} = T_\star \sqrt{R_\star \over D}
     \label{eq:irradiation-temperature-repeat}
   \end{equation}
-  where the planet orbits at a distance $D$ from a star of radius $R_⊕$ and temperature $T_⊕$.
+  where the planet orbits at a distance $D$ from a star of radius $R_\star$ and temperature $T_\star$.
   For simplicity, I assume zero albedo.
 } for convenience.
 The irradiation temperature is a parameter to the two-stream irradiated atmospheric profile from @sec:heating-and-the-atmosphere.
-I calculated this temperature based on a Sun-like star ($T_⊕ = 5800\,$K, $R_⊕ = 7×10^8\,$m).
+I calculated this temperature based on a Sun-like star ($T_\star = 5800\,$K, $R_\star = 7×10^8\,$m).
 I then evaluated the planet's structure at different distances from the host star to simulate the effect of migration.
 
 As well as setting the irradiation temperature according to the star--planet distance, I also fix the internal heating parameter $ɛ$.
@@ -218,7 +218,7 @@ These figures show several values and trends at a glance:
   The only exception is in the case of a cold planet past $3\,$au, which has a liquid layer around an ice VII shell.
 ](migration-1Mearth){#fig:migration-1Mearth}
 
-The key results from these figures are as follows.
+\noindent The key results from these figures are as follows.
 
 1. Small ($\lesssim 2\,$M$_\oplus$) watery planets can have extended low-density atmospheres.
 
@@ -238,7 +238,7 @@ For example, compare the top row of models in @fig:migration-1Mearth.
 As the planet is moved closer to the star, the atmosphere expands while the other layers remain virtually static.
 
 Comparing [@fig:migration-10Mearth] to [@fig:migration-1Mearth] then shows that this effect is exaggerated for low-mass planets ($\approx 1\,$M$_\oplus$).
-This is a consequence of the effect I observed in @sec:heating-and-the-atmosphere, where lower-mass planets have lower gravity and are unable to hold onto their heated atmospheres.
+This is a consequence of lower-mass planets having lower gravity and being unable to hold onto their heated atmospheres.
 
 By linking the temperature of the planet to its orbital separation, we can also see that large radial changes occur across a reasonable range of orbital distances and are not just confined to planets orbiting very close to their host star.
 The range of orbital separations shown in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth] is similar to the range from Mercury to Saturn in our solar system.
@@ -246,14 +246,13 @@ The range of orbital separations shown in [@fig:migration-1Mearth; @fig:migratio
 ![
   As in [@fig:migration-1Mearth], but for a $3\,$M$_⊕$ planet.
   Comparing to [@fig:migration-1Mearth], we see that the $3\,$M$_⊕$ planets can actually be smaller than the $1\,$M$_⊕$ planets, at least where there is moderate internal or external heating.
-  This is the upturn at the low-mass end of the mass--radius relation that I discussed in @sec:heating-and-the-atmosphere.
 ](migration-3Mearth){#fig:migration-3Mearth}
 
 ### These planets mostly contain three key phases of water
 
 At the irradiation temperatures shown in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth] , the bulk of these planetary models contain only three phases of water: gas, supercritical fluid and plasma.
-There is little evidence that high-pressure ice phases like ice VII and ice X are present except in the case of very cold planets.^[It is certainly possible to generate planets with more varied phase structures. For example, see the images on the title page, which I generated by taking random temperatures, planet masses and water fractions. But most of the interesting structures arise with planets that are several times more massive than Earth and consist mostly of water (water fractions of 50% or more).]
-In [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth] the only models to contain phases other than these three were minimally internally heated ($\varepsilon = 10^{-18}\,$W/kg).
+There is little evidence that high-pressure ice phases like ice VII and ice X are present except in the case of very cold planets.^[It is certainly possible to generate planets with more varied phase structures. For example, see the images on the title page, which I generated by taking random temperatures, planet masses and water fractions. But most of the interesting structures arise with planets that are several times more massive than Earth and consist mostly of water (water fractions of $50$% or more).]
+In [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth] the only models to contain phases other than these three were minimally internally heated ($\varepsilon=10^{-18}\,$W$\cdot$kg$^{-1}$).
 The plasma phase appears near the bottom of the water envelope for these cold planets, and the liquid and ice VII phases appear under a very thin gas atmosphere.
 
 These graphs do not explore the trends for planets with water mass fractions other than $30$%.
@@ -266,7 +265,7 @@ We would need a way of representing energy generation from the water envelope it
 
 The kink in the lower curve on [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth] is a discrete transition in phase structure for cold planets.
 The phase structure of the resulting planet is visible as the bottom-right structure in the grid of models.
-This structure contains a water layer over ice VII and ice X.
+This structure contains a liquid water layer over ice VII and ice X.
 But these phases are only present when there is virtually no internal heating: even an Earth-like internal heating amount of $10^{-12}\,$W$⋅$kg$^{-1}$ in the core is enough to shift the path of the adiabat away from these cold ice phases and up to the supercritical fluid regime.
 
 ![
@@ -334,10 +333,10 @@ Or would heat redistribution in the thick watery atmosphere and envelope smooth 
 
 What about the higher-pressure and higher-temperature phases such as supercritical fluid?
 Are these environments inhospitable to life?
-This is a more involved question than can be answered here but it is worth noting that thick ocean layers (and thick watery atmospheres) can easily shield the interior from radiation that would be problematic for life on other planets.
+This is a deeper question than can be answered here but it is worth noting that thick ocean layers (and thick watery atmospheres) can easily shield the interior from radiation that would be problematic for life on other planets.
 However, there are fundamental changes in the properties of water at these temperatures and pressures.
 Hydrogen bonds are destroyed at high temperatures and water ceases to be a good solvent for electrolytes, becoming instead a non-polar fluid.^[@Ansimov2004]
 And there are sudden changes in the chemical properties of liquid water past $0.2\,$GPa as well.^[@Kruse2007]
 As much life on Earth is dependent on the peculiar chemical properties of water, it is unlikely that life as we know it could survive under such conditions.
 Of course this does not rule out other conceptions of life based on non-polar solvents.
-It does mean that the layered phase structure of a thick ocean planet could result in a relatively thin layer in which such life could survive.^[I would like to acknowledge that these interesting points about the properties of supercritical water were raised by the anonymous reviewer for our first paper [@Thomas2016].]
+It does mean that the layered phase structure of a thick ocean planet could result in a relatively thin layer in which life as we know it could survive.^[I would like to acknowledge that these interesting points about the properties of supercritical water were raised by the anonymous reviewer for our first paper [@Thomas2016].]

@@ -9,7 +9,7 @@ And instead of setting the surface temperature explicitly, shouldn't we be linki
 
 This chapter addresses these questions.
 Here I present an extension to my models that takes into account the planet's atmosphere.
-I incorporate a simple two-stream radiative transfer model to give an atmospheric temperature profile.
+I incorporate an analytic two-stream radiative transfer model to give an atmospheric temperature profile.
 Then I compare the effects of heating via two different modes, internal and external, to assess whether watery planets are preferentially inflated by one mode of heating.
 
 ## Heated planets
@@ -30,19 +30,19 @@ This could be the dominant form of heating in such moons.^[@Ross1989]
 
 The decay of radioactive elements in a planet's interior results in heating.
 In the Earth this value is about half of the total internal energy generation.^[@Davies1980]
-The so-called "chondritic coincidence"^[@Suess1956; @Urey1956] refers to the fact this energy generation rate per unit mass is about the same as observed in chondrites.
+The so-called "chondritic coincidence"^[@Suess1956; @Urey1956] refers to the fact this energy generation rate per unit mass is about the same as that observed in chondrites.
 
 Cooling and contraction supply the remainder of a planet's internal energy budget.
 In the Earth, the other half of the internal energy is supplied by cooling.
 
 At the same time, a planet is heated externally by its host star.
 One measure of this heating is the *equilibrium temperature*, which is calculated by assuming that the planet is in thermal equilibrium and that incident and outgoing radiation are balanced.
-The equilibrium temperature $T_\mathrm{eq}$ is
-$$ T_\mathrm{eq} = T_⊙ \left( 1-a \right)^{1/4} \sqrt{R_⊙ \over 2D} $$ {#eq:equilibrium-temperature}
-where $T_⊙$ is the stellar temperature, $a$ is the planet's albedo,^[For the remainder of this chapter I assume a planet with zero albedo ($a = 0$).] $R_⊙$ is the stellar radius and $D$ is the star--planet distance.^[@Burrows2010; I have assumed a black body with perfect emissivity $(ϵ=1)$.]
+The equilibrium temperature $T_\mathrm{eq}$ is\marginnote{
+  Here $T_\star$ is the stellar temperature, $a$ is the planet's albedo, $R_\star$ is the stellar radius and $D$ is the star--planet distance \citep{Burrows2010}. For the remainder of this chapter I assume zero albedo ($a = 0$).
+} $$ T_\mathrm{eq} = T_\star \left( 1-a \right)^{1/4} \sqrt{R_\star \over 2D}. $$ {#eq:equilibrium-temperature}
 
 In this chapter I will also follow @Guillot2010 by defining the irradiation temperature $T_\mathrm{irr}$, which is an effective temperature characterising the irradiation at the substellar point:
-$$ T_\mathrm{irr} = T_⊙ \left( 1-a \right)^{1/4} \sqrt{R_⊙ \over D}. $$ {#eq:irradiation-temperature}
+$$ T_\mathrm{irr} = T_\star \left( 1-a \right)^{1/4} \sqrt{R_\star \over D}. $$ {#eq:irradiation-temperature}
 Because the temperature at the substellar point is hotter than the averaged temperature across the entire planet, the irradiation temperature is higher by a factor $\sqrt{2}$ than the equilibrium temperature.^[This corresponds to a factor of $4$ in incident flux.]
 
 In the previous chapter we saw that the temperature of the planet affects its radius.
@@ -99,7 +99,7 @@ Normally we would understand the *surface* of a terrestrial planet as being defi
 But for volatile-rich planets like these waterworlds, such a definition is no longer useful.
 In this chapter I therefore use the following nomenclature to describe the different layers and boundaries in my model:
 
-- The **photospheric surface** of a water-rich planet is defined by the depth to which light can no longer penetrate, which for this work I take to be a transverse optical depth of $\tau_\mathrm{t} = 1$. It defines the outer boundary of my models. ([@sec:boundary-conditions]). The radius of the planet $R_\mathrm{P}$ is therefore the radius to the photosphere.
+- The **photospheric surface** of a water-rich planet is defined by the depth to which light can no longer penetrate, which for this work I take to be a transverse optical depth of $\tau_\mathrm{t} = 1$. It defines the outer boundary of my models ([@sec:boundary-conditions]). The radius of the planet $R_\mathrm{P}$ is therefore the radius to the photosphere.
 - The **atmosphere** is the outer portion of the planet that follows a radiative temperature profile below the photosphere.
 - The **atmosphere above the photosphere** refers to the very outer layer of the atmosphere. It is not included in the models, which begin at the photosphere, but I later make some assumptions about the atmosphere above the photosphere to derive the model boundary conditions at the photosphere.
 - The **radiative--convective boundary** is the transition between the radiative and convective regimes. It defines the base of the atmosphere.
@@ -119,19 +119,19 @@ Finally, I added @eq:optical-depth-gradient to track the optical depth within th
 Together, [@eq:mass-continuity-repeat; @eq:pressure-gravity-repeat; @eq:temperature-gradient-generic; @eq:optical-depth-gradient] form a system of ordinary differential equations that I solve in the same manner as before. The equations are:
 
 - the mass continuity equation,\marginnote{
-  $r$ is the radius to a spherical shell, $m$ is the mass by that shell and $ρ$ is the density of the shell.}
+  Here $r$ is the radius to a spherical shell, $m$ is the mass enclosed by that shell and $ρ$ is the density of the shell.}
   $$ {dr \over dm} = {1 \over 4πr^2ρ}, $$ {#eq:mass-continuity-repeat}
 
 - the equation of hydrostatic equilibrium,\marginnote{
-  $P$ is the pressure at the shell and $G$ is the gravitational constant.}
+  Here $P$ is the pressure at the shell and $G$ is the gravitational constant.}
   $$ {dP \over dm} = -{Gm \over 4πr^4}, $$ {#eq:pressure-gravity-repeat}
 
 - the temperature gradient,\marginnote{
-  $∇$ describes how the temperature varies inside the planet and varies depending on the mode of energy transport (see \cref{sec:the-atmospheric-treatment}.}
+  Here $∇$ describes how the temperature varies inside the planet; it varies depending on the mode of energy transport (see \cref{sec:the-atmospheric-treatment}).}
   $$ {dT \over dm} = ∇, $$ {#eq:temperature-gradient-generic}
 
 - and the optical depth relation,\marginnote{
-  $τ$ is the radial optical depth and $κ$ is the opacity.}
+  Here $τ$ is the radial optical depth and $κ$ is the opacity.}
   $$ {dτ \over dm} = -{κ \over 4πr^2}. $$ {#eq:optical-depth-gradient}
 
 ### The optical depth and opacity
@@ -145,9 +145,8 @@ The fourth integration variable, optical depth,\marginnote{
   where τ is the dimensionless optical depth, $κ$ is the opacity (units of m$^2⋅$kg$^{-1}$), $ρ$ is the density and $r$ is the radius.
   Combining this with \cref{eq:mass-continuity-repeat} gives \cref{eq:optical-depth-gradient}.
 } is a measure of attenuation in the atmosphere. Within the envelope, I ignore any further increase of the optical depth because it is unimportant for calculating the convective temperature profile.
-In practice this is achieved by setting ${dτ \over dm} = 0$ within the envelope.
 
-The optical depth gradient depends directly on the density of the gas, which as we have seen is related to its temperature and pressure through the equation of state.
+The optical depth gradient depends directly on the density of the gas (@eq:optical-depth-gradient), which as we have seen is related to its temperature and pressure through the equation of state.
 It also depends indirectly on the gas's temperature and pressure through the opacity $κ(P,T)$, which is another state function of the gas.
 
 The meaning of "opacity" can vary from author to author.
@@ -198,7 +197,7 @@ Then taking the equation of hydrostatic equilibrium $dP/dr = -ρg$ and the defin
   Here $P_\mathrm{R}$ and $τ_\mathrm{R}$ denote the pressure and optical depth at the planet's radius i.e. the photospheric pressure and the optical depth to the photosphere.
 } $$ P(r) = P_\mathrm{R} e^{-(r - R_\mathrm{P})/H} $$ {#eq:pressure-exponential-atmosphere}
 and
-$$ τ(r) = τ_\mathrm{R} e^{-(α + 1)(r - R_\mathrm{p})/H} $$ {#eq:optical-depth-exponential-atmosphere}
+$$ τ(r) = τ_\mathrm{R} e^{-(α + 1)(r - R_\mathrm{P})/H} $$ {#eq:optical-depth-exponential-atmosphere}
 where the pressure scale height $H$ is
 $$ H = {R^2_\mathrm{P} k_\mathrm{B} T \over G M_\mathrm{P} μ_\mathrm{eff} }. $$ {#eq:pressure-scale-height}
 It can also be shown that the relationship between $P_\mathrm{R}$ and $τ_\mathrm{R}$ is
@@ -213,12 +212,12 @@ When I define the photosphere to be an optical depth of one, I therefore do so f
 But my models are spherically symmetric and require the integration variables to be expressed in a radial form instead.
 The corresponding *radial optical depth* $τ$ at the photosphere is less than one; the exact value depends on the opacity of the atmosphere.
 The relationship between these two optical depths^[I do not include this derivation here but it is from @Hansen2008 and was used by @Rogers2010. [@Fig:transverse-radial-optical-depth-relation] shows the difference between the two optical depths. The relationship is approximate because it is truncated from an exponentially decaying integrand.] is
-$$ τ_\mathrm{t} \approx γ τ_\mathrm{R} \sqrt{2π(α + 1)y \over H_\mathrm{P}} e^{-(α + 1)(y - R_\mathrm{p})/H_\mathrm{p}}. $$ {#eq:transverse-optical-depth}
-Setting $τ_\mathrm{t} = 1$ gives the boundary condition on $\tau$:
-$$ τ_R = {1 \over γ} \sqrt{H_P \over 2π \left( α+1 \right) R_P }. $$ {#eq:optical-depth-at-photosphere}
+$$ τ_\mathrm{t} \approx γ τ_\mathrm{R} \sqrt{2π(α + 1)r \over H} e^{-(α + 1)(r - R_\mathrm{P})/H}. $$ {#eq:transverse-optical-depth}
+Setting $τ_\mathrm{t} = 1$ at $r = R_\mathrm{P}$ gives the boundary condition on $\tau$:
+$$ τ_R = {1 \over γ} \sqrt{H \over 2π \left( α+1 \right) R_\mathrm{P} }. $$ {#eq:optical-depth-at-photosphere}
 
 ![
-  When an observer looks through the limb of a planet's atmosphere, the optical depth they see at the planet's radius $R_\mathrm{p}$ is a *transverse* depth $\tau_\mathrm{t}$.
+  When an observer looks through the limb of a planet's atmosphere, the optical depth they see at the planet's radius $R_\mathrm{P}$ is a *transverse* depth $\tau_\mathrm{t}$.
   In general, this is not the same as the radial optical depth, notated as $\tau$ in the text and $\tau_\mathrm{rad}$ here for clarity.
   This schematic diagram shows how the transverse optical depth $\tau_\mathrm{t}$ through the atmosphere is different from the radial optical depth $\tau_\mathrm{rad}$ down into the atmosphere.
   Because the atmospheric temperature profile uses a radial optical depth, we need to correct for this discrepancy.
@@ -237,10 +236,10 @@ After finding the ($T_\mathrm{R},\tau_\mathrm{R}$) pair that satisfies these equ
 In almost all other respects, the solver works as described in @sec:watery-planet-interiors and shown in [@fig:solver-flowchart].
 The only additional step is this calculation of the pressure, temperature and optical depth boundary conditions as described above.
 This process is repeated after each trial solution.
-In this fashion my models converge on the correct values of $P_R$, $T_R$ and $τ_R$ as the radius of the planet converges.
+In this fashion my models converge on the correct values of $P_\mathrm{R}$, $T_\mathrm{R}$ and $τ_\mathrm{R}$ as the radius of the planet converges.
 
 I also slightly altered the prescription for the mass grid described in @sec:effect-of-the-mass-grid-size.
-I still choose the smallest step size $dm / M_\oplus$ to be $10^{-10}$, but I alter the factor by which this size grows at each step.
+I still choose the smallest step size $dm / M_\mathrm{P}$ to be $10^{-10}$, but I alter the factor by which this size grows at each step.
 I tune this factor to ensure that half of the mass steps lie within the atmosphere and half lie within the interior.
 This empirical prescription gives an appropriate resolution throughout the model.
 
@@ -258,7 +257,7 @@ For the rest of this chapter I denote this quantity by $P_\mathrm{env}$, meaning
 For this work, I added the ideal-gas behaviour of water ([@eq:general-ideal-gas-law]) to the equation of state.
 The domain of my EOS now extends from $1\,$Pa up to $10^{14}\,$Pa.
 Previously I had extrapolated upon leaving the edge of the EOS domain; this was not a problem because I started our models at high pressure, but in order to represent the atmosphere appropriately I needed to extend the EOS to low pressures.
-In order that the atmosphere is treated entirely as an ideal gas, I use the ideal gas EOS for all pressures less than $100\,$Pa.
+In order that the atmosphere is treated entirely as an ideal gas, I use the ideal gas EOS for all pressures less than $100\,$bar.
 
 All other EOS behaviour is as described in @sec:an-improved-water-equation-of-state.
 In particular, I maintained the same data sources and grid resolution for the base EOS.
@@ -270,7 +269,7 @@ Here I outline the atmospheric temperature profile and how I link it to the inte
 
 Within the core, where temperature effects are negligible, I set $∇ = 0$ to make the core isothermal.
 The edge of the core is specified as a fraction of the planet mass and fixed as a model parameter.
-When solving the structural equations, I therefore switch to this isothermal treatment once $m < f M_p$, where $m$ is the mass co-ordinate, $f$ is the core fraction and $M_p$ is the total mass of the planet.
+When solving the structural equations, I therefore switch to this isothermal treatment once $m < f M_\mathrm{P}$, where $m$ is the mass co-ordinate, $f$ is the core fraction and $M_\mathrm{P}$ is the total mass of the planet.
 
 For convective transport within the watery envelope, I use the adiabatic temperature gradient from @eq:adiabatic-temperature-gradient as explained in the previous chapter.
 
@@ -281,7 +280,7 @@ The first a two-stream grey analytic temperature profile; the second is an isoth
 
 I added a radiative temperature profile in the atmosphere by using an analytic two-stream temperature profile.
 The profile I used is obtained from @Guillot2010, given by\marginnote{
-  $T(\tau)$ is the temperature at an optical depth of $\tau$; $T_\mathrm{int}$ is the effective internal temperature;
+  Here $T(\tau)$ is the temperature at an optical depth of $\tau$; $T_\mathrm{int}$ is the effective internal temperature;
   $T_\mathrm{irr}$ is the planet's irradiation temperature;
   $\mu_*$ = $\cos \theta_*$ is the angle of the normal at the surface to the incident radiation ($\mu_* = 1$ at the substellar point);
   $\gamma = {\kappa_\mathrm{th} \over \kappa_\mathrm{vis}}$ is the ratio of the thermal and visual opacities.
@@ -313,7 +312,7 @@ But I construct this isothermal atmosphere in a different way.
 Instead of evaluating the radiative temperature profile and tracking the optical depth within the atmosphere, I begin by ignoring the atmosphere and constructing the interior as if it were bare, like in the previous chapter.
 In practice I do this by setting the external pressure boundary condition to $100\,$bar so that the models begin at the radiative--convective boundary.
 On top of this bare envelope, I then assume a constant-gravity isothermal layer of gas.
-I take the thickness of this layer to be 8 scale heights,^[Typical atmospheres are 5--10 scale heights thick [@Madhusudhan2015].] where the scale height is calculated for a given gravity and temperature.
+I take the thickness of this layer to be eight scale heights,^[Typical atmospheres are 5--10 scale heights thick [@Madhusudhan2015].] where the scale height is calculated for a given gravity and temperature.
 The equation for the pressure scale height of a plane-parallel water vapour atmosphere is\marginnote{
   $R_\mathrm{H_2O}$ is the specific gas constant for water ($R_\mathrm{H_2O} = 461\,$J$⋅$K$^{-1}⋅$kg$^{-1}$).
 } $$ H = {R_\mathrm{H_2O} T \over g}, $$ {#eq:scale-height}
@@ -324,7 +323,7 @@ I calculate the scale height $H$ and add an eight-scale-height thick ($8\,H$) is
 My source for the opacity data was @Kurosaki2014.
 In their paper they simulated the evolution of water-rich sub- and super-Earths.
 They provided simple power-law expressions for the opacity of water vapour based on a fit to HITRAN^[@Rothman2013] data.
-I have taken these opacities and used them in the two-stream grey atmosphere.
+I have taken these opacities and used them in the two-stream analytic atmosphere.
 
 The opacity I used is
 $$ κ_\mathrm{th} = 3.07 × 10^2
@@ -370,7 +369,7 @@ The opacity enters the structural equations through the optical depth gradient (
 I compute $\kappa_\mathrm{th}$ using @eq:opacity and the pressure--temperature profile of the model.
 My models therefore take into account the varying opacity of water vapour within the atmosphere, rather than assuming a constant $\kappa_\mathrm{th}$.
 
-In contrast to the variable $\kappa_\mathrm{th}$, I fixed the visual--thermal opacity ratio $\gamma$ to $0.01$ based on representative values from @Kurosaki2014 (@tbl:opacities) at $1000\,$K.
+In contrast to the variable $\kappa_\mathrm{th}$, I fixed the visual--thermal opacity ratio $\gamma$ to $0.01$ based on representative values at $1000\,$K from @Kurosaki2014 (@tbl:opacities).
 My justification for doing so is that if I instead allow $\gamma$ to vary, my models become unphysically large.^[For example, I was able to produce $1\,$M$_\oplus$ planets larger than $50\,$R$_\oplus$ by setting $\gamma = 10^{-6}$.]
 I believe that this is because the power-law in @eq:opacity is made by fitting to only three temperatures: $1000\,$K, $2000\,$K and $3000\,$K.
 Outside this range there is no guarantee that either $\kappa_\mathrm{th}$ or $\kappa_\mathrm{vis}$ is valid, and accurately assessing the value of $γ$ is difficult.
@@ -406,7 +405,7 @@ The effective temperature can be relatively low but thanks to the insulating eff
 This prescription therefore provides a simple link between the internal energy generation and the internal heating of the atmospheric model, and hence the total radius of the planet.
 
 In reality, because the internal heat is assumed to be deposited at the base of the atmosphere, @eq:effective-temperature should use the radiative--convective boundary radius $r(P = 100\,\mathrm{bar})$ rather than the planet's radius $R_\mathrm{P}$.
-This prescription therefore assumes that the atmosphere is relatively thin.^[We can show that this effect is minimal for Earth-like planets if we assume an isothermal fixed-scale-height atmosphere. The scale height $H$ of a water atmosphere on an Earth-like nucleus at $500\,$K is approximately $20\,$km (@sec:effect-of-the-mass-grid-size). Therefore a $10\,H$ atmosphere is approximately $200\,$km thick [@Madhusudhan2015], only $3$\% of the total radius.]
+This prescription therefore assumes that the atmosphere is relatively thin.^[We can show that this effect is minimal for Earth-like planets if we assume an isothermal fixed-height atmosphere. The scale height $H$ of a water atmosphere on an Earth-like nucleus at $500\,$K is approximately $20\,$km (@sec:effect-of-the-mass-grid-size). Therefore a $10\,H$ atmosphere is approximately $200\,$km thick [@Madhusudhan2015], only $3$\% of the total radius.]
 
 As in the previous chapter, my internal heating treatment also assumes that the energy generated within the planet is sufficient to drive convection through the planet's envelope.
 This results in a temperature gradient that increases downward into the planet until we reach the isothermal nucleus.
@@ -414,8 +413,8 @@ This results in a temperature gradient that increases downward into the planet u
 ### External heating
 
 The irradiation temperature $T_\mathrm{irr}$ of a planet (@eq:irradiation-temperature) provides a proxy through we can characterise the radial change due to external heating from the star.
-I have defined the irradiation temperature in the same way as @Guillot2010, and it is therefore a parameter in the two-stream atmospheric model.
-We can also use the irradiation temperature in the isothermal fixed-scale-height atmosphere by equating it with the temperature of the entire atmosphere.
+I have defined the irradiation temperature in the same way as @Guillot2010, and can therefore use it as a parameter in the two-stream analytic atmospheric model (@eq:two-stream-temperature-profile).
+We can also use the irradiation temperature in the isothermal fixed-height atmosphere by equating it with the temperature of the entire atmosphere.
 
 The definition of the irradiation temperature, @eq:irradiation-temperature, is based on the star's radius and temperature.
 But in this chapter I do not evaluate the irradiation temperature from the properties of a host star, choosing instead to set it directly.
@@ -426,14 +425,14 @@ That is, I vary over different values of $T_\mathrm{irr}$ in my models.
 
 Using the models that I have just described, I investigated the effects of the various model parameters on the mass--radius relation and internal structure of watery planets.
 Below, I first summarise the key results, then elaborate on these by detailing which parameters I explored.
-I also show a comparison intended to assess the relative effects of internal and external heating on an irradiated waterworld, and I compare the two-stream atmosphere to an isothermal fixed-height atmosphere.
+I also show a comparison intended to assess the relative effects of internal and external heating on an irradiated waterworld, and I compare the two-stream analytic atmosphere to an isothermal fixed-height atmosphere.
 
 In this chapter I will show five key findings:
 
-1. The presence of at atmosphere makes an observable contribution to the mass--radius relation due to the opacity$\kappa_\mathrm{th}$.
+1. The presence of an atmosphere makes an observable contribution to the mass--radius relation due to the opacity $\kappa_\mathrm{th}$.
 2. An Earth-like degree of internal heating is enough to significantly inflate a watery super-Earth when compared to a planet with no internal heating.
 3. These watery super-Earths can be inflated by both internal or external sources of energy. But, all other things being equal, changing the external heating appears to affect their radius more than changing the internal heating.
-4. An isothermal fixed-height atmosphere is a good approximation to an isothermal two-stream atmosphere for planets more massive than $2\,$M$_\oplus$. But the fixed-height atmosphere is not a good approximation when there is a strong temperature gradient, such as that due to a strong opacity.
+4. An isothermal fixed-height atmosphere is a good approximation to an isothermal two-stream analytic atmosphere for planets more massive than $2\,$M$_\oplus$. But the fixed-height atmosphere is not a good approximation when there is a strong temperature gradient, such as that due to a strong opacity.
 5. The water fraction of these planets also makes a significant contribution to their total radius.
 
 
@@ -446,17 +445,17 @@ Here I present the results of changing various parameters. @Tbl:default-values s
 | Planet mass range | $M_\mathrm{P}$ | $0.5$--$10\,$M$_⊕$ |
 | Internal energy generation rate | $ɛ$ | $10^{-12}\,$W$⋅$kg$^{-1}$ |
 | Irradiation temperature | $T_\mathrm{irr}$ | $300\,$K |
-| H$_2$O fraction by mass | $f$ | $0.3$ |
+| Water mass fraction | $f$ | $0.3$ |
 | Thermal opacity | $κ_\mathrm{th}$ | variable$^\star$ |
 | Visual/thermal opacity ratio | $γ$ | $0.01$ |
-| Atmosphere/envelope transition pressure | $P_\mathrm{env}$ | $100\,$bar |
+| Atmosphere--envelope transition pressure | $P_\mathrm{env}$ | $100\,$bar |
 
 Table: Default values used in the parameter exploration. $^\star$By "variable" I mean that the opacity is allowed to increase into the atmosphere according to @eq:opacity and the atmospheric temperature and pressure, rather than kept fixed. {#tbl:default-values}
 
 ##### Opacity and opacity ratio
 
 The opacity of the atmosphere is an important parameter affecting the radius of the planet ([@fig:opacity]).
-I generated mass--radius relations for planets with different opacity treatments: a variable opacity calculated from the pressure--temperature profile and a fixed opacity.
+I generated mass--radius relations for planets with different opacity treatments: a variable opacity calculated from the pressure--temperature profile, and a fixed opacity.
 The radius of the planet changes significantly if the opacity is increased.
 For example, for a $2\,$M$_\oplus$ planet, the radius is $1.8\,$R$_\oplus$ if the opacity is fixed to $100\,$m$^2\cdot$kg$^{-1}$.
 But increasing it to $1000\,$m$^2\cdot$kg$^{-1}$ gives a planetary radius of $2.2\,$R$_\oplus$.
@@ -467,14 +466,14 @@ This value is approximately $100\,$m$^2\cdot$kg$^{-1}$ for the models in [@fig:o
 ![
   The choice of opacity $\kappa_\mathrm{th}$ for a watery atmosphere can strongly affect the final radius of the planet.
   Allowing the opacity (@eq:opacity) to increase into the atmosphere with the pressure and temperature profile produces inflated radii over the zero-opacity case.
-  But if we fix $\kappa_\mathrm{th}$ to an appropriate value ($100\,$m$^2\cdot$kg$^{-1}$ in this figure), we can also reproduce the the same mass--radius relation as the variable-$\kappa_\mathrm{th}$ case.
+  But if we fix $\kappa_\mathrm{th}$ to an appropriate value ($100\,$m$^2\cdot$kg$^{-1}$ in this figure), we can also reproduce the same mass--radius relation as the variable-$\kappa_\mathrm{th}$ case.
 ](opacities){#fig:opacity}
 
 This change in radius is because the opacity controls the rate at which the optical depth increases into the atmosphere, and therefore affects the degree to which heat can be trapped.
-Compared to H/He atmospheres, H$_2$O absorbs more strongly in the infrared^[The opacity that @Rogers2010 use for hydrogen atmospheres gives an opacity $\kappa_\mathrm{th} = 3 \times 10^{-3}\,$m$^2\cdot$kg$^{-1}$; the water opacity from @eq:opacity under the same conditions is $3 \times 10^2$, five orders of magnitude higher.] and so the optical depth at the radiative--convective boundary is often on the order of $10^4$ or $10^5$.
+Compared to H/He atmospheres, H$_2$O absorbs more strongly in the infrared^[The opacity that @Rogers2010 use for hydrogen atmospheres gives an opacity $\kappa_\mathrm{th} = 3 \times 10^{-3}\,$m$^2\cdot$kg$^{-1}$; the water opacity from @eq:opacity under the same conditions is $3 \times 10^2\,$m$^2\cdot$kg$^{-1}$, five orders of magnitude higher.] and so the optical depth at the radiative--convective boundary is often on the order of $10^4$ or $10^5$.
 This means that energy is readily absorbed in the water layers and converted into a temperature difference.
 
-Setting $κ_\mathrm{th} = 0$ has the effect of making the atmosphere isothermal.
+Setting $κ_\mathrm{th} = 0$ has the effect of making the atmosphere isothermal because $\tau$ is constant and the temperature is a function of $\tau$ [@eq:two-stream-temperature-gradient].
 [@Fig:opacity] shows that the radius of a planet is smaller for $\kappa_\mathrm{th} = 0$ than when the atmosphere has non-zero opacity.
 
 \newthought{In contrast}, the visual--thermal opacity ratio $γ$ appears to have a relatively weaker small effect on the final radius ([@fig:opacity-ratio]).
@@ -483,7 +482,7 @@ I also assessed the mass--radius relation for the values [$0.1$, $1$, $10$] whic
 The mass--radius relation does not change significantly over this range.
 
 ![
-  The visual/thermal opacity ratio does not strongly affect the mass--radius relation.
+  The visual/thermal opacity ratio $\gamma$ does not strongly affect the mass--radius relation.
   Here I test several values on both sides of the $γ=1$ case, where the visual and infra-red opacity are identical.
   I caution that an accurate determination of $\gamma$ in cooler regions of the upper atmosphere ($P < 1\,$bar, $T < 1000\,$K) is difficult due to the domain of the opacity data used to generate the power-law opacities from @Kurosaki2014.
   For this reason I choose a fixed value of $\gamma = 0.01$ in my models.
@@ -501,7 +500,7 @@ I make two observations based on this figure.
   Unlike the case of a bare planet, we do not see a sharp transition in radius associated with the liquid--vapour transition.
 ](internal-heat){#fig:internal-heat}
 
-The first thing I observe from [@fig:internal-heat] is that even an Earth-like level of internal heating ($\varepsilon = 1\,$pW$\cdot$kg$^{-1}$; that is, $10^{-12}$W$\cdot$kg$^{-1}$) is enough to grow the planet significantly.
+The first thing I observe from [@fig:internal-heat] is that even an Earth-like level of internal heating ($\varepsilon = 1\,$pW$\cdot$kg$^{-1}$; that is, $10^{-12}\,$W$\cdot$kg$^{-1}$) is enough to grow the planet significantly.
 Compared to the zero-heating case, a $2\,$M$_\oplus$ planet with $\varepsilon = 1\,$pW$\cdot$kg$^{-1}$ is $0.2$--$0.3\,$R$_\oplus$ larger.
 This is because the energy generated internally is trapped in the lower levels of the atmosphere, leading to a large temperature change and therefore inflating the planet's radius.
 
@@ -514,11 +513,11 @@ This is a consequence of the fact that $T_\mathrm{eff} \propto \varepsilon^{1/4}
 External irradiation can have a significant effect on the radius.
 @Fig:irradiation shows the extent of this inflation.
 For example, above I described a $2\,$M$_\oplus$ planet with $\varepsilon = 1\,$pW$\cdot$kg$^{-1}$.
-If we also change this planet's irradiation temperature from $300$ to $1000\,$K, its radius increases by another $0.2$--$0.3\,$R$_\oplus$.
+If we also increase this planet's irradiation temperature from $300$ to $1000\,$K, its radius increases by another $0.2$--$0.3\,$R$_\oplus$.
 This is in addition to the increase in radius already included in the model when compared to a planet with no internal energy generation.
 
 ![
-  Externally irradiated planets are also inflated above the bare-planet case.
+  Externally irradiated planets are also inflated above the bare planet case.
   Here I show the inflation due to external heating on top of an Earth-like rate of core energy generation.
 ](irradiation){#fig:irradiation}
 
@@ -530,8 +529,8 @@ I find that fixing the pressure at the radiative--convective boundary should not
 
 ![
   The pressure chosen for the radiative--convective boundary only marginally affects the final radius.
-  Here I show the effect of changing the atmosphere--envelope transition pressure P$_\mathrm{env}$.
-  Although a higher P$_\mathrm{env}$ gives a larger planet because more of the planet's mass is in the atmosphere, the effect is minimal.
+  Here I show the effect of changing the atmosphere--envelope transition pressure $P_\mathrm{env}$.
+  Although a higher $P_\mathrm{env}$ gives a larger planet because more of the planet's mass is in the atmosphere, the effect is minimal.
 ](transition-pressure){#fig:transition-pressure}
 
 ##### Water fraction
@@ -593,7 +592,7 @@ If we then instead treat the temperature at the radiative--convective boundary a
 
 \newthought{These two methods} produce very different results. The first method is a more direct comparison, because it effectively compares energy fluxes.
 But I argue that the second method better accounts for the fact that energy is trapped in the lower layers of the atmosphere when it comes from the interior.
-From [@fig:internal-external-heat] all other things being equal, it therefore appears that a watery super-Earth is more easily inflated by external heating than by equivalent internal heating.
+From [@fig:internal-external-heat], all other things being equal, it therefore appears that a watery super-Earth is more easily inflated by external heating than by equivalent internal heating.
 
 ![
   A planet's radius increases more when it is externally heated than when it is internally heated to an equivalent temperature.
@@ -608,15 +607,14 @@ I examined the temperature profiles of heated watery planets to see how their te
 [@Fig:internal-heat-profiles;@fig:irradiation-profiles] show the atmospheric pressure--temperature profiles for $5\,$M$_\oplus$ planets with varying degrees of internal heating and irradiation.
 The top panel in each figure shows the profile when the opacity $\kappa_\mathrm{th}$ is allowed to vary through the atmosphere.
 The bottom panel shows two fixed-$\kappa$ cases.
-The grey dashed lines are isothermal profiles, which remain at the photospheric temperature throughout; the solid lines are for $\kappa_\mathrm{th} = 100\,$m$^2\cdot$kg$^{-1}$.
+The dashed lines are isothermal profiles ($\kappa_\mathrm{th}=0$), which remain at the photospheric temperature throughout; the solid lines are for $\kappa_\mathrm{th} = 100\,$m$^2\cdot$kg$^{-1}$.
 
 ![
   Internally heated planets have temperature profiles that consist of a rising temperature in the outer layers, an isothermal region in the middle, and a heated region at the base of the atmosphere approaching the radiative--convective boundary.
-  Here I display different temperature--pressure profiles for the atmospheres of 5$\,M_⊕$ planets with increasing core energy generation rates (and therefore the internal temperature $T_\mathrm{int}$).
+  Here I display different temperature--pressure profiles for the atmospheres of $5\,$M$_⊕$ planets with increasing core energy generation rates (and therefore internal temperatures $T_\mathrm{int}$).
   The top panel shows the case where the opacity $\kappa_\mathrm{th}$ is allowed to vary throughout the atmosphere; the bottom panel shows two fixed-$\kappa$ cases.
   When $\kappa_\mathrm{th} = 0$, the atmosphere is isothermal.
   As I increase the core energy generation rate, the temperature at the base of the atmosphere increases---but this does not correspond to a change in the outer atmosphere.
-  These models d: , but see, the photospheric
 ](internal-heat-profiles){#fig:internal-heat-profiles}
 
 ![
@@ -633,13 +631,13 @@ On the other hand, externally heating the models results in a profile where the 
 It also increases the photospheric pressure, because this boundary condition depends on the temperature profile at the photosphere.
 
 We also see that, if we assume constant opacity, we may produce profiles that are markedly different from the variable-opacity case.
-For example, if we assumed $\kappa_\mathrm{th} = 100\,$m$^2\cdot$kg$^{-1}$ as in @sec:parameter-explorations, we produce models where the upper atmosphere heats faster than in the variable-opacity case.
+For example, if we assume $\kappa_\mathrm{th} = 100\,$m$^2\cdot$kg$^{-1}$ as in @sec:parameter-explorations, we produce models where the upper atmosphere heats faster than in the variable-opacity case.
 And for internally-heated planets, we can obtain significantly differently temperatures at the radiative--convective boundary.
 Because these temperatures set the upper boundary condition for the interior part of my model, the interior may also be at a different temperature if we assume a fixed opacity.
 
 ### Comparison to a fixed-height atmosphere
 
-Finally, I compared the results from the two-stream atmosphere to an isothermal fixed-height atmosphere.
+Finally, I compared the results from the two-stream analytic atmosphere to an isothermal fixed-height atmosphere.
 The fixed-height atmosphere (@sec:isothermal-fixed-height-atmosphere) comes from assuming that the atmosphere is isothermal and hence exponential in pressure with depth.
 My two-stream atmosphere becomes exponential for constant $g$ and constant $T$ at $τ ≪ 1$.^[@Guillot2010]
 Therefore, if we force the two-stream atmosphere to be isothermal by setting $κ_\mathrm{th} = 0$ (and therefore $dT/dm = 0$, by @eq:temperature-gradient-generic), we should approach the limit of the fixed-height atmosphere.
@@ -651,7 +649,7 @@ This is likely because the assumptions of constant gravity and temperature no lo
 ![
   When we set the opacity $κ_\mathrm{th}$ to zero, forcing the atmosphere to become isothermal, this gives an atmosphere that is around the same thickness as an \textcolor{Crimson}{isothermal fixed-height atmosphere}.
   The only discrepancy is for low masses, where these models become very large.
-  This is likely because the assumption of constant gravity in the atmosphere no longer holds and so the boundary conditions no longer correspond with the assumptions used to produce a scale-height atmosphere.
+  This is likely because the assumption of constant gravity in the atmosphere no longer holds and so the boundary conditions no longer correspond with the assumptions used to produce a fixed-height atmosphere.
   For comparison, I also show the radius of the \textcolor{CornflowerBlue}{"bare" planet} (the portion of the planet interior to the radiative--convective boundary at $P=100\,$bar).
 ](atmospheric-thickness){#fig:atmospheric-thickness}
 
@@ -659,7 +657,7 @@ This is likely because the assumptions of constant gravity and temperature no lo
 ## Summary and discussion
 
 I have examined the mass--radius relation for watery planets consisting of three distinct layers: an isothermal iron/silicate core, an adiabatic watery envelope and a radiative atmosphere.
-I employed a two-stream atmospheric profile from @Guillot2010 to simplify the atmospheric structure and avoid a full radiative calculation, reducing the number of key parameters to two: the irradiation temperature and the internal temperature.
+I employed a two-stream analytic atmospheric profile from @Guillot2010 to simplify the atmospheric structure and avoid a full radiative calculation, reducing the number of key parameters to two: the irradiation temperature and the internal temperature.
 I used my improved temperature-dependent equation of state to fully capture the thermal behaviour of water in the convective region, as well as temperature-dependent prescriptions for opacity.
 I then linked the internal heating of the planet to the temperature at the base of the atmosphere to test whether these planets could be significant inflated by internal sources of heating.
 
@@ -673,16 +671,16 @@ Although internal heating still changes the temperature--pressure profile at the
 I also found the following:
 
 - The use of an isothermal fixed-height approach to estimate the extent of a heated steam atmosphere gives results that are too small.
-This is because the opacity of water results in heat being trapped in the atmosphere, meaning that the assumptions of constant temperature and gravity that underlie the scale-height approach are no longer applicable.
+This is because the opacity of water results in heat being trapped in the atmosphere, meaning that the assumptions of constant temperature and gravity that underlie the fixed-height approach are no longer applicable.
 
-- The thermal opacity is a key driver of trends in the mass--radius relation.
-Because my water opacity model consists of a simple power-law fitted to few data-points, I cannot necessarily claim that my models necessarily represent the full opacity-dependent behaviour of water.
+- The thermal opacity $\kappa_\mathrm{th}$ is a key driver of trends in the mass--radius relation.
+Because my water opacity model consists of a simple power-law fitted to few data points, I cannot necessarily claim that my models necessarily represent the full opacity-dependent behaviour of water.
 But they do indicate that there is a significant relation to the planet's temperature that should be ignored.
 
 - The assumption of constant atmospheric opacity, which has been made in some previous studies, is likely to produce incorrect radii for water-rich planets.
 Opacity can drastically increase towards the base of the atmosphere as the optical depth and pressure become higher.
 
-As expected, the presence of an irradiated atmosphere introduces an additional complication over the bare-planet model of the previous chapter.
+As expected, the presence of an irradiated atmosphere introduces an additional complication over the bare planet model of the previous chapter.
 In particular, I observe a strong dependence on the water fraction of the planet.
 This is a fundamental degeneracy with interior structure models that cannot be avoided.
 However, this means that we can, with some reasonable assumptions on the structural composition of Earth-like planets, at least assess which layered structures are compatible with a given mass and radius.
@@ -690,16 +688,14 @@ See @sec:a-water-rich-super-earth for an example of this application.
 
 ### Limitations of the atmospheric model
 
-The two-stream grey atmosphere that I used has several limitations and assumptions.^[@Guillot2010]
-
-The two-stream approximation is valid in the limit where the incoming radiation is mostly in the visible and the outgoing radiation is mostly in the infrared, and these two wavebands are well-separated.
-This is because of the simplifying assumption that the thermal emission from the atmosphere at visible wavelengths contributes a negligible
+The two-stream analytic atmosphere that I used has several limitations and assumptions.^[@Guillot2010] The two-stream approximation is valid in the limit where the incoming radiation is mostly in the visible and the outgoing radiation is mostly in the infrared, and these two wavebands are well-separated.
+This is because of the simplifying assumption that the thermal emission from the atmosphere at visible wavelengths contributes negligible flux.
 This may not be the case for heavily irradiated or strongly heated planets because a hotter atmosphere will emit more light in the visible.
 But even in the extreme cases shown in [@fig:internal-heat-profiles], the bulk of the atmosphere is not much hotter than $1000$--$2000\,$K. \marginnote{
   The peak wavelength for a black body of temperature $1500\,$ is $2\,\mu$m.
 } And it is apparent from [@fig:internal-heat-profiles;@fig:irradiation-profiles] that the region in which incident radiation is absorbed, near the top of the atmosphere, is characterised by a much lower temperature than the typical temperature of a Sun-like star.
 For this reason, the two radiation fields used to calculate the two-stream grey atmosphere are mostly decoupled.
-Some caution might be warranted if we were to use these models for planets around colder stars, however.
+Some caution might be warranted if we were to use these models for planets around cooler stars, however.
 
 @Guillot2010 notes that the two-stream model\marginnote{
   He also notes in that paper that a useful value for the convective--radiative boundary pressure is $10\,$bar; compare to our choice of $100\,$bar and see \cref{fig:transition-pressure}.

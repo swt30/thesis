@@ -46,7 +46,7 @@ Though the water mass fraction is not well-constrained, this fits with new spect
 
 \newthought{What of the future?}
 Where is the field headed, and how do contributions like these fit into the picture?
-Understanding how the mass--radius relation can be affected by temperature allows us to take the step of detecting and characterising water-rich planets, taking their surface temperatures into account while modelling them.
+By understanding how the mass--radius relation can be affected by temperature, we can detecting and characterise water-rich planets while including their surface temperatures in our models.
 This is an important precursor to narrow the search to planets that would be considered more classically habitable.
 It will be especially useful in the context of the next generation of super-Earths expected to be found orbiting bright stars by missions such as PLATO^[@Rauer2014], TESS^[@Ricker2014] and CHEOPS^[@Broeg2013].
 My approach is promising because it is linked to the characteristic equilibrium temperature, which can be determined from observations of the planet, and so can be included in analyses of populations of planets.

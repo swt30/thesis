@@ -110,7 +110,7 @@ Vinet               @Vinet1987
 --------------------------------------------------------------------------------
 Table: Sources for the abbreviated equation of state designations used in this paper. {#tbl:eos-abbreviations}
 
-In an ideal world we would simply measure the density (and other state variables) of the material for all relevant pressures and temperatures.
+\newthought{In an ideal world} we would simply measure the density (and other state variables) of the material for all relevant pressures and temperatures.
 But there are two issues that make this approach untenable.
 First, many of the temperatures and pressures relevant to planetary interiors are outside the reach of experiments for now.
 Second, even in the cases where they are accessible, it is often only via dynamic shock experiments rather that static compression experiments.
@@ -118,9 +118,7 @@ Such dynamic experiments may not be appropriate for understanding the behaviour 
 In practice, we therefore choose experimental data for our equation of state where appropriate, and use different sources of data to fill in other regions.
 
 Where do these other sources of data come from?
-I surveyed\marginnote{
-  \citet{Howe2014} completed a similar exercise, providing an overview of previous equations of state chosen to model planetary interiors. But they dealt mostly with equations of state for other materials like iron and silicates.
-} previous works that deal with internal structure, focusing exclusively on the water equations of state across all its phases (@tbl:eos-sources). In order of complexity (and therefore their potential ability to capture the behaviour of the mineral), these equations of state are:
+I surveyed previous works^[@Howe2014 completed a similar exercise, providing an overview of previous equations of state chosen to model planetary interiors. But they dealt mostly with equations of state for other materials like iron and silicates.] that deal with internal structure, focusing exclusively on the water equations of state across all its phases (@tbl:eos-sources). In order of complexity (and therefore their potential ability to capture the behaviour of the mineral), these equations of state are:
 
 - Simple semi-empirical analytic^[By this I mean that the equation of state is of a fixed functional form, but the function is parameterised by one or more parameters that are tuned based on measurements of the material.] prescriptions like the Birch-Murnaghan equation of state (BME), Vinet equation of state, or power laws;
 

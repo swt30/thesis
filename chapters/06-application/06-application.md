@@ -45,7 +45,7 @@ This planet is therefore an excellent choice to apply my models to: it is a heat
 ![
   The observed transmission spectrum of GJ 1132b (\textcolor{red}{red points}) compared to theoretical spectra of H$_2$/H$_2$O atmospheres (coloured lines, with squares showing band-integrated values).
   The feature at $0.9\,\mu$m (the $z$-band) in particular is indicative of a water detection.
-  The dotted line is the baseline radius of the planet inside opacity windows.
+  The dashed line is the baseline radius of the planet inside opacity windows.
   --- *From Nikku Madhusudhan in @Southworth2016*
 ](gj1132b-spectrum_big_fig){#fig:gj1132b-spectrum}
 

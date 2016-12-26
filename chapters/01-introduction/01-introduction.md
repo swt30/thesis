@@ -202,7 +202,7 @@ In short, good models have never been in more demand.
 
 When I began writing this chapter three years ago, I commented that I was of mixed opinion on the overall success of atmospheric modelling because of the poor quality of available spectra.
 Today, such pessimism is entirely unjustified.
-Spectra at resolutions of $R \sim 10^5$ are now available and there has been a tremendous advancement in the detection of molecular species.
+High-quality spectra are now available^[See for example [@fig:hot-jupiter-spectrum].] and there has been a tremendous advancement in the detection of molecular species.
 Giant planets are now routinely observed in transmission to establish the chemical compositions of their atmospheres, and these detections are just beginning to happen for super-Earths as well.^[e.g. @Demory2016; @Southworth2016] So, with atmospheric modelling and observation an established and thriving field of research, what next?
 
 
@@ -248,10 +248,9 @@ These models are inspired by earlier successes with stellar structure models, wh
 The ever-increasing number of known exoplanets, many of which have both mass and radius measurements, are a diverse and interesting set of objects to which to apply these models.
 
 ![
-  Example of some internal structure models for Solar System planets, Jupiter in this case.
-  On the left, a wholly convective model; on the right, a model with a radiative window.
-  --- *From @Guillot1995*
-](jupiter-pie-structures){#fig:jupiter-pie-structures}
+  Example of some internal structure models for Solar System planets, Jupiter and Saturn in this case.
+  --- *From @Guillot2015*
+](jupiter-saturn-pie-structures){#fig:jupiter-saturn-pie-structures}
 
 Others had previously considered the internal structures of planets in our solar system,^[For example, see @Hubbard1980 or @Guillot1995.] but the study often taken as the base for planetary interior modelling is by @Zapolsky1969 who constructed mass--radius relations for large homogeneous isothermal spheres.
 Since then a number of internal structure models have been developed specifically for exoplanets,^[@Guillot1999] with work on super-Earths beginning about a decade ago.^[e.g. @Valencia2006; @Fortney2007; @Sotin2007; @Seager2007; a recent review for giant planets is provided by @Guillot2015]
@@ -289,8 +288,8 @@ There is some information available about any planet despite an inherent degener
 We can immediately exclude certain classes of models: for example, small planets with large radii must almost certainly have large hydrogen envelopes.
 We can also take more sophisticated approaches.
 For example, additional information such as the host star's properties can be included in the models.^[@Sotin2007]
-@Madhusudhan2012a argued for a carbon-rich interior in the exoplanet 55 Cnc e based on its carbon abundance and on its density matching that of pure carbon.
-Using known stellar abundances for the nebular composition, they determined that a high molar ratio of carbon during planet formation could lead to a carbon-rich interior, an interpretation supported at the time by mass and radius measurements.
+@Madhusudhan2012a argued for a carbon-rich interior in the exoplanet 55 Cnc e based on the stellar abundance and on the planet's density matching that of pure carbon.
+Using stellar abundances known at the time for the nebular composition, they determined that a high molar ratio of carbon during planet formation could lead to a carbon-rich interior, an interpretation supported by mass and radius measurements.
 And @Dorn2015 showed that mass and radius alone can constrain the size of a planet's core if we assume it is pure iron.
 They also found that knowledge of stellar elemental abundances can reduce degeneracy in interior structure models and constrain the mantle composition.
 
@@ -301,10 +300,10 @@ These usually involve inverse Bayesian analyses.
 For example, @Rogers2015 investigated the size demographics of planetary populations and set an approximate boundary of $1.6\,$R$_⊕$ beyond which planets are likely to have gaseous envelopes.
 
 Finally, interior structure models may be useful when combined with prescriptions for planetary formation.
-We would like to link internal structures with simulations of protoplanetary disks and use our knowledge of planetary systems to generate synthetic populations of exoplanets.
+We would like to link internal structures with simulations of planet formation and use our knowledge of planetary systems to generate synthetic populations of exoplanets.
 From a statistical point of view, this makes sense: because we only have one solar system to compare our observations to, our best bet for understanding other systems may be to statistically evaluate the likelihood of observing them based on formation models.
 Though this approach is undoubtedly complicated, it is a promising one for assessing the statistical properties of planetary systems.
-@Mordasini2012 did this, combining interior structure calculations with models of the protoplanetary disk to produce synthetic populations of planets.
+@Mordasini2012 did this, combining interior structure calculations with models of planet formation to produce synthetic populations of planets.
 In 2014 they updated their model, building an extensive hierarchical model for planet formation and evolution in an approach termed "planet population synthesis" with the goal of both predicting statistical properties of observed planetary populations and testing the constituent models.^[@Mordasini2012; @Mordasini2012a; @Mordasini2014]
 @Lopez2012 have also made model planets and explored how they evolve and lose mass through time.^[See also @Owen2015.]
 
@@ -444,7 +443,7 @@ In this dissertation I investigate a range of topics relating to the internal st
 
 1. Under what conditions, and how strongly, does temperature affect the observable properties of a water-rich super-Earth?
 
-2. How does this change when a vapour atmosphere is included on the models?
+2. How does this change when a vapour atmosphere is included in the models?
 
 3. How do different modes of heating and energy transport affect the interpretation of a watery planet?
 

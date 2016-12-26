@@ -31,10 +31,11 @@ I showed that planets with watery layers are sensitive to temperature changes, e
 The degree of change depends on a number of factors, but it is clear that the temperature dependence is an important component of these models that should not be neglected.
 
 I then included a treatment for the planet's atmosphere to make the link to a planet's physical transit radius.
-I used a two-stream atmospheric temperature profile.
+I used an analytic two-stream atmospheric temperature profile.
 It is physically motivated yet simple enough for our needs; and it lets us examine the effects of internal and external heating on the planet's structure.
 Though this atmospheric treatment makes a number of simplifying assumptions, it has proved to be very useful for understanding the structure of the planet's atmosphere.
-By including this atmospheric profile, I showed that the water opacity is a critically important parameter: it controls the atmospheric boundary conditions and therefore affects the structure of the entire model.
+By including this atmospheric profile, I showed that the atmosphere can have a significant temperature-dependent contribution to the observable radius of a water-rich planet.
+I also showed that the water opacity is a critically important parameter: it controls the atmospheric boundary conditions and therefore affects the structure of the entire model.
 
 Next, I applied my models to the context of a migrating planet.
 I asked how the phase structure of a watery planet can vary with internal and external heating; more specifically, I investigated this by modelling planets moving closer to their host star.

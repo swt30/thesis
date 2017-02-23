@@ -201,7 +201,7 @@ $$ τ(r) = τ_\mathrm{R} e^{-(α + 1)(r - R_\mathrm{P})/H} $$ {#eq:optical-depth
 where the pressure scale height $H$ is
 $$ H = {R^2_\mathrm{P} k_\mathrm{B} T \over G M_\mathrm{P} μ_\mathrm{eff} }. $$ {#eq:pressure-scale-height}
 It can also be shown that the relationship between $P_\mathrm{R}$ and $τ_\mathrm{R}$ is
-$$ P_R = \left( { G M_\mathrm{P} \left( α+1 \right) τ_R \over R_\mathrm{P}^2 C T^β }\right). $$ {#eq:pressure-at-photosphere}
+$$ P_R = \left( { G M_\mathrm{P} \left( α+1 \right) τ_R \over R_\mathrm{P}^2 C T^β }\right)^{1 \over \alpha + 1}. $$ {#eq:pressure-at-photosphere}
 
 I define the photosphere to be at an optical depth of unity ($\tau_\mathrm{t} = 1$).
 Optical depths lower than this lie above the photosphere; I treat this region as transparent and ignore it when I construct the final model.
@@ -289,7 +289,7 @@ T^4(\tau) &= {3 T_\mathrm{int}^4 \over 4} \left[ {2 \over 3} + τ \right] \\
 & \quad + {3 T_\mathrm{irr}^4 \over 4} μ_*
 \left[ {2 \over 3} + {μ_* \over γ} + \left( {γ \over 3 μ_*} - {μ_* \over γ}e^{-γτ/μ_*} \right) \right]
 \end{split} $$ {#eq:two-stream-temperature-profile}
-and set $\mu_* = 1/\sqrt{3}$, the appropriate level for isotropic irradiation.
+where I set $\mu_* = 1/\sqrt{3}$, the appropriate level for isotropic irradiation.
 This temperature profile is defined in terms of the radial optical depth $τ$.
 Because I use the thermal opacity $\kappa_\mathrm{th}$ as the representative opacity for the atmosphere, the optical depth is for thermal radiation (@eq:optical-depth); this matches the definition of @Guillot2010.
 
@@ -392,8 +392,7 @@ I represent this energy by an effective temperature $T_\mathrm{eff}$ at the radi
 That is, I set the energy generation rate per unit mass in the Earth-like nucleus, $ɛ$, which has units of W$\cdot$kg$^{-1}$.
 The luminosity of the nucleus is then\marginnote{
   $L$ is the luminosity of the Earth-like nucleus, $M_\mathrm{P}$ is the planet's mass, $ɛ$ is the luminosity of the nucleus per unit mass, and $f$ is the water content as a fraction of the planet's mass  ($f_\mathrm{nucleus} = 1 - f$).
-} $$ L = M_\mathrm{P} (1 - f) ɛ, $$ {#eq:core-luminosity}
-where
+} $$ L = M_\mathrm{P} (1 - f) ɛ. $$ {#eq:core-luminosity}
 I assume that the planet radiates this energy isotropically; for convenience I take the radius at which the energy is radiated to be $R_\mathrm{P}$.
 I then use the Stefan--Boltzmann black body relation,\marginnote{
   $\sigma_\mathrm{B}$ is the Stefan--Boltzmann constant.
@@ -695,7 +694,7 @@ The two-stream approximation is valid in the limit where the incoming radiation 
 This is because of the simplifying assumption that the thermal emission from the atmosphere at visible wavelengths contributes negligible flux.
 This may not be the case for heavily irradiated or strongly heated planets because a hotter atmosphere will emit more light in the visible.
 But even in the extreme cases shown in [@fig:internal-heat-profiles], the bulk of the atmosphere is not much hotter than $1000$--$2000\,$K. \marginnote{
-  The peak wavelength for a black body of temperature $1500\,$ is $2\,\mu$m.
+  The peak wavelength for a black body of temperature $1500\,$K is $2\,\mu$m.
 } And it is apparent from [@fig:internal-heat-profiles;@fig:irradiation-profiles] that the region in which incident radiation is absorbed, near the top of the atmosphere, is characterised by a much lower temperature than the typical temperature of a Sun-like star.
 For this reason, the two radiation fields used to calculate the two-stream grey atmosphere are mostly decoupled.
 Some caution might be warranted if we were to use these models for planets around cooler stars, however.

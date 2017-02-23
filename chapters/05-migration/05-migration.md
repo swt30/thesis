@@ -281,7 +281,7 @@ The key limitation of labelling phases like this comes from the domain of the eq
 The EOS only extends down to $275\,$K.^[See @sec:how-i-collected-and-synthesized-the-data for full details on its domain.]
 Below this temperature or otherwise outside its domain, I extrapolate by simply taking the closest point within the domain of the EOS.
 At very high pressures, this gives results that are correct (because ice X occupies most of the phase space there), but it neglects the finer structure of various low-temperature ices.
-It would not be appropriate to consider wholly solid planets with this approach because my models lack any convective heat transfer; others have developed models of cold icy bodies that are better suited to these applications.^[See for example @Ehrenreich2006.]
+It would not be appropriate to consider wholly solid planets with this approach because my models lack any conductive heat transfer; others have developed models of cold icy bodies that are better suited to these applications.^[See for example @Ehrenreich2006.]
 
 The actual positions of the phase boundaries are still a matter of debate too, at least at high pressures and temperatures.
 However, I argue that the exact position of the phase boundaries is less important for gaining what is better understood as a broad overview of trends in planetary structure.

@@ -287,7 +287,7 @@ The profile I used is obtained from @Guillot2010, given by\marginnote{
 } $$ \begin{split}
 T^4(\tau) &= {3 T_\mathrm{int}^4 \over 4} \left[ {2 \over 3} + τ \right] \\
 & \quad + {3 T_\mathrm{irr}^4 \over 4} μ_*
-\left[ {2 \over 3} + {μ_* \over γ} + \left( {γ \over 3 μ_*} - {μ_* \over γ}e^{-γτ/μ_*} \right) \right]
+\left[ {2 \over 3} + {μ_* \over γ} + \left( {γ \over 3 μ_*} - {μ_* \over γ} \right) e^{-γτ/μ_*} \right]
 \end{split} $$ {#eq:two-stream-temperature-profile}
 where I set $\mu_* = 1/\sqrt{3}$, the appropriate level for isotropic irradiation.
 This temperature profile is defined in terms of the radial optical depth $τ$.

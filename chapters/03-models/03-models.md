@@ -411,7 +411,7 @@ I constructed planets with water, silicate, and iron layers, fixing the silicate
 These models correspond to an Earth-like nucleus with an extended water layer at the surface.
 
 The effects of surface temperature on radius vary in magnitude across all my models with water layers, but still exist even when I set the water layer mass to just $1$% of the mass of the entire planet.
-For a $1\,$M$_⊕$ super-Earth with a surface pressure of $10^7\,$Pa ($100\,$bar), the radial change when the surface temperature increases from $300$ to $1000\,$K is $0.8\,$R$_⊕$ (for a $50$% water planet) and $0.1\,$R$_⊕$ (for a $1$% water planet).
+For a $1\,$M$_⊕$ super-Earth with a surface pressure of $10^7\,$Pa ($100\,$bar), the radial change when the surface temperature increases from $300$ to $1000\,$K is $0.3\,$R$_⊕$ (for a $50$% water planet) and $0.1\,$R$_⊕$ (for a $1$% water planet).
 This similarity holds across the entire range of planetary masses I considered.
 
 ![
@@ -420,9 +420,9 @@ This similarity holds across the entire range of planetary masses I considered.
   Here I show mass--radius relations for multi-layer planets: an iron core with silicate and (in all but the first panel) water layers.
   I show the Earth-like iron-silicate core in each panel for comparison.
   All the watery planets are larger than the dry case owing to the lower density of water.
-  Surface temperature variation affects the radius of a watery planet by a different amount in each case, and it can more than double the radius for low-mass planets.
+  Surface temperature variation affects the radius of a watery planet by a different amount in each case, and it can nearly double the radius for low-mass planets.
   Because the iron and silicate layers are isothermal, this variation is due solely to temperature effects in the water layer.
-  I fixed the silicate:iron mass ratio at 2:1 and set the surface pressure to $10^7\,$Pa ($100\,$bar).
+  I fixed the silicate:iron mass ratio at $2$:$1$ and set the surface pressure to $10^7\,$Pa ($100\,$bar).
   The temperature contours are in steps of $100\,$K from $300$--$1000\,$K.
 ](water-fraction-panels){#fig:composition-variation}
 

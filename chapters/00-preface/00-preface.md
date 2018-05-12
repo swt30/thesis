@@ -8,25 +8,24 @@ quotes:
   - quote: Hello, babies. Welcome to Earth. It’s hot in the summer and cold in the winter. It’s round and wet and crowded. At the outside, babies, you’ve got about a hundred years here. There’s only one rule that I know of, babies—God damn it, you’ve got to be kind.
     author: Kurt Vonnegut, "God Bless You, Mr. Rosewater"
   - quote: |
-           Within your lifetime will, perhaps,  
-           As souvenirs from distant suns  
-           Be carried back to earth some maps  
-           Of planets and you'll find that one's  
-           So hard to color that you've got  
+           Within your lifetime will, perhaps,
+           As souvenirs from distant suns
+           Be carried back to earth some maps
+           Of planets and you'll find that one's
+           So hard to color that you've got
            To use five crayons. Maybe, not.
     author: Marlow Sholander, "Maybe"
   - quote: Sometimes I think the surest sign that intelligent life exists elsewhere in the universe is that none of it has tried to contact us.
     author: Bill Watterson, "Calvin and Hobbes"
 
 dedication: |
-            For those who heard my dreams  
+            For those who heard my dreams
             and said, "Go for it."
 
 preface: |
          This dissertation is the result of my work at the Institute of Astronomy between October 2013 and December 2016 under the guidance of Nikku Madhusudhan. Though all the text is mine, some of it is based on work for which he, Ian Parry and Christopher Tout have provided advice and/or editing. All external sources of data are referenced in the text; all figures are my own except where indicated; and any errors or omissions are mine.
 
-         Parts of this dissertation have been previously published or will be submitted for publication. \Cref{sec:an-improved-water-equation-of-state,sec:watery-planet-interiors} were published as "In hot water: effects of temperature-dependent interiors on the radii of water-rich super-Earths".^[@Thomas2016] \Cref{sec:heating-and-the-atmosphere,sec:phase-structure-and-migration} are to be submitted.^[Thomas & Madhusudhan, in prep.]
-         \Cref{sec:a-water-rich-super-earth} is based on a work in preparation;^[Shorttle, Madhusudhan and Thomas, in prep.] I contributed the interior structure models and wrote the chapter but the figures and analysis are courtesy of Oliver Shorttle.
+         \Cref{sec:an-improved-water-equation-of-state,sec:watery-planet-interiors} were published as "In hot water: effects of temperature-dependent interiors on the radii of water-rich super-Earths".^[@Thomas2016] \Cref{sec:a-water-rich-super-earth} is based on work carried out jointly with Oliver Shorttle. I contributed the interior structure models, he used them to produce the analysis and figures shown, and I wrote the chapter.
 
          \newthought{I hereby declare} that this dissertation entitled "Internal and atmospheric structures of heated watery super-Earths" is the result of my own work and includes nothing which is the outcome of work done in collaboration except as declared in this Preface and specified in the text. It is not substantially the same as any that I have submitted or is being concurrently submitted for a degree or diploma or other qualification at the University of Cambridge or any other University or similar institution.
 

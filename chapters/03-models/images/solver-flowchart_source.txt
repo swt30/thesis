@@ -10,22 +10,22 @@
 #    Decorate edge labels: true
 
 // The model parameters include the mass M, surface pressure P(M), and the surface temperature T(M)
-Specify model 
-parameters and 
+Specify model
+parameters and
 boundary conditions;
 // The radius R, which is the guess for the planet's total radius, is chosen as the midpoint of the current radius search bracket
 solve:
 Set trial radius R;
 // The ODEs contain the rest of the information about the layered structure of the planet, the water EOS and the temperature profile
 Evaluate ODEs with
-RK4 integration[Structural model];
+RK integration[Structural model];
 switch (Check value of r at m=0) {
-  case r < 0: 
+  case r < 0:
     // R was too small
-    Remove lower half of 
+    Remove lower half of
     radius search bracket;
     goto solve;
-  case 0 < r < 1 km: 
+  case 0 < r < 1 km:
     break;
   case r > 1 km:
     // R was too large

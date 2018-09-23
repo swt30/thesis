@@ -68,7 +68,7 @@ The picture is complicated by atmospheric effects that can increase the opacity.
 If a cloud layer forms in the atmosphere, the opacity surface may not necessarily be at the same depth or pressure as any solid surface of the planet.
 Turbidity effects around the critical point may also affect the opacity.
 It is for this reason that very high-temperature super-Earths are interesting: at higher temperatures, a cloud deck is less likely to occur^[Some high-temperature condensates are possible but in general we expect clouds to be less of a problem at these higher temperatures.] and atmospheric measurements are therefore able to probe deeper.
-The previously-mentioned opacity windows may therefore be able to provide a view through the atmosphere to the planet's surface, or at least to a point where the assumption of interior convective mixing is more likely to hold.
+The previously mentioned opacity windows may therefore be able to provide a view through the atmosphere to the planet's surface, or at least to a point where the assumption of interior convective mixing is more likely to hold.
 
 \newthought{We saw earlier} that heating a planet can moderately inflate its interior.
 The same will be true for its atmosphere, but to what extent?

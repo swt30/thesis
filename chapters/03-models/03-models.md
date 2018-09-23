@@ -119,20 +119,17 @@ Generic ODE solvers are well-tested, they are optimised for performance, and usi
 To handle this problem, any ODE solver needs to meet the following requirements:
 
 - It needed to solve boundary value problems with systems of equations.
-- It needed to be compatible with Python, which was my preferred programming language at the time.
 - It needed to handle the numerical singularity at $\left(r=0,m=0\right)$ where the denominators of [@eq:mass-continuity; @eq:pressure-gravity; @eq:adiabatic-temperature-gradient] approach $0$.
 - It needed to be able to switch between different equations of state depending on the planet's structure.^[This is sometimes referred to as the solver having support for events. An "event" is any situation in which the system of equations is altered, such as the transition between layers.]
 
-Ultimately, I was not able to find a solver that met the above needs.
-In particular, all those that I evaluated fell short in one of two ways: either they could not handle the singularity at the centre of the core where $r=0$, $m=0$, or they could not handle the transition between equations of state at layer boundaries.
+Most of the solvers I evaluated fell short in one of two ways: either they could not handle the singularity at the centre of the core where $r=0$, $m=0$, or they could not handle the transition between equations of state at layer boundaries.
 I also desired to retain some control over the solver itself rather than treating the solution of the ODE as a black box.
-This was so I could more easily build on the model later on.
+The differential equation solver I found that best met my needs was DifferentialEquations.jl [@Rackauckas2017].
+Working from this differential equation solver as a base, I developed a package that solves systems of equations for planetary structures.
 
-I therefore chose to write my own solver for this system.
+### A boundary value solver in Julia
 
-### A custom numerical integrator in Julia
-
-My solver is called \smallcaps{OGRE}.^[Onion Geology for Researching Exoplanets. Because planets, like onions, have layers.]
+My solver is called \smallcaps{ONION}.^[Because planets, like onions, have layers.]
 I prototyped it in Python and later ported it to Julia, a new scientific programming language that offers much better numerical performance.
 
 I used the shooting method, described above, to solve for the planet's structure.
@@ -154,7 +151,7 @@ The shooting method uses a series of trial solutions.
 For the initial trial solution, I specify the surface boundary conditions: total planetary mass $M$, surface pressure $P(M)$, and surface temperature $T(M)$.
 I further allow for multi-layer planets by specifying the composition and mass fractions of each layer, $\{x_i\}$.
 I also specify a search bracket for the radius $[R_1(M), R_2(M)]$.
-The code uses a fixed-step fourth-order Runge--Kutta integrator to solve the system of differential equations above.
+The code uses a Runge--Kutta integrator [@Tsitouras2011] to solve the system of differential equations above.
 
 Specifying the parameters $\{M, R, \{x_i\}\}$ gives an overdetermined system.
 The trial solution will therefore fail to meet the inner boundary condition, which is that $r=0$ where $m=0$.
@@ -207,48 +204,6 @@ In practice, I did this by ensuring that the equation for the adiabatic temperat
 This effectively split the adiabatic temperature profile into several different sections, consisting of one separate adiabat for each phase and meeting at the phase boundaries of water.
 By handling each phase separately, I avoided the numerical difficulty of taking a derivative (@eq:thermal-expansion) across a density discontinuity.
 I explain this procedure more in @sec:phase-structure-and-migration where I consider the phase structure of the final models.
-
-### Effect of the mass grid size
-
-The integration is performed on a logarithmically-spaced mass grid.
-I also tested a uniform linear mass grid with several hundred points in the mass co-ordinate.
-However, when I later added an atmospheric layer in @sec:heating-and-the-atmosphere, it became apparent that this uniform grid was failing to capture the extent of the atmosphere correctly.
-In the very outer layers of the atmosphere where the density is very low, a fixed step in mass corresponds to a very large step in radius.
-If the surface pressure is low, this can cause the radius of a water-rich planet to be overpredicted due to the integrator failing to adequately resolve the atmospheric structure.
-
-How large should the smallest mass step be?
-A $1\,$R$_\oplus$ and $1\,$M$_\oplus$ planet at $T=500\,$K has a scale height of $H = {RT \over g_\oplus} \approx 20\,$km.
-To resolve the atmosphere accurately we would like at least on the order of ten mass steps per scale height.
-From @eq:mass-continuity-repeat, setting $dr = 2\,$km, $\rho = 1\,$kg$\cdot$m$^{-3}$ as a representative density for a gaseous atmosphere and $r = R_\oplus$, we find ${dm \over M_\oplus} \approx 10^{-7}$.
-A mass step of $10^{-10}\,$M$_\mathrm{P}$ should therefore be more than adequate to resolve the atmospheric structure.
-As the density increases inward, the mass step can be made larger.
-
-The problems with the low resolution uniform mass grid could be resolved in several ways.
-We could increase the resolution of the uniform grid to ensure that the atmosphere is resolved appropriately.
-But the density can very across several orders of magnitude and this would result in an unnecessarily fine grid in other parts of the model.
-The most robust way is to use an adaptive step size solver to tune the mass step $Δm$ at each step of the integration such that it produces a desired radius step $Δr$.
-But adaptive step size methods often require us to take several trial steps to find an appropriate step size, which can be problematic as we approach the $m=0$ limit of the structural equations.
-
-Given that the atmosphere is expected to be close to exponential in pressure and optical depth within the outer layers,^[See @sec:boundary-conditions.] I instead chose to use a logarithmically spaced mass grid.
-At the outer boundary of the model, the mass step is approximately $Δm = 10^{-10}\,$M$_\mathrm{P}$, which is sufficient to avoid any numerical error in the outer atmosphere.
-From there I allow $\Delta m$ to increase by a constant multiplicative factor at each step into the planet.
-I set this factor such that the mass grid has a total of $N$ points; for the models in this dissertation, I use $N = 500$.
-
-![
-  The mass grid affects the final mass--radius diagrams.
-  Here I show models of planets with a watery envelope, $30$% of the planet's mass, over an Earth-like nucleus.
-  I set the outer boundary pressure to $100\,$bar.
-  I use two different treatments for the mass grid.
-  The first (solid lines) is logarithmically spaced so that low-density regions near the surface have a higher grid resolution.
-  The second (dashed lines) is a uniform grid, replicating the mass grid choice from my first paper [@Thomas2016].
-  It does not appropriately resolve the low-density region near the surface.
-  I find that the difference between the two treatments can be significant for larger planets.
-](grid-error){#fig:grid-error}
-
-My first paper, on which this chapter was originally based, used a uniform mass grid.
-With $N=500$, this mass step was only $2 \times 10^{-3}\,$M$_\mathrm{P}$, which resulted in overpredicted radii for higher-mass planets ([@fig:grid-error]).
-The error is minor ($<0.1\,$R$_⊕$) for smaller planets ($M_\mathrm{P}<\,$M$_\oplus$) but can be large ($0.3\,$R$_⊕$) for planets nearer $10\,$M$_⊕$.
-I have since corrected this problem and all the results presented in this dissertation use the updated logarithmic mass grid.
 
 ### Model verification
 

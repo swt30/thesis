@@ -193,7 +193,6 @@ Therefore I also provide [@fig:phase-key] as a key to the colours and scale of [
   Key to [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth].
   The concentric dotted circles are at integer multiples of Earth's radius and the outermost solid black line is the planet's photospheric radius.
   Coloured layers show the phase structure of the planet.
-  This key does not show every phase possible in my models, only the ones that appear in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth].
 ](phase-key){#fig:phase-key}
 
 These figures show several values and trends at a glance:
@@ -205,33 +204,30 @@ These figures show several values and trends at a glance:
 ![
   *Top panel:* Heated planets are larger, but how close does a watery planet need to be to its host star to grow significantly?
   Here I show the radius of a $1\,$M$_⊕$ watery planet ($30$% water by mass) at several different distances from a Sun-like star and with several different core energy generation rates.
-  Such a planet can almost double in size or more if it is moved from $1\,$au to $0.1\,$au.
-  There is also a kink in the curve for the lowest internal energy generation rate ($10^{-18}\,$W$⋅$kg$^{-1}$) near $3\,$au.
-  This is caused by a transition to cold ice and liquid, causing a sharp change in radius (see below).
+  Such a planet can more than double in size if it is moved from $3\,$au to $0.3\,$au.
   *Bottom panel:* What do the interiors of these planets look like?
   Here I show structural diagrams for the models indicated with circles in the top panel.
   See [@fig:phase-key] for the colour key.
+  Most of the diagrams show a thick water vapour atmosphere, transitioning to supercritical fluid and possibly plasma deeper within the planet.
   The relative positions of the models are maintained.
-  For example, the top red line in the top panel corresponds to the top row of models in the bottom panel.
-  In almost all of these cases, the planets have a thick water vapour atmosphere.
-  Deeper within the planet, the atmosphere transitions directly to superionic fluid and possibly plasma.
-  The only exception is in the case of a cold planet past $3\,$au, which has a liquid layer around an ice VII shell.
+  For example, the bottom red line in the top panel corresponds to the bottom row of models in the bottom panel.
+  The exception is for the top row of diagrams, which show planetary structures with $\varepsilon=10^{-8}$W$\cdot$kg$^{-1}$ that have not converged and are consequently not shown in the top panel.
 ](migration-1Mearth){#fig:migration-1Mearth}
 
 \noindent The key results from these figures are as follows.
 
-1. Small ($\lesssim 3\,$M$_\oplus$) watery planets can have extended low-density atmospheres.
+1. Small ($\lesssim 3\,$M$_\oplus$) watery planets can have extended low-density atmospheres, and these can be caused by either internal or external heating. But these results are only reliable to a point: at high levels of heating, we see what seems to be runaway atmospheric growth.
 
-2. For the most part, waterworlds in orbits comparable to Earth contain three key phases of water: gas, superionic fluid, and plasma. There is no liquid, ice VII or ice X except for cold planets in wider orbits ($\gtrsim 3\,$au).
+2. For the most part, waterworlds in orbits comparable to Earth contain two or three phases of water: a gaseous atmosphere, a supercritical fluid layer, and possibly a plasma or ice X shell nearer the core. There is no liquid, ice VII or superionic fluid present in any of the planets modelled in this chapter.
 
-3. There is a discrete transition in planet size for waterworlds with very low internal heating ($10^{-18}\,$W$\cdot$kg$^{-1}$). For a Sun-like star, this transition occurs at around $3\,$au.
+3. For larger planets, such as those $\approx 10\,$M$_\oplus$, the size of the planet is relatively insensitive to its position within its orbit. This is because the massive planet is more easily able to hold onto its atmosphere, so external heating effects are weak when compared to the potential size change from increasing the internal energy generation rate instead.
 
 ### Small watery planets can have extended low-density atmospheres
 
 @Fig:migration-1Mearth reveals that the atmospheric component of these models is key to their inflated size.
 When comparing phase structures of these identical-mass planets, most of the difference can be explained by the atmosphere itself.
 There is some expansion in the heated internal layers too, but most of the expansion is caused by the atmosphere itself, at least for the lower-mass case ($M_\mathrm{P} \approx M_\oplus$).
-For example, compare the top row of models in @fig:migration-1Mearth.
+For example, compare the second row of models in @fig:migration-1Mearth.
 As the planet is moved closer to the star, the atmosphere expands while the other layers remain virtually static.
 
 Comparing [@fig:migration-10Mearth] to [@fig:migration-1Mearth] then shows that this effect is exaggerated for low-mass planets ($\lesssim 3\,$M$_\oplus$).
@@ -241,30 +237,55 @@ Together with high temperatures, this leads to large atmospheric scale heights a
 By linking the temperature of the planet to its orbital separation, we can also see that large radial changes occur across a reasonable range of orbital distances and are not just confined to planets orbiting very close to their host star.
 The range of orbital separations shown in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth] is similar to the range from Mercury to Saturn in our solar system.
 
+These results are only reliable to a point, however.
+Compare the top panels of [@fig:migration-1Mearth] and [@fig:migration-3Mearth].
+The latter shows orbital separation--radius curves for four values of internal heating $\varepsilon$; the former shows only three.
+What happened to the 10$^{-8}$W$\cdot$kg$^{-1}$ case?
+The answer is that these models suffered from runaway atmospheric growth and did not converge.^[By this, I mean that the trial ODE solution failed to satisfy the inner boundary condition $r=0, m=0$ and instead reached $r=0$ first. Normally this would then result in us increasing our radius guess until the boundary condition was met ([@fig:solver-flowchart]) but no such increase in the radius could be found to produce a consistent solution.]
+The upper row of models in the lower panel of [@fig:migration-1Mearth] show these unconverged models: they differ from the converged models by their lack of an Earth-like core.
+This is because the core is defined as the region where $m<0.7M_\mathrm{planet}$, but this region is not reached before the integrator terminates at $r=0$.
+
+I believe that this runaway growth is a result of incomplete opacity information in the outer atmosphere.
+In @sec:heating-and-the-atmosphere I explained that our information about water opacity in the outer atmosphere is represented as a power-law fit to a grid of a few pressure--temperature pairs.
+But the lowest of these temperatures is $1000\,$K and the lowest of these pressures is $1\,$bar.
+Further, we saw that the outer edge of the atmosphere is defined as the solution to the equation @eq:optical-depth-at-photosphere.
+This equation depends on the water opacity and, as we heat the planet, the pressure at which it is satisfied becomes very low.
+
+To refine our estimates of planet sizes, the most important thing we could therefore do is to obtain better estimates for the opacity of water (and corresponding quantities like the opacity ratio $\gamma$) in this low-pressure regime.
+But at these low pressures other considerations like photoevaporation become important too.
+Because of the restrictions above, I am not confident that the planetary radii shown in this chapter are robust for strongly heated low-mass planets (i.e. [@fig:migration-1Mearth]).
+I am more confident in the later figures and in the other observations about planetary structure, which I describe below.
+
+
 ![
   As in [@fig:migration-1Mearth], but for a $3\,$M$_⊕$ planet.
   Comparing to [@fig:migration-1Mearth], we see that the $3\,$M$_⊕$ planets can actually be smaller than the $1\,$M$_⊕$ planets, at least where there is moderate internal or external heating.
 ](migration-3Mearth){#fig:migration-3Mearth}
 
-### These planets mostly contain three key phases of water
+### These planets mostly contain three phases of water
 
-At the irradiation temperatures shown in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth], the bulk of these planetary models contain only three phases of water: gas, supercritical fluid and plasma.
-There is little evidence that high-pressure ice phases like ice VII and ice X are present except in the case of very cold planets.^[It is certainly possible to generate planets with more varied phase structures. For example, see the images on the title page, which I generated by taking random temperatures, planet masses and water fractions. But most of the interesting structures arise with planets that are several times more massive than Earth and consist mostly of water (water fractions of $50$% or more).]
-In [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth] the only models to contain phases other than these three were minimally internally heated ($\varepsilon=10^{-18}\,$W$\cdot$kg$^{-1}$).
-The plasma phase appears near the bottom of the water envelope for these cold planets, and the liquid and ice VII phases appear under a very thin gas atmosphere.
+At the irradiation temperatures shown in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth], the bulk of these planetary models contain only three phases of water: gas, supercritical fluid and either plasma or ice X.
+There is no evidence that other high-pressure ice phases like ice VII are present.^[It is certainly possible to generate planets with more varied phase structures. For example, see the images on the title page, which I generated by taking random temperatures, planet masses and water fractions. But most of the interesting structures arise with planets that are several times more massive than Earth and consist mostly of water (water fractions of $50$% or more).]
 
 These graphs do not explore the trends for planets with water mass fractions other than $30$%.
-However, we might expect that planets with larger water mass fractions are more likely to reach high-pressure ices near their core.^[In fact this can be seen in the pressure--temperature profiles for $100$% water spheres in [@fig:pressure-temperature-profiles], which reach ice X at their core.]
+However, we might expect that planets with larger water mass fractions are more likely to reach other high-pressure water phases near their core.
 They will also be less dense and have a larger radius overall than planets with iron and silicate layers.
-But the way in which my internal heating models are constructed, in which the internal heat ing comes from the core of the planet, means that the internal heating approaches zero as the core mass approaches zero.
+But the way in which my internal heating models are constructed, in which the internal heating comes from the core of the planet, means that the internal heating approaches zero as the core mass approaches zero.
 We would need a way of representing energy generation from the water envelope itself (by a tidal heating model, for example) in order to continue modelling these high-water-mass planets as being internally heated.
 
-### There is a discrete transition in planet size
+### Larger planets have a weak relationship between orbital radius and planetary radius
 
-The kink in the lower curve on [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth] is a discrete transition in phase structure for cold planets.
-The phase structure of the resulting planet is visible as the bottom-right structure in the grid of models.
-This structure contains a liquid water layer over ice VII and ice X.
-But these phases are only present when there is virtually no internal heating: even an Earth-like internal heating amount of $10^{-12}\,$W$⋅$kg$^{-1}$ in the core is enough to shift the path of the adiabat away from these cold ice phases and up to the supercritical fluid regime.
+Comparing [@fig:migration-1Mearth] to [@fig:migration-10Mearth] shows how much flatter the orbital--planetary radius curve is for the more massive planet.
+Earlier, we saw that low-mass planets can become highly inflated when heated, and that this inflation is due almost exclusively to the atmospheric layer of the planet expanding.
+With higher-mass planets, we see the opposite: the planet's size is almost constant no matter whether it is positioned at 0.3 or 10$\,$au, the gaseous atmosphere occupying only a small portion of the planet's total radius in either case.
+
+In the previous chapter we asked the question: given a planet that could be heated internally and externally, which mode of heating is dominant?
+There we concluded that internal heating is more capable of increasing a planet's radius because it can affect the temperature throughout the entire planet rather than simply inflating the outer atmospheric layer.
+In the flat orbital--planetary radius curves of [@fig:migration-10Mearth] we can see this effect strongly.
+It is easier to inflate these massive waterworlds by heating them from the inside than by moving them closer to their host star.
+
+This finding has implications for assessing the internal structure of an observed super-Earth, because it means that information about the planet's environment is not enough to determine whether its radius is inflated.
+Instead, we must take into account that any *internal* energy generation---even if only comparable to the Earth's---can increase its radius and therefore lead to a different interpretation of the planet's structure.
 
 ![
   As in [@fig:migration-1Mearth; @fig:migration-3Mearth], but for a $5\,$M$_⊕$ planet.
@@ -288,7 +309,7 @@ However, I argue that the exact position of the phase boundaries is less importa
 It would be very easy to repeat this analysis in future with improved equation of state data, or to add in different mineral phases of the iron and silicate layers if we wanted to examine their structure from a geological perspective.
 
 I used these models to simulate the effects of migration.
-We must assume that any movement occurs on timescales that are longer than the thermal equilibrium timescale of the planet (so that it remains in thermal quasi-equilibrium) and that there is no significant mass loss over this timescale.^[@Kurosaki2014 show that super-Earths with watery envelopes and radii between $1.5$ and $3\,$R$_\oplus$ can sustain these envelopes against photo-evaporation, while lighter components like hydrogen and helium are lost from the atmosphere on shorter timescales. [@Lopez2012; @Owen2015]
+In order for this to be reasonable, we must assume that any movement occurs on timescales that are longer than the thermal equilibrium timescale of the planet (so that it remains in thermal quasi-equilibrium) and that there is no significant mass loss over this timescale.^[@Kurosaki2014 show that super-Earths with watery envelopes and radii between $1.5$ and $3\,$R$_\oplus$ can sustain these envelopes against photo-evaporation, while lighter components like hydrogen and helium are lost from the atmosphere on shorter timescales. [@Lopez2012; @Owen2015]
 This is promising support for the stability of such water-rich super-Earths.]
 Further, my atmospheric models assume a one-dimensional atmosphere and so therefore correspond to a well-mixed atmosphere without any latitudinal or longitudinal structure.
 Such an atmosphere could be found around a planet that rotates rapidly compared to the orbital timescale.
@@ -314,7 +335,7 @@ What does this mean for the hospitability of such a planet?
 
 If we accept that planets can be formed with significant water layers---and this is not particularly far-fetched, especially when we consider that even low water mass fractions can result in extended atmospheres---then these models show that liquid water may exist in a relatively narrow region of phase space.
 This is an important consideration in calculations of the habitable zone.
-For example, we saw above that the phase structure of a planet with a $30$% water layer allows for liquid water at the surface only when the planet is quite cold (irradiation temperature less than that of Earth's) and has very little internal heating ($10^{-18}\,$W$\cdot$kg$^{-1}$).
+For example, the phase structure of a planet with a $30$% water layer allows for liquid water at the surface only when the planet is quite cold (irradiation temperature less than that of Earth's) and has very little internal heating ($10^{-18}\,$W$\cdot$kg$^{-1}$).
 But such a planet's atmosphere is diffuse and gaseous even if the internal heating is up to two orders of magnitude lower than the Earth.
 
 I did not have time to investigate the effect of the water fraction further.

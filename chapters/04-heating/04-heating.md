@@ -240,11 +240,11 @@ In this fashion my models converge on the correct values of $P_\mathrm{R}$, $T_\
 
 ### The atmosphere--envelope transition
 
-The boundary between the irradiated atmosphere and the adiabatic interior is defined by the Schwarzschild criterion for convective instability.^[A material for which $$ \left|{d \ln T \over d \ln P}\right|_\mathrm{ad} < \left| {d \ln T \over d \ln P} \right|_\mathrm{rad} $$ is unstable against convection. That is, the convective--radiative boundary occurs at the point where the radiative temperature gradient becomes larger than the adiabatic temperature gradient.]
+The boundary between the irradiated atmosphere and the adiabatic interior is defined by the Schwarzschild criterion for convective instability.^[A material for which $$ \left|{d \ln T \over d \ln P}\right|_\mathrm{ad} < \left| {d \ln T \over d \ln P} \right|_\mathrm{rad} $$ is unstable against convection. That is, the convective--radiative boundary occurs at the point where the adiabatic temperature gradient matches the radiative temperature gradient.]
 This criterion depends on the thermal behaviour of water and requires assessing whether the radiative or adiabatic temperature gradient is steeper.
-My code chooses automatically between convective transport as described in [@sec:the-temperature-gradient] and radiative transport as described in [@sec:two-stream-temperature-profile].
+My code chooses automatically between convective transport as described in [@sec:the-temperature-gradient] and radiative transport as described in [@sec:two-stream-temperature-profile]: if $\nabla_\mathrm{rad} \leq \nabla_\mathrm{ad}$ then $\nabla = \nabla_\mathrm{rad}$, otherwise $\nabla = \nabla_\mathrm{ad}$.
 In practice, this means that the water layer consists of a radiative outer region on top of a convective envelope such that the temperature gradient matches at the boundary.
-The transition pressure at the top of the envelope I denote $P_\mathrm{tr}$.
+The transition pressure at the top of the envelope, where $\nabla_\mathrm{rad} = \nabla_\mathrm{ad}$, I denote $P_\mathrm{tr}$.
 
 I also investigated how sensitive the final radius was to the choice of this boundary.
 In [@sec:pressure-at-the-radiativeconvective-boundary] I assess several fixed values for this transition pressure and show that the choice has a negligible effect on the final radius.

@@ -82,6 +82,38 @@ My sources for these latter two coefficients are detailed in @sec:thermal-expans
 @Eq:adiabatic-temperature-gradient-radial combined with @eq:mass-continuity gives the temperature gradient in terms of the mass co-ordinate,
   $$ {dT \over dm} = -{T α G m \over 4 π r^4 ρ c_P}. $$ {#eq:adiabatic-temperature-gradient}
 
+Is the assumption of an adiabatic temperature gradient appropriate?
+In order to answer this, we need to show that convective heat transfer is dominant over conductive and radiative heat transfer---and if not, use those gradients instead.
+
+##### Convection vs conduction
+
+We can assess whether a planetary layer is likely to be convective or conductive by calculating its Rayleigh number,\marginnote{
+  Here, $g$ is the acceleration due to gravity, $\alpha$ is the volumetric thermal expansion coefficient, $\Delta T$ is the temperature differential across the layer, $h$ is the layer thickness, $\nu$ is the coefficient of kinematic viscosity and $\kappa$ is the thermal diffusivity. This is the Rayleigh number for a fluid layer heated from below; later in \cref{sec:heating-and-the-atmosphere} we will indeed assume that internal heating comes from deep in the planet and that the water layer is not itself luminous.
+} $$ Ra = {g \alpha \Delta T h^3 \over \nu \kappa}, $$ {#eq:rayleigh-number}
+which is the ratio of buoyant and viscous drag forces [@Milone2014]. Rayleigh numbers over the critical threshold for convection $Ra_\mathrm{c}$, typically taken as $1000$--$2000$, indicate that buoyancy forces dominate and so the layer will convect.
+
+I will not be assessing the above equation for every model constructed in this dissertation, and an order-of-magnitude calculation will quickly show why: the Rayleigh number of a icy super-Earth far exceeds the critical threshold for convection. Taking as a representative example the case of an icy planet with a similar temperature structure to the Earth, here is a rough sketch of the Rayleigh number of its water layer.
+
+- For an Earth-sized and Earth-mass planet, the acceleration due to gravity $g$ is ~$\,10\,$m$\cdot$s$^{-2}$.
+- Ice VII is a good representative choice for the high-pressure phase of water inside a solid Earth-sized planet. The volumetric thermal expansion coefficient $\alpha$ of ice VII is ~$\,10^{-4}\,$K$^{-1}$ [@Fei1993].
+- Assume that our representative waterworld has a thick ice layer similar to the Earth's mantle. Then the temperature difference $\Delta T$ is ~$\,3000\,$K across a characteristic layer height $h$ of ~$\,3 \times 10^6\,$m.
+- The coefficient of kinematic viscosity $\nu$ can also be expressed as ${\eta \over \rho}$ where $\eta$ is called the dynamic viscosity and $\rho$ is the density [@Milone2014]. In [@fig:simple-eos-comparison] we see that a representative density of ice is $10^3$--$10^4\,$Pa over the GPa--TPa range; I take $\rho\,$~$\,10^3$ to account for the planet's increased temperature over the zero-temperature EOS shown in that figure. Then taking the dynamic viscosity of ice VII as $10^{14}\,$Pa$\cdot$s [@Poirier1981], this gives $\nu\,$~$\,10^{11}\,$m$^2\cdot$s$^{-1}$.
+- The thermal conductivity of ice VII is ~$\,10\,$W$\cdot$m$^{-1}\cdot$K$^{-1}$ [@Chen2011].
+- Putting this together with [@eq:rayleigh-number] we find that $Ra\,$~$\,10^8$, five orders of magnitude higher than the critical Rayleigh number of $10^{3}$.
+
+Convective energy transport therefore almost certainly dominates within the bulk of the icy planet we have just considered. In order for viscosity effects to suppress convection, the kinematic viscosity of ice $\nu$ would have to be five orders of magnitude larger. Therefore I proceed by assuming that convection holds throughout the planet. This is a good assumption although it is worth noting that convection could potentially be suppressed if the planet were much more weakly heated or if the ice layer were much thinner. Therefore, in a more detailed model it might also be sensible to allow thin conductive layers at key transition points like at the planet's crust. Such layers would be expected to sustain conductive heat transfer because they are thin and occur at points where the composition of the planet is changing. This is the approach taken by @Valencia2006 when modelling super-Earth and super-Mercury planets and it is inspired by the boundary layers used in Earth models.
+
+##### Convection vs radiation
+
+In contrast to the above, a single representative order-of-magnitude calculation is not appropriate for showing whether radiation is likely to be a dominant mode of energy transport throughout the entire planet.
+This is because radiative transfer is almost certain to be dominant at some point in the outer layers of every waterworld: as the planet's solid/liquid interior transitions into a gaseous atmosphere, radiation becomes a viable method of carrying increasing amounts of energy.
+Though this chapter does not yet treat the atmosphere of the planet, we will see in @sec:heating-and-the-atmosphere that a radiative temperature gradient is needed to represent the atmosphere.
+We will therefore treat this radiative atmosphere appropriately when we come to it.
+
+For the icy planetary interior models in this chapter, however, radiation is unimportant to the energy transport of the planet.
+This is by analogy with the Earth, where only long-wavelength ($\geq 1\,$km) radio waves can propagate, transporting negligible amounts of heat compared to conduction and convection [@Milone2014].
+We expect similar behaviour to hold with ice/liquid waterworlds because these materials are effectively opaque to shorter-wavelength radiation.
+
 ## Models
 
 Together, [@eq:mass-continuity; @eq:pressure-gravity; @eq:eos; @eq:adiabatic-temperature-gradient] define a structural model: three ordinary differential equations and an equation of state linking pressure, temperature and density.

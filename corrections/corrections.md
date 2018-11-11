@@ -21,7 +21,17 @@ Though I took the approach of using a representative example to show that conduc
 
 4) The assumptions made in the treatment, specifically of latent heat, of phase boundaries must be described in detail. A critical discussion of whether these assumptions are always reasonable and the physical motivation for the treatment of phase transitions in section 5.1.1 must be included.
 
-TODO
+After reviewing the literature on planetary phase transitions, I am satisfied in saying that the assumptions I made when constructing adiabats are equivalent to the assumption of no latent heat of phase transition. I have written an extensive discussion of this in chapter 5. It includes the following:
+
+- An explicit acknowledgement that the way in which I have constructed the adiabat is equivalent to ignoring latent heat.
+- A discussion of the changes that occur in an adiabat that crosses a phase boundary, with reference to literature on planetary interiors.
+- A more complete description of the problem originally described in section 5.1.1, separating the concern into two parts: a numerical issue produced by the discretisation of the phase space when constructing the EOS, and the physical issue of the latent heat itself.
+- An explanation of why this second part cannot be resolved from my equation of state alone and instead requires a separate source of data, either the latent heat of transition itself or the specific entropy.
+- As physical justification for ignoring the latent heat when constructing the adiabats within my planets, reference to sources which show that the entropy chance across the high-pressure ice boundaries in question are minimal.
+- A sidenote about exothermic and endothermic phase changes and their effects on convection.
+- Further discussion of the situations where the assumption of no latent heat would no longer be reasonable.
+
+I had hoped to be able to provide a more complete treatment by using actual measurements of entropy or latent heat, but this information is not yet available for the range of pressures and temperatures I consider in my EOS. I had discussed this problem with Stephane Mazevet at a conference in 2016. He had indicated that he was also working on an improved water equation of state that included entropy in different water phases. The preprint for this work was just published in October 2018^[Mazevet et al 2018, arXiv 1810.05658] but, upon reading it, I see that Mazevet *et al.* still do not treat entropic differences between phases. Instead they are making an assumption equivalent to mine, that of no latent heat of phase transition. I therefore have to put this down as one for future work: the information that would allow us to account for entropic differences between phases is not yet present and so my hand is forced and I must treat them as nonexistent. It's unsatisfying but there you have it.
 
 5) In chapter 4 there are physical problems with the matching of a radiative atmosphere to an adiabatic interior. Instead of the arbitrary transition at a pressure of $100\,$bar the temperature gradients should be matched. A figure or figures demonstrating this must be included.
 
@@ -30,7 +40,7 @@ In order to accommodate this request, I needed to make significant changes to th
 To accomplish this, I re-wrote the differential equation solver. The way it functions is broadly similar---it still uses the shooting method that I described in my thesis---but "under the hood" I have switched it to a sophisticated differential equation solving framework called DifferentialEquations.jl. This rewrite allowed me to make the desired change more easily and brought several other benefits such as:
 
 - Adaptive stepping. The size of the mass step is now chosen automatically to give a bounded error in the final solution, rather than being pre-specified. This means that the atmospheric layers are constructed on a grid that is fine enough in mass to resolve large changes in radius, even when the pressure is changing rapidly. This allowed me to eliminate the dependence of the final radius on the mass grid size, which was an unpleasant numerical error in my original work (originally section 3.2.5 of the thesis).
-- The integrator now uses a 5/4 Runge-Kutta method due to Tsitouras (2011), rather than the common RK4 method that I implemented at first. The new method comes with a free 4th-order interpolant which is useful for giving numerically precise results in the event handling mentioned above, as well as speeding up the integration scheme by requiring fewer points.
+- The integrator now uses a 5/4 Runge-Kutta method^[Tsitouras C, 2011, Comp Math Appl 62, 2, 770-775], rather than the common RK4 method that I implemented at first. The new method comes with a free 4th-order interpolant which is useful for giving numerically precise results in the event handling mentioned above, as well as speeding up the integration scheme by requiring fewer points.
 - A more flexible structure: equations of state can be easily changed; energy transport in the water layer can be forced to be radiative or convective if desired; and the solutions can be visualised more easily.
 
 Having made these changes to the code, I updated chapters 3--5 accordingly:

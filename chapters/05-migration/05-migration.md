@@ -15,7 +15,7 @@ This may all have astrobiological consequences.
 It is therefore useful to have some grasp on how varied the internal structures of these planets can be.
 
 The phase structure of these planets is useful to know for other reasons too.
-It provides a sanity check that these models are producing appropriate structures: we expect to see a gaseous atmosphere over layers of liquid, supercritical fluid/plasma, and high-pressure ices.
+It provides a sanity check that these models are producing appropriate structures: we expect to see a gaseous atmosphere over layers of liquid, supercritical fluid/plasma, or high-pressure ices.
 It allows us to see whether the equation of state had its detail in the right regions: we would prefer that the final planetary models consist of phases like gas and supercritical fluid rather than ice X because the latter's equation of state is not well-known.
 And it provides an at-a-glance overview of the similarities and differences between planets with different heating parameters.
 
@@ -33,10 +33,10 @@ I show the results for a few different scenarios and highlight the interesting f
 ## The phase structure of a planet
 
 A phase transition is a discrete change in the properties of a material.
-This could be a strong change such as the transition between a liquid and a vapour, or it could be more subtle such as a change in the crystalline structure of ice.
+This could be a dramatic change such as the transition between a liquid and a vapour, or it could be more subtle such as a change in the crystalline structure of ice.
 
 Phase transitions occur within my planetary models when the temperature and pressure cross a phase boundary.
-For example, [@fig:pressure-temperature-profiles] shows how several different planetary structures each span different regions of the pressure--temperature phase space.^[Recall that these boundaries are not necessarily well-defined at high temperatures and pressures because the behaviour of water has yet to be measured in these regions.]
+For example, [@fig:pressure-temperature-profiles] shows how several different planetary temperature--pressure structures each span different phases within pressure--temperature.^[Recall that these boundaries are not necessarily well-defined at high temperatures and pressures because the behaviour of water has yet to be measured in these regions.]
 
 ![
   Example pressure--temperature profiles for watery planet interiors.
@@ -52,18 +52,44 @@ I explicitly treat the atmospheric layer differently with the two-stream radiati
 This does not mean that any given phase may only be found in a single layer within the planet.
 But in practice the structure of the equation of state and the path of the adiabat in my models is such that this is almost always the case.
 
-### My treatment of phase transitions
-
 My solver traces an adiabat through the envelope of the planet, and this adiabat's path depends on the equation of state: it is calculated from the thermal expansion coefficient $\alpha$, which I evaluate directly from the EOS by taking a partial derivative in the temperature direction.^[See @eq:thermal-expansion.]
-This poses a problem: how do we treat the boundaries between phases?
-Do we enforce continuity of temperature and pressure across the phase boundaries, or do we allow for discontinuities?
-When I wrote the solver, I was therefore forced to make a choice about how to handle these phase transitions within the adiabatic interior.
-I tried two different approaches.
+But this approach breaks down at phase boundaries because they feature density discontinuities at which the thermal expansion coefficient becomes undefined.
 
-\newthought{The first approach} is the simplest: we can calculate the thermal expansion coefficient $\alpha$ using @eq:thermal-expansion.
-Within a given phase, this produces the correct value for $α$.
-But the density is discontinuous at the phase boundaries ([@fig:density-jump]).
-Because of this discontinuity, we obtain a peak in the value of $α$ across the boundary ([@fig:thermal-expansivity-correction]).
+This poses the problem of how to treat the boundaries between layers.
+Is the adiabat continuous and smooth in P--T space, continuous and non-smooth, or discontinuous at the phase boundary?
+And how should this be implemented in a way that can be used in a differential equation solver?
+The answer depends on the properties of the material in question, in particular whether there is latent heat involved in the phase transition and what the relative thermal expansivities and heat capacities are in the different phases.
+
+### The adiabatic temperature gradient at phase transitions
+
+
+
+
+### My treatment of the adiabat
+
+From the above section, it should be clear that a complete treatment of the adiabat across water phase changes requires one of two things.
+Either we need the latent heat of transition between the two phases, or we need the specific entropy on either side of the phase boundary. Furthermore, these measurements need to be complete and continuous in P--T space to allow for any potential adiabat to be calculated without breaking the numerical solver.
+
+However, neither of these pieces of information are available across the range of temperatures and pressures seen in my planetary models.
+Even recent state-of-the-art equations of state do not treat entropy in a fully consistent way between phases,^[For example, @Mazevet2018 produced a comprehensive water equation of state that includes specific entropy within each phase. Yet they acknowledge in that paper that an adiabat calculated with their EOS is only valid within a single phase because the entropy measures are only consistent within phases and not between them.] and the data sources I drew my equation of state from in @sec:an-improved-water-equation-of-state did not provide this information.
+Although this information is readily available for water, ice and steam, there is a paucity of such measurements in the high-pressure ice phases.
+
+Because we do not have measurements of latent heat or entropy to guide us, we lack a principled way to determine where to start the adiabat as we cross into the next phase.
+As discussed above, this would otherwise be provided by the Verhoogen effect or by taking isoentropes on an entropy surface.
+So in the absence of this information, my implementation of the adiabat enforces continuity of temperature and pressure across phase boundaries.
+I do not require the the thermal expansivity $\alpha$ to be continuous, so I therefore allow for the planetary adiabat to be non-smooth where it crosses boundaries.
+But because I match the pressure and temperature of the adiabat at phase boundaries, this treatment is equivalent to assuming that there is no latent heat of phase transition.
+
+The way in which I achieve continuity of temperature and pressure across each phase boundary is as follows.
+It is not sufficient to simply calculate the thermal expansion coefficient $\alpha$ using @eq:thermal-expansion across all of P--T space, because this approach only yields the correct value for $α$ within each phase.
+The density discontinuity at the phase boundaries ([@fig:density-jump]) means that we would obtain a peak in the value of $α$ across the boundary ([@fig:thermal-expansivity-correction]).
+
+The "spike" seen in [@fig:thermal-expansivity-correction] is a partially a reflection of a physical process: a sharp density change at the phase boundary will be reflected as a spike in the value of $\alpha$), which is a directional derivative of density.
+This change in density is associated with the release or absorption of latent heat.
+But it is also a reflection of a numerical process: the height of this artifact depends on the EOS grid resolution because $\alpha$ is undefined at the boundary.
+To put it another way, the value of the density derivative ceases to be well-defined at phase boundaries due to a discontinuity in density itself.
+It therefore cannot be used to infer properties of the adiabat across the boundary, and we
+cannot continue the adiabat across the phase boundary without a different approach.
 
 ![
   In this slice of constant temperature across the vapour--ice VII phase boundary, we see that the density increases rapidly---a result of interpolating between discontinuous values.
@@ -71,54 +97,18 @@ Because of this discontinuity, we obtain a peak in the value of $α$ across the 
 
 ![
   The thermal expansivity $α$ is the partial derivative of the density in the temperature direction.
-  The original treatment had numerical difficulty at phase boundaries.
-  Here we see that $α$ originally had a very large peak at the boundary.
-  The height of this artifact depends on the grid resolution.
-  Correcting this problem removed the peaks at phase boundaries, allowing the integrator to move smoothly through phase space without strange behaviour.
+  Here we see that a simple treatment of $α$ leads to a large peak at the boundary.
+  This is numerically problematic because it means we can no longer use $\alpha$ in @eq:adiabatic-temperature-gradient to trace the path of the adiabat across the phase boundary, and a different approach is needed.
 ](thermal-expansivity-correction){#fig:thermal-expansivity-correction}
 
-This approach is problematic because the discontinuity is not reflected in the heat capacity I used, which is instead interpolated from a separate table.
-When I evaluate the adiabatic temperature gradient ${dT \over dm}$,^[See @eq:adiabatic-temperature-gradient.] I therefore obtain a very large value at the phase boundary.
-This makes the integrator take a step sharply in the $T$ direction.
-This continues at each integration step until the integrator encounters a region where $α$ happens to be small enough that it can step across the boundary.
-As a consequence, the shape of the adiabat at the boundary changes sharply.
-Due to this, my code produced odd-looking curves in $P$--$T$ space ([@fig:phase-boundary-issues]).
-
-![
-  Sketch of the behaviour of the adiabat at phase boundaries in my models.
-  My models determine the path of the adiabat by calculating the partial derivative of the density with respect to temperature, which initially resulted in numerical issues where the adiabat would not cross phase boundaries correctly.
-  I matched pressure and temperature at the phase boundaries to fix this issue.
-](phase-boundary-issues){#fig:phase-boundary-issues}
-
-This behaviour is a numerical artifact, a product of the finite grid resolution of the EOS, rather than a reflection of a physical process.^[
-This can be seen through a quick thought experiment: as the EOS grid resolution increases, the value of $α$ approaches infinity at the boundary (because it is the derivative of a step discontinuity in the equation of state).
-An infinite value of $α$ produces an infinite value of ${dT \over dm}$ and therefore an unphysical infinite increase in temperature at the phase boundary.]
-I verified that this was the case by increasing the resolution of the EOS grid and observing that the jagged edges showed in [@fig:phase-boundary-issues] did not converge to a stable solution.
-This is not the behaviour we want.
-
-\newthought{The second approach} is to calculate $\alpha$ from @eq:adiabatic-temperature-gradient as above but to match the pressure and temperature of the adiabat at the phase boundary.
-Equivalently, we can set $\alpha=0$ at the boundary so that ${dT \over dm} = 0$.
-This gives an adiabat that crosses the boundary smoothly.
-
-I used this second approach.
-First I pre-calculated the values of $\alpha$ across the pressure--temperature domain of the equation of state.
-I tried a thresholding procedure, in which $\alpha$ is set to zero if it exceeds some threshold value.
+To resolve this and produce an adiabat that crosses the boundary smoothly, I still calculate $\alpha$ from @eq:adiabatic-temperature-gradient as above---but I prevent the value of $\alpha$ from spiking at the boundary, forcing it to switch immediately to its value in the adjacent phase.
+In practice I achieve this as follows.
+First I pre-calculate the values of $\alpha$ across the pressure--temperature domain of the equation of state.^[I tried a thresholding procedure, in which $\alpha$ is set to zero if it exceeds some threshold value.
 But the value of $α$ varies strongly across the parameter space, and some of the phase boundaries have relatively small density changes, so I could not find a suitable threshold value for $α$ that left all the normal values of $\alpha$ within the phases untouched.
-I therefore instead re-generated the table of $α$ phase by phase.
-Within each phase I calculated $α$ as normal, then stitched the phases together by joining them directly in the same fashion as the EOS stitching in @sec:an-improved-water-equation-of-state.
-In this way, I avoided generating artificial spikes in $α$ at the phase boundaries, retaining the behaviour of $α$ within each phase and producing a step, rather than a spike, at the boundary instead.
-This produces adiabats that remain continuous at phase boundaries ([@fig:phase-boundary-issues]).
-
-<!-- We might expect to see different results if we chose a different treatment.
-A third option could involve calculating the specific entropy of water directly, rather than implicitly fixing it by setting $T$ and $P$ and then evaluating @eq:adiabatic-temperature-gradient.
-We could then simply follow the adiabat into the planet by taking $T = T(P)$.^[In a discussion with Stéphane Mazevet (Observatoire de Paris), he suggested that it would be worthwhile for the pressure--temperature profile to trace contours of constant entropy directly, rather than fixing the pressure and temperature at the boundary. (S. Mazevet, personal communication, 31 March 2016)]
-This would have the advantage of avoiding the numerical difficulty described above while also allowing for density discontinuities at phase boundaries.
-But the degree to which this would change the results is unclear.
-I obtained a copy of a water EOS that included data on the specific entropy across some of the phases of interest,^[S. Stewart, personal communication, 4 March 2016] but ultimately did not have enough time to carry out this approach for comparison.
-
-This approach---smoothly following an isentrope---would also appear to presuppose that convective mixing can occur across phase boundaries, which is unlikely to be the case.
-A more realistic model would likely involve some treatment of boundary layers between different phases and also between different materials.
-At these boundaries we would perhaps expect a conductive boundary layer to form.^[See for example the work of Valencia et al., who include conductive boundary layers in their models.] -->
+I therefore instead re-generated the table of $α$ phase by phase.]
+Within each phase I calculate $α$ as normal, then stitch the phases together by joining them directly in the same fashion as the EOS stitching in @sec:an-improved-water-equation-of-state.
+In this way, I avoid generating artificial spikes in $α$ at the phase boundaries, retaining the behaviour of $α$ within each phase and producing a change in its slope, rather than a spike, at the boundary.
+This yields adiabats that remain continuous at phase boundaries, like those shown in @fig:pressure-temperature-profiles.
 
 ### Extracting phase information
 

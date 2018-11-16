@@ -8,11 +8,11 @@ quotes:
   - quote: Hello, babies. Welcome to Earth. It’s hot in the summer and cold in the winter. It’s round and wet and crowded. At the outside, babies, you’ve got about a hundred years here. There’s only one rule that I know of, babies—God damn it, you’ve got to be kind.
     author: Kurt Vonnegut, "God Bless You, Mr. Rosewater"
   - quote: |
-           Within your lifetime will, perhaps,
-           As souvenirs from distant suns
-           Be carried back to earth some maps
-           Of planets and you'll find that one's
-           So hard to color that you've got
+           Within your lifetime will, perhaps,  
+           As souvenirs from distant suns  
+           Be carried back to earth some maps  
+           Of planets and you'll find that one's  
+           So hard to color that you've got  
            To use five crayons. Maybe, not.
     author: Marlow Sholander, "Maybe"
   - quote: Sometimes I think the surest sign that intelligent life exists elsewhere in the universe is that none of it has tried to contact us.

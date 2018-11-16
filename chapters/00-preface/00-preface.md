@@ -19,7 +19,7 @@ quotes:
     author: Bill Watterson, "Calvin and Hobbes"
 
 dedication: |
-            For those who heard my dreams
+            For those who heard my dreams  
             and said, "Go for it."
 
 preface: |

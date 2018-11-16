@@ -62,6 +62,31 @@ The answer depends on the properties of the material in question, in particular 
 
 ### The adiabatic temperature gradient at phase transitions
 
+In the Earth, we see "seismic discontinuities", significant changes in seismic wave speeds at different depths.
+These seismic discontinuities are caused by density discontinuities in the mantle minerals.
+For example, one component of the mantle is a silicate called olivine ((Mg$_{0.9}$Si$_{0.1}$)$_2$SiO$_4$) which has a phase transition at a depth of about 400$\,$km or 14$\,$GPa [@Milone2014].
+This is not a change in the chemical composition of the mantle, only in its molecular configuration---but it is enough to cause a density change and deflect seismic waves at that depth.
+We therefore expect to see similar behaviour in water layers as they transition between ice phases.
+
+First, it is worth pointing out that phase transitions do not actually happen at a single depth.
+Because heat transport within the planet is driven by convection, the precise depth must vary within the planet depending on whether material is rising or falling.
+Rising columns of material within the mantle will be hotter than the surrounding material.
+They will transition to the cooler phase only once they have exchanged heat with their surroundings, meaning that the phase transition occurs closer to the surface of the planet.
+But, as the exact opposite effect occurs within falling columns of cool material, it is reasonable to use the temperature and pressure of the surrounding material when calculating the depth at which a phase transition occurs on average.^[Such an assumption might no longer be be appropriate if, for example, we were calculating the depth of a phase transition in a subducting slab i.e. material moving unidirectionally.]
+
+\newthought{How do such} transitions affect the path of the adiabat in a convecting water ice layer?
+Within a single phase, the adiabat follows the P--T path defined by the solution to [@eq:adiabatic-temperature-gradient-radial; @eq:adiabatic-temperature-gradient].
+Between phases there may be a discontinuity, which may be accounted for in two ways.
+If we know the specific entropy across the P--T range of interest, we can continue the adiabat into the new phase by matching the specific entropy at the boundary.^[This is because the adiabat is also an isentrope.]
+Or if we know the latent heat of transition at the boundary but not the specific entropy on either side, we can use this to calculate the deflection of the adiabat, which is on the order of\marginnote{
+  Here $\Delta T$ is temperature change, $\Delta H$ is latent heat and C$_\mathrm{P}$ is the isobaric heat capacity in the high-pressure phase.
+} $$ \Delta T \approx {-\Delta H \over C_\mathrm{P}.} $${#eq:latent-heat-phase-transition}
+But it is better to know the entropy directly as it can be used to calculate a more accurate deflection in both temperature and pressure, known as the Verhoogen effect [@Bina1998, @Verhoogen1965].
+
+Finally, phase boundaries may also affect convection.
+As a rule, exothermic phase transitions amplify convection and endothermic ones suppress it. ...
+
+
 
 
 
@@ -109,6 +134,16 @@ I therefore instead re-generated the table of $α$ phase by phase.]
 Within each phase I calculate $α$ as normal, then stitch the phases together by joining them directly in the same fashion as the EOS stitching in @sec:an-improved-water-equation-of-state.
 In this way, I avoid generating artificial spikes in $α$ at the phase boundaries, retaining the behaviour of $α$ within each phase and producing a change in its slope, rather than a spike, at the boundary.
 This yields adiabats that remain continuous at phase boundaries, like those shown in @fig:pressure-temperature-profiles.
+
+Although the assumption of no latent heat of phase transition is not ideal, I claim that it is not an irresponsible choice.
+This is for three reasons.
+First, theoretical studies of high-pressure ices suggest that their configurational entropies are quite similar.
+That is, the portion of the specific entropy change that arises from the crystalline configuration of the ice phase does not appear to differ much from phase to phase---at most 5% [@Herrero2014].
+This then suggests that the latent heat difference between adjacent ice phases is also small.
+Second, this is supported by studies that trace specific water adiabats through high-pressure ice.
+For example, @Dolan2007 show an isentrope calculated from the liquid phase through ice VII; there is no perceivable discontinuity at the phase transition in that paper.
+Finally, as we will see in this chapter, the bulk radius of a planet is driven primarily by changes to its atmospheric thickness and not by the thickness of deeper layers.
+A planet's size is therefore insensitive to the precise position of phase boundaries in its water layers.
 
 ### Extracting phase information
 

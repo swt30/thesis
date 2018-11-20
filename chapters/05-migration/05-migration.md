@@ -70,9 +70,9 @@ We therefore expect to see similar behaviour in water layers as they transition 
 
 First, it is worth pointing out that phase transitions do not actually happen at a single depth.
 Because heat transport within the planet is driven by convection, the precise depth must vary within the planet depending on whether material is rising or falling.
-Rising columns of material within the mantle will be hotter than the surrounding material.
+Rising parcels of material within the mantle will be hotter than the surrounding material.
 They will transition to the cooler phase only once they have exchanged heat with their surroundings, meaning that the phase transition occurs closer to the surface of the planet.
-But, as the exact opposite effect occurs within falling columns of cool material, it is reasonable to use the temperature and pressure of the surrounding material when calculating the depth at which a phase transition occurs on average.^[Such an assumption might no longer be be appropriate if, for example, we were calculating the depth of a phase transition in a subducting slab i.e. material moving unidirectionally.]
+But, as the exact opposite effect occurs within falling parcels of cool material, it is reasonable to use the temperature and pressure of the surrounding material when calculating the depth at which a phase transition occurs on average.^[Such an assumption might no longer be be appropriate if, for example, we were calculating the depth of a phase transition in a subducting slab i.e. material moving unidirectionally.]
 
 \newthought{How do such} transitions affect the path of the adiabat in a convecting water ice layer?
 Within a single phase, the adiabat follows the P--T path defined by the solution to [@eq:adiabatic-temperature-gradient-radial; @eq:adiabatic-temperature-gradient].
@@ -83,17 +83,13 @@ Or if we know the latent heat of transition at the boundary but not the specific
 } $$ \Delta T \approx {-\Delta H \over C_\mathrm{P}.} $${#eq:latent-heat-phase-transition}
 But it is better to know the entropy directly as it can be used to calculate a more accurate deflection in both temperature and pressure, known as the Verhoogen effect [@Bina1998, @Verhoogen1965].
 
-Finally, phase boundaries may also affect convection.
-As a rule, exothermic phase transitions amplify convection and endothermic ones suppress it. ...
-
-
-
-
+In summary, phase transitions cause a discontinuity and/or deflection of the adiabat into the planet, and this effect can only be correctly characterised with knowledge of latent heat or entropy across the phase boundary in question.
 
 ### My treatment of the adiabat
 
-From the above section, it should be clear that a complete treatment of the adiabat across water phase changes requires one of two things.
-Either we need the latent heat of transition between the two phases, or we need the specific entropy on either side of the phase boundary. Furthermore, these measurements need to be complete and continuous in P--T space to allow for any potential adiabat to be calculated without breaking the numerical solver.
+From the above section, a complete treatment of the adiabat across water phase changes requires one of two things.
+Either we need the latent heat of transition between the two phases, or we need the specific entropy on either side of the phase boundary.
+Furthermore, these measurements need to be complete and continuous in P--T space to allow for any potential adiabat to be calculated for any potential path.
 
 However, neither of these pieces of information are available across the range of temperatures and pressures seen in my planetary models.
 Even recent state-of-the-art equations of state do not treat entropy in a fully consistent way between phases,^[For example, @Mazevet2018 produced a comprehensive water equation of state that includes specific entropy within each phase. Yet they acknowledge in that paper that an adiabat calculated with their EOS is only valid within a single phase because the entropy measures are only consistent within phases and not between them.] and the data sources I drew my equation of state from in @sec:an-improved-water-equation-of-state did not provide this information.
@@ -105,11 +101,11 @@ So in the absence of this information, my implementation of the adiabat enforces
 I do not require the the thermal expansivity $\alpha$ to be continuous, so I therefore allow for the planetary adiabat to be non-smooth where it crosses boundaries.
 But because I match the pressure and temperature of the adiabat at phase boundaries, this treatment is equivalent to assuming that there is no latent heat of phase transition.
 
-The way in which I achieve continuity of temperature and pressure across each phase boundary is as follows.
+\newthought{The way in which} I achieve continuity of temperature and pressure across each phase boundary is as follows.
 It is not sufficient to simply calculate the thermal expansion coefficient $\alpha$ using @eq:thermal-expansion across all of P--T space, because this approach only yields the correct value for $α$ within each phase.
 The density discontinuity at the phase boundaries ([@fig:density-jump]) means that we would obtain a peak in the value of $α$ across the boundary ([@fig:thermal-expansivity-correction]).
 
-The "spike" seen in [@fig:thermal-expansivity-correction] is a partially a reflection of a physical process: a sharp density change at the phase boundary will be reflected as a spike in the value of $\alpha$), which is a directional derivative of density.
+The "spike" seen in [@fig:thermal-expansivity-correction] is a partially a reflection of a physical process: a sharp density change at the phase boundary will be reflected as a spike in the value of $\alpha$, which is a directional derivative of density.
 This change in density is associated with the release or absorption of latent heat.
 But it is also a reflection of a numerical process: the height of this artifact depends on the EOS grid resolution because $\alpha$ is undefined at the boundary.
 To put it another way, the value of the density derivative ceases to be well-defined at phase boundaries due to a discontinuity in density itself.
@@ -135,8 +131,7 @@ Within each phase I calculate $α$ as normal, then stitch the phases together by
 In this way, I avoid generating artificial spikes in $α$ at the phase boundaries, retaining the behaviour of $α$ within each phase and producing a change in its slope, rather than a spike, at the boundary.
 This yields adiabats that remain continuous at phase boundaries, like those shown in @fig:pressure-temperature-profiles.
 
-Although the assumption of no latent heat of phase transition is not ideal, I claim that it is not an irresponsible choice.
-This is for three reasons.
+\newthought{Although the assumption} of no latent heat of phase transition is not ideal, I claim three reasons why it is not an irresponsible choice for the planets considered in this chapter.
 First, theoretical studies of high-pressure ices suggest that their configurational entropies are quite similar.
 That is, the portion of the specific entropy change that arises from the crystalline configuration of the ice phase does not appear to differ much from phase to phase---at most 5% [@Herrero2014].
 This then suggests that the latent heat difference between adjacent ice phases is also small.
@@ -144,6 +139,15 @@ Second, this is supported by studies that trace specific water adiabats through 
 For example, @Dolan2007 show an isentrope calculated from the liquid phase through ice VII; there is no perceivable discontinuity at the phase transition in that paper.
 Finally, as we will see in this chapter, the bulk radius of a planet is driven primarily by changes to its atmospheric thickness and not by the thickness of deeper layers.
 A planet's size is therefore insensitive to the precise position of phase boundaries in its water layers.
+
+This assumption may be appropriate for the high-pressure ice--liquid phase transitions seen in this chapter, but there are two scenarios that warrant further caution.
+The first scenario is where the planet contains materials other than pure water: the inclusion of other minerals can substantially alter the thermochemical properties of ice.
+For example, adding methane results in a structure called methane clathrate or "filled ice" which has a very different thermal conductivity [@Levi2014]; we might also expect its entropy to differ more between phases, producing a larger adiabatic discontinuity.
+A case-by-case analysis of the latent heat of transitions in these altered water ices would be needed if we were to attempt to calculate an adiabat through their P--T phase space.
+The second scenario is where a pure water planet underges a liquid--gas transition, as this has the largest latent heat of any water transition.
+But the surrounding anvironment during a transition to gas is unlikely to be governed by an isentropic temperature profile any more, as we are likely in an atmospheric (radiative) regime; at this point a proper atmospheric treatment is a better choice.
+In any case, I did not see any solid--liquid or liquid--gas transitions in the models in this chapter
+([@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth]).
 
 ### Extracting phase information
 

@@ -204,7 +204,7 @@ The first is in the equation of mass continuity\marginnote{
     \label{eq:adiabatic-temperature-gradient-with-eos-highlighted}
   \end{equation}
   where I have highlighted in \textcolor{red}{red} the terms which require the equation of state to calculate.
-  These equations are introduced more fully in \cref{sec:watery-planet-interiors}.  
+  These equations are introduced more fully in \cref{sec:watery-planet-interiors}.
 }, which depends on the density $ρ$; the second is in the equation for the temperature gradient, which depends on several quantities: thermal expansivity $α$, density $ρ$ and specific isobaric heat capacity $c_P$.
 All of these quantities are provided by the equation of state.
 
@@ -484,6 +484,12 @@ But the most significant effect is the change in heat capacity across the liquid
   The heat capacity approaches a constant value near the edge of the domain, indicating that pegging values outside the domain to the nearest known value is likely be a suitable approximation.
   Only in the volatile region around the phase boundaries and critical point of water does the heat capacity vary significantly.
 ](iapws-heat-capacity){#fig:iapws-heat-capacity}
+
+As well as the discontinuities observed in the density of water (@fig:eos-contours), @fig:iapws-heat-capacity shows that discontinuities in heat capacity are also a feature of my equation of state.
+As I aimed for a full treatment of density discontinuities, it is also appropriate that the heat capacity be allowed to be discontinuous too.
+As we will see in later chapters, the heat capacity is a key parameter in the temperature profile of a waterworld; it therefore benefits us to treat it as variable and not simply fix it to a constant.
+The heat capacity of liquid water is approximately twice that of both vapour and ice at standard atmospheric pressures and temperatures, and this difference becomes even more pronounced when comparing superheated liquid and vapour (the intermediate green lines in @fig:iapws-heat-capacity).
+In that figure we also see that the steep discontinuities between the liquid and vapour phases, a feature of the liquid--vapour transition at lower pressures, give way to a smooth and continuous region of higher heat capacity when pressure is increased.
 
 I drew the thermal expansion coefficient $α$ directly from the equation of state by evaluating @eq:thermal-expansion.
 Because the equation of state provides the density $ρ$ as a function of $P$ and $T$, we can evaluate the thermal expansion at any $(P,T)$ co-ordinate by taking a partial derivative of the density with respect to temperature.

@@ -130,6 +130,7 @@ I therefore instead re-generated the table of $α$ phase by phase.]
 Within each phase I calculate $α$ as normal, then stitch the phases together by joining them directly in the same fashion as the EOS stitching in @sec:an-improved-water-equation-of-state.
 In this way, I avoid generating artificial spikes in $α$ at the phase boundaries, retaining the behaviour of $α$ within each phase and producing a change in its slope, rather than a spike, at the boundary.
 This yields adiabats that remain continuous at phase boundaries, like those shown in @fig:pressure-temperature-profiles.
+In contrast, there is no such need to repeat this process to deal with heat capacity discontinuities because the heat capacity is available directly and not as a directional derivative of the EOS; see @sec:thermal-expansion-and-heat-capacity-of-water for more information about heat capacity discontinuities in my EOS.
 
 \newthought{Although the assumption} of no latent heat of phase transition is not ideal, I claim three reasons why it is not an irresponsible choice for the planets considered in this chapter.
 First, theoretical studies of high-pressure ices suggest that their configurational entropies are quite similar.

@@ -39,7 +39,7 @@ I also showed that the water opacity is a critically important parameter: it con
 
 Next, I applied my models to the context of a migrating planet.
 I asked how the phase structure of a watery planet can vary with internal and external heating; more specifically, I investigated this by modelling planets moving closer to their host star.
-By modelling their heated interiors, I was able to show that the phase structure of these planets remains roughly similar during migration, though the radius can be significantly inflated by heating when the planet approaches the star.
+By modelling their heated interiors, I was able to show that the phase structure of these planets remains roughly similar during migration, though the radius can be significantly inflated by internal heating and to a lesser degree when the planet approaches the star.
 
 Finally, I presented the results of using my models to analyse the interior structure and geology of the planet GJ 1132b.
 GJ 1132b's mass and radius can be explained by a planet with a water layer over a molten silicate mantle.

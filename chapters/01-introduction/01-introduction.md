@@ -252,7 +252,7 @@ The ever-increasing number of known exoplanets, many of which have both mass and
   --- *From @Guillot2015*
 ](jupiter-saturn-pie-structures){#fig:jupiter-saturn-pie-structures}
 
-Others had previously considered the internal structures of planets in our solar system,^[For example, see @Hubbard1980 or @Guillot1995.] but the study often taken as the base for planetary interior modelling is by @Zapolsky1969 who constructed mass--radius relations for large homogeneous isothermal spheres.
+Others had previously considered the internal structures of planets in our solar system,^[For example, see @Hubbard1980 or @Guillot1995.] but the seminal study in the exoplanetary community is often considered to be the work of @Zapolsky1969, who constructed mass--radius relations for large homogeneous isothermal spheres.
 Since then a number of internal structure models have been developed specifically for exoplanets,^[@Guillot1999] with work on super-Earths beginning about a decade ago.^[e.g. @Valencia2006; @Fortney2007; @Sotin2007; @Seager2007; a recent review for giant planets is provided by @Guillot2015]
 In a nutshell, the basic assumption is that the internal structure may be modelled in one dimension by using similar equations to those of stellar structure.^[See @sec:watery-planet-interiors for more on these models.]
 
@@ -333,7 +333,7 @@ First, its effects are thought to be relatively minor in the first place: @Howe2
 If the effect is small compared with current observational uncertainties, it is not necessarily relevant.
 Second, modelling is easier if we assume zero-temperature or isothermal spheres of material, because we do not have to deal with energy transport within the planet.
 Finally, the data on thermal expansion of heavy elements are sparse at the high temperatures and pressures characteristic of planetary interiors.^[@Baraffe2008]
-Therefore mass--radius relations or models of individual planets traditionally had no temperature dependence at all^[@Zapolsky1969; @Seager2007] but it is increasingly being included and thermal effects on radii are being explored.^[For example, see @Valencia2013.]
+Therefore mass--radius relations or models of individual planets traditionally had no temperature dependence at all^[@Zapolsky1969; @Seager2007]---but it is increasingly being included and thermal effects on radii are being explored.^[For example, see @Valencia2013.]
 
 ### Observational constraints are increasingly strong
 
@@ -432,24 +432,80 @@ It is therefore appropriate to address the question of exactly how much temperat
 In summary, water is an interesting test case for assessing how the thermal behaviour of the equation of state may affect the observable properties of a planet.
 And although it is certainly not the only component of interest, the potential for planets with large water layers means that it is worthwhile investigating.
 
+### Cold icy satellites in our solar system have been well-studied for decades
+
+Before we continue, it will be worthwhile to review previous work on icy bodies in our solar system.
+Although the diversity of exoplanetary mass--radius relationships suggests that planets have a broad range of water contents, from dry planets to waterworlds, the latter are conspicuously absent from our solar system---except for the icy moons of Jupiter outwards, plus planetary objects beyond Neptune.
+Water exists in these moons as icy shells and deep oceans [@Hussmann2006] and so these satellites and minor planets are natural low-temperature analogues to the kinds of planets we will be considering in this dissertation.
+Due to their relative accessibility, these icy bodies have been studied for several decades.
+And although many of these techniques used to do so are not available to us when observing exoplanets, previous work on cold icy moons provides a valuable starting point.
+
+\newthought{Even decades ago,} the thermal behaviour of water was considered absolutely key to understanding the potential structures of icy Solar System bodies.
+@Lewis1971 built steady-state models for thermally conductive icy bodies, showing that they could have extensive melted interiors.
+And @Consolmagno1978 studied the thermal history of icy bodies of various sizes, considering how they might be heated internally and how this heat might alter their properties.
+In these early days, these authors were already highlighting the need for basic research into the behaviour of ices and rock--ice mixtures at high pressures.
+This is a refrain repeated throughout the literature today.
+
+The reason for this interest in water is simply that there is so much of it in the satellites of Jupiter and beyond.
+I will not be reviewing the various methods used to show this^[They rely on a host of measurements from imaging or probe flybys: density, gravity and gravitational moments, rotation, shape, magnetic field, temperature, surface/atmospheric composition, surface activity, geology and tectonics, and orbital dynamics. @Nimmo2016 provides a comprehensive overview.] but, for example, spectroscopic observations show high proportions of water ice at the surface of moons like Callisto ($20$--$45$%), Ganymede ($90$%) and Europa (almost $100$%).^[@Hussmann2015]
+Bulk densities alone suggest that, while some satellites like Io are almost entirely silicate, others like Tethys are almost entirely water.^[@Nimmo2016]
+With these and other indirect methods available to determine the internal structures of these objects, we know or strongly suspect that many of them contain a lot of water.
+Furthermore, this may often be in the form of liquid reservoirs or oceans.
+Cassini's observations of regular watery jets emanating from the south pole of Enceladus^[These geysers appear to be caused by water trapped in pressurised subsurface reservoirs. They open on a regular basis due to tidal forces, and the trapped water boils off into space.] provide direct evidence for this.^[@Porco2006]
+More indirect evidence also comes in the form of magnetic fields: Europa and Callisto are expected to have salty subsurface oceans, and we infer this because Jupiter's magnetic field appears to induce a secondary field in these moons via magnetic induction.^[@Nimmo2018]
+
+How can liquid water exist within these frigid icy bodies?
+The answer is because water's unusual phase structure allows for an ice I shell on top of a liquid ocean ([@fig:ice-ocean-phases]).
+Ice I's melting temperature decreases with increasing pressure, and ice I is less dense than the adjoining liquid phase---this is not true for rock, and also not true for higher-pressure water ices.
+Larger bodies such as Ganymede, Callisto and Titan have internal pressures sufficient to cause water phase transitions, and internal heat sources sufficient to maintain subsurface liquid water oceans.^[@Hussmann2015]
+And such liquid layers are more likely if antifreezes like ammonia are present.^[@Lewis1971]
+For this reason, icy satellites are often modelled with two or three water layers (ice I, liquid ocean, and possibly ice V or VI for larger satellites) over rock.
+Such differentiation is assumed to be common in icy bodies because rock may easily sink through liquid water during formation.^[@Nimmo2016; @Nimmo2018]
+
+![
+  Sketch of the phase diagram of water near the ice I/III/liquid triple point.
+  The phase structure of water and the fact that ice I is less dense than liquid means that cold ice I may float on warmer water, which itself may sit on warmer high-pressure ice.
+  Here we see the melting curves of water ices (black) and a representative temperature profile (red) that crosses a liquid region between two different ice phases.
+  An icy body with this temperature profile would have an ice I crust above a liquid ocean.
+  The effect is exaggerated if antifreezing agents like ammonia are present.
+  --- *Image from @Hussmann2015*
+](ice-ocean-phase-diagram){#fig:ice-ocean-phases}
+
+Closely linked to the phase structure of water is the thermal structure of these icy bodies.
+Though their internal heating processes are not fully understood,^[For example, it is unclear how Enceladus is so strongly heated as to produce the cryovolcanic jets of water vapour seen at the south pole [@Porco2006]. And even Pluto's interior was discovered to be more active than previously expected when New Horizons observed mounds possibly of cryovolcanic origin [@Monteux2018].] a couple of things are clear.
+First, these icy bodies generally have radiogenic heating as a primary heat source, with short-lived nuclides like $^{26}$Al and long-lived nuclides like K, U and Th helping to keep larger satellites warm enough to maintain liquid oceans.^[@Hussmann2006]
+But even in our solar system we also expect some cases where tidal heating plays a significant role and others where different accretion and thermal histories have produced the diverse structures that we see.^[@Hussmann2015; @Monteux2018; tidal heating is thought to be responsible for keeping Europa's subsurface ocean liquid and for Io's volcanism [@Nimmo2016].]
+Second, it is likely that larger bodies have convection as the dominant mode of heat transfer under a conductive ice I "stagnant lid".
+The more internal heating, the thinner this lid---but thanks to the lid, an icy body's internal heat can be maintained over a long period of time despite the efficiency of convective heat transfer deeper inside.^[@Hussmann2015; @Nimmo2018]
+For example, Pluto, Titan, Ganymede and Calisto are thought to be able to maintain subsurface water reservoics despite the lack of any appreciable tidal heating.^[@Nimmo2018]
+There is also increasing use of global circulation models to examine energy transport in more detail, such as by @Soderlund2014 who modelled energy transport in Europa's icy shell.
+
+This previous work on icy bodies in our solar system suggests that water-rich super-Earths are also likely to be rich in thermal behaviour and strongly influenced by internal heating.
+With new data on the behaviour of water at high pressures and temperatures becoming available, they are therefore ideal targets for further study.
+
+
 ## This dissertation
 
 In this chapter I have given an overview of recent work in exoplanet detection and characterisation.
 I have shown that, although the field is driven by observations, we need good models to interpret these observations.
 These considerations therefore naturally motivate the development of interior structure models.
-Finally, I have identified planets with thick water layers as being interesting targets for questions about heating and thermal effects.
+I have identified objects with thick water layers as being interesting targets for questions about heating and thermal effects.
+And finally, I have given an overview of cold icy satellites in our solar system, a well-studied class of objects with unique and intriguing interiors thanks to the rich phase structure of water.
+We now push onwards to examine the structures of objects that are similar, yet not found in our solar system: hot water-rich planets.
 
 In this dissertation I investigate a range of topics relating to the internal structure of water-rich super-Earths. I address the following key questions:
 
-1. Under what conditions, and how strongly, does temperature affect the observable properties of a water-rich super-Earth?
+1. What is the water equation of state at the temperatures and pressures expected in heated water-rich super-Earths?
 
-2. How does this change when a vapour atmosphere is included in the models?
+2. Under what conditions, and how strongly, does temperature affect the observable properties of such a planet?
 
-3. How do different modes of heating and energy transport affect the interpretation of a watery planet?
+3. How does this change when a vapour atmosphere is included in the models?
 
-4. Do water-rich planets undergo significant changes during migration?
+4. How do different modes of heating and energy transport affect the interpretation of a watery planet?
 
-5. Can we use these models to understand more about the geology of watery planets?
+5. Do water-rich planets undergo significant changes during migration?
+
+6. Can we use these models to understand more about the geology of watery planets?
 
 \noindent The remainder of this dissertation presents, in five chapters, my contributions to these questions.
 
@@ -464,7 +520,7 @@ Next\marginnote{
   \Cref{sec:watery-planet-interiors}
   \par\noindent "Watery planet interiors"
 } I explain the theory of planetary interior models.
-I describe my code, \smallcaps{OGRE}, which solves the equations of planetary structure in a self-consistent fashion and treats the temperature structure of the planet appropriately.
+I describe my code, \smallcaps{ONION}, which solves the equations of planetary structure in a self-consistent fashion and treats the temperature structure of the planet appropriately.
 After incorporating my water equation of state into these models, I produce multi-layered planet structures for super-Earths with large water layers.
 I also validate these models against some previous results.
 This chapter concludes by exploring how strongly the radius of a watery super-Earth is linked to its water fraction, surface temperature, and other model parameters.

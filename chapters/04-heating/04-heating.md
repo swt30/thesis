@@ -298,7 +298,7 @@ Instead, the temperature can be calculated directly from the optical depth using
 But this approach is inconsistent with the way the temperature profile is treated in the envelope: there, the temperature is evaluated as the solution of an ODE (@eq:temperature-gradient-generic).
 The second option is therefore to instead take the derivative of @eq:two-stream-temperature-profile and use it as the right-hand-side of @eq:temperature-gradient-generic.
 
-For convenience, I chose this second approach: the way my code \smallcaps{OGRE} is structured means that it is easy to add a new differential equation to the model but harder to add an explicit relation.
+For convenience, I chose this second approach: the way my code \smallcaps{ONION} is structured means that it is easy to add a new differential equation to the model but harder to add an explicit relation.
 Although this is more prone to numerical error than evaluating the temperature directly for a given $τ$, it is no more so than any of the structural equations, all of which require solving an ODE in the same way.
 Nevertheless, I minimised the risk of this by using automatic differentiation to provide fast exact derivatives of the temperature profile^[Automatic differentiation is a technique for obtaining exact derivatives of explicitly specified functions without using finite-differencing. I used the Julia package [ForwardDiff.jl](https://github.com/JuliaDiff/ForwardDiff.jl).] and by using a 5th-order integrator.
 For the two-stream atmosphere treatment, I therefore evaluate the temperature gradient $∇$ as $$ ∇ = {dT \over dm} = {dT \over dτ} {dτ \over dm}. $$ {#eq:two-stream-wrt-m}

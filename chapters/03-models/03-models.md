@@ -3,7 +3,7 @@
 Having created an improved equation of state for water, the next step was to build structural models of watery planets and ask the question: does temperature matter?
 
 In this chapter I develop the framework to apply my equation of state to interior structure models.
-After outlining the theory of exoplanet interior structural models, I present my code, \smallcaps{OGRE}, which solves the system of structural equations for a one-dimensional planet.
+After outlining the theory of exoplanet interior structural models, I present my code, \smallcaps{ONION}, which solves the system of structural equations for a one-dimensional planet.
 Then I show the results of building models with this code.
 First I examine the effects of my equation of state on homogeneous isothermal spheres.
 Next I add in temperature dependence and model the interiors of inhomogeneous layered planets.
@@ -101,7 +101,7 @@ I will not be assessing the above equation for every model constructed in this d
 - The thermal conductivity of ice VII is ~$\,10\,$W$\cdot$m$^{-1}\cdot$K$^{-1}$ [@Chen2011].
 - Putting this together with [@eq:rayleigh-number] we find that $Ra\,$~$\,10^8$, five orders of magnitude higher than the critical Rayleigh number of $10^{3}$.
 
-Convective energy transport therefore almost certainly dominates within the bulk of the icy planet we have just considered. In order for viscosity effects to suppress convection, the kinematic viscosity of ice $\nu$ would have to be five orders of magnitude larger. Therefore I proceed by assuming that convection holds throughout the planet. Although this is a reasonable assumption, convection could potentially be suppressed if the planet were much more weakly heated or if the ice layer were much thinner. Therefore, in a more detailed model it might also be sensible to allow thin conductive layers at key transition points like at the planet's crust. Such layers would be expected to sustain conductive heat transfer because they are thin and occur at points where the composition of the planet is changing. This is the approach taken by @Valencia2006 when modelling super-Earth and super-Mercury planets and it is inspired by the boundary layers used in Earth models.
+Convective energy transport therefore almost certainly dominates within the bulk of the icy planet we have just considered. In order for viscosity effects to suppress convection, the kinematic viscosity of ice $\nu$ would have to be five orders of magnitude larger.^[Within the icy moons of Jupiter and beyond, kinematic viscosity decreases with depth (that is, with increasing temperature and pressure) and only varies by about an order of magnitude anyway [@Hussmann2006; @Nimmo2018].] Therefore I proceed by assuming that convection holds throughout the planet. Although this is a reasonable assumption, convection could potentially be suppressed if the planet were much more weakly heated or if the ice layer were much thinner. Therefore, in a more detailed model it might also be sensible to allow thin conductive layers at key transition points like at the planet's crust. Such layers would be expected to sustain conductive heat transfer because they are thin and occur at points where the composition of the planet is changing. This is the approach taken by @Valencia2006 when modelling super-Earth and super-Mercury planets and it is inspired by the boundary layers used in Earth models and the "stagnant lid" models for solar system icy bodies.
 
 Phase transitions may also affect convection. As a rule of thumb, exothermic phase transitions^[Here these are defined for the transition from the less dense phase i.e. down into the planet.] intensify convection and endothermic ones suppress it [@Milone2014].
 The key phase transitions seen in my models---from high-pressure or superionic fluid to ice VI or VII---are exothermic and therefore unlikely to suppress convection.^[See @sec:phase-structure-and-migration for further discussion of phase transitions within my models.]
@@ -164,7 +164,7 @@ Working from this differential equation solver as a base, I developed a package 
 
 ### A boundary value solver in Julia
 
-My solver is called \smallcaps{ONION}.^[Because planets, like onions, have layers.]
+My solver is called \smallcaps{ONION}.^[Because planets, like onions and ogres, have layers.]
 I prototyped it in Python and later ported it to Julia, a new scientific programming language that offers much better numerical performance.
 
 I used the shooting method, described above, to solve for the planet's structure.
@@ -199,7 +199,7 @@ I further required that $r$ remains positive: this avoids any numerical difficul
 @Fig:solver-flowchart summarises this process.
 
 ![
-  A flowchart summarising how my structural solver \smallcaps{OGRE} works.
+  A flowchart summarising how my structural solver \smallcaps{ONION} works.
 ](solver-flowchart_big_fig){#fig:solver-flowchart}
 
 I was unable to use a faster method, such as the secant method, to solve for the correct radius.

@@ -598,6 +598,6 @@ The final software package, WaterData.jl, has the following advantages.
 ## Making the data freely available
 
 I have made the equation of state freely available online.^[<http://www.github.com/swt30/WaterData.jl>]
-This chapter was also published as part of our first paper "In hot water: effects of temperature-dependent interiors on the radii of water-rich super-Earths".^[@Thomas2016]
+This chapter was also published as part of our paper "In hot water: effects of temperature-dependent interiors on the radii of water-rich super-Earths".^[@Thomas2016]
 
 <!-- > TODO: actually deliver on this promise now that Oli is finishing with the code! -->

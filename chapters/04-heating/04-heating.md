@@ -29,8 +29,8 @@ This mode of heating is also important for moons, especially those around giant 
 This could be the dominant form of heating in such moons.^[@Ross1989]
 
 The decay of radioactive elements in a planet's interior results in heating.
-In the Earth this value is about half of the total internal energy generation.^[@Davies1980]
-The so-called "chondritic coincidence"^[@Suess1956; @Urey1956] refers to the fact this energy generation rate per unit mass is about the same as that observed in chondrites.
+In the Earth this value is about half of the total internal energy generation^[@Davies1980] while in icy Solar System bodies it tends to be the dominant source of energy.^[@Hussmann2006]
+The so-called "chondritic coincidence"^[@Suess1956; @Urey1956] refers to the fact the Earth's energy generation rate per unit mass is about the same as that observed in chondrites.
 
 Cooling and contraction supply the remainder of a planet's internal energy budget.
 In the Earth, the other half of the internal energy is supplied by cooling.
@@ -521,7 +521,7 @@ This is in addition to the increase in radius already included in the model when
 
 ##### Pressure at the radiative--convective boundary
 
-I compared the mass--radius relation for models with different fixed value of the atmosphere--envelope transition pressure $P_\mathrm{tr}$.
+I compared the mass--radius relation for models with different fixed values for the atmosphere--envelope transition pressure $P_\mathrm{tr}$.
 I did this to assess the sensitivity of my models to the exact value of the transition pressure $P_\mathrm{tr}$.
 I find that varying it produces very little change in the planet's size ([@fig:transition-pressure]), suggesting that the matching between atmosphere and interior need only be approximate if we are only interested in the final radius.
 
@@ -549,12 +549,13 @@ This is larger than the difference seen in @sec:effect-of-water-content because 
 Consider two planets of the same mass and composition.
 One of them is heated internally and one is heated externally, but the degree of heating is the same.
 How does the radius compare between the two cases?
-To address this question, I have compared two different methods intended to evaluate the relative effectiveness of internal and external heating.
+To address this question, I have used two different methods intended to evaluate the relative effectiveness of internal and external heating.
 To begin, we must model a planet that is heated by an internal source only; then we model a planet heated by an equivalent source of heat applied externally.
+The two methods differ in how we choose what an "equivalent source of heat" is.
 
 ##### A planet heated solely by internal energy generation
 
-I begin by creating a planetary model with no irradiation; that is, I set $T_\mathrm{irr} = 0$.
+For both methods, I begin by creating a planetary model with no irradiation; that is, I set $T_\mathrm{irr} = 0$.
 I fix the energy generation rate per unit mass in the nucleus $\varepsilon$.
 Then I evaluate the radius of this planet as described in @sec:heated-planets.
 This model represents a planet heated only from within.
@@ -572,15 +573,14 @@ This is because, with no internal heating and with an irradiation temperature mu
 Changing the internal energy generation rate used in the internally heated model over four orders of magnitude produced no discernible increase in the radii of equivalently irradiated planets.^[In the example above, increasing the black-body temperature of the Earth from $35\,$K to $350\,$K needs a thousand-fold increase in Earth's energy generation rate $\varepsilon$.]
 
 This indicates that perhaps the black-body temperature is not a good choice for the characteristic temperature of such an internally heated planet.
-After all, the question we are really interested in answering here is
 In reality, any internal energy input is trapped at the base of the opaque atmosphere, so the temperature through the atmosphere is much higher than $T_\mathrm{blackbody}$.
-I therefore produced a second set of irradiated models.
-Here, instead of setting the irradiation temperature equal to the black body temperature from an internally heated model, I instead use the temperature at the radiative--convective boundary $T_\mathrm{tr}$.
+I therefore produced a second set of irradiated models using a different reference temperature.
+Here, instead of setting the irradiation temperature equal to the black body temperature from an internally heated model, I use the temperature at the radiative--convective boundary $T_\mathrm{tr}$.
 It is a better representative temperature temperature for the interior of the planet: it is hotter than the planet's black-body temperature owing to the insulating effect of the thick, opaque atmosphere.
 
 This second method produces planets that are larger than the first method, but still smaller the equivalent internally heated planets.
 [@Fig:internal-external-heat] shows this for some different heating scenarios (dashed lines).
-For example, if we take a $2\,$M$_\oplus$ planet with $30$% water by mass and an Earth-like level of internal energy generation, its radius is approximately $2$R$_\oplus$.
+For example, if we take a $2\,$M$_\oplus$ planet with $30$% water by mass and an Earth-like level of internal energy generation (10$^{-12}\,$W$\cdot$kg$^{-1}$), its radius is approximately $2$R$_\oplus$.
 A planet with the same temperature applied *externally* is slightly smaller.
 But at higher energy generation rates we see that the internal heating more strongly affects the radius: the same planet would be almost twice the size if heated internally.
 
@@ -591,8 +591,9 @@ From [@fig:internal-external-heat], all other things being equal, it therefore a
 ![
   A planet's radius increases more when it is internally heated than when it is externally heated to an equivalent temperature.
   Here I compare planets where the energy source is solely internal (solid lines) to planets that are otherwise equivalent except that the heating is applied externally (dashed and dotted lines).
-  The dashed and dotted lines use different reference irradiation temperatures in the atmospheric profile: in the first I use the temperature from the radiative--convective boundary of the internally heated planet; in the second I use its black-body temperature.
-  But in both cases the degree of inflation is less than when the planet is heated internally.
+  I do this by matching the black body temperature of the *externally* heated planet to a reference temperature from the *internally* heated planet.
+  This reference temperature is either the radiative--convective boundary temperature (dashed line) or the black body temperature calculated using the planet's surface flux (dotted line).
+  But in both cases the degree of inflation for external heating is less than when the planet is heated solely by an internal source of energy.
 ](internal-vs-external){#fig:internal-external-heat}
 
 ### Atmospheric profiles

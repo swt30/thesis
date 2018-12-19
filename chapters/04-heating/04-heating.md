@@ -584,17 +584,18 @@ For example, if we take a $2\,$M$_\oplus$ planet with $30$% water by mass and an
 A planet with the same temperature applied *externally* is slightly smaller.
 But at higher energy generation rates we see that the internal heating more strongly affects the radius: the same planet would be almost twice the size if heated internally.
 
-\newthought{These two methods} produce very different results. The first method is a more direct comparison, because it effectively compares energy fluxes.
-But I argue that the second method better accounts for the fact that energy is trapped in the lower layers of the atmosphere when it comes from the interior.
-From [@fig:internal-external-heat], all other things being equal, it therefore appears that a watery super-Earth is more easily inflated by internal heating than by equivalent external heating.
-
 ![
   A planet's radius increases more when it is internally heated than when it is externally heated to an equivalent temperature.
-  Here I compare planets where the energy source is solely internal (solid lines) to planets that are otherwise equivalent except that the heating is applied externally (dashed and dotted lines).
-  I do this by matching the black body temperature of the *externally* heated planet to a reference temperature from the *internally* heated planet.
-  This reference temperature is either the radiative--convective boundary temperature (dashed line) or the black body temperature calculated using the planet's surface flux (dotted line).
+  Here I compare planets where the energy source is solely internal (solid lines) to planets that are otherwise equivalent except that the heating is applied externally (dashed/dotted lines).
+  I do this by setting the irradiation temperature of the *externally* heated planet to a reference temperature from the *internally* heated planet.
+  This reference temperature is either the radiative--convective boundary temperature (dashed line) or the black body temperature calculated from the planet's surface flux (dotted line).
   But in both cases the degree of inflation for external heating is less than when the planet is heated solely by an internal source of energy.
 ](internal-vs-external){#fig:internal-external-heat}
+
+These two methods produce very different results. The first method is a more direct comparison, because it effectively compares energy fluxes.
+But I argue that the second method better accounts for the fact that energy is trapped in the lower layers of the atmosphere when it comes from the interior.
+And both methods give the same conclusion: from [@fig:internal-external-heat], all other things being equal, it appears that a watery super-Earth is more easily inflated by internal heating than by an equivalent external heating.
+
 
 ### Atmospheric profiles
 

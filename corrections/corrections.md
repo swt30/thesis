@@ -1,7 +1,7 @@
 # Amendments to "Internal and atmospheric structures of heated watery super-Earths"
 ## Scott Thomas
 
-I have addressed the request for amendments by making the following changes to the dissertation.
+I have addressed the request for amendments by making the following changes to the dissertation. Here are my point-by-point responses to the corrections, followed by a list of changes with page references.
 
 1)  A discussion of solar system icy bodies should be added to the introduction.
 
@@ -14,7 +14,7 @@ I have addressed the request for amendments by making the following changes to t
 
 2)  The explanation of interpolation across the boundaries between tables used in the equation of state must include a figure showing discontinuities in heat capacity and a discussion thereof.
 
-    This figure was already included in the dissertation (Figure 2.9). In this figure I showed slices through the pressure--volume--temperature surface of water heat capacity in the liquid/vapour region, which is where the heat capacity differences of water are at their greatest. I have extended section 2.2.5 to include some discussion of the discontinuities shown in that figure (**p52--53**). I have also inserted a reference to this section in the later discussion of phase boundaries (section 5.1.2, where I discuss my treatment of the adiabat). This is so I can contrast my treatment of the volumetric expansion coefficient with my treatment of the heat capacity. The former needs special treatment because it is itself a derivative of a discontinuous quantity, while the latter is a tabulated value and can be used directly.
+    This figure was already included in the dissertation (Figure 2.9). In this figure I showed slices through the pressure--volume--temperature surface of water heat capacity in the liquid/vapour region, which is where the heat capacity differences of water are at their greatest. I have extended section 2.2.5 to include some discussion of the discontinuities shown in that figure (**p52--53**). I have also inserted a reference to this section in the later discussion of phase boundaries (section 5.1.2, where I discuss my treatment of the adiabat, **p115**). This is so I can contrast my treatment of the volumetric expansion coefficient with my treatment of the heat capacity. The former needs special treatment because it is itself a derivative of a discontinuous quantity, while the latter is a tabulated value and can be used directly.
 
 
 3)  The assumption of adiabatic internal structure must be justified early on because the models all depend on it. It should be demonstrated that neither radiation nor conduction could transport heat given an adiabatic temperature gradient so that convection is necessary. Whether convection might be inhibited by composition gradients or viscosity effects should be investigated.
@@ -28,7 +28,7 @@ I have addressed the request for amendments by making the following changes to t
 
 4)  The assumptions made in the treatment, specifically of latent heat, of phase boundaries must be described in detail. A critical discussion of whether these assumptions are always reasonable and the physical motivation for the treatment of phase transitions in section 5.1.1 must be included.
 
-    After reviewing literature on phase transitions, I am satisfied in saying that the assumptions I made when constructing adiabats are equivalent to the assumption of no latent heat of phase transition. I have written an extensive discussion of this in chapter 5. It includes the following:
+    After reviewing literature on phase transitions, I am satisfied in saying that the assumptions I made when constructing adiabats are equivalent to the assumption of no latent heat of phase transition. I have written an extensive discussion of this in chapter 5 (**p111--116**). It includes the following:
 
     - An explicit acknowledgement that the way in which I have constructed the adiabat is equivalent to ignoring latent heat.
     - A discussion of the changes that occur in an adiabat that crosses a phase boundary.
@@ -54,7 +54,7 @@ I have addressed the request for amendments by making the following changes to t
     Having made these changes to the code, I updated chapters 3--5 accordingly:
 
     - I regenerated the figures in chapter 3 using the new solver. Because this chapter dealt with the portion of a planet below the atmosphere, there were only minor changes to the figures with no changes to the chapter's conclusions. I updated their captions and the accompanying text to reflect this.
-    - I removed section 3.2.5 describing how the mass grid size affects the final radius. This discussion was intended to show how I had detected and resolved the numerical error that appears when the mass points are too widely spaced. With the change to an adaptive stepping method, this is no longer necessary because the dependency on grid size no longer exists.
+    - I removed the previous section 3.2.5 describing how the mass grid size affects the final radius. This discussion was intended to show how I had detected and resolved the numerical error that appears when the mass points are too widely spaced. With the change to an adaptive stepping method, this is no longer necessary because the dependency on grid size no longer exists.
     - I altered section 4.1.6 to describe how matching the radiative and convective temperature gradients allows us to switch between the atmosphere and interior at an appropriate point (**p89**). Though I used this scheme for the rest of the work, I also kept section 4.3.1 that describes how the total radius is hardly affected if we choose to fix this boundary at a given pressure. This section serves as a sensitivity analysis and shows that the actual depth of the transition has little effect on the bulk radius, suggesting that the results are robust to changes in the transition pressure.
     - I updated figures throughout chapters 4 and 5 and updated the text to match where appropriate. The conclusions were unchanged.
 
@@ -87,7 +87,7 @@ I have addressed the request for amendments by making the following changes to t
 
 ## List of changes
 
-Substantive changes to the dissertation are listed here. I also corrected typos where I found them and reformatted some figures without changing their content. Figures whose content was altered are included in the list where appropriate. Page, figure and section numbers refer to the updated dissertation except where noted. Key pages where changes were made in response to the points above are listed in **bold**.
+Substantive changes to the dissertation are listed here. I also corrected typos and grammatical errors where I found them and reformatted some figures without changing their content. Figures whose content was altered are included in the list where appropriate. Page, figure and section numbers refer to the updated dissertation except where noted. Key pages where changes were made in response to the points above are listed in **bold**.
 
 - **p32**: Added section 1.3.3, discussion of cold icy satellites in our solar system. Figure 1.13 was added as part of this section.
 - p35: Altered first paragraph of section 1.4 to mention the discussion added above.
@@ -105,8 +105,13 @@ Substantive changes to the dissertation are listed here. I also corrected typos 
 - **p89**: Updated first paragraph of section 4.1.6 to describe how my new modelling code switches from a radiative to a convective temperature profile when the gradients match, and defining the transition pressure as the pressure at this depth rather than a fixed pressure of 100$\,$bar like before.
 - **p90**: Fixed parentheses in equation (4.15).
 - p91: Rewrote section 4.2.2 to describe more clearly what the "isothermal fixed-height atmosphere" model is and how it differs from the full treatment described above.
-- **p94** and throughout the chapter: Replaced uses of the phrase "effective temperature" with "black-body temperature" and clarify that equation (4.21) is the black-body temperature of a planet heated solely from the inside.
+- **p94** and throughout the chapter: Replaced uses of the phrase "effective temperature" with "black-body temperature". Clarified that equation (4.21) is the black-body temperature of a planet heated solely from the inside as determined from its surface flux.
 - p96: Updated numbers in text in first two paragraphs of "Opacity and opacity ratio" section to match figures.
 - p97--105: Regenerated all figures in this chapter based on updated planetary modelling code.
 - p98: Rewrote the "Pressure at the radiative--convective boundary" section to indicate that it now serves as a sensitivity analysis on the position of this boundary.
-- **p100-102**:
+- **p100-102**: Tidied up the text in section 4.3.2 to better explain how I compare the relative inflation of internally and externally heated planets. Replaced "effective temperature" with "black body temperature" where appropriate. Rewrote the caption and legend of figure 4.9 to more precisely describe where black body, irradiation, and radiative--convective boundary temperatures are used in this comparison. Clearly stated the conclusion that internal heating is a stronger driver of inflation than external heating for these planets.
+- **p103--104**: Updated figures based on changed modelling code. Extended the pressure range in order to demonstrate the smooth transition from radiative to convective gradient instead of cutting off the scale at $100\,$bar.
+- p105: Update figure 4.12 in section 4.3.4 with the updated modelling code to show how forcing a zero-opacity atmosphere roughly reproduces the isothermal case. State in the section that this is as expected; remove a comment about the models diverging at the low-mass end that is no longer the case.
+- p106: Update the last point under "I found that" to match the conclusion above about internal heating being a stronger driver of inflation than irradiation.
+- p106: Update the first point under "I also found the following:". State as above that the zero-opacity atmosphere reproduces an isothermal scale-height atmosphere as expected. Also highlight the importance of the water opacity, to lead into the point below.
+-

@@ -612,18 +612,18 @@ The bottom panel shows fixed-$\kappa$ cases where $\kappa_\mathrm{th} = 100\,$m$
   As I increase the core energy generation rate, the temperature at the base of the atmosphere increases---but this does not correspond to a change in the outer atmosphere.
 ](internal-heat-profiles){#fig:internal-heat-profiles}
 
+We see from these figures that the two modes of heating produce atmospheres with very different structures.
+When heated internally, the temperature at the base of the atmosphere increases but the bulk of the atmosphere remains at the same temperature ([@fig:internal-heat-profiles]).
+This is because all the energy is deposited at the base of the atmosphere where the pressure, optical depth and opacity are all high.
+On the other hand, externally heating the models results in a profile where the bulk of the atmosphere's temperature is increased.
+It also increases the photospheric pressure, because this boundary condition depends on the temperature profile at the photosphere.
+
 ![
   In contrast to [@fig:internal-heat-profiles], increasing a planet's irradiation temperature increases the bulk temperature of the atmosphere due to the greenhouse effect of the steam atmosphere.
   The photospheric pressure also increases with increasing temperature.
   The temperature of the isothermal region in the middle atmosphere is approximately twice as high as the irradiation temperature.
   These models also use a non-zero core luminosity, which manifests itself as the departure from an isotherm near the base of the atmosphere, but this does not affect the temperature of the bulk of the atmosphere.
 ](irradiation-profiles){#fig:irradiation-profiles}
-
-We see from these figures that the two modes of heating produce atmospheres with very different structures.
-When heated internally, the temperature at the base of the atmosphere increases but the bulk of the atmosphere remains at the same temperature ([@fig:internal-heat-profiles]).
-This is because all the energy is deposited at the base of the atmosphere where the pressure, optical depth and opacity are all high.
-On the other hand, externally heating the models results in a profile where the bulk of the atmosphere's temperature is increased.
-It also increases the photospheric pressure, because this boundary condition depends on the temperature profile at the photosphere.
 
 We also see that, if we assume constant opacity, we may produce profiles that are markedly different from the variable-opacity case.
 For example, if we assume $\kappa_\mathrm{th} = 100\,$m$^2\cdot$kg$^{-1}$ as in @sec:parameter-explorations, we produce models where the upper atmosphere heats faster than in the variable-opacity case.

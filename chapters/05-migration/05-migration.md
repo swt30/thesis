@@ -129,7 +129,7 @@ But the value of $α$ varies strongly across the parameter space, and some of th
 I therefore instead re-generated the table of $α$ phase by phase.]
 Within each phase I calculate $α$ as normal, then stitch the phases together by joining them directly in the same fashion as the EOS stitching in @sec:an-improved-water-equation-of-state.
 In this way, I avoid generating artificial spikes in $α$ at the phase boundaries, retaining the behaviour of $α$ within each phase and producing a change in its slope, rather than a spike, at the boundary.
-This yields adiabats that remain continuous at phase boundaries, like those shown in @fig:pressure-temperature-profiles.
+This yields adiabats that remain continuous at phase boundaries, like those shown in [@fig:pressure-temperature-profiles].
 In contrast, there is no such need to repeat this process to deal with heat capacity discontinuities because the heat capacity is available directly and not as a directional derivative of the EOS; see @sec:thermal-expansion-and-heat-capacity-of-water for more information about heat capacity discontinuities in my EOS.
 
 \newthought{Although the assumption} of no latent heat of phase transition is not ideal, I claim three reasons why it is not an irresponsible choice for the planets considered in this chapter.
@@ -148,7 +148,7 @@ A case-by-case analysis of the latent heat of transitions in these altered water
 The second scenario is where a pure water planet underges a liquid--gas transition, as this has the largest latent heat of any water transition.
 But the surrounding anvironment during a transition to gas is unlikely to be governed by an isentropic temperature profile any more, as we are likely in an atmospheric (radiative) regime; at this point a proper atmospheric treatment is a better choice.
 In any case, I did not see any solid--liquid or liquid--gas transitions in the models in this chapter
-([@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth]).
+([@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth]).
 
 ### Extracting phase information
 
@@ -211,16 +211,16 @@ I do not change this value as the planet is moved closer to its host star.
 ## Results
 
 Here I present the structural changes of migrating planets.
-[@Fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth] show two different groups of results.
+[@Fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth] show two different groups of results.
 In the top panels, I show how the radius of a watery planet changes with distance to its host star.
 I also show the associated irradiation temperature at this distance.
 In the bottom panels, I show the phase structure of these planets at selected points in this migration.
 
 I have chosen to represent the phase structures of the planets as a colour-coded cross-section through the planet's interior.
-Therefore I also provide [@fig:phase-key] as a key to the colours and scale of [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth].
+Therefore I also provide [@fig:phase-key] as a key to the colours and scale of [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth].
 
 ![
-  Key to [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth].
+  Key to [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth].
   The concentric dotted circles are at integer multiples of Earth's radius and the outermost solid black line is the planet's photospheric radius.
   Coloured layers show the phase structure of the planet.
 ](phase-key){#fig:phase-key}
@@ -257,7 +257,7 @@ These figures show several values and trends at a glance:
 @Fig:migration-1Mearth reveals that the atmospheric component of these models is key to their inflated size.
 When comparing phase structures of these identical-mass planets, most of the difference can be explained by the atmosphere itself.
 There is some expansion in the heated internal layers too, but most of the expansion is caused by the atmosphere itself, at least for the lower-mass case ($M_\mathrm{P} \approx M_\oplus$).
-For example, compare the second row of models in @fig:migration-1Mearth.
+For example, compare the second row of models in [@fig:migration-1Mearth].
 As the planet is moved closer to the star, the atmosphere expands while the other layers remain virtually static.
 
 Comparing [@fig:migration-10Mearth] to [@fig:migration-1Mearth] then shows that this effect is exaggerated for low-mass planets ($\lesssim 3\,$M$_\oplus$).
@@ -265,7 +265,7 @@ This is a consequence of lower-mass planets having lower gravity.
 Together with high temperatures, this leads to large atmospheric scale heights and hence extended atmospheres.^[However, here I have assumed no photoevaporation, which I do not treat in this study (see @Lopez2012 and @Kurosaki2014).]
 
 By linking the temperature of the planet to its orbital separation, we can also see that large radial changes occur across a reasonable range of orbital distances and are not just confined to planets orbiting very close to their host star.
-The range of orbital separations shown in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth] is similar to the range from Mercury to Saturn in our solar system.
+The range of orbital separations shown in [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth] is similar to the range from Mercury to Saturn in our solar system.
 
 These results are only reliable to a point, however.
 Compare the top panels of [@fig:migration-1Mearth] and [@fig:migration-3Mearth].
@@ -294,7 +294,7 @@ I am more confident in the later figures and in the other observations about pla
 
 ### These planets mostly contain three phases of water
 
-At the irradiation temperatures shown in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth], the bulk of these planetary models contain only three phases of water: gas, supercritical fluid and either plasma or ice X.
+At the irradiation temperatures shown in [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth], the bulk of these planetary models contain only three phases of water: gas, supercritical fluid and either plasma or ice X.
 There is no evidence that other high-pressure ice phases like ice VII are present.^[It is certainly possible to generate planets with more varied phase structures. For example, see the images on the title page, which I generated by taking random temperatures, planet masses and water fractions. But most of the interesting structures arise with planets that are several times more massive than Earth and consist mostly of water (water fractions of $50$% or more).]
 
 These graphs do not explore the trends for planets with water mass fractions other than $30$%.
@@ -318,7 +318,7 @@ This finding has implications for assessing the internal structure of an observe
 Instead, we must take into account that any *internal* energy generation---even if only comparable to the Earth's---can increase its radius and therefore lead to a different interpretation of the planet's structure.
 
 ![
-  As in [@fig:migration-1Mearth; @fig:migration-3Mearth], but for a $5\,$M$_⊕$ planet.
+  As in [@fig:migration-1Mearth;@fig:migration-3Mearth], but for a $5\,$M$_⊕$ planet.
 ](migration-5Mearth){#fig:migration-5Mearth}
 
 
@@ -346,7 +346,7 @@ Such an atmosphere could be found around a planet that rotates rapidly compared 
 Though my models also assume no rotation, in practice only a very rapidly rotating planet would affect the interior structure significantly.
 
 ![
-  As in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth], but for a $10\,$M$_⊕$ planet.
+  As in [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth], but for a $10\,$M$_⊕$ planet.
   The radius--distance relation is much flatter for these higher-mass planets.
   Looking at the phase structures, we can see why: they have much thinner atmospheres.
   As it is the low-density atmosphere that is most responsive to temperature changes, these planets grow less when heated than a lower-mass planet would.

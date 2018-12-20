@@ -568,7 +568,7 @@ To compare internal and external heating, we can then equate this black-body tem
 In practice this means creating a second planetary model with no internal heating and this irradiation temperature just calculated; that is, I set $T_\mathrm{int}=0$ and $T_\mathrm{irr} = T_\mathrm{black body}$, where $T_\mathrm{black body}$ is the black-body temperature of the equivalent internally heated planet.
 Finally, I calculate the radius of this irradiated planet and compare it to the radius of the internally heated planet.
 
-This method invariably produces planets that are smaller than the equivalent internally heated model (the dotted line in @fig:internal-external-heat).
+This method invariably produces planets that are smaller than the equivalent internally heated model (the dotted line in [@fig:internal-external-heat]).
 This is because, with no internal heating and with an irradiation temperature much less than $300\,$K, the irradiated planets have virtually negligible atmospheres.
 Changing the internal energy generation rate used in the internally heated model over four orders of magnitude produced no discernible increase in the radii of equivalently irradiated planets.^[In the example above, increasing the black-body temperature of the Earth from $35\,$K to $350\,$K needs a thousand-fold increase in Earth's energy generation rate $\varepsilon$.]
 
@@ -639,7 +639,7 @@ Therefore, if we force the two-stream atmosphere to be isothermal by setting $κ
 
 When I set $κ_\mathrm{th} = 0$ in this fashion, my models roughly reproduce the extent of the fixed-height atmosphere ([@fig:atmospheric-thickness]).
 This is promising as it suggests that they behave appropriately in the limit of zero opacity.
-It does not mean that the zero-opacity limit or the fixed-scale-height atmosphere are appropriate choices for modelling such planets, however: as we saw in @fig:opacity, the radius depends strongly on the opacity of the atmospheric water vapour.
+It does not mean that the zero-opacity limit or the fixed-scale-height atmosphere are appropriate choices for modelling such planets, however: as we saw in [@fig:opacity], the radius depends strongly on the opacity of the atmospheric water vapour.
 
 ![
   When we set the opacity $κ_\mathrm{th}$ to zero, forcing the atmosphere to become isothermal, this gives an atmosphere that is similar in thickness to an \textcolor{Crimson}{isothermal fixed-height atmosphere}.

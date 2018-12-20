@@ -365,7 +365,7 @@ This is true even in the extreme isothermal case where there is no temperature g
 
 These models have a surface pressure of $10^7\,$Pa ($100\,$bar) so this effect is not due to the strong liquid--vapour transition at $1\,$bar.
 In fact, we still see these effects past the critical pressure of water ($2.206×10^7\,$Pa).
-The critical point, which is visible in [@fig:water-phases; @fig:eos-phase-space], is the point in temperature--pressure space beyond which there is no distinct phase transition from liquid to vapour.
+The critical point, which is visible in [@fig:water-phases;@fig:eos-phase-space], is the point in temperature--pressure space beyond which there is no distinct phase transition from liquid to vapour.
 This indicates that a liquid--vapour transition is not required to produce a significantly inflated radius when the water layer is heated.
 I discuss the effect of pressure on these models further in the next section.
 

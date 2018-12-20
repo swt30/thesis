@@ -73,7 +73,7 @@ And finally, what do we need to do to find an Earth-like planet, how will we kno
 
 ### Detection methods
 
-A number of different techniques are used to detect exoplanets ([@fig:exoplanet-discoveries; @fig:radius-separation]).
+A number of different techniques are used to detect exoplanets ([@fig:exoplanet-discoveries;@fig:radius-separation]).
 After claims in the early 90s of planet detections around pulsars,^[@Wolszczan1992] the first extrasolar planet around a Sun-like star was found using the radial velocity method described below.^[@Mayor1995]
 However, in the past few years, the transit method has produced the largest number of new discoveries.
 Here I summarise different methods of exoplanet detection and the observable information that can be gained from each. This will be important shortly when we consider what directions the field is moving based on these available data.

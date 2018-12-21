@@ -81,7 +81,7 @@ If we know the specific entropy across the P--T range of interest, we can contin
 Or if we know the latent heat of transition at the boundary but not the specific entropy on either side, we can use this to calculate the deflection of the adiabat, which is on the order of\marginnote{
   Here $\Delta T$ is temperature change, $\Delta H$ is latent heat and C$_\mathrm{P}$ is the isobaric heat capacity in the high-pressure phase.
 } $$ \Delta T \approx {-\Delta H \over C_\mathrm{P}.} $${#eq:latent-heat-phase-transition}
-But it is better to know the entropy directly as it can be used to calculate a more accurate deflection in both temperature and pressure, known as the Verhoogen effect [@Bina1998, @Verhoogen1965].
+But it is better to know the entropy directly as it can be used to calculate a more accurate deflection in both temperature and pressure, known as the Verhoogen effect [@Bina1998;@Verhoogen1965].
 
 In summary, phase transitions cause a discontinuity and/or deflection of the adiabat into the planet, and this effect can only be correctly characterised with knowledge of latent heat or entropy across the phase boundary in question.
 

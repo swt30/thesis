@@ -1,15 +1,15 @@
 # Amendments to "Internal and atmospheric structures of heated watery super-Earths"
 ## Scott Thomas
 
-I have addressed the request for amendments by making the following changes to the dissertation. Here are my point-by-point responses to the corrections, followed by a list of changes with page references.
+I have addressed the request for amendments by making the following changes to the dissertation. Here are my point-by-point responses to the corrections, followed by a full list of changes with page references.
 
 1)  *A discussion of solar system icy bodies should be added to the introduction.*
 
-    I have inserted a new section 1.3.3 (**p32**) that discusses the literature on internal structure models of icy bodies in our solar system. This is a broad and deep topic, so I kept the review focused on those aspects that I thought were most relevant to the rest of this dissertation. I discussed the following points:
+    I have inserted a new section 1.3.3 (**p32**) that discusses the literature on internal structure models of icy bodies in our solar system. This is a broad and deep topic, so I kept the review focused on those aspects that I thought were most relevant to the rest of this dissertation:
 
-    - How our solar system shows us that it is possible to form bodies rich in water, and the observed diversity in these icy solar system bodies
-    - Why the thermal properties of water were, and continue to be, important when studying them---for example, how it permits subsurface oceans to exist under a frozen surface, and what happens if other material like ammonia or salts are also present
-    - How observations tell us that many of these objects do indeed harbour subsurface oceans, and what this tells us about their internal heating
+    - How our solar system shows us that it is possible to form bodies rich in water, and the observed diversity in these icy solar system bodies.
+    - Why the thermal properties of water were, and continue to be, important when studying them---for example, how it permits subsurface oceans to exist under a frozen surface, and what happens if other material like ammonia or salts are also present.
+    - How observations tell us that many of these objects do indeed harbour subsurface oceans, and what this tells us about their internal heating.
 
 
 2)  *The explanation of interpolation across the boundaries between tables used in the equation of state must include a figure showing discontinuities in heat capacity and a discussion thereof.*
@@ -23,7 +23,7 @@ I have addressed the request for amendments by making the following changes to t
 
     I used a representative example to show that conduction is almost certainly dominated by convection, but it's not appropriate to do the same for radiation. This is because we do indeed expect that the planetary models switch from conductive to radiative heat transfer at the atmosphere--interior boundary: that's what chapter 4 of the dissertation is about! But you will see that, in response to your point #5, I have updated my models in that chapter to make this switch at the physically appropriate point (**p89**). That is, a radiative temperature gradient is now used when appropriate in that chapter; therefore (when conduction is excluded as above) other regions are convective by definition. For completeness I have also included a comparison to the Earth, where radiation within the solid/liquid interior is known to transmit a negligible amount of energy. This helps to justify the adiabatic assumption for the models in chapter 3, which include no atmosphere.
 
-    As for compositional effects, I have discussed elsewhere in the dissertation how impurities in water could affect the equation of state and therefore the models. But I stopped short of quantifying this effect because it would require gathering more equation of state data. Instead, I have included further consideration of compositional effects by discussing how the compositional transition points within a waterworld may manifest as conductive boundary layers (**p63**), possibly breaking the adiabatic assumption around those regions. As for other compositional effects that could arise if the assumption of purity is broken, such as light materials freezing out near the core and then rising, it is my understanding that these effects serve to promote convection and not suppress it. See for example the discussion by Jones at <http://www1.maths.leeds.ac.uk/~cajones/papers/treatise.pdf>, which also notes that such effects transport as much energy as thermal convection in the Earth.
+    As for compositional effects, I have discussed elsewhere in the dissertation how impurities in water could affect the equation of state and therefore the models. But I stopped short of quantifying this effect because it would require gathering more equation of state data. Instead, I have included further consideration of compositional effects by discussing how the compositional transition points within a waterworld may manifest as conductive boundary layers (**p63**), possibly breaking the adiabatic assumption around those regions. As for other compositional effects that could arise if the assumption of purity is broken, such as light materials freezing out near the core and then rising, it is my understanding that these effects serve to promote convection and not suppress it.^[See for example the discussion by Jones at <http://www1.maths.leeds.ac.uk/~cajones/papers/treatise.pdf>, which also notes that such effects transport as much energy as thermal convection in the Earth.]
 
 
 4)  *The assumptions made in the treatment, specifically of latent heat, of phase boundaries must be described in detail. A critical discussion of whether these assumptions are always reasonable and the physical motivation for the treatment of phase transitions in section 5.1.1 must be included.*
@@ -77,7 +77,7 @@ I have addressed the request for amendments by making the following changes to t
 
     I believe that this failure to converge is a result of incomplete heat capacity and/or opacity data in the very low-pressure fringes of the atmosphere. Resolving this issue would require gathering more data on the heat capacity and opacity of water vapour that I do not have access to, so further work here is out of the scope of this dissertation.
 
-    Because I agree with you that it is interesting to construct and include higher-energy models, and because 3$\,$M$_\oplus$ and larger planets had no issues, I have chosen to leave this higher degree of internal heating in place. I have therefore added text to chapter 5 about the caveat above (**p121**), indicating that the results for the 1$\,$M$_\oplus$ case are only valid for internal heating coefficients $\varepsilon < 10^{-8}\,$W$\cdot$kg$^{-1}$. I am happy with the rest of the results, as the numerical solver converged correctly in all other cases.
+    Because I agree with you that it is interesting to construct and include higher-energy models, and because 3$\,$M$_\oplus$ and larger planets had no issues, I have chosen to leave this higher degree of internal heating in place. I have therefore added text to chapter 5 about the caveat above (**p120--121**), indicating that the results for the 1$\,$M$_\oplus$ case are only valid for internal heating coefficients $\varepsilon < 10^{-8}\,$W$\cdot$kg$^{-1}$. I am happy with the rest of the results, as the numerical solver converged correctly in all other cases.
 
 
 8)  *A more precise description of figure 4.9 is required, along with a precise definition of effective temperature when irradiation is included.*
@@ -86,7 +86,7 @@ I have addressed the request for amendments by making the following changes to t
 
     However, the point of this section and figure 4.9 was to compare how a change in heating mechanism affects the size of a planet. I use the effective (black-body) temperature as a way to compare an equivalent amount of heating when the mechanism is changed. For this reason, I never actually constructed planets with mixed heating as described above. Instead I constructed planets with *either* internal heating *or* irradiation, then compared their sizes. This is what is shown in figure 4.9.
 
-    I therefore believe there is no problem with the phrase as I have used it. Any confusion probably arises because I use it twice, once to refer to the black-body temperature of a planet where energy is generated internally and the second time to refer to the black-body temperature of a planet where energy is generated externally, absorbed by the planet, and re-radiated. To make this clearer, I replaced uses of the phrase "effective temperature" with "black-body temperature". I also updated the section text and figure caption to better explain how I used the black-body temperature as a link to allow us to compare the relative effects of internal and external heating.
+    I therefore believe there is no problem with the phrase as I have used it. Any confusion probably arises because I use it twice, once to refer to the black-body temperature of a planet where energy is generated internally and the second time to refer to the black-body temperature of a planet where energy is generated externally, absorbed by the planet, and re-radiated. To make this clearer, I replaced uses of the phrase "effective temperature" with "black-body temperature". I also updated the section text and figure 4.9's caption (**p100--p102**) to better explain how I used the black-body temperature as a link to allow us to compare the relative effects of internal and external heating.
 
 ## List of changes
 
@@ -99,10 +99,10 @@ Substantive changes to the dissertation are listed here. I also corrected typos 
 - **p52--53**: Added paragraph beginning "As well as the discontinuities..." to discuss discontinuities shown in the heat capacity figure immediately above.
 - **p61--63**: Added text beginning "Is the assumption of an adiabatic temperature gradient appropriate?" and continuing through to the end of page 63, showing that convective energy transport dominates over conduction and radiation.
 - p65: Updated paragraph before "A boundary value solver in Julia" to provide citation for the new differential equation software I built my solver on.
-- p66: In the first paragraph of 3.2.3, added citation for the modified Runge--Kutta method used in the differential equation solver.
+- p66: In the first paragraph of section 3.2.3, added citation for the modified Runge--Kutta method used in the differential equation solver.
 - p68: Removed "4" from "RK4 integration" as I no longer use the RK4 method.
 - p69: Removed the section previously numbered 3.2.5 about how changing the fixed grid size affected the final radius and how I chose a logarithmically-spaced grid to resolve the outer layers appropriately. This is now handled automatically by the solver.
-- p70,71,73,75,76: Regenerated figures based on updated planetary modelling code. The figures in this chapter did not change much and the conclusions were unaltered.
+- p70--76: Regenerated figures based on updated planetary modelling code. The figures in this chapter did not change much and the conclusions were unaltered.
 - p76: Updated numbers in paragraph beginning "The effects of surface temperature..." to match recalculated figures.
 - p89: Deleted paragraph before section 4.1.6 that discussed the mass grid size (see p69 above).
 - **p89**: Updated first paragraph of section 4.1.6 to describe how my new modelling code switches from a radiative to a convective temperature profile when the gradients match, and defining the transition pressure as the pressure at this depth rather than a fixed pressure of 100$\,$bar like before.
@@ -112,7 +112,7 @@ Substantive changes to the dissertation are listed here. I also corrected typos 
 - p96: Updated numbers in text in first two paragraphs of "Opacity and opacity ratio" section to match figures.
 - p97--105: Regenerated all figures in this chapter based on updated planetary modelling code.
 - p98: Rewrote the "Pressure at the radiative--convective boundary" section to indicate that it now serves as a sensitivity analysis on the position of this boundary.
-- **p100-102**: Tidied up the text in section 4.3.2 to better explain how I compare the relative inflation of internally and externally heated planets. Replaced "effective temperature" with "black body temperature" where appropriate. Rewrote the caption and legend of figure 4.9 to more precisely describe where black body, irradiation, and radiative--convective boundary temperatures are used in this comparison. Clearly stated the conclusion that internal heating is a stronger driver of inflation than external heating for these planets.
+- **p100--102**: Tidied up the text in section 4.3.2 to better explain how I compare the relative inflation of internally and externally heated planets. Replaced "effective temperature" with "black body temperature" where appropriate. Rewrote the caption and legend of figure 4.9 to more precisely describe where black body, irradiation, and radiative--convective boundary temperatures are used in this comparison. Clearly stated the conclusion that internal heating is a stronger driver of inflation than external heating for these planets.
 - **p103--104**: Updated figures based on changed modelling code. Extended the pressure range in order to demonstrate the smooth transition from radiative to convective gradient instead of cutting off the scale at $100\,$bar.
 - p105: Updated figure 4.12 in section 4.3.4 with the updated modelling code to show how forcing a zero-opacity atmosphere roughly reproduces the isothermal case. Stated in the section that this is as expected; removed a comment about the models diverging at the low-mass end that is no longer the case.
 - p106: Updated the last point under "I found that" to match the conclusion above about internal heating being a stronger driver of inflation than irradiation.
@@ -130,3 +130,4 @@ Substantive changes to the dissertation are listed here. I also corrected typos 
 - p126: Rewrote figure caption to describe weak orbital radius relation, as above.
 - p129: In the second paragraph, clarified that this chapter was written based on a previous version of my modelling code.
 - p138: In the third paragraph, updated the conclusion to say that "the radius can be significant inflated by internal heating" to match updates above (p100, p106, p119 etc).
+- p143--149: Updated bibliography.

@@ -695,7 +695,7 @@ Some caution might be warranted if we were to use these models for planets aroun
   He also notes in that paper that a useful value for the convective--radiative boundary pressure is $10\,$bar; compare to our choice of $100\,$bar and see \cref{fig:transition-pressure}.
 } diverges from numerical calculations away from temperatures significantly lower or higher than $1000\,$K due to changes in the mean opacities.
 This highlights the importance of the mean opacity in these calculations.
-The model also assumes that the irradiation is distributed isotropically over the surface; a tidally locked planet could have very different atmospheric dynamics and would be better served by a three-dimensional atmospheric model.^[These tidally locked planets are sometimes called "eyeball planets" because they could have very different climates and surfaces on opposite sides with a transition ring around the edge, possibly giving the planet the appearance of a large eyeball.]
+The model also assumes that the irradiation is distributed isotropically over the surface; a tidally locked planet^[These tidally locked planets are sometimes called "eyeball planets" because they could have very different climates and surfaces on opposite sides with a transition ring around the edge, possibly giving the planet the appearance of a large eyeball.] could have very different atmospheric dynamics and would be better served by a three-dimensional atmospheric model.
 
 ### How are these models useful?
 

@@ -3,7 +3,7 @@
 Having created an improved equation of state for water, the next step was to build structural models of watery planets and ask the question: does temperature matter?
 
 In this chapter I develop the framework to apply my equation of state to interior structure models.
-After outlining the theory of exoplanet interior structural models, I present my code, \smallcaps{OGRE}, which solves the system of structural equations for a one-dimensional planet.
+After outlining the theory of exoplanet interior structural models, I present my code, \smallcaps{ONION}, which solves the system of structural equations for a one-dimensional planet.
 Then I show the results of building models with this code.
 First I examine the effects of my equation of state on homogeneous isothermal spheres.
 Next I add in temperature dependence and model the interiors of inhomogeneous layered planets.
@@ -82,6 +82,41 @@ My sources for these latter two coefficients are detailed in @sec:thermal-expans
 @Eq:adiabatic-temperature-gradient-radial combined with @eq:mass-continuity gives the temperature gradient in terms of the mass co-ordinate,
   $$ {dT \over dm} = -{T α G m \over 4 π r^4 ρ c_P}. $$ {#eq:adiabatic-temperature-gradient}
 
+Is the assumption of an adiabatic temperature gradient appropriate?
+In order to answer this, we need to show that convective heat transfer is dominant over conductive and radiative heat transfer within these heated watery super-Earths.
+
+##### Convection vs conduction
+
+We can assess whether a planetary layer is likely to be convective or conductive by calculating its Rayleigh number,\marginnote{
+  Here, $g$ is the acceleration due to gravity, $\alpha$ is the volumetric thermal expansion coefficient, $\Delta T$ is the temperature differential across the layer, $h$ is the layer thickness, $\nu$ is the coefficient of kinematic viscosity and $\kappa$ is the thermal diffusivity. This is the Rayleigh number for a fluid layer heated from below; later in \cref{sec:heating-and-the-atmosphere} we will indeed assume that internal heating comes from deep in the planet and that the water layer is not itself luminous.
+} $$ Ra = {g \alpha \Delta T h^3 \over \nu \kappa}, $$ {#eq:rayleigh-number}
+which is the ratio of buoyant and viscous drag forces [@Milone2014]. Rayleigh numbers over the critical threshold for convection $Ra_\mathrm{c}$, typically taken as $1000$--$2000$, indicate that buoyancy forces dominate and so the layer will convect.
+
+I will not be assessing the above equation for every model constructed in this dissertation, and an order-of-magnitude calculation will quickly show why: the Rayleigh number of a icy super-Earth far exceeds the critical threshold for convection. Taking as a representative example the case of an icy planet with a similar temperature structure to the Earth, here is a rough sketch of the Rayleigh number of its water layer.
+
+- For an Earth-sized and Earth-mass planet, the acceleration due to gravity $g$ is ~$\,10\,$m$\cdot$s$^{-2}$.
+- Ice VII is a good representative choice for the high-pressure phase of water inside a solid Earth-sized planet. The volumetric thermal expansion coefficient $\alpha$ of ice VII is ~$\,10^{-4}\,$K$^{-1}$.^[@Fei1993]
+- Assume that our representative waterworld has a thick ice layer similar to the Earth's mantle. Then the temperature difference $\Delta T$ is ~$\,3000\,$K across a characteristic layer height $h$ of ~$\,3 \times 10^6\,$m.
+- The coefficient of kinematic viscosity $\nu$ can also be expressed as ${\eta \over \rho}$ where $\eta$ is called the dynamic viscosity and $\rho$ is the density.^[@Milone2014] In [@fig:simple-eos-comparison] we see that a representative density of ice is $10^3$--$10^4\,$Pa over the GPa--TPa range; I take $\rho\,$~$\,10^3$ to account for the planet's increased temperature over the zero-temperature EOS shown in that figure. Then taking the dynamic viscosity of ice VII as $10^{14}\,$Pa$\cdot$s,^[@Poirier1981] this gives $\nu\,$~$\,10^{11}\,$m$^2\cdot$s$^{-1}$.
+- The thermal conductivity of ice VII is ~$\,10\,$W$\cdot$m$^{-1}\cdot$K$^{-1}$.^[@Chen2011]
+- Putting this together with [@eq:rayleigh-number] we find that $Ra\,$~$\,10^8$, five orders of magnitude higher than the critical Rayleigh number of $10^{3}$.
+
+Convective energy transport therefore almost certainly dominates within the bulk of the icy planet we have just considered. In order for viscosity effects to suppress convection, the kinematic viscosity of ice $\nu$ would have to be five orders of magnitude larger.^[Within the icy moons of Jupiter and beyond, kinematic viscosity decreases with depth (that is, with increasing temperature and pressure) and only varies by about an order of magnitude anyway [@Hussmann2006;@Nimmo2018].] Therefore I proceed by assuming that convection holds throughout the planet. Although this is a reasonable assumption, convection could potentially be suppressed if the planet were much more weakly heated or if the ice layer were much thinner. Therefore, in a more detailed model it might also be sensible to allow thin conductive layers at key transition points like at the planet's crust. Such layers would be expected to sustain conductive heat transfer because they are thin and occur at points where the composition of the planet is changing. This is the approach taken by @Valencia2006 when modelling super-Earth and super-Mercury planets and it is inspired by the boundary layers used in Earth models and the "stagnant lid" models for solar system icy bodies.
+
+Phase transitions may also affect convection. As a rule of thumb, exothermic phase transitions^[Here these are defined for the transition from the less dense phase i.e. down into the planet.] intensify convection and endothermic ones suppress it.^[@Milone2014]
+The key phase transitions seen in my models---from high-pressure or superionic fluid to ice VI or VII---are exothermic and therefore unlikely to suppress convection.^[See @sec:phase-structure-and-migration for further discussion of phase transitions within my models.]
+
+##### Convection vs radiation
+
+In contrast to the above, a single representative order-of-magnitude calculation is not appropriate for showing whether radiation is likely to be a dominant mode of energy transport throughout the entire planet.
+This is because radiative transfer is almost certain to be dominant at some point in the outer layers of every waterworld: as the planet's solid/liquid interior transitions into a gaseous atmosphere, radiation becomes a viable method of carrying increasing amounts of energy.
+Though this chapter does not yet treat the atmosphere of the planet, we will see in @sec:heating-and-the-atmosphere that a radiative temperature gradient is needed to represent the atmosphere.
+We will therefore treat this radiative atmosphere appropriately when we come to it.
+
+For the icy planetary interior models in this chapter, however, radiation is unimportant to the energy transport of the planet.
+This is by analogy with the Earth, where only long-wavelength ($\geq 1\,$km) radio waves can propagate, transporting negligible amounts of heat compared to conduction and convection.^[@Milone2014]
+We expect similar behaviour to hold with ice/liquid waterworlds because these materials are effectively opaque to shorter-wavelength radiation.
+
 ## Models
 
 Together, [@eq:mass-continuity; @eq:pressure-gravity; @eq:eos; @eq:adiabatic-temperature-gradient] define a structural model: three ordinary differential equations and an equation of state linking pressure, temperature and density.
@@ -119,20 +154,17 @@ Generic ODE solvers are well-tested, they are optimised for performance, and usi
 To handle this problem, any ODE solver needs to meet the following requirements:
 
 - It needed to solve boundary value problems with systems of equations.
-- It needed to be compatible with Python, which was my preferred programming language at the time.
 - It needed to handle the numerical singularity at $\left(r=0,m=0\right)$ where the denominators of [@eq:mass-continuity; @eq:pressure-gravity; @eq:adiabatic-temperature-gradient] approach $0$.
 - It needed to be able to switch between different equations of state depending on the planet's structure.^[This is sometimes referred to as the solver having support for events. An "event" is any situation in which the system of equations is altered, such as the transition between layers.]
 
-Ultimately, I was not able to find a solver that met the above needs.
-In particular, all those that I evaluated fell short in one of two ways: either they could not handle the singularity at the centre of the core where $r=0$, $m=0$, or they could not handle the transition between equations of state at layer boundaries.
+Most of the solvers I evaluated fell short in one of two ways: either they could not handle the singularity at the centre of the core where $r=0$, $m=0$, or they could not handle the transition between equations of state at layer boundaries.
 I also desired to retain some control over the solver itself rather than treating the solution of the ODE as a black box.
-This was so I could more easily build on the model later on.
+The differential equation solver I found that best met my needs was DifferentialEquations.jl.^[@Rackauckas2017]
+Working from this differential equation solver as a base, I developed a package that solves systems of equations for planetary structures.
 
-I therefore chose to write my own solver for this system.
+### A boundary value solver in Julia
 
-### A custom numerical integrator in Julia
-
-My solver is called \smallcaps{OGRE}.^[Onion Geology for Researching Exoplanets. Because planets, like onions, have layers.]
+My solver is called \smallcaps{ONION}.^[Because planets, like onions and ogres, have layers.]
 I prototyped it in Python and later ported it to Julia, a new scientific programming language that offers much better numerical performance.
 
 I used the shooting method, described above, to solve for the planet's structure.
@@ -154,7 +186,7 @@ The shooting method uses a series of trial solutions.
 For the initial trial solution, I specify the surface boundary conditions: total planetary mass $M$, surface pressure $P(M)$, and surface temperature $T(M)$.
 I further allow for multi-layer planets by specifying the composition and mass fractions of each layer, $\{x_i\}$.
 I also specify a search bracket for the radius $[R_1(M), R_2(M)]$.
-The code uses a fixed-step fourth-order Runge--Kutta integrator to solve the system of differential equations above.
+The code uses a Runge--Kutta integrator^[@Tsitouras2011] to solve the system of differential equations above.
 
 Specifying the parameters $\{M, R, \{x_i\}\}$ gives an overdetermined system.
 The trial solution will therefore fail to meet the inner boundary condition, which is that $r=0$ where $m=0$.
@@ -167,7 +199,7 @@ I further required that $r$ remains positive: this avoids any numerical difficul
 @Fig:solver-flowchart summarises this process.
 
 ![
-  A flowchart summarising how my structural solver \smallcaps{OGRE} works.
+  A flowchart summarising how my structural solver \smallcaps{ONION} works.
 ](solver-flowchart_big_fig){#fig:solver-flowchart}
 
 I was unable to use a faster method, such as the secant method, to solve for the correct radius.
@@ -207,48 +239,6 @@ In practice, I did this by ensuring that the equation for the adiabatic temperat
 This effectively split the adiabatic temperature profile into several different sections, consisting of one separate adiabat for each phase and meeting at the phase boundaries of water.
 By handling each phase separately, I avoided the numerical difficulty of taking a derivative (@eq:thermal-expansion) across a density discontinuity.
 I explain this procedure more in @sec:phase-structure-and-migration where I consider the phase structure of the final models.
-
-### Effect of the mass grid size
-
-The integration is performed on a logarithmically-spaced mass grid.
-I also tested a uniform linear mass grid with several hundred points in the mass co-ordinate.
-However, when I later added an atmospheric layer in @sec:heating-and-the-atmosphere, it became apparent that this uniform grid was failing to capture the extent of the atmosphere correctly.
-In the very outer layers of the atmosphere where the density is very low, a fixed step in mass corresponds to a very large step in radius.
-If the surface pressure is low, this can cause the radius of a water-rich planet to be overpredicted due to the integrator failing to adequately resolve the atmospheric structure.
-
-How large should the smallest mass step be?
-A $1\,$R$_\oplus$ and $1\,$M$_\oplus$ planet at $T=500\,$K has a scale height of $H = {RT \over g_\oplus} \approx 20\,$km.
-To resolve the atmosphere accurately we would like at least on the order of ten mass steps per scale height.
-From @eq:mass-continuity-repeat, setting $dr = 2\,$km, $\rho = 1\,$kg$\cdot$m$^{-3}$ as a representative density for a gaseous atmosphere and $r = R_\oplus$, we find ${dm \over M_\oplus} \approx 10^{-7}$.
-A mass step of $10^{-10}\,$M$_\mathrm{P}$ should therefore be more than adequate to resolve the atmospheric structure.
-As the density increases inward, the mass step can be made larger.
-
-The problems with the low resolution uniform mass grid could be resolved in several ways.
-We could increase the resolution of the uniform grid to ensure that the atmosphere is resolved appropriately.
-But the density can very across several orders of magnitude and this would result in an unnecessarily fine grid in other parts of the model.
-The most robust way is to use an adaptive step size solver to tune the mass step $Δm$ at each step of the integration such that it produces a desired radius step $Δr$.
-But adaptive step size methods often require us to take several trial steps to find an appropriate step size, which can be problematic as we approach the $m=0$ limit of the structural equations.
-
-Given that the atmosphere is expected to be close to exponential in pressure and optical depth within the outer layers,^[See @sec:boundary-conditions.] I instead chose to use a logarithmically spaced mass grid.
-At the outer boundary of the model, the mass step is approximately $Δm = 10^{-10}\,$M$_\mathrm{P}$, which is sufficient to avoid any numerical error in the outer atmosphere.
-From there I allow $\Delta m$ to increase by a constant multiplicative factor at each step into the planet.
-I set this factor such that the mass grid has a total of $N$ points; for the models in this dissertation, I use $N = 500$.
-
-![
-  The mass grid affects the final mass--radius diagrams.
-  Here I show models of planets with a watery envelope, $30$% of the planet's mass, over an Earth-like nucleus.
-  I set the outer boundary pressure to $100\,$bar.
-  I use two different treatments for the mass grid.
-  The first (solid lines) is logarithmically spaced so that low-density regions near the surface have a higher grid resolution.
-  The second (dashed lines) is a uniform grid, replicating the mass grid choice from my first paper [@Thomas2016].
-  It does not appropriately resolve the low-density region near the surface.
-  I find that the difference between the two treatments can be significant for larger planets.
-](grid-error){#fig:grid-error}
-
-My first paper, on which this chapter was originally based, used a uniform mass grid.
-With $N=500$, this mass step was only $2 \times 10^{-3}\,$M$_\mathrm{P}$, which resulted in overpredicted radii for higher-mass planets ([@fig:grid-error]).
-The error is minor ($<0.1\,$R$_⊕$) for smaller planets ($M_\mathrm{P}<\,$M$_\oplus$) but can be large ($0.3\,$R$_⊕$) for planets nearer $10\,$M$_⊕$.
-I have since corrected this problem and all the results presented in this dissertation use the updated logarithmic mass grid.
 
 ### Model verification
 
@@ -375,7 +365,7 @@ This is true even in the extreme isothermal case where there is no temperature g
 
 These models have a surface pressure of $10^7\,$Pa ($100\,$bar) so this effect is not due to the strong liquid--vapour transition at $1\,$bar.
 In fact, we still see these effects past the critical pressure of water ($2.206×10^7\,$Pa).
-The critical point, which is visible in [@fig:water-phases; @fig:eos-phase-space], is the point in temperature--pressure space beyond which there is no distinct phase transition from liquid to vapour.
+The critical point, which is visible in [@fig:water-phases;@fig:eos-phase-space], is the point in temperature--pressure space beyond which there is no distinct phase transition from liquid to vapour.
 This indicates that a liquid--vapour transition is not required to produce a significantly inflated radius when the water layer is heated.
 I discuss the effect of pressure on these models further in the next section.
 
@@ -411,7 +401,7 @@ I constructed planets with water, silicate, and iron layers, fixing the silicate
 These models correspond to an Earth-like nucleus with an extended water layer at the surface.
 
 The effects of surface temperature on radius vary in magnitude across all my models with water layers, but still exist even when I set the water layer mass to just $1$% of the mass of the entire planet.
-For a $1\,$M$_⊕$ super-Earth with a surface pressure of $10^7\,$Pa ($100\,$bar), the radial change when the surface temperature increases from $300$ to $1000\,$K is $0.8\,$R$_⊕$ (for a $50$% water planet) and $0.1\,$R$_⊕$ (for a $1$% water planet).
+For a $1\,$M$_⊕$ super-Earth with a surface pressure of $10^7\,$Pa ($100\,$bar), the radial change when the surface temperature increases from $300$ to $1000\,$K is $0.3\,$R$_⊕$ (for a $50$% water planet) and $0.1\,$R$_⊕$ (for a $1$% water planet).
 This similarity holds across the entire range of planetary masses I considered.
 
 ![
@@ -420,9 +410,9 @@ This similarity holds across the entire range of planetary masses I considered.
   Here I show mass--radius relations for multi-layer planets: an iron core with silicate and (in all but the first panel) water layers.
   I show the Earth-like iron-silicate core in each panel for comparison.
   All the watery planets are larger than the dry case owing to the lower density of water.
-  Surface temperature variation affects the radius of a watery planet by a different amount in each case, and it can more than double the radius for low-mass planets.
+  Surface temperature variation affects the radius of a watery planet by a different amount in each case, and it can nearly double the radius for low-mass planets.
   Because the iron and silicate layers are isothermal, this variation is due solely to temperature effects in the water layer.
-  I fixed the silicate:iron mass ratio at 2:1 and set the surface pressure to $10^7\,$Pa ($100\,$bar).
+  I fixed the silicate:iron mass ratio at $2$:$1$ and set the surface pressure to $10^7\,$Pa ($100\,$bar).
   The temperature contours are in steps of $100\,$K from $300$--$1000\,$K.
 ](water-fraction-panels){#fig:composition-variation}
 

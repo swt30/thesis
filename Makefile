@@ -14,12 +14,15 @@ files += 05-migration/05-migration.md
 files += 06-application/06-application.md
 files += 07-conclusion/07-conclusion.md
 chapters = $(addprefix $(chapterfolder), $(files))
-allfiles = preamble.yaml $(chapters)
+thesisfiles = preamble.yaml $(chapters)
 
-# Outputs
+# Documents with responses to the corrections
+corrections = corrections/corrections
+
+# Outputs - main thesis
 outputexts = tex pdf
-outputpdfs = thesis.pdf thesis-deposit.pdf
-outputtexs = thesis.tex thesis-deposit.tex
+outputpdfs = $(title).pdf $(title)-deposit.pdf
+outputtexs = $(title).tex $(title)-deposit.tex
 outputs = $(outputpdfs) $(outputtexs)
 
 # Styles and templates
@@ -41,15 +44,21 @@ all: allpdf
 # documents
 alltex: $(outputtexs)
 $(title).tex: preamble.yaml $(chapters) $(textemplate) | bibtex
-	pandoc $(allfiles) $(texopts) $(softbinding) -o $(title).tex
+	pandoc $(thesisfiles) $(texopts) $(softbinding) -o $(title).tex
 $(title)-deposit.tex: preamble.yaml $(chapters) $(textemplate) | bibtex
-	pandoc $(allfiles) $(texopts) $(deposit) -o $(title)-deposit.tex
+	pandoc $(thesisfiles) $(texopts) $(deposit) -o $(title)-deposit.tex
 
 allpdf: $(outputpdfs)
 $(title).pdf: $(title).tex
 	latexmk $(title).tex -pdf
 $(title)-deposit.pdf: $(title)-deposit.tex
 	latexmk $(title)-deposit.tex -pdf
+
+# corrections
+corrections: $(corrections).pdf
+$(corrections).pdf: $(corrections).md
+	pandoc $(corrections).md -o $(corrections).pdf
+
 
 
 # bibliography

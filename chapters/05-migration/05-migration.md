@@ -15,7 +15,7 @@ This may all have astrobiological consequences.
 It is therefore useful to have some grasp on how varied the internal structures of these planets can be.
 
 The phase structure of these planets is useful to know for other reasons too.
-It provides a sanity check that these models are producing appropriate structures: we expect to see a gaseous atmosphere over layers of liquid, supercritical fluid/plasma, and high-pressure ices.
+It provides a sanity check that these models are producing appropriate structures: we expect to see a gaseous atmosphere over layers of liquid, supercritical fluid/plasma, or high-pressure ices.
 It allows us to see whether the equation of state had its detail in the right regions: we would prefer that the final planetary models consist of phases like gas and supercritical fluid rather than ice X because the latter's equation of state is not well-known.
 And it provides an at-a-glance overview of the similarities and differences between planets with different heating parameters.
 
@@ -33,10 +33,10 @@ I show the results for a few different scenarios and highlight the interesting f
 ## The phase structure of a planet
 
 A phase transition is a discrete change in the properties of a material.
-This could be a strong change such as the transition between a liquid and a vapour, or it could be more subtle such as a change in the crystalline structure of ice.
+This could be a dramatic change such as the transition between a liquid and a vapour, or it could be more subtle such as a change in the crystalline structure of ice.
 
 Phase transitions occur within my planetary models when the temperature and pressure cross a phase boundary.
-For example, [@fig:pressure-temperature-profiles] shows how several different planetary structures each span different regions of the pressure--temperature phase space.^[Recall that these boundaries are not necessarily well-defined at high temperatures and pressures because the behaviour of water has yet to be measured in these regions.]
+For example, [@fig:pressure-temperature-profiles] shows how several different planetary temperature--pressure structures each span different phases within pressure--temperature space.^[Recall that these boundaries are not necessarily well-defined at high temperatures and pressures because the behaviour of water has yet to be measured in these regions.]
 
 ![
   Example pressure--temperature profiles for watery planet interiors.
@@ -52,18 +52,65 @@ I explicitly treat the atmospheric layer differently with the two-stream radiati
 This does not mean that any given phase may only be found in a single layer within the planet.
 But in practice the structure of the equation of state and the path of the adiabat in my models is such that this is almost always the case.
 
-### My treatment of phase transitions
-
 My solver traces an adiabat through the envelope of the planet, and this adiabat's path depends on the equation of state: it is calculated from the thermal expansion coefficient $\alpha$, which I evaluate directly from the EOS by taking a partial derivative in the temperature direction.^[See @eq:thermal-expansion.]
-This poses a problem: how do we treat the boundaries between phases?
-Do we enforce continuity of temperature and pressure across the phase boundaries, or do we allow for discontinuities?
-When I wrote the solver, I was therefore forced to make a choice about how to handle these phase transitions within the adiabatic interior.
-I tried two different approaches.
+But this approach breaks down at phase boundaries because they feature density discontinuities at which the thermal expansion coefficient becomes undefined.
 
-\newthought{The first approach} is the simplest: we can calculate the thermal expansion coefficient $\alpha$ using @eq:thermal-expansion.
-Within a given phase, this produces the correct value for $α$.
-But the density is discontinuous at the phase boundaries ([@fig:density-jump]).
-Because of this discontinuity, we obtain a peak in the value of $α$ across the boundary ([@fig:thermal-expansivity-correction]).
+This poses the problem of how to treat the boundaries between layers.
+Is the adiabat continuous and smooth in P--T space, continuous and non-smooth, or discontinuous at the phase boundary?
+And how should this be implemented in a way that can be used in a differential equation solver?
+The answer depends on the properties of the material in question, in particular whether there is latent heat involved in the phase transition and what the relative thermal expansivities and heat capacities are in the different phases.
+
+### The adiabatic temperature gradient at phase transitions
+
+In the Earth, we see "seismic discontinuities", significant changes in seismic wave speeds at different depths.
+These seismic discontinuities are caused by density discontinuities in the mantle minerals.
+For example, one component of the mantle is a silicate called olivine ((Mg$_{0.9}$Si$_{0.1}$)$_2$SiO$_4$) which has a phase transition at a depth of about 400$\,$km or 14$\,$GPa.^[@Milone2014]
+This is not a change in the chemical composition of the mantle, only in its molecular configuration---but it is enough to cause a density change and deflect seismic waves at that depth.
+We therefore expect to see similar behaviour in water layers as they transition between ice phases.
+
+First, it is worth pointing out that phase transitions do not actually happen at a single depth.
+Because heat transport within the planet is driven by convection, the precise depth must vary within the planet depending on whether material is rising or falling.
+Rising parcels of material within the mantle will be hotter than the surrounding material.
+They will transition to the cooler phase only once they have exchanged heat with their surroundings, meaning that the phase transition occurs closer to the surface of the planet.
+But, as the exact opposite effect occurs within falling parcels of cool material, it is reasonable to use the temperature and pressure of the surrounding material when calculating the depth at which a phase transition occurs on average.^[Such an assumption might no longer be be appropriate if we were not considering the planet as a whole---for example if we were considering a subducting slab i.e. material moving unidirectionally.]
+
+\newthought{How do such} transitions affect the path of the adiabat in a convecting water ice layer?
+Within a single phase, the adiabat follows the P--T path defined by the solution to [@eq:adiabatic-temperature-gradient-radial; @eq:adiabatic-temperature-gradient].
+Between phases there may be a discontinuity, which may be accounted for in two ways.
+If we know the specific entropy across the P--T range of interest, we can continue the adiabat into the new phase by matching the specific entropy at the boundary.^[This is because the adiabat is also an isentrope.]
+Or if we know the latent heat of transition at the boundary but not the specific entropy on either side, we can use this to calculate the deflection of the adiabat, which is on the order of\marginnote{
+  Here $\Delta T$ is temperature change, $\Delta H$ is latent heat and C$_\mathrm{P}$ is the isobaric heat capacity in the high-pressure phase.
+} $$ \Delta T \approx {-\Delta H \over C_\mathrm{P}.} $${#eq:latent-heat-phase-transition}
+But it is better to know the entropy directly as it can be used to calculate a more accurate deflection in both temperature and pressure, known as the Verhoogen effect.^[@Bina1998;@Verhoogen1965]
+
+In summary, phase transitions cause a discontinuity and/or deflection of the adiabat into the planet, and this effect can only be correctly characterised with knowledge of latent heat or entropy across the phase boundary in question.
+
+### My treatment of the adiabat
+
+From the above section, a complete treatment of the adiabat across water phase changes requires one of two things.
+Either we need the latent heat of transition between the two phases, or we need the specific entropy on either side of the phase boundary.
+Furthermore, these measurements need to be complete and continuous in P--T space to allow for any potential adiabat to be calculated for any potential path.
+
+However, neither of these pieces of information are available across the range of temperatures and pressures seen in my planetary models.
+Even recent state-of-the-art equations of state do not treat entropy in a fully consistent way between phases,^[For example, @Mazevet2018 produced a comprehensive water equation of state that includes specific entropy within each phase. Yet they acknowledge in that paper that an adiabat calculated with their EOS is only valid within a single phase because the entropy measures are only consistent within phases and not between them.] and the data sources I drew my equation of state from in @sec:an-improved-water-equation-of-state did not provide this information.
+Although this information is readily available for water, ice and steam, there is a paucity of such measurements in the high-pressure ice phases.
+
+Because we do not have measurements of latent heat or entropy to guide us, we lack a principled way to determine where to start the adiabat as we cross into the next phase.
+As discussed above, this would otherwise be provided by the Verhoogen effect or by taking isoentropes on an entropy surface.
+So in the absence of this information, my implementation of the adiabat enforces continuity of temperature and pressure across phase boundaries.
+I do not require the the thermal expansivity $\alpha$ to be continuous, so I therefore allow for the planetary adiabat to be non-smooth where it crosses boundaries.
+But because I match the pressure and temperature of the adiabat at phase boundaries, this treatment is equivalent to assuming that there is no latent heat of phase transition.
+
+\newthought{The way in which} I achieve continuity of temperature and pressure across each phase boundary is as follows.
+It is not sufficient to simply calculate the thermal expansion coefficient $\alpha$ using @eq:thermal-expansion across all of P--T space, because this approach only yields the correct value for $α$ within each phase.
+The density discontinuity at the phase boundaries ([@fig:density-jump]) means that we would obtain a peak in the value of $α$ across the boundary ([@fig:thermal-expansivity-correction]).
+
+The "spike" seen in [@fig:thermal-expansivity-correction] is a partially a reflection of a physical process: a sharp density change at the phase boundary will be reflected as a spike in the value of $\alpha$, which is a directional derivative of density.
+This change in density is associated with the release or absorption of latent heat.
+But it is also a reflection of a numerical process: the height of this artifact depends on the EOS grid resolution because $\alpha$ is undefined at the boundary.
+To put it another way, the value of the density derivative ceases to be well-defined at phase boundaries due to a discontinuity in density itself.
+It therefore cannot be used to infer properties of the adiabat across the boundary, and we
+cannot continue the adiabat across the phase boundary without a different approach.
 
 ![
   In this slice of constant temperature across the vapour--ice VII phase boundary, we see that the density increases rapidly---a result of interpolating between discontinuous values.
@@ -71,54 +118,37 @@ Because of this discontinuity, we obtain a peak in the value of $α$ across the 
 
 ![
   The thermal expansivity $α$ is the partial derivative of the density in the temperature direction.
-  The original treatment had numerical difficulty at phase boundaries.
-  Here we see that $α$ originally had a very large peak at the boundary.
-  The height of this artifact depends on the grid resolution.
-  Correcting this problem removed the peaks at phase boundaries, allowing the integrator to move smoothly through phase space without strange behaviour.
+  Here we see that a simple treatment of $α$ leads to a large peak at the boundary.
+  This is numerically problematic because it means we can no longer use $\alpha$ in @eq:adiabatic-temperature-gradient to trace the path of the adiabat across the phase boundary, and a different approach is needed.
 ](thermal-expansivity-correction){#fig:thermal-expansivity-correction}
 
-This approach is problematic because the discontinuity is not reflected in the heat capacity I used, which is instead interpolated from a separate table.
-When I evaluate the adiabatic temperature gradient ${dT \over dm}$,^[See @eq:adiabatic-temperature-gradient.] I therefore obtain a very large value at the phase boundary.
-This makes the integrator take a step sharply in the $T$ direction.
-This continues at each integration step until the integrator encounters a region where $α$ happens to be small enough that it can step across the boundary.
-As a consequence, the shape of the adiabat at the boundary changes sharply.
-Due to this, my code produced odd-looking curves in $P$--$T$ space ([@fig:phase-boundary-issues]).
-
-![
-  Sketch of the behaviour of the adiabat at phase boundaries in my models.
-  My models determine the path of the adiabat by calculating the partial derivative of the density with respect to temperature, which initially resulted in numerical issues where the adiabat would not cross phase boundaries correctly.
-  I matched pressure and temperature at the phase boundaries to fix this issue.
-](phase-boundary-issues){#fig:phase-boundary-issues}
-
-This behaviour is a numerical artifact, a product of the finite grid resolution of the EOS, rather than a reflection of a physical process.^[
-This can be seen through a quick thought experiment: as the EOS grid resolution increases, the value of $α$ approaches infinity at the boundary (because it is the derivative of a step discontinuity in the equation of state).
-An infinite value of $α$ produces an infinite value of ${dT \over dm}$ and therefore an unphysical infinite increase in temperature at the phase boundary.]
-I verified that this was the case by increasing the resolution of the EOS grid and observing that the jagged edges showed in [@fig:phase-boundary-issues] did not converge to a stable solution.
-This is not the behaviour we want.
-
-\newthought{The second approach} is to calculate $\alpha$ from @eq:adiabatic-temperature-gradient as above but to match the pressure and temperature of the adiabat at the phase boundary.
-Equivalently, we can set $\alpha=0$ at the boundary so that ${dT \over dm} = 0$.
-This gives an adiabat that crosses the boundary smoothly.
-
-I used this second approach.
-First I pre-calculated the values of $\alpha$ across the pressure--temperature domain of the equation of state.
-I tried a thresholding procedure, in which $\alpha$ is set to zero if it exceeds some threshold value.
+To resolve this and produce an adiabat that crosses the boundary smoothly, I still calculate $\alpha$ from @eq:adiabatic-temperature-gradient as above---but I prevent the value of $\alpha$ from spiking at the boundary, forcing it to switch immediately to its value in the adjacent phase.
+In practice I achieve this as follows.
+First I pre-calculate the values of $\alpha$ across the pressure--temperature domain of the equation of state.^[I tried a thresholding procedure, in which $\alpha$ is set to zero if it exceeds some threshold value.
 But the value of $α$ varies strongly across the parameter space, and some of the phase boundaries have relatively small density changes, so I could not find a suitable threshold value for $α$ that left all the normal values of $\alpha$ within the phases untouched.
-I therefore instead re-generated the table of $α$ phase by phase.
-Within each phase I calculated $α$ as normal, then stitched the phases together by joining them directly in the same fashion as the EOS stitching in @sec:an-improved-water-equation-of-state.
-In this way, I avoided generating artificial spikes in $α$ at the phase boundaries, retaining the behaviour of $α$ within each phase and producing a step, rather than a spike, at the boundary instead.
-This produces adiabats that remain continuous at phase boundaries ([@fig:phase-boundary-issues]).
+I therefore instead re-generated the table of $α$ phase by phase.]
+Within each phase I calculate $α$ as normal, then stitch the phases together by joining them directly in the same fashion as the EOS stitching in @sec:an-improved-water-equation-of-state.
+In this way, I avoid generating artificial spikes in $α$ at the phase boundaries, retaining the behaviour of $α$ within each phase and producing a change in its slope, rather than a spike, at the boundary.
+This yields adiabats that remain continuous at phase boundaries, like those shown in [@fig:pressure-temperature-profiles].
+In contrast, there is no such need to repeat this process to deal with heat capacity discontinuities because the heat capacity is available directly and not as a directional derivative of the EOS; see @sec:thermal-expansion-and-heat-capacity-of-water for more information about heat capacity discontinuities in my EOS.
 
-<!-- We might expect to see different results if we chose a different treatment.
-A third option could involve calculating the specific entropy of water directly, rather than implicitly fixing it by setting $T$ and $P$ and then evaluating @eq:adiabatic-temperature-gradient.
-We could then simply follow the adiabat into the planet by taking $T = T(P)$.^[In a discussion with Stéphane Mazevet (Observatoire de Paris), he suggested that it would be worthwhile for the pressure--temperature profile to trace contours of constant entropy directly, rather than fixing the pressure and temperature at the boundary. (S. Mazevet, personal communication, 31 March 2016)]
-This would have the advantage of avoiding the numerical difficulty described above while also allowing for density discontinuities at phase boundaries.
-But the degree to which this would change the results is unclear.
-I obtained a copy of a water EOS that included data on the specific entropy across some of the phases of interest,^[S. Stewart, personal communication, 4 March 2016] but ultimately did not have enough time to carry out this approach for comparison.
+\newthought{Although the assumption} of no latent heat of phase transition is not ideal, I claim three reasons why it is not an irresponsible choice for the planets considered in this chapter.
+First, theoretical studies of high-pressure ices suggest that their configurational entropies are quite similar.
+That is, the portion of the specific entropy change that arises from the crystalline configuration of the ice phase does not appear to differ much from phase to phase---at most $5$%.^[@Herrero2014]
+This then suggests that the latent heat difference between adjacent ice phases is also small.
+Second, this is supported by studies that trace specific water adiabats through high-pressure ice.
+For example, @Dolan2007 show an isentrope calculated from the liquid phase through ice VII; there is no perceivable discontinuity at the phase transition in that paper.
+Finally, as we will see in this chapter, the bulk radius of a planet is driven primarily by changes to its atmospheric thickness and not by the thickness of deeper layers.
+A planet's size is therefore insensitive to the precise position of phase boundaries in its water layers.
 
-This approach---smoothly following an isentrope---would also appear to presuppose that convective mixing can occur across phase boundaries, which is unlikely to be the case.
-A more realistic model would likely involve some treatment of boundary layers between different phases and also between different materials.
-At these boundaries we would perhaps expect a conductive boundary layer to form.^[See for example the work of Valencia et al., who include conductive boundary layers in their models.] -->
+This assumption may be appropriate for the high-pressure ice--liquid phase transitions seen in this chapter, but there are two scenarios that warrant further caution.
+The first scenario is where the planet contains materials other than pure water: the inclusion of other minerals can substantially alter the thermochemical properties of ice.
+For example, adding methane results in a structure called methane clathrate or "filled ice" which has a very different thermal conductivity;^[@Levi2014] we might also expect its entropy to differ more between phases, producing a larger adiabatic discontinuity.
+A case-by-case analysis of the latent heat of transitions in these altered water ices would be needed if we were to attempt to calculate an adiabat through their P--T phase space.
+The second scenario is where a pure water planet underges a liquid--gas transition, as this has the largest latent heat of any water transition.
+But the surrounding environment during a transition to gas is unlikely to be governed by an isentropic temperature profile any more, as we are likely in an atmospheric (radiative) regime; at this point a proper atmospheric treatment is a better choice.
+In any case, I did not see any solid--liquid or liquid--gas transitions in the models in this chapter
+([@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth]).
 
 ### Extracting phase information
 
@@ -181,19 +211,18 @@ I do not change this value as the planet is moved closer to its host star.
 ## Results
 
 Here I present the structural changes of migrating planets.
-[@Fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth] show two different groups of results.
+[@Fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth] show two different groups of results.
 In the top panels, I show how the radius of a watery planet changes with distance to its host star.
 I also show the associated irradiation temperature at this distance.
 In the bottom panels, I show the phase structure of these planets at selected points in this migration.
 
 I have chosen to represent the phase structures of the planets as a colour-coded cross-section through the planet's interior.
-Therefore I also provide [@fig:phase-key] as a key to the colours and scale of [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth].
+Therefore I also provide [@fig:phase-key] as a key to the colours and scale of [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth].
 
 ![
-  Key to [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth].
+  Key to [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth].
   The concentric dotted circles are at integer multiples of Earth's radius and the outermost solid black line is the planet's photospheric radius.
   Coloured layers show the phase structure of the planet.
-  This key does not show every phase possible in my models, only the ones that appear in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth].
 ](phase-key){#fig:phase-key}
 
 These figures show several values and trends at a glance:
@@ -205,33 +234,30 @@ These figures show several values and trends at a glance:
 ![
   *Top panel:* Heated planets are larger, but how close does a watery planet need to be to its host star to grow significantly?
   Here I show the radius of a $1\,$M$_⊕$ watery planet ($30$% water by mass) at several different distances from a Sun-like star and with several different core energy generation rates.
-  Such a planet can almost double in size or more if it is moved from $1\,$au to $0.1\,$au.
-  There is also a kink in the curve for the lowest internal energy generation rate ($10^{-18}\,$W$⋅$kg$^{-1}$) near $3\,$au.
-  This is caused by a transition to cold ice and liquid, causing a sharp change in radius (see below).
+  Such a planet can more than double in size if it is moved from $3\,$au to $0.3\,$au.
   *Bottom panel:* What do the interiors of these planets look like?
   Here I show structural diagrams for the models indicated with circles in the top panel.
   See [@fig:phase-key] for the colour key.
+  Most of the diagrams show a thick water vapour atmosphere, transitioning to supercritical fluid and possibly plasma deeper within the planet.
   The relative positions of the models are maintained.
-  For example, the top red line in the top panel corresponds to the top row of models in the bottom panel.
-  In almost all of these cases, the planets have a thick water vapour atmosphere.
-  Deeper within the planet, the atmosphere transitions directly to superionic fluid and possibly plasma.
-  The only exception is in the case of a cold planet past $3\,$au, which has a liquid layer around an ice VII shell.
+  For example, the bottom red line in the top panel corresponds to the bottom row of models in the bottom panel.
+  The exception is for the top row of diagrams, which show planetary structures with $\varepsilon=10^{-8}$W$\cdot$kg$^{-1}$ that have not converged and are consequently not shown in the top panel.
 ](migration-1Mearth){#fig:migration-1Mearth}
 
 \noindent The key results from these figures are as follows.
 
-1. Small ($\lesssim 3\,$M$_\oplus$) watery planets can have extended low-density atmospheres.
+1. Small ($\lesssim 3\,$M$_\oplus$) watery planets can have extended low-density atmospheres, and these can be caused by either internal or external heating. But these models may only be reliable to a point: at high levels of heating, we see what seems to be unphysical runaway atmospheric growth.
 
-2. For the most part, waterworlds in orbits comparable to Earth contain three key phases of water: gas, superionic fluid, and plasma. There is no liquid, ice VII or ice X except for cold planets in wider orbits ($\gtrsim 3\,$au).
+2. For the most part, waterworlds in orbits comparable to Earth contain two or three phases of water: a gaseous atmosphere, a supercritical fluid layer, and possibly a plasma or ice X shell nearer the core. There is no liquid, ice VII or superionic fluid present in any of the planets modelled in this chapter.
 
-3. There is a discrete transition in planet size for waterworlds with very low internal heating ($10^{-18}\,$W$\cdot$kg$^{-1}$). For a Sun-like star, this transition occurs at around $3\,$au.
+3. For larger planets, such as those $\approx 10\,$M$_\oplus$, the size of the planet is relatively insensitive to its position within its orbit. This is because the massive planet is more easily able to hold onto its atmosphere, so external heating effects are weak when compared to the potential size change from increasing the internal energy generation rate instead.
 
 ### Small watery planets can have extended low-density atmospheres
 
 @Fig:migration-1Mearth reveals that the atmospheric component of these models is key to their inflated size.
 When comparing phase structures of these identical-mass planets, most of the difference can be explained by the atmosphere itself.
 There is some expansion in the heated internal layers too, but most of the expansion is caused by the atmosphere itself, at least for the lower-mass case ($M_\mathrm{P} \approx M_\oplus$).
-For example, compare the top row of models in @fig:migration-1Mearth.
+For example, compare the second row of models in [@fig:migration-1Mearth].
 As the planet is moved closer to the star, the atmosphere expands while the other layers remain virtually static.
 
 Comparing [@fig:migration-10Mearth] to [@fig:migration-1Mearth] then shows that this effect is exaggerated for low-mass planets ($\lesssim 3\,$M$_\oplus$).
@@ -239,35 +265,60 @@ This is a consequence of lower-mass planets having lower gravity.
 Together with high temperatures, this leads to large atmospheric scale heights and hence extended atmospheres.^[However, here I have assumed no photoevaporation, which I do not treat in this study (see @Lopez2012 and @Kurosaki2014).]
 
 By linking the temperature of the planet to its orbital separation, we can also see that large radial changes occur across a reasonable range of orbital distances and are not just confined to planets orbiting very close to their host star.
-The range of orbital separations shown in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth] is similar to the range from Mercury to Saturn in our solar system.
+The range of orbital separations shown in [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth] is similar to the range from Mercury to Saturn in our solar system.
+
+These results are only reliable to a point, however.
+Compare the top panels of [@fig:migration-1Mearth] and [@fig:migration-3Mearth].
+The latter shows orbital separation--radius curves for four values of internal heating $\varepsilon$; the former shows only three.
+What happened to the 10$^{-8}$W$\cdot$kg$^{-1}$ case?
+The answer is that these models suffered from runaway atmospheric growth and did not converge.^[By this, I mean that the trial ODE solution failed to satisfy the inner boundary condition $r=0, m=0$ and instead reached $r=0$ first. Normally this would then result in us increasing our radius guess until the boundary condition was met ([@fig:solver-flowchart]) but no such increase in the radius could be found to produce a consistent solution.]
+The upper row of models in the lower panel of [@fig:migration-1Mearth] show these unconverged models: they differ from the converged models by their lack of an Earth-like core.
+This is because the core is defined as the region where $m<0.7M_\mathrm{planet}$, but this region is not reached before the integrator terminates at $r=0$.
+
+I believe that this runaway growth is a result of incomplete opacity information in the outer atmosphere.
+In @sec:heating-and-the-atmosphere I explained that our information about water opacity in the outer atmosphere is represented as a power-law fit to a grid of a few pressure--temperature pairs.
+But the lowest of these temperatures is $1000\,$K and the lowest of these pressures is $1\,$bar.
+Further, we saw that the outer edge of the atmosphere is defined as the solution to the equation @eq:optical-depth-at-photosphere.
+This equation depends on the water opacity and, as we heat the planet, the pressure at which it is satisfied becomes very low.
+
+To refine our estimates of planet sizes, the most important thing we could therefore do is to obtain better estimates for the opacity of water (and corresponding quantities like the opacity ratio $\gamma$) in this low-pressure regime.
+But at these low pressures other considerations like photoevaporation become important too.
+Because of the restrictions above, I am not confident that the planetary radii shown in this chapter are robust for strongly heated low-mass planets (i.e. [@fig:migration-1Mearth]).
+I am more confident in the later figures and in the other observations about planetary structure, which I describe below.
+
 
 ![
   As in [@fig:migration-1Mearth], but for a $3\,$M$_⊕$ planet.
   Comparing to [@fig:migration-1Mearth], we see that the $3\,$M$_⊕$ planets can actually be smaller than the $1\,$M$_⊕$ planets, at least where there is moderate internal or external heating.
 ](migration-3Mearth){#fig:migration-3Mearth}
 
-### These planets mostly contain three key phases of water
+### These planets mostly contain three phases of water
 
-At the irradiation temperatures shown in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth], the bulk of these planetary models contain only three phases of water: gas, supercritical fluid and plasma.
-There is little evidence that high-pressure ice phases like ice VII and ice X are present except in the case of very cold planets.^[It is certainly possible to generate planets with more varied phase structures. For example, see the images on the title page, which I generated by taking random temperatures, planet masses and water fractions. But most of the interesting structures arise with planets that are several times more massive than Earth and consist mostly of water (water fractions of $50$% or more).]
-In [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth] the only models to contain phases other than these three were minimally internally heated ($\varepsilon=10^{-18}\,$W$\cdot$kg$^{-1}$).
-The plasma phase appears near the bottom of the water envelope for these cold planets, and the liquid and ice VII phases appear under a very thin gas atmosphere.
+At the irradiation temperatures shown in [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth], the bulk of these planetary models contain only three phases of water: gas, supercritical fluid and either plasma or ice X.
+There is no evidence that other high-pressure ice phases like ice VII are present.^[It is certainly possible to generate planets with more varied phase structures. For example, see the images on the title page, which I generated by taking random temperatures, planet masses and water fractions. But most of the interesting structures arise with planets that are several times more massive than Earth and consist mostly of water (water fractions of $50$% or more).]
 
 These graphs do not explore the trends for planets with water mass fractions other than $30$%.
-However, we might expect that planets with larger water mass fractions are more likely to reach high-pressure ices near their core.^[In fact this can be seen in the pressure--temperature profiles for $100$% water spheres in [@fig:pressure-temperature-profiles], which reach ice X at their core.]
+However, we might expect that planets with larger water mass fractions are more likely to reach other high-pressure water phases near their core.
 They will also be less dense and have a larger radius overall than planets with iron and silicate layers.
-But the way in which my internal heating models are constructed, in which the internal heat ing comes from the core of the planet, means that the internal heating approaches zero as the core mass approaches zero.
+But the way in which my internal heating models are constructed, in which the internal heating comes from the core of the planet, means that the internal heating approaches zero as the core mass approaches zero.
 We would need a way of representing energy generation from the water envelope itself (by a tidal heating model, for example) in order to continue modelling these high-water-mass planets as being internally heated.
 
-### There is a discrete transition in planet size
+### Larger planets have a weak relationship between orbital radius and planetary radius
 
-The kink in the lower curve on [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth; @fig:migration-10Mearth] is a discrete transition in phase structure for cold planets.
-The phase structure of the resulting planet is visible as the bottom-right structure in the grid of models.
-This structure contains a liquid water layer over ice VII and ice X.
-But these phases are only present when there is virtually no internal heating: even an Earth-like internal heating amount of $10^{-12}\,$W$⋅$kg$^{-1}$ in the core is enough to shift the path of the adiabat away from these cold ice phases and up to the supercritical fluid regime.
+Comparing [@fig:migration-1Mearth] to [@fig:migration-10Mearth] shows how much flatter the orbital--planetary radius curve is for the more massive planet.
+Earlier, we saw that low-mass planets can become highly inflated when heated, and that this inflation is due almost exclusively to the atmospheric layer of the planet expanding.
+With higher-mass planets, we see the opposite: the planet's size is almost constant no matter whether it is positioned at 0.3 or 10$\,$au, the gaseous atmosphere occupying only a small portion of the planet's total radius in either case.
+
+In the previous chapter we asked the question: given a planet that could be heated internally and externally, which mode of heating is dominant?
+There we concluded that internal heating is more capable of increasing a planet's radius because it can affect the temperature throughout the entire planet rather than simply inflating the outer atmospheric layer.
+In the flat orbital--planetary radius curves of [@fig:migration-10Mearth] we can see this effect strongly.
+It is easier to inflate these massive waterworlds by heating them from the inside than by moving them closer to their host star.
+
+This finding has implications for assessing the internal structure of an observed super-Earth, because it means that information about the planet's environment is not enough to determine whether its radius is inflated.
+Instead, we must take into account that any *internal* energy generation---even if only comparable to the Earth's---can increase its radius and therefore lead to a different interpretation of the planet's structure.
 
 ![
-  As in [@fig:migration-1Mearth; @fig:migration-3Mearth], but for a $5\,$M$_⊕$ planet.
+  As in [@fig:migration-1Mearth;@fig:migration-3Mearth], but for a $5\,$M$_⊕$ planet.
 ](migration-5Mearth){#fig:migration-5Mearth}
 
 
@@ -288,14 +339,14 @@ However, I argue that the exact position of the phase boundaries is less importa
 It would be very easy to repeat this analysis in future with improved equation of state data, or to add in different mineral phases of the iron and silicate layers if we wanted to examine their structure from a geological perspective.
 
 I used these models to simulate the effects of migration.
-We must assume that any movement occurs on timescales that are longer than the thermal equilibrium timescale of the planet (so that it remains in thermal quasi-equilibrium) and that there is no significant mass loss over this timescale.^[@Kurosaki2014 show that super-Earths with watery envelopes and radii between $1.5$ and $3\,$R$_\oplus$ can sustain these envelopes against photo-evaporation, while lighter components like hydrogen and helium are lost from the atmosphere on shorter timescales. [@Lopez2012; @Owen2015]
+In order for this to be reasonable, we must assume that any movement occurs on timescales that are longer than the thermal equilibrium timescale of the planet (so that it remains in thermal quasi-equilibrium) and that there is no significant mass loss over this timescale.^[@Kurosaki2014 show that super-Earths with watery envelopes and radii between $1.5$ and $3\,$R$_\oplus$ can sustain these envelopes against photo-evaporation, while lighter components like hydrogen and helium are lost from the atmosphere on shorter timescales. [@Lopez2012; @Owen2015]
 This is promising support for the stability of such water-rich super-Earths.]
 Further, my atmospheric models assume a one-dimensional atmosphere and so therefore correspond to a well-mixed atmosphere without any latitudinal or longitudinal structure.
 Such an atmosphere could be found around a planet that rotates rapidly compared to the orbital timescale.
 Though my models also assume no rotation, in practice only a very rapidly rotating planet would affect the interior structure significantly.
 
 ![
-  As in [@fig:migration-1Mearth; @fig:migration-3Mearth; @fig:migration-5Mearth], but for a $10\,$M$_⊕$ planet.
+  As in [@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth], but for a $10\,$M$_⊕$ planet.
   The radius--distance relation is much flatter for these higher-mass planets.
   Looking at the phase structures, we can see why: they have much thinner atmospheres.
   As it is the low-density atmosphere that is most responsive to temperature changes, these planets grow less when heated than a lower-mass planet would.
@@ -314,7 +365,7 @@ What does this mean for the hospitability of such a planet?
 
 If we accept that planets can be formed with significant water layers---and this is not particularly far-fetched, especially when we consider that even low water mass fractions can result in extended atmospheres---then these models show that liquid water may exist in a relatively narrow region of phase space.
 This is an important consideration in calculations of the habitable zone.
-For example, we saw above that the phase structure of a planet with a $30$% water layer allows for liquid water at the surface only when the planet is quite cold (irradiation temperature less than that of Earth's) and has very little internal heating ($10^{-18}\,$W$\cdot$kg$^{-1}$).
+For example, the phase structure of a planet with a $30$% water layer allows for liquid water at the surface only when the planet is quite cold (irradiation temperature less than that of Earth's) and has very little internal heating ($10^{-18}\,$W$\cdot$kg$^{-1}$).
 But such a planet's atmosphere is diffuse and gaseous even if the internal heating is up to two orders of magnitude lower than the Earth.
 
 I did not have time to investigate the effect of the water fraction further.

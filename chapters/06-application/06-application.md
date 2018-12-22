@@ -8,7 +8,7 @@ This heated watery super-Earth is nearly a perfect candidate for the application
 
 In this chapter, I present the results of applying my models to this super-Earth.
 These results were obtained by Oliver Shorttle, a postdoctoral fellow in our group working with my supervisor Nikku Madhusudhan.
-Oliver carried out the analysis in this chapter using my code \smallcaps{OGRE} to analyse the potential composition of this planet.
+Oliver carried out the analysis in this chapter using an earlier version of my code \smallcaps{ONION} to analyse the potential composition of this planet.
 I have included this work as an example of the first direct application of my models to observational data.
 
 ## Gliese 1132 b
@@ -51,7 +51,7 @@ This planet is therefore an excellent choice to apply my models to: it is a heat
 
 The detection paper used simple temperature-independent models of the interior structure.
 In their paper announcing the atmospheric detection, @Southworth2016 note that "In principle, consideration of temperature-dependent internal structure models would lead to larger model radii for the same composition [@Thomas2016] and therefore could lower the upper limit on the water mass fraction."
-I made my code \smallcaps{OGRE} available to Oliver Shorttle to do just that: he has used it to investigate the structure of GJ 1132b.
+I made an earlier version of my \smallcaps{ONION} code, called \smallcaps{OGRE}, available to Oliver Shorttle to do just that: he has used it to investigate the structure of GJ 1132b.
 
 ## Results
 

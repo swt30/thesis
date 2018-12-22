@@ -242,7 +242,7 @@ In this fashion my models converge on the correct values of $P_\mathrm{R}$, $T_\
 
 The boundary between the irradiated atmosphere and the adiabatic interior is defined by the Schwarzschild criterion for convective instability.^[A material for which $$ \left|{d \ln T \over d \ln P}\right|_\mathrm{ad} < \left| {d \ln T \over d \ln P} \right|_\mathrm{rad} $$ is unstable against convection. That is, the convective--radiative boundary occurs at the point where the adiabatic temperature gradient matches the radiative temperature gradient.]
 This criterion depends on the thermal behaviour of water and requires assessing whether the radiative or adiabatic temperature gradient is steeper.
-My code chooses automatically between convective transport as described in [@sec:the-temperature-gradient] and radiative transport as described in [@sec:two-stream-temperature-profile]: if $\nabla_\mathrm{rad} \leq \nabla_\mathrm{ad}$ then $\nabla = \nabla_\mathrm{rad}$, otherwise $\nabla = \nabla_\mathrm{ad}$.
+My code chooses appropriately between convective transport as described in [@sec:the-temperature-gradient] and radiative transport as described in [@sec:two-stream-temperature-profile]: if $\nabla_\mathrm{rad} < \nabla_\mathrm{ad}$ then $\nabla = \nabla_\mathrm{rad}$, otherwise $\nabla = \nabla_\mathrm{ad}$.
 In practice, this means that the water layer consists of a radiative outer region on top of a convective envelope such that the temperature gradient matches at the boundary.
 The transition pressure at the top of the envelope, where $\nabla_\mathrm{rad} = \nabla_\mathrm{ad}$, I denote $P_\mathrm{tr}$.
 
@@ -575,10 +575,10 @@ Changing the internal energy generation rate used in the internally heated model
 This indicates that perhaps the black-body temperature is not a good choice for the characteristic temperature of such an internally heated planet.
 In reality, any internal energy input is trapped at the base of the opaque atmosphere, so the temperature through the atmosphere is much higher than $T_\mathrm{blackbody}$.
 I therefore produced a second set of irradiated models using a different reference temperature.
-Here, instead of setting the irradiation temperature equal to the black body temperature from an internally heated model, I use the temperature at the radiative--convective boundary $T_\mathrm{tr}$.
+Here, instead of setting the irradiation temperature equal to the black-body temperature from an internally heated model, I use the temperature at the radiative--convective boundary $T_\mathrm{tr}$.
 It is a better representative temperature temperature for the interior of the planet: it is hotter than the planet's black-body temperature owing to the insulating effect of the thick, opaque atmosphere.
 
-This second method produces planets that are larger than the first method, but still smaller the equivalent internally heated planets.
+This second method produces planets that are larger than the first method, but still smaller than the equivalent internally heated planets.
 [@Fig:internal-external-heat] shows this for some different heating scenarios (dashed lines).
 For example, if we take a $2\,$M$_\oplus$ planet with $30$% water by mass and an Earth-like level of internal energy generation (10$^{-12}\,$W$\cdot$kg$^{-1}$), its radius is approximately $2$R$_\oplus$.
 A planet with the same temperature applied *externally* is slightly smaller.
@@ -588,8 +588,8 @@ But at higher energy generation rates we see that the internal heating more stro
   A planet's radius increases more when it is internally heated than when it is externally heated to an equivalent temperature.
   Here I compare planets where the energy source is solely internal (solid lines) to planets that are otherwise equivalent except that the heating is applied externally (dashed/dotted lines).
   I do this by setting the irradiation temperature of the *externally* heated planet to a reference temperature from the *internally* heated planet.
-  This reference temperature is either the radiative--convective boundary temperature (dashed line) or the black body temperature calculated from the planet's surface flux (dotted line).
-  But in both cases the degree of inflation for external heating is less than when the planet is heated solely by an internal source of energy.
+  This reference temperature is either the radiative--convective boundary temperature (dashed line) or the black-body temperature calculated from the planet's surface flux (dotted line).
+  But the solid lines always lie above the dashed/dotted lines---so the degree of inflation for external heating is less than when the planet is heated solely by an internal source of energy.
 ](internal-vs-external){#fig:internal-external-heat}
 
 These two methods produce very different results. The first method is a more direct comparison, because it effectively compares energy fluxes.

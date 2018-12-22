@@ -1,5 +1,8 @@
-# Amendments to "Internal and atmospheric structures of heated watery super-Earths"
-## Scott Thomas
+---
+title: Amendments to "Internal and atmospheric structures of heated watery super-Earths"
+author: Scott Thomas
+geometry: margin=3.8cm
+---
 
 I have addressed the request for amendments by making the following changes to the dissertation. Here are my point-by-point responses to the corrections, followed by a full list of changes with page references.
 
@@ -86,7 +89,7 @@ I have addressed the request for amendments by making the following changes to t
 
     However, the point of this section and figure 4.9 was to compare how a change in heating mechanism affects the size of a planet. I use the effective (black-body) temperature as a way to compare an equivalent amount of heating when the mechanism is changed. For this reason, I never actually constructed planets with mixed heating as described above. Instead I constructed planets with *either* internal heating *or* irradiation, then compared their sizes. This is what is shown in figure 4.9.
 
-    I therefore believe there is no problem with the phrase as I have used it. Any confusion probably arises because I use it twice, once to refer to the black-body temperature of a planet where energy is generated internally and the second time to refer to the black-body temperature of a planet where energy is generated externally, absorbed by the planet, and re-radiated. To make this clearer, I replaced uses of the phrase "effective temperature" with "black-body temperature". I also updated the section text and figure 4.9's caption (**p100--p102**) to better explain how I used the black-body temperature as a link to allow us to compare the relative effects of internal and external heating.
+    Any confusion therefore probably arises because I use the phrase in two different contexts, once to refer to the black-body temperature of a planet where energy is generated internally and the second time to refer to the black-body temperature of a planet where energy is generated externally, absorbed by the planet, and re-radiated. To make this clearer, I replaced uses of the phrase "effective temperature" with "black-body temperature" and made sure I explained whether the energy source was taken to be internal or external. I also updated the section text and figure 4.9's caption (**p100--p102**) to better explain how I used the black-body temperature as a link to allow us to compare the relative effects of internal and external heating.
 
 ## List of changes
 
@@ -101,7 +104,7 @@ Substantive changes to the dissertation are listed here. I also corrected typos 
 - p65: Updated paragraph before "A boundary value solver in Julia" to provide citation for the new differential equation software I built my solver on.
 - p66: In the first paragraph of section 3.2.3, added citation for the modified Runge--Kutta method used in the differential equation solver.
 - p68: Removed "4" from "RK4 integration" as I no longer use the RK4 method.
-- p69: Removed the section previously numbered 3.2.5 about how changing the fixed grid size affected the final radius and how I chose a logarithmically-spaced grid to resolve the outer layers appropriately. This is now handled automatically by the solver.
+- p69: Removed the section previously numbered 3.2.5 about how changing the fixed grid size affected the final radius and how I chose a logarithmically spaced grid to resolve the outer layers appropriately. This is now handled automatically by the solver.
 - p70--76: Regenerated figures based on updated planetary modelling code. The figures in this chapter did not change much and the conclusions were unaltered.
 - p76: Updated numbers in paragraph beginning "The effects of surface temperature..." to match recalculated figures.
 - p89: Deleted paragraph before section 4.1.6 that discussed the mass grid size (see p69 above).
@@ -112,7 +115,7 @@ Substantive changes to the dissertation are listed here. I also corrected typos 
 - p96: Updated numbers in text in first two paragraphs of "Opacity and opacity ratio" section to match figures.
 - p97--105: Regenerated all figures in this chapter based on updated planetary modelling code.
 - p98: Rewrote the "Pressure at the radiative--convective boundary" section to indicate that it now serves as a sensitivity analysis on the position of this boundary.
-- **p100--102**: Tidied up the text in section 4.3.2 to better explain how I compare the relative inflation of internally and externally heated planets. Replaced "effective temperature" with "black body temperature" where appropriate. Rewrote the caption and legend of figure 4.9 to more precisely describe where black body, irradiation, and radiative--convective boundary temperatures are used in this comparison. Clearly stated the conclusion that internal heating is a stronger driver of inflation than external heating for these planets.
+- **p100--102**: Tidied up the text in section 4.3.2 to better explain how I compare the relative inflation of internally and externally heated planets. Replaced "effective temperature" with "black-body temperature" where appropriate. Rewrote the caption and legend of figure 4.9 to more precisely describe where black-body, irradiation, and radiative--convective boundary temperatures are used in this comparison. Clearly stated the conclusion that internal heating is a stronger driver of inflation than external heating for these planets.
 - **p103--104**: Updated figures based on changed modelling code. Extended the pressure range in order to demonstrate the smooth transition from radiative to convective gradient instead of cutting off the scale at $100\,$bar.
 - p105: Updated figure 4.12 in section 4.3.4 with the updated modelling code to show how forcing a zero-opacity atmosphere roughly reproduces the isothermal case. Stated in the section that this is as expected; removed a comment about the models diverging at the low-mass end that is no longer the case.
 - p106: Updated the last point under "I found that" to match the conclusion above about internal heating being a stronger driver of inflation than irradiation.
@@ -120,7 +123,7 @@ Substantive changes to the dissertation are listed here. I also corrected typos 
 - **p111**: Rewrote final paragraph of section 5.1 to introduce latent heat.
 - **p111--112**: Added new section 5.1.1 "The adiabatic temperature gradient at phase transitions" that explains expected changes in the adiabat and their link to the latent heat/entropy difference across the transition.
 - **p112--113**: Added new section 5.1.2 "My treatment of the adiabat" that explains that my treatment is equivalent to assuming no latent heat of phase transition and explains why I had to make this choice.
-- **p113--115**: In the section beginning "The way in which I achieve continuity of temperature and pressure...", explained that sharp changes in the thermal expansivity are because it ceases to be well-defined at the boundary and that it cannot be used to infer the shape of the adiabat across a phase boundary. Kept the description of how I force continuity of temperature and pressure at each phase boundary.
+- **p113--115**: In the section beginning "The way in which I achieve continuity of temperature and pressure...", explained that sharp changes in the thermal expansivity are because it ceases to be well-defined at the boundary and that it cannot be used to infer the shape of the adiabat across a phase boundary. Kept the description of how I force continuity of temperature and pressure at each phase boundary. Rewrote figure captions so that they no longer imply that the discontinuities shown are unphysical.
 - **p115**: At end of the first paragraph on this page, added a reference to section 2.2.5, where I showed and discussed discontinuities in the heat capacity.
 - **p115--116**: Added paragraphs beginning "Although the assumption of no latent heat..." discussing why this choice is expected to have little impact on the final planetary structures and radii, and situations in which this may no longer be the case (compositional changes and liquid--vapour transitions).
 - p119: Updated key result points to reflect changed models created with new modelling code, in particular replacing point 3 with a summary of how larger planetary models are less sensitive to irradiation temperature changes during migration.

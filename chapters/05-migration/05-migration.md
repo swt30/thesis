@@ -36,7 +36,7 @@ A phase transition is a discrete change in the properties of a material.
 This could be a dramatic change such as the transition between a liquid and a vapour, or it could be more subtle such as a change in the crystalline structure of ice.
 
 Phase transitions occur within my planetary models when the temperature and pressure cross a phase boundary.
-For example, [@fig:pressure-temperature-profiles] shows how several different planetary temperature--pressure structures each span different phases within pressure--temperature.^[Recall that these boundaries are not necessarily well-defined at high temperatures and pressures because the behaviour of water has yet to be measured in these regions.]
+For example, [@fig:pressure-temperature-profiles] shows how several different planetary temperature--pressure structures each span different phases within pressure--temperature space.^[Recall that these boundaries are not necessarily well-defined at high temperatures and pressures because the behaviour of water has yet to be measured in these regions.]
 
 ![
   Example pressure--temperature profiles for watery planet interiors.
@@ -64,7 +64,7 @@ The answer depends on the properties of the material in question, in particular 
 
 In the Earth, we see "seismic discontinuities", significant changes in seismic wave speeds at different depths.
 These seismic discontinuities are caused by density discontinuities in the mantle minerals.
-For example, one component of the mantle is a silicate called olivine ((Mg$_{0.9}$Si$_{0.1}$)$_2$SiO$_4$) which has a phase transition at a depth of about 400$\,$km or 14$\,$GPa [@Milone2014].
+For example, one component of the mantle is a silicate called olivine ((Mg$_{0.9}$Si$_{0.1}$)$_2$SiO$_4$) which has a phase transition at a depth of about 400$\,$km or 14$\,$GPa.^[@Milone2014]
 This is not a change in the chemical composition of the mantle, only in its molecular configuration---but it is enough to cause a density change and deflect seismic waves at that depth.
 We therefore expect to see similar behaviour in water layers as they transition between ice phases.
 
@@ -72,7 +72,7 @@ First, it is worth pointing out that phase transitions do not actually happen at
 Because heat transport within the planet is driven by convection, the precise depth must vary within the planet depending on whether material is rising or falling.
 Rising parcels of material within the mantle will be hotter than the surrounding material.
 They will transition to the cooler phase only once they have exchanged heat with their surroundings, meaning that the phase transition occurs closer to the surface of the planet.
-But, as the exact opposite effect occurs within falling parcels of cool material, it is reasonable to use the temperature and pressure of the surrounding material when calculating the depth at which a phase transition occurs on average.^[Such an assumption might no longer be be appropriate if, for example, we were calculating the depth of a phase transition in a subducting slab i.e. material moving unidirectionally.]
+But, as the exact opposite effect occurs within falling parcels of cool material, it is reasonable to use the temperature and pressure of the surrounding material when calculating the depth at which a phase transition occurs on average.^[Such an assumption might no longer be be appropriate if we were not considering the planet as a whole---for example if we were considering a subducting slab i.e. material moving unidirectionally.]
 
 \newthought{How do such} transitions affect the path of the adiabat in a convecting water ice layer?
 Within a single phase, the adiabat follows the P--T path defined by the solution to [@eq:adiabatic-temperature-gradient-radial; @eq:adiabatic-temperature-gradient].
@@ -81,7 +81,7 @@ If we know the specific entropy across the P--T range of interest, we can contin
 Or if we know the latent heat of transition at the boundary but not the specific entropy on either side, we can use this to calculate the deflection of the adiabat, which is on the order of\marginnote{
   Here $\Delta T$ is temperature change, $\Delta H$ is latent heat and C$_\mathrm{P}$ is the isobaric heat capacity in the high-pressure phase.
 } $$ \Delta T \approx {-\Delta H \over C_\mathrm{P}.} $${#eq:latent-heat-phase-transition}
-But it is better to know the entropy directly as it can be used to calculate a more accurate deflection in both temperature and pressure, known as the Verhoogen effect [@Bina1998;@Verhoogen1965].
+But it is better to know the entropy directly as it can be used to calculate a more accurate deflection in both temperature and pressure, known as the Verhoogen effect.^[@Bina1998;@Verhoogen1965]
 
 In summary, phase transitions cause a discontinuity and/or deflection of the adiabat into the planet, and this effect can only be correctly characterised with knowledge of latent heat or entropy across the phase boundary in question.
 
@@ -134,7 +134,7 @@ In contrast, there is no such need to repeat this process to deal with heat capa
 
 \newthought{Although the assumption} of no latent heat of phase transition is not ideal, I claim three reasons why it is not an irresponsible choice for the planets considered in this chapter.
 First, theoretical studies of high-pressure ices suggest that their configurational entropies are quite similar.
-That is, the portion of the specific entropy change that arises from the crystalline configuration of the ice phase does not appear to differ much from phase to phase---at most 5% [@Herrero2014].
+That is, the portion of the specific entropy change that arises from the crystalline configuration of the ice phase does not appear to differ much from phase to phase---at most $5$%.^[@Herrero2014]
 This then suggests that the latent heat difference between adjacent ice phases is also small.
 Second, this is supported by studies that trace specific water adiabats through high-pressure ice.
 For example, @Dolan2007 show an isentrope calculated from the liquid phase through ice VII; there is no perceivable discontinuity at the phase transition in that paper.
@@ -143,10 +143,10 @@ A planet's size is therefore insensitive to the precise position of phase bounda
 
 This assumption may be appropriate for the high-pressure ice--liquid phase transitions seen in this chapter, but there are two scenarios that warrant further caution.
 The first scenario is where the planet contains materials other than pure water: the inclusion of other minerals can substantially alter the thermochemical properties of ice.
-For example, adding methane results in a structure called methane clathrate or "filled ice" which has a very different thermal conductivity [@Levi2014]; we might also expect its entropy to differ more between phases, producing a larger adiabatic discontinuity.
+For example, adding methane results in a structure called methane clathrate or "filled ice" which has a very different thermal conductivity;^[@Levi2014] we might also expect its entropy to differ more between phases, producing a larger adiabatic discontinuity.
 A case-by-case analysis of the latent heat of transitions in these altered water ices would be needed if we were to attempt to calculate an adiabat through their P--T phase space.
 The second scenario is where a pure water planet underges a liquid--gas transition, as this has the largest latent heat of any water transition.
-But the surrounding anvironment during a transition to gas is unlikely to be governed by an isentropic temperature profile any more, as we are likely in an atmospheric (radiative) regime; at this point a proper atmospheric treatment is a better choice.
+But the surrounding environment during a transition to gas is unlikely to be governed by an isentropic temperature profile any more, as we are likely in an atmospheric (radiative) regime; at this point a proper atmospheric treatment is a better choice.
 In any case, I did not see any solid--liquid or liquid--gas transitions in the models in this chapter
 ([@fig:migration-1Mearth;@fig:migration-3Mearth;@fig:migration-5Mearth;@fig:migration-10Mearth]).
 
@@ -246,7 +246,7 @@ These figures show several values and trends at a glance:
 
 \noindent The key results from these figures are as follows.
 
-1. Small ($\lesssim 3\,$M$_\oplus$) watery planets can have extended low-density atmospheres, and these can be caused by either internal or external heating. But these results are only reliable to a point: at high levels of heating, we see what seems to be runaway atmospheric growth.
+1. Small ($\lesssim 3\,$M$_\oplus$) watery planets can have extended low-density atmospheres, and these can be caused by either internal or external heating. But these models may only be reliable to a point: at high levels of heating, we see what seems to be unphysical runaway atmospheric growth.
 
 2. For the most part, waterworlds in orbits comparable to Earth contain two or three phases of water: a gaseous atmosphere, a supercritical fluid layer, and possibly a plasma or ice X shell nearer the core. There is no liquid, ice VII or superionic fluid present in any of the planets modelled in this chapter.
 

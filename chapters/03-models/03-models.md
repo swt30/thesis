@@ -77,7 +77,7 @@ Instead I chose the third approach and assumed an adiabatic (isentropic) tempera
 The equation for the adiabatic temperature gradient^[@Milone2014] is\marginnote{
   Here $g = Gm/r^2$ is the gravity at the shell, $c_P$ is the isobaric heat capacity and $α$ is the volumetric thermal expansion coefficient defined in \cref{eq:thermal-expansion}.
 } $$ { dT \over dr} = -{T α g \over c_P}. $$ {#eq:adiabatic-temperature-gradient-radial}
-My sources for these latter two coefficients are detailed in @sec:thermal-expansion-and-heat-capacity-of-water.
+My sources for the thermal coefficients $α$ and $c_P$ are detailed in @sec:thermal-expansion-and-heat-capacity-of-water.
 
 @Eq:adiabatic-temperature-gradient-radial combined with @eq:mass-continuity gives the temperature gradient in terms of the mass co-ordinate,
   $$ {dT \over dm} = -{T α G m \over 4 π r^4 ρ c_P}. $$ {#eq:adiabatic-temperature-gradient}

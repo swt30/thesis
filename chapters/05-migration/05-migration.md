@@ -24,7 +24,7 @@ I assumed a Sun-like star and fixed the orbital separation between this star and
 Then I calculated the irradiation temperature (@eq:irradiation-temperature) of the planet and solved for its radius and structure as described in previous chapters.
 Within the planetary structure, I tracked the pressure--temperature profile and used this to determine the phase structure of water within the planet.
 By changing the star--planet separation, I can observe how this phase structure varies.
-This approach therefore provides an idea of what structural changes the planet undergoes as it migrates.
+This approach therefore provides an idea of what structural changes the planet might undergo as it migrates.
 
 In this chapter I first give some background of how I calculated the phase structure of water in my models.
 Then I present visualisations of the interior structure of a watery planet at different distances from a host star.
@@ -270,10 +270,10 @@ The range of orbital separations shown in [@fig:migration-1Mearth;@fig:migration
 These results are only reliable to a point, however.
 Compare the top panels of [@fig:migration-1Mearth] and [@fig:migration-3Mearth].
 The latter shows orbital separation--radius curves for four values of internal heating $\varepsilon$; the former shows only three.
-What happened to the 10$^{-8}$W$\cdot$kg$^{-1}$ case?
+What happened to the 10$\,^{-8}$W$\cdot$kg$^{-1}$ case?
 The answer is that these models suffered from runaway atmospheric growth and did not converge.^[By this, I mean that the trial ODE solution failed to satisfy the inner boundary condition $r=0, m=0$ and instead reached $r=0$ first. Normally this would then result in us increasing our radius guess until the boundary condition was met ([@fig:solver-flowchart]) but no such increase in the radius could be found to produce a consistent solution.]
 The upper row of models in the lower panel of [@fig:migration-1Mearth] show these unconverged models: they differ from the converged models by their lack of an Earth-like core.
-This is because the core is defined as the region where $m<0.7M_\mathrm{planet}$, but this region is not reached before the integrator terminates at $r=0$.
+This is because the core is defined as the region where $m<0.7$M$_\mathrm{planet}$, but this region is not reached before the integrator terminates at $r=0$.
 
 I believe that this runaway growth is a result of incomplete opacity information in the outer atmosphere.
 In @sec:heating-and-the-atmosphere I explained that our information about water opacity in the outer atmosphere is represented as a power-law fit to a grid of a few pressure--temperature pairs.
@@ -307,7 +307,7 @@ We would need a way of representing energy generation from the water envelope it
 
 Comparing [@fig:migration-1Mearth] to [@fig:migration-10Mearth] shows how much flatter the orbital--planetary radius curve is for the more massive planet.
 Earlier, we saw that low-mass planets can become highly inflated when heated, and that this inflation is due almost exclusively to the atmospheric layer of the planet expanding.
-With higher-mass planets, we see the opposite: the planet's size is almost constant no matter whether it is positioned at 0.3 or 10$\,$au, the gaseous atmosphere occupying only a small portion of the planet's total radius in either case.
+With higher-mass planets, we see the opposite: the planet's size is almost constant no matter whether it is positioned at $0.3$ or $10\,$au, the gaseous atmosphere occupying only a small portion of the planet's total radius in either case.
 
 In the previous chapter we asked the question: given a planet that could be heated internally and externally, which mode of heating is dominant?
 There we concluded that internal heating is more capable of increasing a planet's radius because it can affect the temperature throughout the entire planet rather than simply inflating the outer atmospheric layer.

@@ -580,7 +580,7 @@ It is a better representative temperature temperature for the interior of the pl
 
 This second method produces planets that are larger than the first method, but still smaller than the equivalent internally heated planets.
 [@Fig:internal-external-heat] shows this for some different heating scenarios (dashed lines).
-For example, if we take a $2\,$M$_\oplus$ planet with $30$% water by mass and an Earth-like level of internal energy generation (10$^{-12}\,$W$\cdot$kg$^{-1}$), its radius is approximately $2$R$_\oplus$.
+For example, if we take a $2\,$M$_\oplus$ planet with $30$% water by mass and an Earth-like level of internal energy generation ($10^{-12}\,$W$\cdot$kg$^{-1}$), its radius is approximately $2\,$R$_\oplus$.
 A planet with the same temperature applied *externally* is slightly smaller.
 But at higher energy generation rates we see that the internal heating more strongly affects the radius: the same planet would be almost twice the size if heated internally.
 
@@ -668,7 +668,7 @@ I found that:
 
 - The thermal opacity $\kappa_\mathrm{th}$ is a key driver of trends in the mass--radius relation.
 Because my water opacity model consists of a simple power-law fitted to few data points, I cannot necessarily claim that my models necessarily represent the full opacity-dependent behaviour of water.
-But they do indicate that there is a significant relation to the planet's temperature that should be ignored.
+But they do indicate that there is a significant relation to the planet's temperature that should not be ignored.
 
 - The assumption of constant atmospheric opacity, which has been made in some previous studies, is likely to produce incorrect radii for water-rich planets.
 Opacity can drastically increase towards the base of the atmosphere as the optical depth and pressure become higher.

@@ -230,7 +230,7 @@ $endif$
   \thispagestyle{empty}
   \setlength{\parindent}{0pt}
   \setlength{\parskip}{\baselineskip}
-  Copyright \textcopyright\ \the\year\ $short-author$
+  Copyright \textcopyright\ 2016\ $short-author$
 
   $if(colophon)$
     \par $colophon$
@@ -240,7 +240,10 @@ $endif$
     \par \emph{Title image:} $titleimage-description$
   $endif$
 
-  \par\textit{First submitted $submission-date$}
+  \par\textit{First submitted $submission-date$.}
+  $if(deposit-date)$
+    \textit{Final version deposited $deposit-date$.}
+  $endif$
 \end{fullwidth}
 
 % dedication page (if present)

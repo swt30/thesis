@@ -47,7 +47,7 @@ The best-known one is probably the ideal gas law,\marginnote{
   \end{equation}
   links three state variables: pressure $P$, density $ρ$ and temperature $T$. The material's properties are encoded by the specific ideal gas constant $R$, defined as the ratio $\bar R/M$ where $\bar R$ is the universal gas constant ($\bar R = 8.314\,$J$⋅$mol$^{-1}⋅$K$^{-1}$) and $M$ is the molar mass of the material.
 } but others exist too: for example, there exist cubic equations of state which can partially account for the liquid--vapour transition, and the behaviour of solids when heated is often parameterised by including the material's thermal expansivity in its equation of state.
-The ideal gas is one of the simplest possible equations of state; the complexity of the equation of state can be increased indefinitely.
+The ideal gas law is one of the simplest possible equations of state, and the complexity of the equation of state can be increased indefinitely.
 
 Above, I used the word "universal" to describe equations of state, but in reality there is no such thing.
 No equation of state accurately captures the behaviour of any material in all situations.
@@ -59,7 +59,7 @@ Real materials also have phase transitions between different states of matter, a
 Because no true universal equation of state exists, it is inappropriate to use just one equation of state in a planetary model.
 And despite progress in both experimental measurements and *ab initio* theoretical calculations, there is still no all-encompassing equation of state database for all of the minerals of interest in planetary interiors.
 Perhaps the closest to our intended goal is SESAME,^[@Lyon1992] the Los Alamos National Laboratory equation of state database.
-But US regulations preclude the distribution of SESAME to foreign nationals and so we were unable to access it.^[A frustrating display of political barriers to research.]
+But US regulations preclude the distribution of SESAME to foreign nationals.
 Instead we must maintain several different equations of state for each different material, choosing appropriately from among them depending on the chemical composition, pressure and temperature.
 
 Previous studies have approached the problem of there being no centralised database for equations of state by stitching together other equations of state which are valid for different pressure regimes.

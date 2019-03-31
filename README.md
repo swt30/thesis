@@ -13,4 +13,4 @@ This repository contains the source code for the thesis, including the chapter f
 The full PDF for the thesis is available under "Releases" or use the links below:
 
 - [version submitted for assessment](http://github.com/swt30/thesis/releases/download/submitted/thesis.pdf)
-- final version submitted for archiving (not yet available)
+- [final version deposited into the University Library](http://github.com/swt30/thesis/releases/download/final/thesis.pdf)
